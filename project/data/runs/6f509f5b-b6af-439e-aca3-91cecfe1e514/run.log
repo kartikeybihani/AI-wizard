@@ -1,0 +1,8 @@
+[2026-04-07T23:04:54.556Z] [seed] [stdout] [seed] wrote 45 deduplicated handles -> data/raw_handles.csv
+[2026-04-07T23:06:53.006Z] [enrich] [stdout] [enrich] loaded 45 handles from data/raw_handles.csv
+[2026-04-07T23:06:53.007Z] [enrich] [stdout] [enrich] comment actor equals post actor, using embedded comments from post scrape
+[2026-04-07T23:06:53.007Z] [enrich] [stdout] [enrich] wrote 45 enriched accounts -> data/enriched.json
+[2026-04-07T23:07:27.260Z] [score] [stdout] [score] loaded 45 accounts from data/enriched.json
+[2026-04-07T23:07:27.261Z] [score] [stdout] [score] wrote 45 scored accounts -> data/scored.csv
+[2026-04-07T23:07:27.741Z] [rank] [stdout] [rank] wrote 14 ranked accounts -> data/final_ranked.csv
+[2026-04-07T23:07:27.741Z] [rank] [stdout] [rank] wrote 0 review accounts -> data/review_bucket.csv

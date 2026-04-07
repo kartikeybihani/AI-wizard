@@ -1,0 +1,25 @@
+# OS
+.DS_Store
+
+# Secrets (never commit)
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Local / IDE
+.idea/
+.vscode/
+*.swp
