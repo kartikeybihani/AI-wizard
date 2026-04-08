@@ -12,6 +12,9 @@ const runRequestSchema = z.object({
   limitAccounts: z.number().int().min(0).max(5000).default(20),
   delaySeconds: z.number().min(0).max(30).default(2.5),
   maxRetries: z.number().int().min(0).max(5).default(2),
+  autoGenerateComments: z.boolean().default(true),
+  generateLimit: z.number().int().min(1).max(100).default(10),
+  whisperModel: z.string().trim().max(120).default("base.en"),
   fixture: z.string().trim().max(300).optional(),
   mockFailUsernames: z.string().trim().max(1000).optional(),
 });
@@ -41,6 +44,9 @@ export async function POST(request: Request) {
       limitAccounts: parsed.data.limitAccounts,
       delaySeconds: parsed.data.delaySeconds,
       maxRetries: parsed.data.maxRetries,
+      autoGenerateComments: parsed.data.autoGenerateComments,
+      generateLimit: parsed.data.generateLimit,
+      whisperModel: parsed.data.whisperModel,
       fixture: parsed.data.fixture,
       mockFailUsernames: parsed.data.mockFailUsernames,
     });
@@ -52,4 +58,3 @@ export async function POST(request: Request) {
     );
   }
 }
-

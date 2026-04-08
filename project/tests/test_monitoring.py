@@ -10,6 +10,8 @@ from utils.monitoring import (
     MonitorStore,
     build_mock_batch_fetcher,
     extract_posts_for_batch,
+    infer_is_video,
+    infer_media_type,
     load_mock_posts_fixture,
     read_ranked_accounts_csv,
     run_monitor_batches,
@@ -54,6 +56,24 @@ class MonitoringTests(unittest.TestCase):
         post_ids = {post["post_id"] for post in posts}
         self.assertEqual({"POST_NESTED_1", "POST_FLAT_2"}, post_ids)
         self.assertTrue(all(post["username"] == "mindcharity" for post in posts))
+        self.assertTrue(all("is_video" in post for post in posts))
+        self.assertTrue(all("media_type" in post for post in posts))
+
+    def test_media_type_and_video_signal_inference(self) -> None:
+        record_a = {"url": "https://www.instagram.com/reel/ABC123/"}
+        media_type_a = infer_media_type(record_a, record_a["url"])
+        self.assertEqual("reel", media_type_a)
+        self.assertTrue(infer_is_video(record_a, record_a["url"], media_type_a))
+
+        record_b = {"url": "https://www.instagram.com/p/XYZ999/", "isVideo": True}
+        media_type_b = infer_media_type(record_b, record_b["url"])
+        self.assertEqual("p", media_type_b)
+        self.assertTrue(infer_is_video(record_b, record_b["url"], media_type_b))
+
+        record_c = {"url": "https://www.instagram.com/p/IMG001/", "__typename": "GraphImage"}
+        media_type_c = infer_media_type(record_c, record_c["url"])
+        self.assertEqual("p", media_type_c)
+        self.assertFalse(infer_is_video(record_c, record_c["url"], media_type_c))
 
     def test_insert_new_posts_is_idempotent(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -64,7 +84,7 @@ class MonitoringTests(unittest.TestCase):
                     "username": "mindcharity",
                     "post_id": "UNIQUE_POST_1",
                     "caption": "first post",
-                    "url": "https://www.instagram.com/p/UNIQUE_POST_1/",
+                    "url": "https://www.instagram.com/reel/UNIQUE_POST_1/",
                     "posted_at": "2026-04-07T20:00:00Z",
                 }
                 first = store.insert_new_posts([post], detected_at="2026-04-07T21:00:00Z")
@@ -73,6 +93,42 @@ class MonitoringTests(unittest.TestCase):
                 self.assertEqual(1, len(first))
                 self.assertEqual(0, len(second))
                 self.assertEqual(1, store.count_rows("seen_posts"))
+                self.assertEqual(1, store.count_rows("new_posts_queue"))
+            finally:
+                store.close()
+
+    def test_non_video_posts_are_deduped_in_seen_but_not_queued(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            db_path = Path(tmpdir) / "monitor.db"
+            store = MonitorStore(db_path=db_path)
+            try:
+                image_post = {
+                    "username": "mindcharity",
+                    "post_id": "IMAGE_ONLY_1",
+                    "caption": "image only",
+                    "url": "https://www.instagram.com/p/IMAGE_ONLY_1/",
+                    "posted_at": "2026-04-07T20:00:00Z",
+                    "is_video": "0",
+                    "media_type": "p",
+                }
+                video_post = {
+                    "username": "mindcharity",
+                    "post_id": "REEL_1",
+                    "caption": "video",
+                    "url": "https://www.instagram.com/reel/REEL_1/",
+                    "posted_at": "2026-04-07T20:00:00Z",
+                    "is_video": "1",
+                    "media_type": "reel",
+                }
+                metrics = store.insert_new_posts_with_metrics(
+                    [image_post, video_post],
+                    detected_at="2026-04-07T21:00:00Z",
+                )
+                self.assertEqual(2, int(metrics["posts_seen_total"]))
+                self.assertEqual(1, int(metrics["posts_queued_video"]))
+                self.assertEqual(1, int(metrics["posts_skipped_non_video"]))
+                self.assertEqual(1, len(metrics["queued_posts"]))
+                self.assertEqual(2, store.count_rows("seen_posts"))
                 self.assertEqual(1, store.count_rows("new_posts_queue"))
             finally:
                 store.close()
@@ -92,7 +148,7 @@ class MonitoringTests(unittest.TestCase):
                             "username": "acct3",
                             "post_id": "POST_3",
                             "caption": "third account",
-                            "url": "https://www.instagram.com/p/POST_3/",
+                            "url": "https://www.instagram.com/reel/POST_3/",
                             "posted_at": "2026-04-07T23:00:00Z",
                         }
                     ]
@@ -115,6 +171,9 @@ class MonitoringTests(unittest.TestCase):
                 self.assertEqual(1, result["failed_batches"])
                 self.assertEqual(1, len(result["errors"]))
                 self.assertEqual(1, store.count_rows("new_posts_queue"))
+                self.assertEqual(1, int(result["posts_seen_total"]))
+                self.assertEqual(1, int(result["posts_queued_video"]))
+                self.assertEqual(0, int(result["posts_skipped_non_video"]))
             finally:
                 store.close()
 
@@ -172,7 +231,7 @@ class MonitoringTests(unittest.TestCase):
                                 "posts": [
                                     {
                                         "id": "P_A",
-                                        "url": "https://www.instagram.com/p/P_A/",
+                                        "url": "https://www.instagram.com/reel/P_A/",
                                         "caption": "a",
                                         "timestamp": "2026-04-07T10:00:00Z",
                                     }
@@ -184,6 +243,7 @@ class MonitoringTests(unittest.TestCase):
                                     {
                                         "shortCode": "P_B",
                                         "url": "https://www.instagram.com/p/P_B/",
+                                        "isVideo": True,
                                         "caption": "b",
                                         "timestamp": "2026-04-07T11:00:00Z",
                                     }

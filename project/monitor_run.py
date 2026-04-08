@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import argparse
 import os
+import subprocess
+import sys
 import time
 import uuid
 from pathlib import Path
@@ -38,6 +40,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--actor-id", default=os.getenv("APIFY_POST_ACTOR_ID", ""))
     parser.add_argument("--fixture", default="data/monitor/mock_posts.json")
     parser.add_argument(
+        "--auto-generate-comments",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Automatically run local reel transcription + comment generation after monitor run.",
+    )
+    parser.add_argument("--generate-limit", type=int, default=10)
+    parser.add_argument("--whisper-model", default=os.getenv("WHISPER_MODEL", "base.en"))
+    parser.add_argument("--openrouter-model", default=os.getenv("OPENROUTER_MODEL", ""))
+    parser.add_argument("--blake-bible", default="")
+    parser.add_argument("--engage-script", default="engage_generate.py")
+    parser.add_argument(
         "--mock-fail-usernames",
         default="",
         help="Comma-separated usernames that should fail in mock mode (for failure simulation).",
@@ -61,8 +74,12 @@ def main() -> None:
     accounts_checked = 0
     new_posts_found = 0
     failed_accounts = 0
+    posts_seen_total = 0
+    posts_queued_video = 0
+    posts_skipped_non_video = 0
     errors: List[str] = []
     new_posts_rows: List[Dict[str, str]] = []
+    generation_summary: Dict[str, Any] = {"enabled": bool(args.auto_generate_comments), "executed": False}
 
     try:
         limit_accounts = args.limit_accounts if args.limit_accounts and args.limit_accounts > 0 else None
@@ -127,7 +144,58 @@ def main() -> None:
         failed_accounts = int(monitor_result["failed_accounts"])
         new_posts_rows = list(monitor_result["new_posts"])
         new_posts_found = int(monitor_result["new_posts_found"])
+        posts_seen_total = int(monitor_result.get("posts_seen_total", 0))
+        posts_queued_video = int(monitor_result.get("posts_queued_video", new_posts_found))
+        posts_skipped_non_video = int(monitor_result.get("posts_skipped_non_video", 0))
         errors = list(monitor_result["errors"])
+
+        if status == "succeeded" and args.auto_generate_comments and posts_queued_video > 0:
+            generation_summary["executed"] = True
+            generation_script = str(args.engage_script or "engage_generate.py").strip()
+            generation_cmd = [
+                sys.executable,
+                generation_script,
+                "--db-path",
+                str(args.db_path),
+                "--limit",
+                str(max(1, int(args.generate_limit))),
+                "--whisper-model",
+                str(args.whisper_model).strip() or "base.en",
+            ]
+            if str(args.openrouter_model).strip():
+                generation_cmd.extend(["--model", str(args.openrouter_model).strip()])
+            if str(args.blake_bible).strip():
+                generation_cmd.extend(["--character-bible", str(args.blake_bible).strip()])
+
+            try:
+                proc = subprocess.run(
+                    generation_cmd,
+                    cwd=str(Path(__file__).resolve().parent),
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+                generation_summary.update(
+                    {
+                        "exit_code": int(proc.returncode),
+                        "command": " ".join(generation_cmd),
+                        "stdout": (proc.stdout or "").strip()[-4000:],
+                        "stderr": (proc.stderr or "").strip()[-4000:],
+                    }
+                )
+                if proc.returncode != 0:
+                    errors.append(
+                        f"engage generation failed with exit code {proc.returncode}"
+                    )
+            except Exception as exc:  # pragma: no cover - runtime safety
+                errors.append(f"engage generation launch failed: {exc}")
+                generation_summary.update(
+                    {
+                        "exit_code": 1,
+                        "command": " ".join(generation_cmd),
+                        "stderr": str(exc),
+                    }
+                )
 
     except Exception as exc:
         status = "failed"
@@ -150,12 +218,19 @@ def main() -> None:
         "accounts_checked": accounts_checked,
         "new_posts_found": new_posts_found,
         "failed_accounts": failed_accounts,
+        "posts_seen_total": posts_seen_total,
+        "posts_queued_video": posts_queued_video,
+        "posts_skipped_non_video": posts_skipped_non_video,
         "batch_size": max(1, min(50, args.batch_size)),
         "posts_per_account": max(1, args.posts_per_account),
         "max_retries": max(0, args.max_retries),
         "retry_base_seconds": max(0.0, args.retry_base_seconds),
         "retry_jitter_seconds": max(0.0, args.retry_jitter_seconds),
+        "auto_generate_comments": bool(args.auto_generate_comments),
+        "generate_limit": max(1, int(args.generate_limit)),
+        "whisper_model": str(args.whisper_model).strip() or "base.en",
         "errors": errors,
+        "generation": generation_summary,
         "artifacts": {
             "new_posts_csv": str(new_posts_path),
         },
@@ -177,7 +252,8 @@ def main() -> None:
     print(
         "[monitor_run] completed "
         f"(status={status}, checked={accounts_checked}, new_posts={new_posts_found}, "
-        f"failed_accounts={failed_accounts})"
+        f"failed_accounts={failed_accounts}, seen_total={posts_seen_total}, "
+        f"queued_video={posts_queued_video}, skipped_non_video={posts_skipped_non_video})"
     )
     print(f"[monitor_run] new posts -> {new_posts_path}")
     print(f"[monitor_run] report -> {report_path}")

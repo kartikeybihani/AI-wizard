@@ -5,13 +5,14 @@
       "posts": [
         {
           "id": "MC_POST_1001",
-          "url": "https://www.instagram.com/p/MC_POST_1001/",
+          "url": "https://www.instagram.com/reel/MC_POST_1001/",
           "caption": "Checking in with your nervous system before work can change the day.",
           "timestamp": "2026-04-07T16:00:00Z"
         },
         {
           "id": "MC_POST_1002",
           "url": "https://www.instagram.com/p/MC_POST_1002/",
+          "isVideo": true,
           "caption": "A reminder that asking for help is a strength signal.",
           "timestamp": "2026-04-07T20:00:00Z"
         }
@@ -33,7 +34,7 @@
       "posts": [
         {
           "postId": "MHA_POST_3301",
-          "url": "https://www.instagram.com/p/MHA_POST_3301/",
+          "url": "https://www.instagram.com/reel/MHA_POST_3301/",
           "caption": "Three small grounding practices for anxious mornings.",
           "createdAt": "2026-04-07T22:15:00Z"
         }
@@ -41,4 +42,3 @@
     }
   ]
 }
-

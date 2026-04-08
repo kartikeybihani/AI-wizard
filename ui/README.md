@@ -10,6 +10,7 @@ Next.js operator console for the existing Python influencer pipeline.
 - Run history persisted in SQLite (`/ui/data/runs.db`)
 - Artifacts copied per run into `/project/data/runs/<run_id>/`
 - Part 2 monitor operator page for ongoing post detection (`/monitor`)
+- Part 3.5 engage operator page for reel transcription + Blake comments (`/engage`)
 
 ## Requirements
 
@@ -17,6 +18,7 @@ Next.js operator console for the existing Python influencer pipeline.
 - npm
 - `python3` available in PATH
 - Python dependencies installed for `/project` scripts
+- `yt-dlp` and `ffmpeg` installed locally (for reel audio extraction/transcription)
 
 ## Environment Setup
 
@@ -75,10 +77,13 @@ Open [http://localhost:3000](http://localhost:3000).
 5. Watch live step timeline + logs
 6. Go to `/results` to review ranked table, review bucket, and download artifacts
 7. Go to `/monitor` to bootstrap tracked accounts, run monitor polling, and ensure the Apify 4-hour schedule
+8. Go to `/engage` to review generated comments, approve/edit/reject, and submit/copy
 
 ## Monitor Flow (`/monitor`)
 
-1. Bootstrap tracked accounts from `final_ranked.csv`
+1. Bootstrap tracked accounts from either:
+- `final_ranked.csv` (default), or
+- latest successful pipeline run artifact (`/project/data/runs/<run_id>/final_ranked.csv`)
 2. Run monitor job (`live` or `mock`) to detect unseen posts
 3. Review recent queue rows with exact post URLs
 4. Ensure/update recurring schedule through Apify Schedule API
@@ -87,6 +92,14 @@ Monitor state source:
 
 - SQLite DB: `/Users/kartikeybihani/Finek/TOMS/project/data/monitor/monitor.db`
 - Queue table: `new_posts_queue` (`pending_comment_generation` entries)
+
+## Engage Flow (`/engage`)
+
+1. Run monitor (with auto-generation on) to queue reel/video posts and transcribe/generate candidates
+2. Open `/engage` and filter by status (`Ready`, `Failed`, `Submitted`)
+3. Select a reel card, review transcript and candidate comments
+4. Approve/edit/reject candidates
+5. Submit approved suggestion and copy final comment text
 
 ## What Each Run Executes
 
@@ -132,6 +145,11 @@ Retention:
 - `POST /api/monitor/run` run `monitor_run.py`
 - `POST /api/monitor/schedule` run `monitor_schedule.py` (Apify schedule create/update)
 - `GET /api/monitor/jobs/:id` fetch monitor job detail/logs
+- `GET /api/engage/posts?status=ready_for_review&limit=10` fetch review cards
+- `POST /api/engage/generate` manual generation/regeneration job (`engage_generate.py`)
+- `POST /api/engage/suggestions/:id/approve` approve with optional edited text
+- `POST /api/engage/suggestions/:id/reject` reject with optional reason
+- `POST /api/engage/posts/:id/submit` mark submitted and return final comment
 - `POST /api/runs` start run (`preset` + optional `overrides`)
 - `GET /api/runs` list runs + queue/active state
 - `GET /api/runs/:id` run detail + log tail

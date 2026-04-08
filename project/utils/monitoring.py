@@ -8,15 +8,23 @@ import sqlite3
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Set
+from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 from utils.apify_client import ApifyClient, extract_username, is_plausible_username, normalize_username
 
 MONITOR_DIR = Path("data/monitor")
 MONITOR_DB_PATH = MONITOR_DIR / "monitor.db"
 QUEUE_PENDING_STATUS = "pending_comment_generation"
+QUEUE_TRANSCRIBING_STATUS = "transcribing"
+QUEUE_READY_REVIEW_STATUS = "ready_for_review"
+QUEUE_FAILED_STATUS = "generation_failed"
+QUEUE_SKIPPED_NON_VIDEO_STATUS = "skipped_non_video"
+QUEUE_APPROVED_STATUS = "approved"
+QUEUE_REJECTED_STATUS = "rejected"
+QUEUE_SUBMITTED_STATUS = "submitted"
 
 POST_ID_URL_PATTERN = re.compile(r"/(?:p|reel|tv)/([^/?#]+)/?")
+MEDIA_TYPE_URL_PATTERN = re.compile(r"/(reel|tv|p)/[^/?#]+/?", flags=re.IGNORECASE)
 
 
 def now_utc_iso() -> str:
@@ -67,6 +75,105 @@ def derive_post_id_from_url(url: str) -> str:
     return match.group(1).strip() if match else ""
 
 
+def _to_bool(value: Any) -> Optional[bool]:
+    if value is None:
+        return None
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return bool(int(value))
+    text = str(value).strip().lower()
+    if text in {"true", "1", "yes", "y"}:
+        return True
+    if text in {"false", "0", "no", "n"}:
+        return False
+    return None
+
+
+def infer_media_type(record: Dict[str, Any], url: str) -> str:
+    url_text = str(url or "").strip().lower()
+    match = MEDIA_TYPE_URL_PATTERN.search(url_text)
+    if match:
+        token = match.group(1).lower()
+        if token in {"reel", "tv", "p"}:
+            return token
+
+    explicit = first_present(
+        record,
+        [
+            "media_type",
+            "mediaType",
+            "__typename",
+            "type",
+            "postType",
+            "productType",
+        ],
+        default="",
+    )
+    explicit_text = str(explicit or "").strip().lower()
+    if explicit_text:
+        if "reel" in explicit_text:
+            return "reel"
+        if "video" in explicit_text:
+            return "video"
+        if "image" in explicit_text or "photo" in explicit_text:
+            return "image"
+        if "carousel" in explicit_text or "sidecar" in explicit_text:
+            return "carousel"
+
+    video_like_keys = (
+        "videoUrl",
+        "video_url",
+        "video_url_hd",
+        "videoPlayCount",
+        "video_view_count",
+        "videoDuration",
+        "video_versions",
+        "videoVersions",
+    )
+    if any(record.get(key) not in (None, "", []) for key in video_like_keys):
+        return "video"
+    return "unknown"
+
+
+def infer_is_video(record: Dict[str, Any], url: str, media_type: str) -> bool:
+    url_text = str(url or "").strip().lower()
+    if "/reel/" in url_text or "/tv/" in url_text:
+        return True
+
+    if media_type in {"reel", "tv", "video"}:
+        return True
+
+    signal_keys = (
+        "isVideo",
+        "is_video",
+        "video",
+        "hasVideo",
+        "has_video",
+    )
+    for key in signal_keys:
+        raw = record.get(key)
+        parsed = _to_bool(raw)
+        if parsed is not None:
+            return parsed
+
+    if any(
+        record.get(key) not in (None, "", [])
+        for key in (
+            "videoUrl",
+            "video_url",
+            "video_url_hd",
+            "videoPlayCount",
+            "video_view_count",
+            "videoDuration",
+            "video_versions",
+            "videoVersions",
+        )
+    ):
+        return True
+    return False
+
+
 def normalize_post_record(record: Dict[str, Any], fallback_username: str = "") -> Optional[Dict[str, str]]:
     username = normalize_username(fallback_username or extract_username(record))
     if not username:
@@ -94,6 +201,8 @@ def normalize_post_record(record: Dict[str, Any], fallback_username: str = "") -
             default="",
         )
     )
+    media_type = infer_media_type(record=record, url=url)
+    is_video = infer_is_video(record=record, url=url, media_type=media_type)
 
     return {
         "username": username,
@@ -101,6 +210,8 @@ def normalize_post_record(record: Dict[str, Any], fallback_username: str = "") -
         "caption": caption,
         "url": url,
         "posted_at": posted_at,
+        "is_video": "1" if is_video else "0",
+        "media_type": media_type,
     }
 
 
@@ -298,7 +409,9 @@ class MonitorStore:
                 posted_at TEXT,
                 first_seen_at TEXT NOT NULL,
                 caption TEXT,
-                url TEXT
+                url TEXT,
+                is_video INTEGER NOT NULL DEFAULT 0,
+                media_type TEXT NOT NULL DEFAULT 'unknown'
             );
 
             CREATE TABLE IF NOT EXISTS new_posts_queue (
@@ -309,7 +422,9 @@ class MonitorStore:
                 url TEXT,
                 posted_at TEXT,
                 detected_at TEXT NOT NULL,
-                status TEXT NOT NULL DEFAULT 'pending_comment_generation'
+                status TEXT NOT NULL DEFAULT 'pending_comment_generation',
+                is_video INTEGER NOT NULL DEFAULT 0,
+                media_type TEXT NOT NULL DEFAULT 'unknown'
             );
 
             CREATE TABLE IF NOT EXISTS monitor_runs (
@@ -335,9 +450,64 @@ class MonitorStore:
 
             CREATE INDEX IF NOT EXISTS idx_monitor_runs_started
             ON monitor_runs(started_at DESC);
+
+            CREATE TABLE IF NOT EXISTS post_processing (
+                post_id TEXT PRIMARY KEY,
+                queue_id INTEGER,
+                status TEXT NOT NULL,
+                transcript_text TEXT,
+                transcript_source TEXT,
+                transcript_model TEXT,
+                post_context_json TEXT,
+                generation_json TEXT,
+                critic_json TEXT,
+                selected_suggestion_id INTEGER,
+                error_message TEXT,
+                processing_started_at TEXT,
+                processing_finished_at TEXT,
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_post_processing_status
+            ON post_processing(status, updated_at DESC);
+
+            CREATE TABLE IF NOT EXISTS comment_suggestions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                post_id TEXT NOT NULL,
+                label TEXT NOT NULL,
+                comment TEXT NOT NULL,
+                why_it_works TEXT,
+                risk_level TEXT,
+                critic_score REAL,
+                critic_json TEXT,
+                decision_status TEXT NOT NULL DEFAULT 'pending',
+                edited_comment TEXT,
+                final_comment TEXT,
+                decision_reason TEXT,
+                decision_at TEXT,
+                submitted_at TEXT,
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL,
+                UNIQUE(post_id, label)
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_comment_suggestions_post
+            ON comment_suggestions(post_id, decision_status, updated_at DESC);
             """
         )
+        self._ensure_column("seen_posts", "is_video", "is_video INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("seen_posts", "media_type", "media_type TEXT NOT NULL DEFAULT 'unknown'")
+        self._ensure_column("new_posts_queue", "is_video", "is_video INTEGER NOT NULL DEFAULT 0")
+        self._ensure_column("new_posts_queue", "media_type", "media_type TEXT NOT NULL DEFAULT 'unknown'")
         self.conn.commit()
+
+    def _ensure_column(self, table_name: str, column_name: str, ddl_fragment: str) -> None:
+        rows = self.conn.execute(f"PRAGMA table_info({table_name})").fetchall()
+        existing = {str(row["name"]) for row in rows}
+        if column_name in existing:
+            return
+        self.conn.execute(f"ALTER TABLE {table_name} ADD COLUMN {ddl_fragment}")
 
     def upsert_tracked_accounts(
         self, accounts: Sequence[Dict[str, Any]], source_run_id: Optional[str] = None
@@ -431,8 +601,20 @@ class MonitorStore:
         detected_at: Optional[str] = None,
         status: str = QUEUE_PENDING_STATUS,
     ) -> List[Dict[str, str]]:
+        metrics = self.insert_new_posts_with_metrics(posts=posts, detected_at=detected_at, status=status)
+        return list(metrics["queued_posts"])
+
+    def insert_new_posts_with_metrics(
+        self,
+        posts: Sequence[Dict[str, str]],
+        detected_at: Optional[str] = None,
+        status: str = QUEUE_PENDING_STATUS,
+    ) -> Dict[str, Any]:
         stamp = detected_at or now_utc_iso()
         inserted_posts: List[Dict[str, str]] = []
+        posts_seen_total = 0
+        posts_queued_video = 0
+        posts_skipped_non_video = 0
 
         for post in posts:
             username = normalize_username(str(post.get("username", "")))
@@ -443,26 +625,36 @@ class MonitorStore:
             caption = str(post.get("caption", "") or "")
             url = str(post.get("url", "") or "")
             posted_at = str(post.get("posted_at", "") or "")
+            media_type = str(post.get("media_type", "") or "unknown").strip().lower() or "unknown"
+            is_video_raw = post.get("is_video", "")
+            is_video = _to_bool(is_video_raw)
+            if is_video is None:
+                is_video = infer_is_video(record=post, url=url, media_type=media_type)
 
             cursor = self.conn.execute(
                 """
                 INSERT OR IGNORE INTO seen_posts (
-                    post_id, username, posted_at, first_seen_at, caption, url
-                ) VALUES (?, ?, ?, ?, ?, ?)
+                    post_id, username, posted_at, first_seen_at, caption, url, is_video, media_type
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 """,
-                (post_id, username, posted_at, stamp, caption, url),
+                (post_id, username, posted_at, stamp, caption, url, 1 if is_video else 0, media_type),
             )
 
             if cursor.rowcount != 1:
                 continue
 
+            posts_seen_total += 1
+            if not is_video:
+                posts_skipped_non_video += 1
+                continue
+
             self.conn.execute(
                 """
                 INSERT OR IGNORE INTO new_posts_queue (
-                    post_id, username, caption, url, posted_at, detected_at, status
-                ) VALUES (?, ?, ?, ?, ?, ?, ?)
+                    post_id, username, caption, url, posted_at, detected_at, status, is_video, media_type
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
-                (post_id, username, caption, url, posted_at, stamp, status),
+                (post_id, username, caption, url, posted_at, stamp, status, 1 if is_video else 0, media_type),
             )
             inserted_posts.append(
                 {
@@ -473,11 +665,167 @@ class MonitorStore:
                     "posted_at": posted_at,
                     "detected_at": stamp,
                     "status": status,
+                    "is_video": "1" if is_video else "0",
+                    "media_type": media_type,
                 }
             )
+            posts_queued_video += 1
 
         self.conn.commit()
-        return inserted_posts
+        return {
+            "queued_posts": inserted_posts,
+            "posts_seen_total": posts_seen_total,
+            "posts_queued_video": posts_queued_video,
+            "posts_skipped_non_video": posts_skipped_non_video,
+        }
+
+    def update_queue_status(self, post_id: str, status: str) -> None:
+        self.conn.execute(
+            """
+            UPDATE new_posts_queue
+            SET status = ?
+            WHERE post_id = ?
+            """,
+            (status, str(post_id).strip()),
+        )
+        self.conn.commit()
+
+    def list_queue_posts_for_generation(
+        self,
+        limit: int = 10,
+        statuses: Optional[Sequence[str]] = None,
+        post_ids: Optional[Sequence[str]] = None,
+    ) -> List[Dict[str, Any]]:
+        safe_limit = max(1, int(limit))
+        filter_statuses = list(statuses or [QUEUE_PENDING_STATUS, QUEUE_FAILED_STATUS])
+        where_parts = ["is_video = 1"]
+        params: List[Any] = []
+
+        if filter_statuses:
+            placeholders = ",".join("?" for _ in filter_statuses)
+            where_parts.append(f"status IN ({placeholders})")
+            params.extend(filter_statuses)
+
+        if post_ids:
+            cleaned_ids = [str(item).strip() for item in post_ids if str(item).strip()]
+            if cleaned_ids:
+                placeholders = ",".join("?" for _ in cleaned_ids)
+                where_parts.append(f"post_id IN ({placeholders})")
+                params.extend(cleaned_ids)
+
+        query = f"""
+            SELECT id, post_id, username, caption, url, posted_at, detected_at, status, is_video, media_type
+            FROM new_posts_queue
+            WHERE {" AND ".join(where_parts)}
+            ORDER BY detected_at DESC
+            LIMIT ?
+        """
+        params.append(safe_limit)
+        rows = self.conn.execute(query, params).fetchall()
+        return [dict(row) for row in rows]
+
+    def upsert_post_processing(
+        self,
+        post_id: str,
+        queue_id: Optional[int],
+        status: str,
+        transcript_text: str = "",
+        transcript_source: str = "",
+        transcript_model: str = "",
+        post_context_json: str = "",
+        generation_json: str = "",
+        critic_json: str = "",
+        selected_suggestion_id: Optional[int] = None,
+        error_message: str = "",
+        processing_started_at: str = "",
+        processing_finished_at: str = "",
+    ) -> None:
+        now = now_utc_iso()
+        self.conn.execute(
+            """
+            INSERT INTO post_processing (
+                post_id, queue_id, status, transcript_text, transcript_source, transcript_model,
+                post_context_json, generation_json, critic_json, selected_suggestion_id,
+                error_message, processing_started_at, processing_finished_at, created_at, updated_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(post_id) DO UPDATE SET
+                queue_id = COALESCE(excluded.queue_id, post_processing.queue_id),
+                status = excluded.status,
+                transcript_text = excluded.transcript_text,
+                transcript_source = excluded.transcript_source,
+                transcript_model = excluded.transcript_model,
+                post_context_json = excluded.post_context_json,
+                generation_json = excluded.generation_json,
+                critic_json = excluded.critic_json,
+                selected_suggestion_id = COALESCE(excluded.selected_suggestion_id, post_processing.selected_suggestion_id),
+                error_message = excluded.error_message,
+                processing_started_at = excluded.processing_started_at,
+                processing_finished_at = excluded.processing_finished_at,
+                updated_at = excluded.updated_at
+            """,
+            (
+                str(post_id).strip(),
+                int(queue_id) if queue_id is not None else None,
+                status,
+                transcript_text,
+                transcript_source,
+                transcript_model,
+                post_context_json,
+                generation_json,
+                critic_json,
+                int(selected_suggestion_id) if selected_suggestion_id is not None else None,
+                error_message,
+                processing_started_at,
+                processing_finished_at,
+                now,
+                now,
+            ),
+        )
+        self.conn.commit()
+
+    def replace_comment_suggestions(
+        self,
+        post_id: str,
+        suggestions: Sequence[Dict[str, Any]],
+        selected_label: str = "",
+        critic_json: str = "",
+        critic_score: Optional[float] = None,
+    ) -> Optional[int]:
+        now = now_utc_iso()
+        cleaned_post_id = str(post_id).strip()
+        self.conn.execute("DELETE FROM comment_suggestions WHERE post_id = ?", (cleaned_post_id,))
+        selected_id: Optional[int] = None
+        for suggestion in suggestions:
+            label = str(suggestion.get("label", "") or "").strip() or "candidate"
+            comment = str(suggestion.get("comment", "") or "").strip()
+            if not comment:
+                continue
+            why_it_works = str(suggestion.get("why_it_works", "") or "").strip()
+            risk_level = str(suggestion.get("risk_level", "") or "").strip()
+            cursor = self.conn.execute(
+                """
+                INSERT INTO comment_suggestions (
+                    post_id, label, comment, why_it_works, risk_level,
+                    critic_score, critic_json, decision_status, created_at, updated_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?)
+                """,
+                (
+                    cleaned_post_id,
+                    label,
+                    comment,
+                    why_it_works,
+                    risk_level,
+                    critic_score,
+                    critic_json,
+                    now,
+                    now,
+                ),
+            )
+            inserted_id = int(cursor.lastrowid)
+            if selected_label and label == selected_label:
+                selected_id = inserted_id
+        self.conn.commit()
+        return selected_id
 
     def create_monitor_run(self, run_id: str, mode: str, started_at: Optional[str] = None) -> None:
         self.conn.execute(
@@ -607,6 +955,9 @@ def run_monitor_batches(
     failed_batches = 0
     errors: List[str] = []
     inserted_posts: List[Dict[str, str]] = []
+    posts_seen_total = 0
+    posts_queued_video = 0
+    posts_skipped_non_video = 0
 
     for batch_index, batch in enumerate(batches):
         accounts_checked += len(batch)
@@ -640,7 +991,11 @@ def run_monitor_batches(
                 f"batch {batch_index + 1}/{len(batches)} failed ({len(batch)} accounts): {last_error}"
             )
         else:
-            inserted_posts.extend(store.insert_new_posts(batch_posts))
+            metrics = store.insert_new_posts_with_metrics(batch_posts)
+            inserted_posts.extend(list(metrics["queued_posts"]))
+            posts_seen_total += int(metrics["posts_seen_total"])
+            posts_queued_video += int(metrics["posts_queued_video"])
+            posts_skipped_non_video += int(metrics["posts_skipped_non_video"])
 
         if batch_index < len(batches) - 1 and delay_seconds > 0:
             sleep_fn(delay_seconds)
@@ -651,6 +1006,9 @@ def run_monitor_batches(
         "failed_batches": failed_batches,
         "new_posts": inserted_posts,
         "new_posts_found": len(inserted_posts),
+        "posts_seen_total": posts_seen_total,
+        "posts_queued_video": posts_queued_video,
+        "posts_skipped_non_video": posts_skipped_non_video,
         "errors": errors,
         "batches_total": len(batches),
     }
@@ -669,6 +1027,8 @@ def write_new_posts_csv(path: Path, rows: Sequence[Dict[str, str]]) -> None:
                 "posted_at",
                 "detected_at",
                 "status",
+                "is_video",
+                "media_type",
             ],
         )
         writer.writeheader()
@@ -682,6 +1042,8 @@ def write_new_posts_csv(path: Path, rows: Sequence[Dict[str, str]]) -> None:
                     "posted_at": str(row.get("posted_at", "")),
                     "detected_at": str(row.get("detected_at", "")),
                     "status": str(row.get("status", "")),
+                    "is_video": str(row.get("is_video", "")),
+                    "media_type": str(row.get("media_type", "")),
                 }
             )
 
@@ -690,4 +1052,3 @@ def write_run_report(path: Path, report: Dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as handle:
         json.dump(report, handle, ensure_ascii=False, indent=2)
-

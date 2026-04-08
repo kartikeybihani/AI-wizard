@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 type MonitorJobStatus = "running" | "succeeded" | "failed";
-type MonitorJobKind = "bootstrap" | "run" | "schedule";
+type MonitorJobKind = "bootstrap" | "run" | "schedule" | "generate";
 
 interface MonitorJob {
   id: string;
@@ -32,6 +32,8 @@ interface MonitorOverview {
     postedAt: string;
     detectedAt: string;
     status: string;
+    isVideo: number;
+    mediaType: string;
   }>;
   recentSeenPosts: Array<{
     username: string;
@@ -95,6 +97,7 @@ async function postJson<T>(url: string, payload: Record<string, unknown>): Promi
 export default function MonitorPage() {
   const [overview, setOverview] = useState<MonitorOverview | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [busyAction, setBusyAction] = useState<string | null>(null);
 
   const [bootstrapLimit, setBootstrapLimit] = useState(20);
@@ -106,6 +109,9 @@ export default function MonitorPage() {
   const [runLimitAccounts, setRunLimitAccounts] = useState(20);
   const [runDelaySeconds, setRunDelaySeconds] = useState(2.5);
   const [runMaxRetries, setRunMaxRetries] = useState(2);
+  const [runAutoGenerateComments, setRunAutoGenerateComments] = useState(true);
+  const [runGenerateLimit, setRunGenerateLimit] = useState(10);
+  const [runWhisperModel, setRunWhisperModel] = useState("base.en");
   const [runFixture, setRunFixture] = useState("data/monitor/mock_posts.json");
   const [runMockFailUsernames, setRunMockFailUsernames] = useState("");
 
@@ -163,13 +169,18 @@ export default function MonitorPage() {
   const executeAction = async (
     actionName: string,
     endpoint: string,
-    payload: Record<string, unknown>
+    payload: Record<string, unknown>,
+    successText?: string
   ) => {
     setBusyAction(actionName);
     setErrorMessage(null);
+    setSuccessMessage(null);
     try {
       await postJson<{ job: MonitorJob }>(endpoint, payload);
       await refreshOverview();
+      if (successText) {
+        setSuccessMessage(successText);
+      }
     } catch (error) {
       setErrorMessage((error as Error).message);
     } finally {
@@ -202,6 +213,11 @@ export default function MonitorPage() {
             {errorMessage}
           </p>
         ) : null}
+        {successMessage ? (
+          <p className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
+            {successMessage}
+          </p>
+        ) : null}
       </section>
 
       <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -212,7 +228,7 @@ export default function MonitorPage() {
           ["Queue Pending", String(overview?.pendingQueueCount || 0)],
           ["Monitor Runs", String(overview?.runsCount || 0)],
         ].map(([label, value]) => (
-          <article key={label} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <article key={label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
             <p className="text-xs uppercase tracking-wide text-slate-500">{label}</p>
             <p className="mt-1 text-2xl font-semibold text-slate-900">{value}</p>
           </article>
@@ -220,10 +236,10 @@ export default function MonitorPage() {
       </section>
 
       <section className="grid gap-6 xl:grid-cols-3">
-        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-base font-semibold text-slate-900">1) Bootstrap Watchlist</h2>
           <p className="mt-1 text-xs text-slate-500">
-            Upsert tracked accounts from `data/final_ranked.csv`.
+            Upsert tracked accounts from default `data/final_ranked.csv` or from latest successful Run.
           </p>
           <div className="mt-4 space-y-3">
             <label className="flex flex-col gap-1 text-xs text-slate-600">
@@ -253,19 +269,39 @@ export default function MonitorPage() {
                 executeAction("bootstrap", "/api/monitor/bootstrap", {
                   limit: bootstrapLimit,
                   sourceRunId: bootstrapSourceRunId || undefined,
-                })
+                }, "Tracked accounts bootstrapped from default final_ranked.csv.")
               }
               className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
             >
               {busyAction === "bootstrap" ? "Bootstrapping..." : "Bootstrap"}
             </button>
+            <button
+              type="button"
+              disabled={busyAction !== null}
+              onClick={() =>
+                executeAction(
+                  "bootstrap-latest-run",
+                  "/api/monitor/bootstrap",
+                  {
+                    limit: bootstrapLimit,
+                    useLatestSuccessfulRun: true,
+                  },
+                  "Tracked accounts bootstrapped from latest successful Run."
+                )
+              }
+              className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-100 disabled:cursor-not-allowed disabled:bg-slate-200"
+            >
+              {busyAction === "bootstrap-latest-run"
+                ? "Bootstrapping..."
+                : "Bootstrap From Latest Run"}
+            </button>
           </div>
         </article>
 
-        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-base font-semibold text-slate-900">2) Run Monitor Job</h2>
           <p className="mt-1 text-xs text-slate-500">
-            Poll latest 3-5 posts/account and enqueue unseen posts.
+            Poll latest posts/account, dedupe in seen registry, and queue only reel/video posts for Engage.
           </p>
           <div className="mt-4 grid gap-3">
             <label className="flex flex-col gap-1 text-xs text-slate-600">
@@ -335,6 +371,37 @@ export default function MonitorPage() {
                 className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900"
               />
             </label>
+            <label className="flex flex-col gap-1 text-xs text-slate-600">
+              Generate Limit (Top N Reels)
+              <input
+                type="number"
+                min={1}
+                max={100}
+                value={runGenerateLimit}
+                onChange={(event) => {
+                  const value = Number(event.target.value);
+                  setRunGenerateLimit(Number.isFinite(value) ? Math.max(1, Math.min(100, value)) : 10);
+                }}
+                className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900"
+              />
+            </label>
+            <label className="flex flex-col gap-1 text-xs text-slate-600">
+              Whisper Model
+              <input
+                value={runWhisperModel}
+                onChange={(event) => setRunWhisperModel(event.target.value)}
+                className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900"
+                placeholder="base.en"
+              />
+            </label>
+            <label className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700">
+              Auto Generate Comments After Run
+              <input
+                type="checkbox"
+                checked={runAutoGenerateComments}
+                onChange={(event) => setRunAutoGenerateComments(event.target.checked)}
+              />
+            </label>
             {runMode === "mock" ? (
               <>
                 <label className="flex flex-col gap-1 text-xs text-slate-600">
@@ -367,10 +434,13 @@ export default function MonitorPage() {
                   limitAccounts: runLimitAccounts,
                   delaySeconds: runDelaySeconds,
                   maxRetries: runMaxRetries,
+                  autoGenerateComments: runAutoGenerateComments,
+                  generateLimit: runGenerateLimit,
+                  whisperModel: runWhisperModel || "base.en",
                   fixture: runMode === "mock" ? runFixture : undefined,
                   mockFailUsernames:
                     runMode === "mock" ? runMockFailUsernames || undefined : undefined,
-                })
+                }, "Monitor run completed. Reels/videos were queued for Engage.")
               }
               className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
             >
@@ -379,10 +449,10 @@ export default function MonitorPage() {
           </div>
         </article>
 
-        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-base font-semibold text-slate-900">3) Ensure 4-Hour Schedule</h2>
           <p className="mt-1 text-xs text-slate-500">
-            Calls Apify Schedule API through `monitor_schedule.py`.
+            Optional for production. For assessment demo, keep this disabled and run monitor manually.
           </p>
           <div className="mt-4 grid gap-3">
             <label className="flex flex-col gap-1 text-xs text-slate-600">
@@ -454,7 +524,7 @@ export default function MonitorPage() {
                   actorTaskId: scheduleActorTaskId || undefined,
                   actorId: scheduleActorId || undefined,
                   runInput: scheduleRunInput || undefined,
-                })
+                }, "Schedule ensure call completed (check logs below).")
               }
               className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
             >
@@ -465,7 +535,7 @@ export default function MonitorPage() {
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-base font-semibold text-slate-900">Recent Detected Posts Queue</h2>
           <p className="mt-1 text-xs text-slate-500">
             `new_posts_queue` ordered by detection time.
@@ -477,6 +547,8 @@ export default function MonitorPage() {
                   <th className="px-3 py-2">Username</th>
                   <th className="px-3 py-2">Post ID</th>
                   <th className="px-3 py-2">URL</th>
+                  <th className="px-3 py-2">Media</th>
+                  <th className="px-3 py-2">Posted</th>
                   <th className="px-3 py-2">Detected</th>
                   <th className="px-3 py-2">Status</th>
                 </tr>
@@ -484,7 +556,7 @@ export default function MonitorPage() {
               <tbody>
                 {(overview?.recentQueue || []).length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="px-3 py-4 text-slate-500">
+                    <td colSpan={7} className="px-3 py-4 text-slate-500">
                       No queued posts yet.
                     </td>
                   </tr>
@@ -508,6 +580,12 @@ export default function MonitorPage() {
                         )}
                       </td>
                       <td className="px-3 py-2">
+                        {row.isVideo ? "video" : "non-video"} · {row.mediaType || "unknown"}
+                      </td>
+                      <td className="px-3 py-2">
+                        {row.postedAt ? new Date(row.postedAt).toLocaleString() : "-"}
+                      </td>
+                      <td className="px-3 py-2">
                         {row.detectedAt ? new Date(row.detectedAt).toLocaleString() : "-"}
                       </td>
                       <td className="px-3 py-2">{row.status}</td>
@@ -519,14 +597,14 @@ export default function MonitorPage() {
           </div>
         </article>
 
-        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-base font-semibold text-slate-900">Monitor Job Logs</h2>
           <div className="mt-3 max-h-[420px] space-y-2 overflow-auto rounded-xl border border-slate-200 bg-slate-950 p-3 text-xs text-slate-200">
             {recentJobs.length === 0 ? (
               <p className="text-slate-400">No monitor jobs started from UI yet.</p>
             ) : (
               recentJobs.map((job) => (
-                <div key={job.id} className="rounded-lg border border-slate-700 bg-slate-900/80 p-2">
+                <div key={job.id} className="rounded-lg border border-slate-700 bg-slate-900 p-2">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <p className="font-semibold text-slate-100">
                       {job.kind} · {job.id.slice(0, 8)}
@@ -554,7 +632,7 @@ export default function MonitorPage() {
         </article>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h2 className="text-base font-semibold text-slate-900">Recently Scraped Posts (Seen Registry)</h2>
         <p className="mt-1 text-xs text-slate-500">
           Most recently seen posts, including ones already processed earlier.
@@ -611,7 +689,7 @@ export default function MonitorPage() {
       </section>
 
       <section className="grid gap-6 xl:grid-cols-2">
-        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-base font-semibold text-slate-900">Monitor Runs</h2>
           <div className="mt-3 overflow-auto rounded-xl border border-slate-200">
             <table className="min-w-full text-left text-sm">
@@ -653,7 +731,7 @@ export default function MonitorPage() {
           </div>
         </article>
 
-        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-base font-semibold text-slate-900">Tracked Accounts</h2>
           <div className="mt-3 overflow-auto rounded-xl border border-slate-200">
             <table className="min-w-full text-left text-sm">
