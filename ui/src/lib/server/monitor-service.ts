@@ -1043,6 +1043,7 @@ export class MonitorService {
       }
 
       const tx = db.transaction(() => {
+        const rejectionReason = (reason || "").trim();
         db.prepare(
           `
           UPDATE comment_suggestions
@@ -1052,22 +1053,98 @@ export class MonitorService {
               updated_at = ?
           WHERE id = ?
           `
-        ).run((reason || "").trim(), now, now, row.id);
+        ).run(rejectionReason, now, now, row.id);
 
-        db.prepare(`UPDATE new_posts_queue SET status = 'rejected' WHERE post_id = ?`).run(row.post_id);
+        const decisionCounts = db
+          .prepare(
+            `
+            SELECT
+              SUM(CASE WHEN decision_status = 'submitted' THEN 1 ELSE 0 END) AS submitted_count,
+              SUM(CASE WHEN decision_status = 'approved' THEN 1 ELSE 0 END) AS approved_count,
+              SUM(CASE WHEN decision_status <> 'rejected' THEN 1 ELSE 0 END) AS non_rejected_count
+            FROM comment_suggestions
+            WHERE post_id = ?
+            `
+          )
+          .get(row.post_id) as
+          | {
+              submitted_count: number | null;
+              approved_count: number | null;
+              non_rejected_count: number | null;
+            }
+          | undefined;
+
+        let queueStatus = "ready_for_review";
+        let processingStatus = "ready_for_review";
+        let selectedSuggestionId: number | null = null;
+        let processingError = "";
+
+        if (Number(decisionCounts?.submitted_count || 0) > 0) {
+          const submittedSuggestion = db
+            .prepare(
+              `
+              SELECT id
+              FROM comment_suggestions
+              WHERE post_id = ?
+                AND decision_status = 'submitted'
+              ORDER BY submitted_at DESC, updated_at DESC, id DESC
+              LIMIT 1
+              `
+            )
+            .get(row.post_id) as { id: number } | undefined;
+          queueStatus = "submitted";
+          processingStatus = "submitted";
+          selectedSuggestionId = submittedSuggestion ? Number(submittedSuggestion.id) : null;
+        } else if (Number(decisionCounts?.approved_count || 0) > 0) {
+          const approvedSuggestion = db
+            .prepare(
+              `
+              SELECT id
+              FROM comment_suggestions
+              WHERE post_id = ?
+                AND decision_status = 'approved'
+              ORDER BY decision_at DESC, updated_at DESC, id DESC
+              LIMIT 1
+              `
+            )
+            .get(row.post_id) as { id: number } | undefined;
+          queueStatus = "approved";
+          processingStatus = "approved";
+          selectedSuggestionId = approvedSuggestion ? Number(approvedSuggestion.id) : null;
+        } else if (Number(decisionCounts?.non_rejected_count || 0) > 0) {
+          queueStatus = "ready_for_review";
+          processingStatus = "ready_for_review";
+          selectedSuggestionId = null;
+        } else {
+          queueStatus = "rejected";
+          processingStatus = "rejected";
+          selectedSuggestionId = null;
+          processingError = rejectionReason;
+        }
+
+        db.prepare(`UPDATE new_posts_queue SET status = ? WHERE post_id = ?`).run(queueStatus, row.post_id);
 
         db.prepare(
           `
           INSERT INTO post_processing (
-            post_id, queue_id, status, error_message, created_at, updated_at
-          ) VALUES (?, ?, 'rejected', ?, ?, ?)
+            post_id, queue_id, status, selected_suggestion_id, error_message, created_at, updated_at
+          ) VALUES (?, ?, ?, ?, ?, ?, ?)
           ON CONFLICT(post_id) DO UPDATE SET
             queue_id = excluded.queue_id,
             status = excluded.status,
+            selected_suggestion_id = excluded.selected_suggestion_id,
             error_message = excluded.error_message,
             updated_at = excluded.updated_at
           `
-        ).run(row.post_id, row.queue_id, (reason || "").trim(), now, now);
+        ).run(
+          row.post_id,
+          row.queue_id,
+          processingStatus,
+          selectedSuggestionId,
+          processingError,
+          now,
+          now
+        );
       });
       tx();
 
@@ -1120,7 +1197,7 @@ export class MonitorService {
       const submitted = db
         .prepare(
           `
-          SELECT id, comment, edited_comment, final_comment
+          SELECT id, comment, edited_comment, final_comment, decision_status
           FROM comment_suggestions
           WHERE post_id = ?
             AND decision_status = 'submitted'
@@ -1134,6 +1211,7 @@ export class MonitorService {
             comment: string;
             edited_comment: string | null;
             final_comment: string | null;
+            decision_status: string;
           }
         | undefined;
 
@@ -1142,7 +1220,7 @@ export class MonitorService {
         (db
           .prepare(
             `
-            SELECT id, comment, edited_comment, final_comment
+            SELECT id, comment, edited_comment, final_comment, decision_status
             FROM comment_suggestions
             WHERE post_id = ?
               AND decision_status = 'approved'
@@ -1156,6 +1234,7 @@ export class MonitorService {
               comment: string;
               edited_comment: string | null;
               final_comment: string | null;
+              decision_status: string;
             }
           | undefined);
 
@@ -1163,9 +1242,11 @@ export class MonitorService {
         chosen = db
           .prepare(
             `
-            SELECT id, comment, edited_comment, final_comment
+            SELECT id, comment, edited_comment, final_comment, decision_status
             FROM comment_suggestions
-            WHERE id = ? AND post_id = ?
+            WHERE id = ?
+              AND post_id = ?
+              AND decision_status <> 'rejected'
             LIMIT 1
             `
           )
@@ -1175,6 +1256,7 @@ export class MonitorService {
               comment: string;
               edited_comment: string | null;
               final_comment: string | null;
+              decision_status: string;
             }
           | undefined;
       }
@@ -1183,9 +1265,10 @@ export class MonitorService {
         chosen = db
           .prepare(
             `
-            SELECT id, comment, edited_comment, final_comment
+            SELECT id, comment, edited_comment, final_comment, decision_status
             FROM comment_suggestions
             WHERE post_id = ?
+              AND decision_status <> 'rejected'
             ORDER BY COALESCE(critic_score, -1) DESC, id ASC
             LIMIT 1
             `
@@ -1196,6 +1279,7 @@ export class MonitorService {
               comment: string;
               edited_comment: string | null;
               final_comment: string | null;
+              decision_status: string;
             }
           | undefined;
       }
@@ -1209,18 +1293,36 @@ export class MonitorService {
         (chosenSuggestion.edited_comment || "").trim() ||
         (chosenSuggestion.final_comment || "").trim() ||
         chosenSuggestion.comment;
+      const autoApproved = !["approved", "submitted"].includes(
+        String(chosenSuggestion.decision_status || "").toLowerCase()
+      );
       const tx = db.transaction(() => {
+        db.prepare(
+          `
+          UPDATE comment_suggestions
+          SET decision_status = 'pending',
+              updated_at = ?
+          WHERE post_id = ?
+            AND id <> ?
+            AND decision_status IN ('approved', 'submitted')
+          `
+        ).run(now, queueRow.post_id, chosenSuggestion.id);
+
         db.prepare(
           `
           UPDATE comment_suggestions
           SET decision_status = 'submitted',
               final_comment = ?,
+              decision_reason = CASE
+                WHEN ? = 1 AND COALESCE(decision_reason, '') = '' THEN 'Auto-approved via submit.'
+                ELSE COALESCE(decision_reason, '')
+              END,
               submitted_at = ?,
               decision_at = COALESCE(decision_at, ?),
               updated_at = ?
           WHERE id = ?
           `
-        ).run(finalComment, now, now, now, chosenSuggestion.id);
+        ).run(finalComment, autoApproved ? 1 : 0, now, now, now, chosenSuggestion.id);
 
         db.prepare(`UPDATE new_posts_queue SET status = 'submitted' WHERE id = ?`).run(queueId);
 

@@ -70,6 +70,12 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def all_monitor_batches_failed(monitor_result: Dict[str, Any]) -> bool:
+    failed_batches = int(monitor_result.get("failed_batches", 0) or 0)
+    batches_total = int(monitor_result.get("batches_total", 0) or 0)
+    return batches_total > 0 and failed_batches >= batches_total
+
+
 def main() -> None:
     args = parse_args()
     run_id = str(uuid.uuid4())
@@ -86,6 +92,8 @@ def main() -> None:
     accounts_checked = 0
     new_posts_found = 0
     failed_accounts = 0
+    failed_batches = 0
+    batches_total = 0
     posts_seen_total = 0
     posts_queued_video = 0
     posts_skipped_non_video = 0
@@ -154,12 +162,19 @@ def main() -> None:
 
         accounts_checked = int(monitor_result["accounts_checked"])
         failed_accounts = int(monitor_result["failed_accounts"])
+        failed_batches = int(monitor_result.get("failed_batches", 0))
+        batches_total = int(monitor_result.get("batches_total", 0))
         new_posts_rows = list(monitor_result["new_posts"])
         new_posts_found = int(monitor_result["new_posts_found"])
         posts_seen_total = int(monitor_result.get("posts_seen_total", 0))
         posts_queued_video = int(monitor_result.get("posts_queued_video", new_posts_found))
         posts_skipped_non_video = int(monitor_result.get("posts_skipped_non_video", 0))
         errors = list(monitor_result["errors"])
+
+        if status == "succeeded" and all_monitor_batches_failed(monitor_result):
+            status = "failed"
+            if not errors:
+                errors.append("all monitor batches failed; no accounts succeeded")
 
         if status == "succeeded" and args.auto_generate_comments and posts_queued_video > 0:
             generation_summary["executed"] = True
@@ -234,6 +249,8 @@ def main() -> None:
         "accounts_checked": accounts_checked,
         "new_posts_found": new_posts_found,
         "failed_accounts": failed_accounts,
+        "failed_batches": failed_batches,
+        "batches_total": batches_total,
         "posts_seen_total": posts_seen_total,
         "posts_queued_video": posts_queued_video,
         "posts_skipped_non_video": posts_skipped_non_video,
@@ -270,7 +287,8 @@ def main() -> None:
     print(
         "[monitor_run] completed "
         f"(status={status}, checked={accounts_checked}, new_posts={new_posts_found}, "
-        f"failed_accounts={failed_accounts}, seen_total={posts_seen_total}, "
+        f"failed_accounts={failed_accounts}, failed_batches={failed_batches}/{batches_total}, "
+        f"seen_total={posts_seen_total}, "
         f"queued_video={posts_queued_video}, skipped_non_video={posts_skipped_non_video})"
     )
     print(f"[monitor_run] new posts -> {new_posts_path}")

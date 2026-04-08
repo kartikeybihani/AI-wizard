@@ -26,5 +26,12 @@ build/
 
 # Monitor runtime artifacts
 project/data/monitor/monitor.db
+project/data/monitor/monitor.db-shm
+project/data/monitor/monitor.db-wal
 project/data/monitor/new_posts_*.csv
 project/data/monitor/run_report_*.json
+project/data/runs/*/run.log
+
+# UI runtime DB sidecars
+ui/data/*.db-shm
+ui/data/*.db-wal

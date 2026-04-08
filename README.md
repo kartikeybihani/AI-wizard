@@ -201,7 +201,7 @@ In the UI `Results` page, this table is the discovered influencer ranking output
 - npm
 - `ffmpeg`
 - `yt-dlp`
-- Apify API token + actor IDs
+- Apify API token
 - OpenRouter API key
 
 ## 2) Backend setup
