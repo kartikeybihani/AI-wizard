@@ -112,7 +112,7 @@ Preset snapshot (current defaults):
 
 This was the coolest part of the assessment.
 
-I did not treat this as "summarize Blake." I treated it as building a character bible from a person who has evolved across eras.
+I treated it as building a character bible from a person who has evolved across eras.
 
 Core principle:
 - Blake from early TOMS years is not the same as current Blake in the Enough era.
