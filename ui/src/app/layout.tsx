@@ -15,7 +15,7 @@ const mono = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "TOMS Operator UI",
+  title: "AI Wizard UI",
   description: "Run, monitor, and inspect influencer discovery pipeline runs.",
 };
 
