@@ -1,0 +1,72 @@
+[2026-04-08T09:59:20.940Z] [seed] [stdout] [seed] hashtag scrape failed for #mentalhealth: Apify actor run failed (403): {
+[2026-04-08T09:59:20.948Z] [seed] [stdout]   "error": {
+[2026-04-08T09:59:20.949Z] [seed] [stdout]     "type": "platform-feature-disabled",
+[2026-04-08T09:59:20.949Z] [seed] [stdout]     "message": "Monthly usage hard limit exceeded"
+[2026-04-08T09:59:20.949Z] [seed] [stdout]   }
+[2026-04-08T09:59:20.949Z] [seed] [stdout] }
+[2026-04-08T09:59:20.950Z] [seed] [stdout] [seed] hashtag scrape failed for #anxietyhelp: Apify actor run failed (403): {
+[2026-04-08T09:59:20.950Z] [seed] [stdout]   "error": {
+[2026-04-08T09:59:20.950Z] [seed] [stdout]     "type": "platform-feature-disabled",
+[2026-04-08T09:59:20.950Z] [seed] [stdout]     "message": "Monthly usage hard limit exceeded"
+[2026-04-08T09:59:20.951Z] [seed] [stdout]   }
+[2026-04-08T09:59:20.951Z] [seed] [stdout] }
+[2026-04-08T09:59:20.951Z] [seed] [stdout] [seed] hashtag scrape failed for #therapy: Apify actor run failed (403): {
+[2026-04-08T09:59:20.951Z] [seed] [stdout]   "error": {
+[2026-04-08T09:59:20.951Z] [seed] [stdout]     "type": "platform-feature-disabled",
+[2026-04-08T09:59:20.951Z] [seed] [stdout]     "message": "Monthly usage hard limit exceeded"
+[2026-04-08T09:59:20.951Z] [seed] [stdout]   }
+[2026-04-08T09:59:20.952Z] [seed] [stdout] }
+[2026-04-08T09:59:20.952Z] [seed] [stdout] [seed] hashtag scrape failed for #mentalhealthadvocate: Apify actor run failed (403): {
+[2026-04-08T09:59:20.952Z] [seed] [stdout]   "error": {
+[2026-04-08T09:59:20.952Z] [seed] [stdout]     "type": "platform-feature-disabled",
+[2026-04-08T09:59:20.952Z] [seed] [stdout]     "message": "Monthly usage hard limit exceeded"
+[2026-04-08T09:59:20.953Z] [seed] [stdout]   }
+[2026-04-08T09:59:20.953Z] [seed] [stdout] }
+[2026-04-08T09:59:20.953Z] [seed] [stdout] [seed] hashtag scrape failed for #mentalhealthawareness: Apify actor run failed (403): {
+[2026-04-08T09:59:20.953Z] [seed] [stdout]   "error": {
+[2026-04-08T09:59:20.953Z] [seed] [stdout]     "type": "platform-feature-disabled",
+[2026-04-08T09:59:20.953Z] [seed] [stdout]     "message": "Monthly usage hard limit exceeded"
+[2026-04-08T09:59:20.953Z] [seed] [stdout]   }
+[2026-04-08T09:59:20.953Z] [seed] [stdout] }
+[2026-04-08T09:59:20.953Z] [seed] [stdout] [seed] hashtag scrape failed for #enoughmovement: Apify actor run failed (403): {
+[2026-04-08T09:59:20.953Z] [seed] [stdout]   "error": {
+[2026-04-08T09:59:20.953Z] [seed] [stdout]     "type": "platform-feature-disabled",
+[2026-04-08T09:59:20.953Z] [seed] [stdout]     "message": "Monthly usage hard limit exceeded"
+[2026-04-08T09:59:20.953Z] [seed] [stdout]   }
+[2026-04-08T09:59:20.953Z] [seed] [stdout] }
+[2026-04-08T09:59:20.953Z] [seed] [stdout] [seed] wrote 20 deduplicated handles -> data/raw_handles.csv
+[2026-04-08T09:59:26.808Z] [enrich] [stdout] [enrich] loaded 20 handles from data/raw_handles.csv
+[2026-04-08T09:59:26.808Z] [enrich] [stdout] [enrich] profile batch failed (5 handles): Apify actor run failed (403): {
+[2026-04-08T09:59:26.808Z] [enrich] [stdout]   "error": {
+[2026-04-08T09:59:26.808Z] [enrich] [stdout]     "type": "platform-feature-disabled",
+[2026-04-08T09:59:26.809Z] [enrich] [stdout]     "message": "Monthly usage hard limit exceeded"
+[2026-04-08T09:59:26.809Z] [enrich] [stdout]   }
+[2026-04-08T09:59:26.809Z] [enrich] [stdout] }
+[2026-04-08T09:59:26.809Z] [enrich] [stdout] [enrich] profile batch failed (5 handles): Apify actor run failed (403): {
+[2026-04-08T09:59:26.809Z] [enrich] [stdout]   "error": {
+[2026-04-08T09:59:26.809Z] [enrich] [stdout]     "type": "platform-feature-disabled",
+[2026-04-08T09:59:26.809Z] [enrich] [stdout]     "message": "Monthly usage hard limit exceeded"
+[2026-04-08T09:59:26.809Z] [enrich] [stdout]   }
+[2026-04-08T09:59:26.809Z] [enrich] [stdout] }
+[2026-04-08T09:59:26.809Z] [enrich] [stderr] Traceback (most recent call last):
+[2026-04-08T09:59:26.809Z] [enrich] [stderr]   File "/Users/kartikeybihani/Finek/TOMS/project/enrich.py", line 211, in fetch_profiles
+[2026-04-08T09:59:26.809Z] [enrich] [stderr]     items = client.run_actor_and_fetch_items(
+[2026-04-08T09:59:26.809Z] [enrich] [stderr]   File "/Users/kartikeybihani/Finek/TOMS/project/utils/apify_client.py", line 168, in run_actor_and_fetch_items
+[2026-04-08T09:59:26.809Z] [enrich] [stderr]     run_data = self.run_actor(actor_id, actor_input, wait_for_finish_seconds)
+[2026-04-08T09:59:26.809Z] [enrich] [stderr]   File "/Users/kartikeybihani/Finek/TOMS/project/utils/apify_client.py", line 106, in run_actor
+[2026-04-08T09:59:26.809Z] [enrich] [stderr]     raise ApifyError(
+[2026-04-08T09:59:26.809Z] [enrich] [stderr] utils.apify_client.ApifyError: Apify actor run failed (403): {
+[2026-04-08T09:59:26.809Z] [enrich] [stderr]   "error": {
+[2026-04-08T09:59:26.809Z] [enrich] [stderr]     "type": "platform-feature-disabled",
+[2026-04-08T09:59:26.809Z] [enrich] [stderr]     "message": "Monthly usage hard limit exceeded"
+[2026-04-08T09:59:26.809Z] [enrich] [stderr]   }
+[2026-04-08T09:59:26.809Z] [enrich] [stderr] }
+[2026-04-08T09:59:26.809Z] [enrich] [stderr] During handling of the above exception, another exception occurred:
+[2026-04-08T09:59:26.809Z] [enrich] [stderr] Traceback (most recent call last):
+[2026-04-08T09:59:26.810Z] [enrich] [stderr]   File "/Users/kartikeybihani/Finek/TOMS/project/enrich.py", line 532, in <module>
+[2026-04-08T09:59:26.810Z] [enrich] [stderr]     main()
+[2026-04-08T09:59:26.810Z] [enrich] [stderr]   File "/Users/kartikeybihani/Finek/TOMS/project/enrich.py", line 412, in main
+[2026-04-08T09:59:26.810Z] [enrich] [stderr]     profiles = fetch_profiles(
+[2026-04-08T09:59:26.810Z] [enrich] [stderr]   File "/Users/kartikeybihani/Finek/TOMS/project/enrich.py", line 219, in fetch_profiles
+[2026-04-08T09:59:26.810Z] [enrich] [stderr]     time.sleep(max(0.0, delay_seconds))
+[2026-04-08T09:59:26.810Z] [enrich] [stderr] KeyboardInterrupt

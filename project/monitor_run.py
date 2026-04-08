@@ -46,6 +46,18 @@ def parse_args() -> argparse.Namespace:
         help="Automatically run local reel transcription + comment generation after monitor run.",
     )
     parser.add_argument("--generate-limit", type=int, default=10)
+    parser.add_argument(
+        "--generate-drain-pending",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="When auto generation is enabled, keep draining pending queue in chunks.",
+    )
+    parser.add_argument(
+        "--generate-max-batches",
+        type=int,
+        default=20,
+        help="Maximum number of generation chunks when --generate-drain-pending is on.",
+    )
     parser.add_argument("--whisper-model", default=os.getenv("WHISPER_MODEL", "base.en"))
     parser.add_argument("--openrouter-model", default=os.getenv("OPENROUTER_MODEL", ""))
     parser.add_argument("--blake-bible", default="")
@@ -161,7 +173,11 @@ def main() -> None:
                 str(max(1, int(args.generate_limit))),
                 "--whisper-model",
                 str(args.whisper_model).strip() or "base.en",
+                "--no-include-failed",
             ]
+            if bool(args.generate_drain_pending):
+                generation_cmd.append("--drain-pending")
+                generation_cmd.extend(["--max-batches", str(max(1, int(args.generate_max_batches)))])
             if str(args.openrouter_model).strip():
                 generation_cmd.extend(["--model", str(args.openrouter_model).strip()])
             if str(args.blake_bible).strip():
@@ -228,6 +244,8 @@ def main() -> None:
         "retry_jitter_seconds": max(0.0, args.retry_jitter_seconds),
         "auto_generate_comments": bool(args.auto_generate_comments),
         "generate_limit": max(1, int(args.generate_limit)),
+        "generate_drain_pending": bool(args.generate_drain_pending),
+        "generate_max_batches": max(1, int(args.generate_max_batches)),
         "whisper_model": str(args.whisper_model).strip() or "base.en",
         "errors": errors,
         "generation": generation_summary,

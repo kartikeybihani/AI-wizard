@@ -11,6 +11,9 @@ const generateRequestSchema = z.object({
   whisperModel: z.string().trim().max(120).optional(),
   model: z.string().trim().max(200).optional(),
   force: z.boolean().default(false),
+  includeFailed: z.boolean().default(false),
+  drainPending: z.boolean().default(false),
+  maxBatches: z.number().int().min(1).max(200).default(20),
   characterBible: z.string().trim().max(500).optional(),
 });
 
@@ -38,6 +41,9 @@ export async function POST(request: Request) {
       whisperModel: parsed.data.whisperModel,
       model: parsed.data.model,
       force: parsed.data.force,
+      includeFailed: parsed.data.includeFailed,
+      drainPending: parsed.data.drainPending,
+      maxBatches: parsed.data.maxBatches,
       characterBible: parsed.data.characterBible,
     });
     return NextResponse.json({ job });

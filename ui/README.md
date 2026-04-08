@@ -45,7 +45,13 @@ Optional:
 
 ```bash
 PIPELINE_CWD=/Users/kartikeybihani/Finek/TOMS/project
+PIPELINE_PYTHON_BIN=/Users/kartikeybihani/Finek/TOMS/project/.venv/bin/python
 ```
+
+Interpreter resolution for monitor/engage jobs:
+- Uses `PIPELINE_PYTHON_BIN` when set
+- Else auto-uses `project/.venv/bin/python` if present
+- Else falls back to `python3`
 
 Notes:
 
@@ -95,9 +101,10 @@ Monitor state source:
 
 ## Engage Flow (`/engage`)
 
-1. Run monitor (with auto-generation on) to queue reel/video posts and transcribe/generate candidates
+1. Run monitor (with auto-generation on) to queue reel posts and generate candidates
 2. Open `/engage` and filter by status (`Ready`, `Failed`, `Submitted`)
-3. Select a reel card, review transcript and candidate comments
+3. Select a reel card and review candidate comments next to the reel preview
+4. Use `Generate Next N` for a chunk, or `Drain Pending` to process queue in batches
 4. Approve/edit/reject candidates
 5. Submit approved suggestion and copy final comment text
 

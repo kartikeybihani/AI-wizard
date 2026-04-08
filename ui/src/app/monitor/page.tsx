@@ -111,6 +111,8 @@ export default function MonitorPage() {
   const [runMaxRetries, setRunMaxRetries] = useState(2);
   const [runAutoGenerateComments, setRunAutoGenerateComments] = useState(true);
   const [runGenerateLimit, setRunGenerateLimit] = useState(10);
+  const [runGenerateDrainPending, setRunGenerateDrainPending] = useState(false);
+  const [runGenerateMaxBatches, setRunGenerateMaxBatches] = useState(20);
   const [runWhisperModel, setRunWhisperModel] = useState("base.en");
   const [runFixture, setRunFixture] = useState("data/monitor/mock_posts.json");
   const [runMockFailUsernames, setRunMockFailUsernames] = useState("");
@@ -124,6 +126,7 @@ export default function MonitorPage() {
   const [scheduleRunInput, setScheduleRunInput] = useState(
     '{"mode":"live","posts_per_account":5,"batch_size":25}'
   );
+  const [queueStatusFilter, setQueueStatusFilter] = useState("all");
 
   const refreshOverview = useCallback(async () => {
     const response = await fetch("/api/monitor", { cache: "no-store" });
@@ -165,6 +168,52 @@ export default function MonitorPage() {
     }
     return [active, ...jobs.filter((job) => job.id !== active.id)];
   }, [overview]);
+
+  const queueStatusOptions = useMemo(() => {
+    const statuses = new Set<string>();
+    (overview?.recentQueue || []).forEach((row) => {
+      if (row.status) {
+        statuses.add(row.status);
+      }
+    });
+    return ["all", ...Array.from(statuses).sort()];
+  }, [overview?.recentQueue]);
+
+  const filteredQueue = useMemo(() => {
+    if (queueStatusFilter === "all") {
+      return overview?.recentQueue || [];
+    }
+    return (overview?.recentQueue || []).filter((row) => row.status === queueStatusFilter);
+  }, [overview?.recentQueue, queueStatusFilter]);
+
+  const sortedTrackedAccounts = useMemo(() => {
+    const tierOrder: Record<string, number> = {
+      micro: 0,
+      mid: 1,
+      macro: 2,
+      major: 3,
+      nano: 4,
+    };
+    return [...(overview?.trackedAccounts || [])].sort((a, b) => {
+      const tierA = tierOrder[(a.tier || "").toLowerCase()] ?? 99;
+      const tierB = tierOrder[(b.tier || "").toLowerCase()] ?? 99;
+      if (tierA !== tierB) {
+        return tierA - tierB;
+      }
+      const scoreA = a.finalScore ?? Number.NEGATIVE_INFINITY;
+      const scoreB = b.finalScore ?? Number.NEGATIVE_INFINITY;
+      if (scoreA !== scoreB) {
+        return scoreB - scoreA;
+      }
+      return a.username.localeCompare(b.username);
+    });
+  }, [overview?.trackedAccounts]);
+
+  useEffect(() => {
+    if (queueStatusFilter !== "all" && !queueStatusOptions.includes(queueStatusFilter)) {
+      setQueueStatusFilter("all");
+    }
+  }, [queueStatusFilter, queueStatusOptions]);
 
   const executeAction = async (
     actionName: string,
@@ -372,7 +421,7 @@ export default function MonitorPage() {
               />
             </label>
             <label className="flex flex-col gap-1 text-xs text-slate-600">
-              Generate Limit (Top N Reels)
+              Generate Chunk Size (N posts per batch)
               <input
                 type="number"
                 min={1}
@@ -381,6 +430,28 @@ export default function MonitorPage() {
                 onChange={(event) => {
                   const value = Number(event.target.value);
                   setRunGenerateLimit(Number.isFinite(value) ? Math.max(1, Math.min(100, value)) : 10);
+                }}
+                className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900"
+              />
+            </label>
+            <label className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700">
+              Auto Drain Pending Queue (chunked)
+              <input
+                type="checkbox"
+                checked={runGenerateDrainPending}
+                onChange={(event) => setRunGenerateDrainPending(event.target.checked)}
+              />
+            </label>
+            <label className="flex flex-col gap-1 text-xs text-slate-600">
+              Max Drain Batches
+              <input
+                type="number"
+                min={1}
+                max={200}
+                value={runGenerateMaxBatches}
+                onChange={(event) => {
+                  const value = Number(event.target.value);
+                  setRunGenerateMaxBatches(Number.isFinite(value) ? Math.max(1, Math.min(200, value)) : 20);
                 }}
                 className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900"
               />
@@ -436,11 +507,13 @@ export default function MonitorPage() {
                   maxRetries: runMaxRetries,
                   autoGenerateComments: runAutoGenerateComments,
                   generateLimit: runGenerateLimit,
+                  generateDrainPending: runGenerateDrainPending,
+                  generateMaxBatches: runGenerateMaxBatches,
                   whisperModel: runWhisperModel || "base.en",
                   fixture: runMode === "mock" ? runFixture : undefined,
                   mockFailUsernames:
                     runMode === "mock" ? runMockFailUsernames || undefined : undefined,
-                }, "Monitor run completed. Reels/videos were queued for Engage.")
+                }, "Monitor run completed. Eligible reel/video posts were queued for Engage.")
               }
               className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
             >
@@ -534,9 +607,107 @@ export default function MonitorPage() {
         </article>
       </section>
 
+      <section className="grid gap-6 md:grid-cols-2">
+        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <h2 className="text-base font-semibold text-slate-900">Monitor Runs</h2>
+          <div className="mt-3 overflow-auto rounded-xl border border-slate-200">
+            <table className="min-w-full text-left text-sm">
+              <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+                <tr>
+                  <th className="px-3 py-2">Run</th>
+                  <th className="px-3 py-2">Mode</th>
+                  <th className="px-3 py-2">Checked</th>
+                  <th className="px-3 py-2">New</th>
+                  <th className="px-3 py-2">Failed</th>
+                  <th className="px-3 py-2">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(overview?.recentRuns || []).length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="px-3 py-4 text-slate-500">
+                      No monitor runs recorded yet.
+                    </td>
+                  </tr>
+                ) : (
+                  (overview?.recentRuns || []).map((run) => (
+                    <tr key={run.runId} className="border-t border-slate-200">
+                      <td className="px-3 py-2 font-semibold text-slate-900">{run.runId.slice(0, 8)}</td>
+                      <td className="px-3 py-2">{run.mode}</td>
+                      <td className="px-3 py-2">{run.accountsChecked}</td>
+                      <td className="px-3 py-2">{run.newPostsFound}</td>
+                      <td className="px-3 py-2">{run.failedAccounts}</td>
+                      <td className="px-3 py-2">
+                        <span className={`rounded-full px-2 py-0.5 text-xs ${classForStatus(run.status)}`}>
+                          {run.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <h2 className="text-base font-semibold text-slate-900">Tracked Accounts</h2>
+          <div className="mt-3 overflow-auto rounded-xl border border-slate-200">
+            <table className="min-w-full text-left text-sm">
+              <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+                <tr>
+                  <th className="px-3 py-2">Username</th>
+                  <th className="px-3 py-2">Tier</th>
+                  <th className="px-3 py-2">Score</th>
+                  <th className="px-3 py-2">Active</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedTrackedAccounts.length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="px-3 py-4 text-slate-500">
+                      No tracked accounts yet. Run bootstrap first.
+                    </td>
+                  </tr>
+                ) : (
+                  sortedTrackedAccounts.map((account) => (
+                    <tr key={account.username} className="border-t border-slate-200">
+                      <td className="px-3 py-2 font-semibold text-slate-900">{account.username}</td>
+                      <td className="px-3 py-2">{account.tier || "-"}</td>
+                      <td className="px-3 py-2">
+                        {account.finalScore === null ? "-" : account.finalScore.toFixed(4)}
+                      </td>
+                      <td className="px-3 py-2">{account.active ? "yes" : "no"}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
       <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
         <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="text-base font-semibold text-slate-900">Recent Detected Posts Queue</h2>
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 className="text-base font-semibold text-slate-900">Recent Detected Posts Queue</h2>
+            </div>
+            <label className="flex items-center gap-2 text-xs text-slate-600">
+              Status
+              <select
+                value={queueStatusFilter}
+                onChange={(event) => setQueueStatusFilter(event.target.value)}
+                className="rounded-lg border border-slate-300 bg-white px-2 py-1 text-xs text-slate-900"
+              >
+                {queueStatusOptions.map((status) => (
+                  <option key={status} value={status}>
+                    {status === "all" ? "All statuses" : status}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
           <p className="mt-1 text-xs text-slate-500">
             `new_posts_queue` ordered by detection time.
           </p>
@@ -554,14 +725,14 @@ export default function MonitorPage() {
                 </tr>
               </thead>
               <tbody>
-                {(overview?.recentQueue || []).length === 0 ? (
+                {filteredQueue.length === 0 ? (
                   <tr>
                     <td colSpan={7} className="px-3 py-4 text-slate-500">
-                      No queued posts yet.
+                      No queued posts in this status view.
                     </td>
                   </tr>
                 ) : (
-                  (overview?.recentQueue || []).map((row) => (
+                  filteredQueue.map((row) => (
                     <tr key={row.id} className="border-t border-slate-200">
                       <td className="px-3 py-2 font-semibold text-slate-900">{row.username}</td>
                       <td className="px-3 py-2">{row.postId}</td>
@@ -580,7 +751,7 @@ export default function MonitorPage() {
                         )}
                       </td>
                       <td className="px-3 py-2">
-                        {row.isVideo ? "video" : "non-video"} · {row.mediaType || "unknown"}
+                        {row.isVideo ? "reel" : "non-reel"} · {row.mediaType || "unknown"}
                       </td>
                       <td className="px-3 py-2">
                         {row.postedAt ? new Date(row.postedAt).toLocaleString() : "-"}
@@ -688,85 +859,6 @@ export default function MonitorPage() {
         </div>
       </section>
 
-      <section className="grid gap-6 xl:grid-cols-2">
-        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="text-base font-semibold text-slate-900">Monitor Runs</h2>
-          <div className="mt-3 overflow-auto rounded-xl border border-slate-200">
-            <table className="min-w-full text-left text-sm">
-              <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
-                <tr>
-                  <th className="px-3 py-2">Run</th>
-                  <th className="px-3 py-2">Mode</th>
-                  <th className="px-3 py-2">Checked</th>
-                  <th className="px-3 py-2">New</th>
-                  <th className="px-3 py-2">Failed</th>
-                  <th className="px-3 py-2">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(overview?.recentRuns || []).length === 0 ? (
-                  <tr>
-                    <td colSpan={6} className="px-3 py-4 text-slate-500">
-                      No monitor runs recorded yet.
-                    </td>
-                  </tr>
-                ) : (
-                  (overview?.recentRuns || []).map((run) => (
-                    <tr key={run.runId} className="border-t border-slate-200">
-                      <td className="px-3 py-2 font-semibold text-slate-900">{run.runId.slice(0, 8)}</td>
-                      <td className="px-3 py-2">{run.mode}</td>
-                      <td className="px-3 py-2">{run.accountsChecked}</td>
-                      <td className="px-3 py-2">{run.newPostsFound}</td>
-                      <td className="px-3 py-2">{run.failedAccounts}</td>
-                      <td className="px-3 py-2">
-                        <span className={`rounded-full px-2 py-0.5 text-xs ${classForStatus(run.status)}`}>
-                          {run.status}
-                        </span>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </article>
-
-        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="text-base font-semibold text-slate-900">Tracked Accounts</h2>
-          <div className="mt-3 overflow-auto rounded-xl border border-slate-200">
-            <table className="min-w-full text-left text-sm">
-              <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
-                <tr>
-                  <th className="px-3 py-2">Username</th>
-                  <th className="px-3 py-2">Tier</th>
-                  <th className="px-3 py-2">Score</th>
-                  <th className="px-3 py-2">Active</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(overview?.trackedAccounts || []).length === 0 ? (
-                  <tr>
-                    <td colSpan={4} className="px-3 py-4 text-slate-500">
-                      No tracked accounts yet. Run bootstrap first.
-                    </td>
-                  </tr>
-                ) : (
-                  (overview?.trackedAccounts || []).map((account) => (
-                    <tr key={account.username} className="border-t border-slate-200">
-                      <td className="px-3 py-2 font-semibold text-slate-900">{account.username}</td>
-                      <td className="px-3 py-2">{account.tier || "-"}</td>
-                      <td className="px-3 py-2">
-                        {account.finalScore === null ? "-" : account.finalScore.toFixed(4)}
-                      </td>
-                      <td className="px-3 py-2">{account.active ? "yes" : "no"}</td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </article>
-      </section>
     </main>
   );
 }

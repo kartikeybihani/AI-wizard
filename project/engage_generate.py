@@ -49,6 +49,19 @@ def parse_args() -> argparse.Namespace:
         default=False,
         help="Include already processed posts for regeneration.",
     )
+    parser.add_argument(
+        "--include-failed",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Include generation_failed rows in candidate selection when force is false.",
+    )
+    parser.add_argument(
+        "--drain-pending",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Keep processing queue in chunks until pending rows are drained or max batches is reached.",
+    )
+    parser.add_argument("--max-batches", type=int, default=20)
     parser.add_argument("--whisper-model", default=os.getenv("WHISPER_MODEL", "base.en"))
     parser.add_argument("--whisper-cache-dir", default=os.getenv("WHISPER_CACHE_DIR", "/tmp/whisper_models"))
     parser.add_argument("--character-bible", default=default_character_bible_path())
@@ -149,145 +162,170 @@ def run_generation(args: argparse.Namespace) -> int:
 
     try:
         post_ids = [item.strip() for item in str(args.post_ids).split(",") if item.strip()]
-        statuses: Sequence[str] = (
-            [QUEUE_PENDING_STATUS, QUEUE_FAILED_STATUS]
-            if not args.force
-            else [
+        statuses: Sequence[str]
+        if args.force:
+            statuses = [
                 QUEUE_PENDING_STATUS,
                 QUEUE_FAILED_STATUS,
                 QUEUE_READY_REVIEW_STATUS,
             ]
-        )
-        queue_rows = store.list_queue_posts_for_generation(
-            limit=max(1, int(args.limit)),
-            statuses=statuses,
-            post_ids=post_ids or None,
-        )
+        else:
+            statuses_list: List[str] = [QUEUE_PENDING_STATUS]
+            if bool(args.include_failed):
+                statuses_list.append(QUEUE_FAILED_STATUS)
+            statuses = statuses_list
+
+        # Drain mode only makes sense for queue-wide work. For explicit post IDs,
+        # process once and exit.
+        drain_mode = bool(args.drain_pending) and not bool(post_ids)
+        max_batches = max(1, int(args.max_batches))
+        batch_index = 0
 
         success_count = 0
         failed_count = 0
         processed_post_ids: List[str] = []
-        for row in queue_rows:
-            post_id = str(row.get("post_id", "")).strip()
-            queue_id = int(row.get("id"))
-            started_at = now_utc_iso()
-            processed_post_ids.append(post_id)
-            try:
-                store.update_queue_status(post_id=post_id, status=QUEUE_TRANSCRIBING_STATUS)
-                store.upsert_post_processing(
-                    post_id=post_id,
-                    queue_id=queue_id,
-                    status=QUEUE_TRANSCRIBING_STATUS,
-                    processing_started_at=started_at,
-                )
 
-                transcript = transcribe_reel_with_whisper(
-                    post_url=str(row.get("url", "") or ""),
-                    post_id=post_id,
-                    whisper_model=str(args.whisper_model).strip() or "base.en",
-                    model_cache_dir=str(args.whisper_cache_dir).strip() or "/tmp/whisper_models",
-                )
-                transcript_text = transcript["transcript_text"]
-                post_context = extract_post_context(
-                    caption=str(row.get("caption", "") or ""),
-                    transcript=transcript_text,
-                )
-                bucket = infer_blake_bucket(
-                    topic_tags=list(post_context.get("topic_tags") or []),
-                    tone_guess=str(post_context.get("tone_guess", "reflective")),
-                )
-                retrieval_context = build_retrieval_snippets(character_bible=character_bible, bucket=bucket, max_items=3)
-                prompt_inputs = build_prompt_input(
-                    post_row=row,
-                    transcript_text=transcript_text,
-                    post_context=post_context,
-                    retrieval_context=retrieval_context,
-                    character_bible=character_bible,
-                )
+        while True:
+            queue_rows = store.list_queue_posts_for_generation(
+                limit=max(1, int(args.limit)),
+                statuses=statuses,
+                post_ids=post_ids or None,
+            )
+            if not queue_rows:
+                break
 
-                gen_user_prompt = (
-                    "Generate Blake-style comment suggestions for this post.\n"
-                    "Return strict JSON only.\n\n"
-                    f"{json.dumps(prompt_inputs, ensure_ascii=False)}"
-                )
-                generated = llm_json_with_retry(
-                    client=client,
-                    system_prompt=comment_system_prompt,
-                    user_prompt=gen_user_prompt,
-                    temperature=0.0,
-                    max_tokens=max(600, int(args.max_tokens_generate)),
-                    retries=max(1, int(args.retries)),
-                )
-                candidates = normalize_candidate_comments(generated)
-                if not candidates:
-                    raise RuntimeError("Generator returned no candidate comments.")
-
-                critic_user_prompt = (
-                    "Critique generated comments and select the best candidate.\n"
-                    "Return strict JSON only.\n\n"
-                    f"{json.dumps({'post_json': prompt_inputs['post_json'], 'generated_comments_json': generated, 'character_bible_json': prompt_inputs['character_bible_json']}, ensure_ascii=False)}"
-                )
-                critic = llm_json_with_retry(
-                    client=client,
-                    system_prompt=critic_system_prompt,
-                    user_prompt=critic_user_prompt,
-                    temperature=0.0,
-                    max_tokens=max(500, int(args.max_tokens_critic)),
-                    retries=max(1, int(args.retries)),
-                )
-
-                selected_label = pick_selected_label(critic_payload=critic, candidates=candidates)
-                critic_scores = critic.get("scores") if isinstance(critic.get("scores"), dict) else {}
+            batch_index += 1
+            for row in queue_rows:
+                post_id = str(row.get("post_id", "")).strip()
+                queue_id = int(row.get("id"))
+                started_at = now_utc_iso()
+                processed_post_ids.append(post_id)
                 try:
-                    critic_overall = float(critic_scores.get("overall")) if critic_scores else None
-                except (TypeError, ValueError):
-                    critic_overall = None
+                    store.update_queue_status(post_id=post_id, status=QUEUE_TRANSCRIBING_STATUS)
+                    store.upsert_post_processing(
+                        post_id=post_id,
+                        queue_id=queue_id,
+                        status=QUEUE_TRANSCRIBING_STATUS,
+                        processing_started_at=started_at,
+                    )
 
-                selected_suggestion_id = store.replace_comment_suggestions(
-                    post_id=post_id,
-                    suggestions=candidates,
-                    selected_label=selected_label,
-                    critic_json=json.dumps(critic, ensure_ascii=False),
-                    critic_score=critic_overall,
-                )
+                    transcript = transcribe_reel_with_whisper(
+                        post_url=str(row.get("url", "") or ""),
+                        post_id=post_id,
+                        whisper_model=str(args.whisper_model).strip() or "base.en",
+                        model_cache_dir=str(args.whisper_cache_dir).strip() or "/tmp/whisper_models",
+                    )
+                    transcript_text = transcript["transcript_text"]
+                    post_context = extract_post_context(
+                        caption=str(row.get("caption", "") or ""),
+                        transcript=transcript_text,
+                    )
+                    bucket = infer_blake_bucket(
+                        topic_tags=list(post_context.get("topic_tags") or []),
+                        tone_guess=str(post_context.get("tone_guess", "reflective")),
+                    )
+                    retrieval_context = build_retrieval_snippets(character_bible=character_bible, bucket=bucket, max_items=3)
+                    prompt_inputs = build_prompt_input(
+                        post_row=row,
+                        transcript_text=transcript_text,
+                        post_context=post_context,
+                        retrieval_context=retrieval_context,
+                        character_bible=character_bible,
+                    )
 
-                store.upsert_post_processing(
-                    post_id=post_id,
-                    queue_id=queue_id,
-                    status=QUEUE_READY_REVIEW_STATUS,
-                    transcript_text=transcript_text,
-                    transcript_source=transcript.get("transcript_source", "whisper_local"),
-                    transcript_model=transcript.get("transcript_model", str(args.whisper_model)),
-                    post_context_json=json.dumps(post_context, ensure_ascii=False),
-                    generation_json=json.dumps(generated, ensure_ascii=False),
-                    critic_json=json.dumps(critic, ensure_ascii=False),
-                    selected_suggestion_id=selected_suggestion_id,
-                    error_message="",
-                    processing_started_at=started_at,
-                    processing_finished_at=now_utc_iso(),
-                )
-                store.update_queue_status(post_id=post_id, status=QUEUE_READY_REVIEW_STATUS)
-                success_count += 1
-                print(f"[engage_generate] ready_for_review post_id={post_id} username={row.get('username')}")
-            except Exception as exc:  # noqa: BLE001
-                failed_count += 1
-                error_text = str(exc)
-                store.upsert_post_processing(
-                    post_id=post_id,
-                    queue_id=queue_id,
-                    status=QUEUE_FAILED_STATUS,
-                    error_message=error_text,
-                    processing_started_at=started_at,
-                    processing_finished_at=now_utc_iso(),
-                )
-                store.update_queue_status(post_id=post_id, status=QUEUE_FAILED_STATUS)
-                print(f"[engage_generate] generation_failed post_id={post_id} error={error_text}")
+                    gen_user_prompt = (
+                        "Generate Blake-style comment suggestions for this post.\n"
+                        "Return strict JSON only.\n\n"
+                        f"{json.dumps(prompt_inputs, ensure_ascii=False)}"
+                    )
+                    generated = llm_json_with_retry(
+                        client=client,
+                        system_prompt=comment_system_prompt,
+                        user_prompt=gen_user_prompt,
+                        temperature=0.0,
+                        max_tokens=max(600, int(args.max_tokens_generate)),
+                        retries=max(1, int(args.retries)),
+                    )
+                    candidates = normalize_candidate_comments(generated)
+                    if not candidates:
+                        raise RuntimeError("Generator returned no candidate comments.")
+
+                    critic_user_prompt = (
+                        "Critique generated comments and select the best candidate.\n"
+                        "Return strict JSON only.\n\n"
+                        f"{json.dumps({'post_json': prompt_inputs['post_json'], 'generated_comments_json': generated, 'character_bible_json': prompt_inputs['character_bible_json']}, ensure_ascii=False)}"
+                    )
+                    critic = llm_json_with_retry(
+                        client=client,
+                        system_prompt=critic_system_prompt,
+                        user_prompt=critic_user_prompt,
+                        temperature=0.0,
+                        max_tokens=max(500, int(args.max_tokens_critic)),
+                        retries=max(1, int(args.retries)),
+                    )
+
+                    selected_label = pick_selected_label(critic_payload=critic, candidates=candidates)
+                    critic_scores = critic.get("scores") if isinstance(critic.get("scores"), dict) else {}
+                    try:
+                        critic_overall = float(critic_scores.get("overall")) if critic_scores else None
+                    except (TypeError, ValueError):
+                        critic_overall = None
+
+                    selected_suggestion_id = store.replace_comment_suggestions(
+                        post_id=post_id,
+                        suggestions=candidates,
+                        selected_label=selected_label,
+                        critic_json=json.dumps(critic, ensure_ascii=False),
+                        critic_score=critic_overall,
+                    )
+
+                    store.upsert_post_processing(
+                        post_id=post_id,
+                        queue_id=queue_id,
+                        status=QUEUE_READY_REVIEW_STATUS,
+                        transcript_text=transcript_text,
+                        transcript_source=transcript.get("transcript_source", "whisper_local"),
+                        transcript_model=transcript.get("transcript_model", str(args.whisper_model)),
+                        post_context_json=json.dumps(post_context, ensure_ascii=False),
+                        generation_json=json.dumps(generated, ensure_ascii=False),
+                        critic_json=json.dumps(critic, ensure_ascii=False),
+                        selected_suggestion_id=selected_suggestion_id,
+                        error_message="",
+                        processing_started_at=started_at,
+                        processing_finished_at=now_utc_iso(),
+                    )
+                    store.update_queue_status(post_id=post_id, status=QUEUE_READY_REVIEW_STATUS)
+                    success_count += 1
+                    print(f"[engage_generate] ready_for_review post_id={post_id} username={row.get('username')}")
+                except Exception as exc:  # noqa: BLE001
+                    failed_count += 1
+                    error_text = str(exc)
+                    store.upsert_post_processing(
+                        post_id=post_id,
+                        queue_id=queue_id,
+                        status=QUEUE_FAILED_STATUS,
+                        error_message=error_text,
+                        processing_started_at=started_at,
+                        processing_finished_at=now_utc_iso(),
+                    )
+                    store.update_queue_status(post_id=post_id, status=QUEUE_FAILED_STATUS)
+                    print(f"[engage_generate] generation_failed post_id={post_id} error={error_text}")
+
+            if not drain_mode:
+                break
+            if batch_index >= max_batches:
+                break
+            # In drain mode, avoid infinite loops retrying failed rows forever.
+            statuses = [QUEUE_PENDING_STATUS]
 
         print(
             "[engage_generate] completed "
             f"processed={len(processed_post_ids)} success={success_count} failed={failed_count}"
         )
-        return 0 if failed_count == 0 else 1
+        # Treat partial success as successful job for operator flow.
+        if not processed_post_ids:
+            return 0
+        return 0 if success_count > 0 else 1
     finally:
         store.close()
 
@@ -299,4 +337,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -91,22 +91,16 @@ def _to_bool(value: Any) -> Optional[bool]:
 
 
 def infer_media_type(record: Dict[str, Any], url: str) -> str:
-    url_text = str(url or "").strip().lower()
-    match = MEDIA_TYPE_URL_PATTERN.search(url_text)
-    if match:
-        token = match.group(1).lower()
-        if token in {"reel", "tv", "p"}:
-            return token
-
     explicit = first_present(
         record,
         [
+            "productType",
+            "product_type",
             "media_type",
             "mediaType",
             "__typename",
             "type",
             "postType",
-            "productType",
         ],
         default="",
     )
@@ -114,12 +108,19 @@ def infer_media_type(record: Dict[str, Any], url: str) -> str:
     if explicit_text:
         if "reel" in explicit_text:
             return "reel"
+        if "clip" in explicit_text:
+            # Apify reel scraper often uses productType=clips while URL path is /p/.
+            return "reel"
         if "video" in explicit_text:
             return "video"
-        if "image" in explicit_text or "photo" in explicit_text:
-            return "image"
         if "carousel" in explicit_text or "sidecar" in explicit_text:
             return "carousel"
+        if "image" in explicit_text or "photo" in explicit_text:
+            return "image"
+
+    explicit_video_flag = _to_bool(first_present(record, ["isVideo", "is_video", "video"], default=None))
+    if explicit_video_flag is True:
+        return "video"
 
     video_like_keys = (
         "videoUrl",
@@ -133,43 +134,63 @@ def infer_media_type(record: Dict[str, Any], url: str) -> str:
     )
     if any(record.get(key) not in (None, "", []) for key in video_like_keys):
         return "video"
+
+    url_text = str(url or "").strip().lower()
+    match = MEDIA_TYPE_URL_PATTERN.search(url_text)
+    if match:
+        token = match.group(1).lower()
+        if token in {"reel", "tv", "p"}:
+            return token
     return "unknown"
 
 
 def infer_is_video(record: Dict[str, Any], url: str, media_type: str) -> bool:
+    # Reels/video mode for monitoring and engagement:
+    # queue/process clips/reels/video posts and skip image/carousel-only posts.
     url_text = str(url or "").strip().lower()
-    if "/reel/" in url_text or "/tv/" in url_text:
+    if "/reel/" in url_text:
         return True
 
-    if media_type in {"reel", "tv", "video"}:
+    if media_type in {"reel", "video", "tv"}:
         return True
 
-    signal_keys = (
-        "isVideo",
-        "is_video",
-        "video",
-        "hasVideo",
-        "has_video",
+    explicit = first_present(
+        record,
+        [
+            "productType",
+            "product_type",
+            "media_type",
+            "mediaType",
+            "__typename",
+            "type",
+            "postType",
+        ],
+        default="",
     )
-    for key in signal_keys:
-        raw = record.get(key)
-        parsed = _to_bool(raw)
-        if parsed is not None:
-            return parsed
+    explicit_text = str(explicit or "").strip().lower()
+    if explicit_text:
+        if "reel" in explicit_text or "clip" in explicit_text or "video" in explicit_text:
+            return True
+        if "image" in explicit_text or "photo" in explicit_text:
+            return False
+        if "carousel" in explicit_text or "sidecar" in explicit_text:
+            return False
 
-    if any(
-        record.get(key) not in (None, "", [])
-        for key in (
-            "videoUrl",
-            "video_url",
-            "video_url_hd",
-            "videoPlayCount",
-            "video_view_count",
-            "videoDuration",
-            "video_versions",
-            "videoVersions",
-        )
-    ):
+    explicit_video_flag = _to_bool(first_present(record, ["isVideo", "is_video", "video"], default=None))
+    if explicit_video_flag is True:
+        return True
+
+    video_like_keys = (
+        "videoUrl",
+        "video_url",
+        "video_url_hd",
+        "videoPlayCount",
+        "video_view_count",
+        "videoDuration",
+        "video_versions",
+        "videoVersions",
+    )
+    if any(record.get(key) not in (None, "", []) for key in video_like_keys):
         return True
     return False
 
@@ -626,10 +647,7 @@ class MonitorStore:
             url = str(post.get("url", "") or "")
             posted_at = str(post.get("posted_at", "") or "")
             media_type = str(post.get("media_type", "") or "unknown").strip().lower() or "unknown"
-            is_video_raw = post.get("is_video", "")
-            is_video = _to_bool(is_video_raw)
-            if is_video is None:
-                is_video = infer_is_video(record=post, url=url, media_type=media_type)
+            is_video = infer_is_video(record=post, url=url, media_type=media_type)
 
             cursor = self.conn.execute(
                 """
@@ -641,6 +659,33 @@ class MonitorStore:
             )
 
             if cursor.rowcount != 1:
+                # Legacy reconciliation path:
+                # if this post was seen before (possibly before classifier fixes) and is
+                # now identified as video/reel, queue it once for Engage.
+                if is_video:
+                    queue_cursor = self.conn.execute(
+                        """
+                        INSERT OR IGNORE INTO new_posts_queue (
+                            post_id, username, caption, url, posted_at, detected_at, status, is_video, media_type
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """,
+                        (post_id, username, caption, url, posted_at, stamp, status, 1, media_type),
+                    )
+                    if queue_cursor.rowcount == 1:
+                        inserted_posts.append(
+                            {
+                                "username": username,
+                                "post_id": post_id,
+                                "caption": caption,
+                                "url": url,
+                                "posted_at": posted_at,
+                                "detected_at": stamp,
+                                "status": status,
+                                "is_video": "1",
+                                "media_type": media_type,
+                            }
+                        )
+                        posts_queued_video += 1
                 continue
 
             posts_seen_total += 1
@@ -698,7 +743,7 @@ class MonitorStore:
     ) -> List[Dict[str, Any]]:
         safe_limit = max(1, int(limit))
         filter_statuses = list(statuses or [QUEUE_PENDING_STATUS, QUEUE_FAILED_STATUS])
-        where_parts = ["is_video = 1"]
+        where_parts = ["COALESCE(is_video, 0) = 1"]
         params: List[Any] = []
 
         if filter_statuses:

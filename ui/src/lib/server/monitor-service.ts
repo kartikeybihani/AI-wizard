@@ -269,6 +269,22 @@ function trimLogs(lines: string[], max = 600): string[] {
   return lines.slice(lines.length - max);
 }
 
+function resolvePipelinePythonBin(): string {
+  const fromEnv = process.env.PIPELINE_PYTHON_BIN?.trim();
+  if (fromEnv) {
+    return fromEnv;
+  }
+  const venvPython = path.join(PIPELINE_CWD, ".venv", "bin", "python");
+  if (fs.existsSync(venvPython)) {
+    return venvPython;
+  }
+  const venvPython3 = path.join(PIPELINE_CWD, ".venv", "bin", "python3");
+  if (fs.existsSync(venvPython3)) {
+    return venvPython3;
+  }
+  return "python3";
+}
+
 export class MonitorService {
   private activeJob: MonitorJob | null = null;
   private recentJobs: MonitorJob[] = [];
@@ -302,7 +318,9 @@ export class MonitorService {
       const queueCount = Number(
         (
           db
-            .prepare("SELECT COUNT(*) AS count FROM new_posts_queue")
+            .prepare(
+              "SELECT COUNT(*) AS count FROM new_posts_queue WHERE COALESCE(is_video, 0) = 1"
+            )
             .get() as { count: number }
         ).count || 0
       );
@@ -310,7 +328,7 @@ export class MonitorService {
         (
           db
             .prepare(
-              "SELECT COUNT(*) AS count FROM new_posts_queue WHERE status = 'pending_comment_generation'"
+              "SELECT COUNT(*) AS count FROM new_posts_queue WHERE status = 'pending_comment_generation' AND COALESCE(is_video, 0) = 1"
             )
             .get() as { count: number }
         ).count || 0
@@ -328,6 +346,7 @@ export class MonitorService {
           `
           SELECT id, username, post_id, caption, url, posted_at, detected_at, status, is_video, media_type
           FROM new_posts_queue
+          WHERE COALESCE(is_video, 0) = 1
           ORDER BY detected_at DESC
           LIMIT 120
           `
@@ -482,7 +501,8 @@ export class MonitorService {
     }
 
     const id = randomUUID();
-    const command = `python3 ${script} ${args.join(" ")}`.trim();
+    const pythonBin = resolvePipelinePythonBin();
+    const command = `${pythonBin} ${script} ${args.join(" ")}`.trim();
     const job: MonitorJob = {
       id,
       kind,
@@ -494,7 +514,7 @@ export class MonitorService {
     this.activeJob = job;
 
     await new Promise<void>((resolve) => {
-      const child = spawn("python3", [script, ...args], {
+      const child = spawn(pythonBin, [script, ...args], {
         cwd: PIPELINE_CWD,
         env: process.env,
       });
@@ -579,6 +599,8 @@ export class MonitorService {
     mockFailUsernames?: string;
     autoGenerateComments?: boolean;
     generateLimit?: number;
+    generateDrainPending?: boolean;
+    generateMaxBatches?: number;
     whisperModel?: string;
   }): Promise<MonitorJob> {
     const args = [
@@ -601,6 +623,14 @@ export class MonitorService {
     if (typeof options.generateLimit === "number" && Number.isFinite(options.generateLimit)) {
       args.push("--generate-limit", String(Math.max(1, Math.floor(options.generateLimit))));
     }
+    if (typeof options.generateDrainPending === "boolean") {
+      args.push(
+        options.generateDrainPending ? "--generate-drain-pending" : "--no-generate-drain-pending"
+      );
+    }
+    if (typeof options.generateMaxBatches === "number" && Number.isFinite(options.generateMaxBatches)) {
+      args.push("--generate-max-batches", String(Math.max(1, Math.floor(options.generateMaxBatches))));
+    }
     if (options.whisperModel && options.whisperModel.trim()) {
       args.push("--whisper-model", options.whisperModel.trim());
     }
@@ -621,6 +651,9 @@ export class MonitorService {
     whisperModel?: string;
     model?: string;
     force?: boolean;
+    includeFailed?: boolean;
+    drainPending?: boolean;
+    maxBatches?: number;
     characterBible?: string;
   }): Promise<MonitorJob> {
     const args = [
@@ -644,6 +677,15 @@ export class MonitorService {
     if (options.force) {
       args.push("--force");
     }
+    if (typeof options.includeFailed === "boolean") {
+      args.push(options.includeFailed ? "--include-failed" : "--no-include-failed");
+    }
+    if (typeof options.drainPending === "boolean") {
+      args.push(options.drainPending ? "--drain-pending" : "--no-drain-pending");
+    }
+    if (typeof options.maxBatches === "number" && Number.isFinite(options.maxBatches)) {
+      args.push("--max-batches", String(Math.max(1, Math.floor(options.maxBatches))));
+    }
     if (options.characterBible && options.characterBible.trim()) {
       args.push("--character-bible", options.characterBible.trim());
     }
@@ -664,7 +706,9 @@ export class MonitorService {
               .filter(Boolean);
       const safeLimit = Math.max(1, Math.min(100, Number(options?.limit || 10)));
 
-      const whereParts: string[] = [];
+      const whereParts: string[] = [
+        "COALESCE(q.is_video, 0) = 1",
+      ];
       const params: Array<string | number> = [];
       if (statuses.length > 0) {
         const placeholders = statuses.map(() => "?").join(", ");
@@ -830,6 +874,7 @@ export class MonitorService {
           `
           SELECT status, COUNT(*) AS count
           FROM new_posts_queue
+          WHERE COALESCE(is_video, 0) = 1
           GROUP BY status
           `
         )

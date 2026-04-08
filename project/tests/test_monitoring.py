@@ -65,15 +65,27 @@ class MonitoringTests(unittest.TestCase):
         self.assertEqual("reel", media_type_a)
         self.assertTrue(infer_is_video(record_a, record_a["url"], media_type_a))
 
-        record_b = {"url": "https://www.instagram.com/p/XYZ999/", "isVideo": True}
+        # Apify reel scraper often returns clips as /p/ URLs with productType/type video hints.
+        record_b = {
+            "url": "https://www.instagram.com/p/XYZ999/",
+            "productType": "clips",
+            "type": "Video",
+            "videoUrl": "https://cdn.example/video.mp4",
+        }
         media_type_b = infer_media_type(record_b, record_b["url"])
-        self.assertEqual("p", media_type_b)
+        self.assertEqual("reel", media_type_b)
         self.assertTrue(infer_is_video(record_b, record_b["url"], media_type_b))
 
-        record_c = {"url": "https://www.instagram.com/p/IMG001/", "__typename": "GraphImage"}
+        # Generic /p/ + isVideo=true should still be eligible as video.
+        record_c = {"url": "https://www.instagram.com/p/VID001/", "isVideo": True}
         media_type_c = infer_media_type(record_c, record_c["url"])
-        self.assertEqual("p", media_type_c)
-        self.assertFalse(infer_is_video(record_c, record_c["url"], media_type_c))
+        self.assertEqual("video", media_type_c)
+        self.assertTrue(infer_is_video(record_c, record_c["url"], media_type_c))
+
+        record_d = {"url": "https://www.instagram.com/p/IMG001/", "__typename": "GraphImage"}
+        media_type_d = infer_media_type(record_d, record_d["url"])
+        self.assertEqual("image", media_type_d)
+        self.assertFalse(infer_is_video(record_d, record_d["url"], media_type_d))
 
     def test_insert_new_posts_is_idempotent(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -242,8 +254,7 @@ class MonitoringTests(unittest.TestCase):
                                 "posts": [
                                     {
                                         "shortCode": "P_B",
-                                        "url": "https://www.instagram.com/p/P_B/",
-                                        "isVideo": True,
+                                        "url": "https://www.instagram.com/reel/P_B/",
                                         "caption": "b",
                                         "timestamp": "2026-04-07T11:00:00Z",
                                     }

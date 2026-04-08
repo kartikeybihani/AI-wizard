@@ -86,6 +86,7 @@ const FILTER_OPTIONS: Array<{ key: EngageStatusFilter; label: string }> = [
   { key: "ready_for_review", label: "Ready" },
   { key: "pending_comment_generation", label: "Pending" },
   { key: "transcribing", label: "Transcribing" },
+  { key: "approved", label: "Approved" },
   { key: "generation_failed", label: "Failed" },
   { key: "submitted", label: "Submitted" },
 ];
@@ -113,10 +114,12 @@ export default function EngagePage() {
   const [editedText, setEditedText] = useState<string>("");
   const [statusFilter, setStatusFilter] = useState<EngageStatusFilter>("all");
   const [limit, setLimit] = useState<number>(10);
+  const [drainMaxBatches, setDrainMaxBatches] = useState<number>(20);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [busyAction, setBusyAction] = useState<string>("");
   const [lastJob, setLastJob] = useState<MonitorJob | null>(null);
+  const [approvePulse, setApprovePulse] = useState(false);
 
   const refreshPosts = useCallback(async () => {
     const response = await fetch(
@@ -228,12 +231,22 @@ export default function EngagePage() {
     if (!activeSuggestion) {
       return;
     }
+    const selectedIndex = posts.findIndex((post) => post.postId === selectedPostId);
+    const nextPostId =
+      selectedIndex >= 0
+        ? posts[selectedIndex + 1]?.postId || posts[selectedIndex - 1]?.postId || ""
+        : "";
     await runAction("approve", async () => {
       await postJson(`/api/engage/suggestions/${activeSuggestion.id}/approve`, {
         editedText: editedText.trim() || undefined,
       });
       setSuccessMessage("Suggestion approved.");
     });
+    if (nextPostId) {
+      setSelectedPostId(nextPostId);
+    }
+    setApprovePulse(true);
+    setTimeout(() => setApprovePulse(false), 900);
   };
 
   const handleReject = async () => {
@@ -367,13 +380,13 @@ export default function EngagePage() {
         ) : null}
       </section>
 
-      <section className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
+      <section className="grid gap-6 xl:grid-cols-[0.4fr_0.8fr_1fr]">
         <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
           <h2 className="text-base font-semibold text-slate-900">Review Queue</h2>
-          <div className="mt-3 max-h-[320px] overflow-auto rounded-xl border border-slate-200">
+          <div className="mt-3 max-h-[70vh] overflow-auto rounded-xl border border-slate-200">
             {(posts || []).length === 0 ? (
               <p className="p-4 text-sm text-slate-500">
-                No posts in this view yet. Try `All` or run Monitor then `Generate Top`.
+                No posts in this view yet. Try `All` or run Monitor then `Generate Next`.
               </p>
             ) : (
               <ul className="divide-y divide-slate-200">
@@ -393,7 +406,7 @@ export default function EngagePage() {
                         </span>
                       </div>
                       <p className="mt-1 line-clamp-2 text-xs text-slate-600">
-                        {(post.caption || post.transcriptText || "No caption/transcript yet.").slice(0, 160)}
+                        {(post.caption || "No caption available.").slice(0, 160)}
                       </p>
                       <p className="mt-1 text-[11px] text-slate-500">
                         posted: {post.postedAt ? new Date(post.postedAt).toLocaleString() : "-"} · detected:{" "}
@@ -420,36 +433,85 @@ export default function EngagePage() {
                 type="button"
                 disabled={busyAction !== ""}
                 onClick={() =>
-                  void runAction("generate-top", async () => {
+                  void runAction("generate-next", async () => {
                     const payload = await postJson<{ job: MonitorJob }>("/api/engage/generate", {
                       limit,
+                      includeFailed: false,
                     });
                     setLastJob(payload.job);
                     if (payload.job.status === "failed") {
                       throw new Error(
                         payload.job.errorMessage ||
                           payload.job.logs.slice(-3).join(" | ") ||
-                          "Generate Top job failed."
+                          "Generate Next job failed."
                       );
                     }
                     const tail = payload.job.logs.slice(-2).join(" | ");
                     setSuccessMessage(
                       tail
                         ? `Generate job completed: ${tail}`
-                        : `Generate job completed for top ${limit}.`
+                        : `Generated next ${limit} pending posts.`
                     );
                   })
                 }
                 className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100 disabled:cursor-not-allowed disabled:bg-slate-100"
               >
-                {busyAction === "generate-top" ? "Generating..." : `Generate Top ${limit}`}
+                {busyAction === "generate-next" ? "Generating..." : `Generate Next ${limit}`}
+              </button>
+              <button
+                type="button"
+                disabled={busyAction !== ""}
+                onClick={() =>
+                  void runAction("drain-pending", async () => {
+                    const payload = await postJson<{ job: MonitorJob }>("/api/engage/generate", {
+                      limit,
+                      includeFailed: false,
+                      drainPending: true,
+                      maxBatches: drainMaxBatches,
+                    });
+                    setLastJob(payload.job);
+                    if (payload.job.status === "failed") {
+                      throw new Error(
+                        payload.job.errorMessage ||
+                          payload.job.logs.slice(-3).join(" | ") ||
+                          "Drain pending job failed."
+                      );
+                    }
+                    const tail = payload.job.logs.slice(-2).join(" | ");
+                    setSuccessMessage(
+                      tail
+                        ? `Drain completed: ${tail}`
+                        : `Processed up to ${drainMaxBatches} batches of ${limit}.`
+                    );
+                  })
+                }
+                className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100 disabled:cursor-not-allowed disabled:bg-slate-100"
+              >
+                {busyAction === "drain-pending" ? "Draining..." : "Drain Pending"}
               </button>
             </div>
+            <label className="mt-3 flex items-center justify-between text-xs text-slate-600">
+              Drain Max Batches
+              <input
+                type="number"
+                min={1}
+                max={200}
+                value={drainMaxBatches}
+                onChange={(event) =>
+                  setDrainMaxBatches(Math.max(1, Math.min(200, Number(event.target.value) || 20)))
+                }
+                className="ml-2 w-20 rounded-lg border border-slate-300 px-2 py-1 text-sm text-slate-900"
+              />
+            </label>
           </div>
+        </article>
 
-          {selectedPost ? (
-            <div className="mt-4 space-y-3">
-              <h3 className="text-sm font-semibold text-slate-900">Preview</h3>
+        <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <h2 className="text-base font-semibold text-slate-900">Preview</h2>
+          {!selectedPost ? (
+            <p className="mt-3 text-sm text-slate-500">Select a post from the queue.</p>
+          ) : (
+            <div className="mt-3 space-y-3">
               {selectedPost.embedUrl ? (
                 <iframe
                   src={selectedPost.embedUrl}
@@ -459,14 +521,14 @@ export default function EngagePage() {
                 />
               ) : null}
               <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Transcript</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Caption</p>
                 <p className="mt-1 whitespace-pre-wrap text-sm text-slate-700">
-                  {selectedPost.transcriptText ? selectedPost.transcriptText.slice(0, 1400) : "Transcript not available yet."}
+                  {selectedPost.caption ? selectedPost.caption.slice(0, 1200) : "No caption available."}
                 </p>
               </div>
               {selectedPost.errorMessage ? (
                 <p className="rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-700">
-                  Generation/Transcription Error: {selectedPost.errorMessage}
+                  Generation Error: {selectedPost.errorMessage}
                 </p>
               ) : null}
               <a
@@ -478,7 +540,7 @@ export default function EngagePage() {
                 Open Reel
               </a>
             </div>
-          ) : null}
+          )}
         </article>
 
         <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
@@ -554,9 +616,11 @@ export default function EngagePage() {
                     type="button"
                     disabled={!activeSuggestion || busyAction !== ""}
                     onClick={() => void handleApprove()}
-                    className="rounded-lg bg-emerald-600 px-3 py-2 text-xs font-semibold text-white hover:bg-emerald-500 disabled:cursor-not-allowed disabled:bg-slate-400"
+                    className={`rounded-lg bg-emerald-600 px-3 py-2 text-xs font-semibold text-white transition-all hover:bg-emerald-500 disabled:cursor-not-allowed disabled:bg-slate-400 ${
+                      approvePulse ? "scale-[1.02] ring-2 ring-emerald-300 shadow-[0_0_0_3px_rgba(52,211,153,0.25)]" : ""
+                    }`}
                   >
-                    {busyAction === "approve" ? "Approving..." : "Approve"}
+                    {busyAction === "approve" ? "Approving..." : approvePulse ? "Approved ✓" : "Approve"}
                   </button>
                   <button
                     type="button"
