@@ -1,0 +1,151 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "unknown",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2025-08-28",
+      "end": "2025-11-04"
+    },
+    "era_mix": {
+      "era_a_count": 0,
+      "era_b_count": 0,
+      "era_c_count": 30
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Reflective Personal Story",
+      "description": "Opens with a personal memory or experience, then shares a lesson or insight.",
+      "structure_template": "I [past experience], and [lesson/insight].",
+      "when_it_appears": "frequently throughout",
+      "example_quotes": [
+        "I remember this day like it was yesterday. It was a beautiful, fun, hilarious moment that was a lesson to me...",
+        "The day I sold TOMS I didn’t feel successful. Here’s what I learned from that experience…"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Invitation to Reflect or Engage",
+      "description": "Ends with a prompt for followers to comment, share, or reflect.",
+      "structure_template": "Let me know in the comments… / Share with someone who…",
+      "when_it_appears": "often at the end",
+      "example_quotes": [
+        "Take a moment to thank someone who’s been part of your healing journey in the comments 👇",
+        "If you’ve been to the retreat too, I’d love to hear your experience 👇"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Lesson or Insight",
+      "description": "Shares a motivational, spiritual, or life lesson, often with a hashtag or call to action.",
+      "structure_template": "Remember that [lesson]. #Hashtag",
+      "when_it_appears": "frequently",
+      "example_quotes": [
+        "It’s not always visible, like a broken bone, but it can be just as painful.",
+        "Because sometimes our greatest breakthrough isn’t another goal, it’s finally discovering we were already enough."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.88
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Personal Reflection + Lesson",
+      "formula": "I [past experience], and [lesson/insight]",
+      "emotional_job": "Share vulnerability, inspire reflection",
+      "example_quotes": [
+        "I promised Scott I would seize every single day. For 30 years I have signed every note with two words: Carpe Diem.",
+        "Walking the Camino wasn’t about getting anywhere. It was about coming back to myself."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Story + Call to Action",
+      "formula": "Share a story + invite engagement",
+      "emotional_job": "Build connection, prompt interaction",
+      "example_quotes": [
+        "Let’s make healing something we do together! Take a moment to thank someone who’s been part of your healing journey in the comments 👇",
+        "This October, I’ll be back in Baja at the Modern Elder Academy, teaching a new kind of workshop…"
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "I remember",
+      "The day I",
+      "Sometimes we"
+    ],
+    "closers": [
+      "Let me know in the comments",
+      "Share with someone who",
+      "Hope it helps you discover"
+    ],
+    "bridge_phrases": [
+      "and what I learned",
+      "which happen to be life changing",
+      "because it’s about coming back to myself"
+    ],
+    "favorite_verbs": [
+      "share",
+      "remind",
+      "learned",
+      "seize",
+      "build"
+    ],
+    "favorite_nouns": [
+      "experience",
+      "lesson",
+      "journey",
+      "hope",
+      "story"
+    ],
+    "sentence_length_profile": "short to medium, often 1-3 sentences",
+    "line_break_style": "frequent line breaks for emphasis, often after a thought or quote"
+  },
+  "voice_tells": [
+    {
+      "tell": "Authentic vulnerability and personal stories",
+      "why_it_matters": "Builds trust and relatability",
+      "example_quotes": [
+        "I promised Scott I would seize every single day.",
+        "I still get asked a lot about this crazy experience I had almost 24 years ago."
+      ]
+    },
+    {
+      "tell": "Inviting reflection or action",
+      "why_it_matters": "Encourages engagement and community",
+      "example_quotes": [
+        "Take a moment to thank someone who’s been part of your healing journey in the comments 👇",
+        "Let me know in the comments…"
+      ]
+    },
+    {
+      "tell": "Sharing lessons or insights",
+      "why_it_matters": "Provides value and inspiration",
+      "example_quotes": [
+        "It’s not always visible, like a broken bone, but it can be just as painful.",
+        "Because sometimes our greatest breakthrough isn’t another goal, it’s finally discovering we were already enough."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly promotional or sales-focused language",
+    "Vague or generic motivational quotes without personal context",
+    "Long, dense paragraphs lacking line breaks",
+    "Excessive hashtags or calls to action",
+    "Repetitive phrases without variation",
+    "Overuse of emojis or slang",
+    "Lack of personal voice or authenticity",
+    "Ignoring engagement prompts"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake’s current style emphasizes personal storytelling, vulnerability, and community engagement, with a focus on life lessons and reflection.",
+    "what_changed_vs_older_voice": "More direct calls to action and explicit reflection prompts, less formal or corporate tone.",
+    "confidence": 0.9
+  }
+}

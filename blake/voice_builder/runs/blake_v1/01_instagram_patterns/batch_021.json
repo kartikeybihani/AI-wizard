@@ -1,0 +1,155 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2017-10-05",
+      "end": "2018-04-30"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Personal Reflection + Call to Action",
+      "description": "Open with personal insight or moment, often followed by a motivational or invitational statement.",
+      "structure_template": "Personal thought / moment + [invitation / reflection / call to action]",
+      "when_it_appears": "Throughout all captions",
+      "example_quotes": [
+        "Thanks @tetonsnowboarder for a great morning up and down pucker face and no name. Worth every step!",
+        "Welcome to the world charlie sage! And on #internationaldayofthegirl nonetheless. Carpe diem indeed!"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Highlighting Experiences / Achievements",
+      "description": "Sharing specific moments, accomplishments, or events with minimal commentary.",
+      "structure_template": "Description of event + details",
+      "when_it_appears": "Consistently across captions",
+      "example_quotes": [
+        "Summits first surf session.  53 degrees in water and he did not flinch.",
+        "Day two of summits snowboarding school and he says to me when dropping him off I am going to beat the flying tomato when I am older....."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Expressing Gratitude or Appreciation",
+      "description": "Thanking people, organizations, or experiences, often with hashtags or tags.",
+      "structure_template": "Thanks / grateful for + [people / experiences / things]",
+      "when_it_appears": "Throughout captions",
+      "example_quotes": [
+        "Thanks @tetonsnowboarder for a great morning up and down pucker face and no name.",
+        "Merry Christmas from our family to yours.  #grateful"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.88
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Moment + Reflection",
+      "formula": "[Describe moment] + [personal reflection or insight]",
+      "emotional_job": "Share authenticity, inspire reflection",
+      "example_quotes": [
+        "Caught dreaming and when I woke up I experienced my dream being reality.  My girl.",
+        "Almost 3 years and about 50 letters in, I hope he will see this as a gift and not a burden someday."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Event + Invitation",
+      "formula": "[Describe event or achievement] + [call to action or invitation]",
+      "emotional_job": "Encourage participation or awareness",
+      "example_quotes": [
+        "If you EVER get the opportunity to be with these amazing creatures , DO IT.  And help @heathermycoskie protect them.",
+        "On Friday night at the #TeenVogueSummit, this group of changemakers reminded us: Kids are not the future. They are here now."
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Thanks",
+      "Merry Christmas",
+      "Wow!",
+      "Could not agree more",
+      "Welcome to"
+    ],
+    "closers": [
+      "Carpe diem indeed!",
+      "Worth every step!",
+      "And help @heathermycoskie protect them.",
+      "Come on humans, let's get it together."
+    ],
+    "bridge_phrases": [
+      "and how to",
+      "for the next",
+      "with",
+      "about"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "hope",
+      "experience",
+      "share",
+      "remind"
+    ],
+    "favorite_nouns": [
+      "morning",
+      "moment",
+      "experience",
+      "opportunity",
+      "gift"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often 8-15 words",
+    "line_break_style": "Minimal, often one sentence per line or paragraph"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal storytelling",
+      "why_it_matters": "Builds authenticity and connection",
+      "example_quotes": [
+        "My first-ever boomerang... with the boomerang queen herself!",
+        "Welcome to the world charlie sage!"
+      ]
+    },
+    {
+      "tell": "Expressing gratitude",
+      "why_it_matters": "Shows humility and appreciation",
+      "example_quotes": [
+        "Thanks @tetonsnowboarder for a great morning up and down pucker face.",
+        "Merry Christmas from our family to yours."
+      ]
+    },
+    {
+      "tell": "Sharing achievements or milestones",
+      "why_it_matters": "Highlights progress and inspires others",
+      "example_quotes": [
+        "Day two of summits snowboarding school and he says to me when dropping him off I am going to beat the flying tomato.",
+        "Almost 3 years and about 50 letters in, I hope he will see this as a gift."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly generic motivational quotes",
+    "Excessive hashtags without context",
+    "Long, complex sentences",
+    "Vague statements lacking specificity",
+    "Overuse of emojis",
+    "Repetitive phrases without variation",
+    "Too much self-promotion without substance",
+    "Ignoring personal voice or authenticity"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Authentic, personal, experience-driven, gratitude-focused, concise",
+    "what_changed_vs_older_voice": "More direct, less formal, more emotive, frequent storytelling",
+    "confidence": 0.9
+  }
+}

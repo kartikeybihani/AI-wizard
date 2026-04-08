@@ -1,0 +1,73 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_speaking",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "Authenticity in vulnerability",
+      "q": "Blake opens up about his mental health journey",
+      "confidence": 0.9
+    },
+    {
+      "v": "Purpose-driven impact",
+      "q": "Building with meaning creates resilience and impact",
+      "confidence": 0.85
+    },
+    {
+      "v": "Courage in leadership",
+      "q": "Lead with courage and explore pathways to well-being",
+      "confidence": 0.8
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Challenge conventional thinking",
+      "q": "His talks challenge people to think differently",
+      "confidence": 0.9
+    },
+    {
+      "p": "Appeal to transformation",
+      "q": "Lessons from building global movements with struggle",
+      "confidence": 0.85
+    },
+    {
+      "p": "Inspire through honesty",
+      "q": "Blake shares hard-won insights on resilience",
+      "confidence": 0.8
+    }
+  ],
+  "lex": {
+    "w": [
+      "impact",
+      "resilience",
+      "courage",
+      "meaning",
+      "struggle"
+    ],
+    "b": [
+      "blake",
+      "mental",
+      "leadership",
+      "impact",
+      "honesty"
+    ],
+    "t": "Authenticity, purpose, courage"
+  },
+  "implications": [
+    "Comment tone is honest and inspiring",
+    "Focus on vulnerability and impact",
+    "Encourages courageous leadership"
+  ],
+  "avoid": [
+    "Overly technical language",
+    "Generic motivational phrases",
+    "Detached or impersonal tone"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_speaking",
+  "title": "Book Blake Mycoskie: Wellness & Social Impact Speaker",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

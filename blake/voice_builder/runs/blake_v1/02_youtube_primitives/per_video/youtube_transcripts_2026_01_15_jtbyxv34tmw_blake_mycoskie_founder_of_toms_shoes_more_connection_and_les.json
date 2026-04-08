@@ -1,0 +1,150 @@
+{
+  "prompt_version": "voice_builder.youtube.v1",
+  "source_type": "youtube_transcript",
+  "metadata": {
+    "video_id": "jtbyxv34tmw",
+    "title": "BLAKE MYCOSKIE, Founder of TOMS Shoes: More Connection and Less Performance, in Business and in Life",
+    "url": "https://www.youtube.com/watch?v=jtbyxv34tmw",
+    "published_at": "2026-01-15",
+    "channel": ""
+  },
+  "transcript_read": {
+    "word_count": 607,
+    "speaker_mix_notes": "Primarily Blake, conversational, with self-interruptions and reflective pauses.",
+    "audio_noise_notes": "No significant noise; clear speech."
+  },
+  "voice_primitives": [
+    {
+      "primitive_name": "Repetitive Framing for Emphasis",
+      "description": "Repeats key phrases like 'meaning' and 'climb the mountain' to reinforce core themes.",
+      "evidence_quotes": [
+        "more connection, less performance",
+        "meaning in people's lives"
+      ],
+      "why_it_matters": "Highlights values and central messages, making them more impactful and signature to his style.",
+      "confidence": 0.85
+    },
+    {
+      "primitive_name": "Self-Interruptions and Restarts",
+      "description": "Frequently restarts sentences or shifts focus mid-thought, e.g., 'I really think that businesses that focus on marketing usually don't really...'",
+      "evidence_quotes": [
+        "I really think that businesses that focus on marketing usually don't really",
+        "And so I think it's to remind people that..."
+      ],
+      "why_it_matters": "Conveys a natural, reflective thought process, emphasizing authenticity and ongoing internal dialogue.",
+      "confidence": 0.8
+    },
+    {
+      "primitive_name": "Bridge Words and Phrases",
+      "description": "Uses phrases like 'it's like' and 'you know' to soften statements and create conversational flow.",
+      "evidence_quotes": [
+        "it's like try to kind of bring it back to",
+        "you know, really"
+      ],
+      "why_it_matters": "Signals a reflective, approachable tone, inviting listener engagement and vulnerability.",
+      "confidence": 0.75
+    }
+  ],
+  "rhythm_analysis": {
+    "opening_moves": [
+      "starts with a declarative 'Yeah, I always say'"
+    ],
+    "bridge_words": [
+      "it's like",
+      "you know",
+      "and so"
+    ],
+    "self_corrections": [
+      "I think in some ways that was quite prophetic because..."
+    ],
+    "sentence_length_profile": "Mixed; short declaratives and longer reflective sentences.",
+    "closing_moves": [
+      "repeats key themes like 'meaning' and 'climb the mountain'"
+    ]
+  },
+  "thought_process_patterns": [
+    {
+      "pattern_name": "Visual Metaphor Anchoring",
+      "description": "Uses vivid imagery to conceptualize abstract ideas like purpose and growth.",
+      "evidence_quotes": [
+        "climb the mountain",
+        "the chest is empty"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Reinforcement through Repetition",
+      "description": "Repeats core words and phrases to emphasize values.",
+      "evidence_quotes": [
+        "meaning",
+        "climb the mountain"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Reflective Self-Interruption",
+      "description": "Pauses or shifts mid-thought to reflect or clarify.",
+      "evidence_quotes": [
+        "I really think that businesses that focus on marketing usually don't really"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Use of Bridge Phrases",
+      "description": "Employs conversational fillers to connect ideas smoothly.",
+      "evidence_quotes": [
+        "it's like",
+        "you know"
+      ],
+      "confidence": 0.75
+    }
+  ],
+  "vulnerability_signals": [
+    {
+      "signal": "Admits to depression and feelings of emptiness after success.",
+      "evidence_quotes": [
+        "The chest is empty. And even though that I just told you what you're going to find, you still need to go climb the mountain yourself."
+      ],
+      "interpretation": "Shows openness about personal struggles and internal doubts."
+    },
+    {
+      "signal": "Reflects on learning lessons through personal experience.",
+      "evidence_quotes": [
+        "I still had to learn that lesson."
+      ],
+      "interpretation": "Acknowledges ongoing growth and imperfect understanding."
+    },
+    {
+      "signal": "Mentions the importance of guidance and mentorship.",
+      "evidence_quotes": [
+        "Mentors are the one consistent throughline in the lives of all accomplished people."
+      ],
+      "interpretation": "Expresses humility and reliance on external support."
+    }
+  ],
+  "signature_language": {
+    "repeated_words": [
+      "meaning",
+      "climb the mountain"
+    ],
+    "repeated_phrases": [
+      "you're going to"
+    ],
+    "metaphor_anchors": [
+      "mountain",
+      "chest"
+    ],
+    "emotional_register": "Reflective, sincere, aspirational"
+  },
+  "era_read": {
+    "era_a_signal": 0.1,
+    "era_b_signal": 0.3,
+    "era_c_signal": 0.6,
+    "current_voice_weight": 0.75,
+    "notes": "Content reflects current emphasis on authenticity, vulnerability, and purpose-driven narratives typical of 2026."
+  },
+  "doc_id": "youtube_transcripts_2026_01_15_jtbyxv34tmw_blake_mycoskie_founder_of_toms_shoes_more_connection_and_les",
+  "title": "BLAKE MYCOSKIE, Founder of TOMS Shoes: More Connection and Less Performance, in Business and in Life",
+  "era": "era_c_enough_current",
+  "date_key": "2026-01-15"
+}

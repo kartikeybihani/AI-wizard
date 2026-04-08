@@ -1,0 +1,162 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2014-12-17",
+      "end": "2015-02-15"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Open with a casual or energetic phrase",
+      "description": "Starts with short, punchy phrases or exclamations to grab attention.",
+      "structure_template": "Short opener + main thought",
+      "when_it_appears": "Most captions",
+      "example_quotes": [
+        "Let the games begin....",
+        "Summit hanging with #flatclint getting ready for the @attproam"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Use of hashtags and mentions to set context",
+      "description": "Includes hashtags or tags early to frame the post.",
+      "structure_template": "Main thought + #hashtag + @mention",
+      "when_it_appears": "Often in activity or event posts",
+      "example_quotes": [
+        "Let the #attproam begin.",
+        "Just got my beautiful new irons from @taylormadegolf"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Expressive, emotional closing or comment",
+      "description": "Ends with a personal reflection or emotional note.",
+      "structure_template": "Main thought + emotional comment",
+      "when_it_appears": "In personal or family posts",
+      "example_quotes": [
+        "Sure looks like summit to me :)",
+        "Love!!"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Event/Activity Announcement",
+      "formula": "Action/Activity + context/setting",
+      "emotional_job": "Share excitement or participation",
+      "example_quotes": [
+        "Let the games begin....",
+        "This exercise was great for @toms"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Personal Reflection or Observation",
+      "formula": "Observation + personal insight",
+      "emotional_job": "Connect emotionally or share a thought",
+      "example_quotes": [
+        "Like son like father :)",
+        "I do love Katy perry in the most non threatening way"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Gratitude or Acknowledgment",
+      "formula": "Thank you/acknowledge + person/thing",
+      "emotional_job": "Express appreciation",
+      "example_quotes": [
+        "Thanks Scott!",
+        "Thank you!!"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Let the...",
+      "Just got...",
+      "Hey world",
+      "Summit hanging"
+    ],
+    "closers": [
+      "Love!!",
+      "Enjoy!",
+      "Happy saturday"
+    ],
+    "bridge_phrases": [
+      "Sure looks like",
+      "Now I just need to",
+      "Inside this door"
+    ],
+    "favorite_verbs": [
+      "love",
+      "realized",
+      "got",
+      "realized",
+      "hanging"
+    ],
+    "favorite_nouns": [
+      "summit",
+      "game",
+      "irons",
+      "care package",
+      "video"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often under 10 words",
+    "line_break_style": "Occasional line breaks for emphasis, often after an exclamation or key phrase"
+  },
+  "voice_tells": [
+    {
+      "tell": "Casual, energetic tone",
+      "why_it_matters": "Creates an approachable, lively voice",
+      "example_quotes": [
+        "Let the games begin....",
+        "Bamm!!!"
+      ]
+    },
+    {
+      "tell": "Use of emojis and hashtags",
+      "why_it_matters": "Enhances visual engagement and context",
+      "example_quotes": [
+        "#attproam",
+        "#lifeisawesome"
+      ]
+    },
+    {
+      "tell": "Personal, reflective comments",
+      "why_it_matters": "Builds emotional connection",
+      "example_quotes": [
+        "Sure looks like summit to me :)",
+        "Love!!"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long sentences",
+    "Formal or abstract language",
+    "Lack of personal voice",
+    "Heavy use of technical jargon",
+    "Excessive self-promotion without personal touch",
+    "Ignoring emotional or personal framing",
+    "Overuse of hashtags or mentions without context",
+    "Generic, non-specific statements"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Consistently energetic, personal, and activity-focused with casual tone.",
+    "what_changed_vs_older_voice": "More emotional closings and personal reflections appear now.",
+    "confidence": 0.9
+  }
+}

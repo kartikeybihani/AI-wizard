@@ -1,0 +1,149 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "unknown",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2013-10-08",
+      "end": "2013-11-29"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Announcement + Call to Action",
+      "description": "Opens with a statement or event, then invites engagement or action.",
+      "structure_template": "Statement/Update + invitation/hashtag",
+      "when_it_appears": "Throughout the batch",
+      "example_quotes": [
+        "Just signed petition at Missouri State to get @TOMS campus classics made.",
+        "Join me and @TOMS in raising awareness for visual impairment by wearing your shades indoors all day"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Personal Observation + Context",
+      "description": "Shares a quick personal note or experience, often with a location or event.",
+      "structure_template": "Personal note + context/setting",
+      "when_it_appears": "Consistently",
+      "example_quotes": [
+        "Shady on safari! I have been so excited for World Sight Day today",
+        "My new @toms brogue rocking at CFDA vogue fashion fund show"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Gratitude/Thanks",
+      "description": "Expresses appreciation or acknowledgment, often with tags or mentions.",
+      "structure_template": "Thankful/Grateful + mention/tag",
+      "when_it_appears": "Frequent",
+      "example_quotes": [
+        "Thx for being such an amazing partner @tabithasimmons!!",
+        "Thankful Day at TOMS HQ!"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.88
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Event + Reflection",
+      "formula": "Event/Activity + personal reflection or comment",
+      "emotional_job": "Share experience and connect emotionally",
+      "example_quotes": [
+        "Celebrating @TOMS Thankful Day with the TOMS family today.",
+        "Success!!!! @toms repeat, sustainable giving in Rwanda"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Call to Action + Hashtag",
+      "formula": "Call to action + hashtag or tag",
+      "emotional_job": "Encourage participation or awareness",
+      "example_quotes": [
+        "Join me and @TOMS in raising awareness for visual impairment",
+        "Today is World Sight Day!!"
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Just",
+      "Thankful",
+      "Celebrating",
+      "About to",
+      "Found"
+    ],
+    "closers": [
+      "!!",
+      "!",
+      "today",
+      "in NYC",
+      "with @"
+    ],
+    "bridge_phrases": [
+      "#tomsmarketplace",
+      "in the",
+      "at the",
+      "with",
+      "for"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "celebrate",
+      "sign",
+      "support",
+      "rock"
+    ],
+    "favorite_nouns": [
+      "day",
+      "event",
+      "partner",
+      "campaign",
+      "fashion"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences (~5-15 words)",
+    "line_break_style": "Minimal, often single lines or short phrases"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal involvement in events",
+      "why_it_matters": "Creates authenticity and emotional connection",
+      "example_quotes": [
+        "Celebrating @TOMS Thankful Day with the TOMS family today.",
+        "Just signed petition at Missouri State to get @TOMS campus classics made."
+      ]
+    },
+    {
+      "tell": "Use of hashtags and tags",
+      "why_it_matters": "Engages community and emphasizes themes",
+      "example_quotes": [
+        "#tomsmarketplace in the NYC cabs",
+        "Join me and @TOMS in raising awareness"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long sentences",
+    "Vague statements without context",
+    "Lack of personal voice or emotion",
+    "Excessive hashtags or links",
+    "Generic motivational quotes",
+    "Repetitive phrases without variation",
+    "Ignoring engagement prompts",
+    "Overuse of corporate jargon"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Consistent, personal, action-oriented, community-focused",
+    "what_changed_vs_older_voice": "More direct calls to action, increased hashtag use",
+    "confidence": 0.9
+  }
+}

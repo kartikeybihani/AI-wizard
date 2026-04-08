@@ -1,0 +1,79 @@
+{
+  "prompt_version": "voice_builder.youtube.v2_compact",
+  "source_type": "youtube_chunk",
+  "m": {
+    "doc_id": "youtube_transcripts_2018_11_20_s6msvetjzxq_toms_founder_blake_mycoskie_announces_5_million_donation_to",
+    "era": "era_a_toms_builder"
+  },
+  "primitives": [
+    {
+      "p": "I said, \"What if we start a shoe company?\"",
+      "q": "I wanted to help children without shoes.",
+      "c": 0.8
+    },
+    {
+      "p": "We put this intention out to the world.",
+      "q": "People showed up when we said we'd give a pair.",
+      "c": 0.75
+    },
+    {
+      "p": "Damn it, we're going to do something about it.",
+      "q": "I was emotional and decided to act.",
+      "c": 0.85
+    },
+    {
+      "p": "So tonight we're announcing that we're going to evolve our giving model.",
+      "q": "We're going to give resources to causes.",
+      "c": 0.7
+    },
+    {
+      "p": "You know what? Damn it, we're going to do something about it.",
+      "q": "I sat there and I thought.",
+      "c": 0.8
+    },
+    {
+      "p": "We said, \"Let's pass universal background checks.\"",
+      "q": "You can do it in 30 seconds.",
+      "c": 0.75
+    }
+  ],
+  "rhythm": {
+    "openers": [
+      "Wow.",
+      "Thank you for being on the show.",
+      "And I am a fan of Toms."
+    ],
+    "bridges": [
+      "But then I couldn't fit \"Tomorrows\" on this tag.",
+      "So it became Toms.",
+      "People call me Tom all the time."
+    ],
+    "closers": [
+      "It's gonna be a good day.",
+      "Thank you.",
+      "That's awesome."
+    ]
+  },
+  "thought_patterns": [
+    "Deciding to act after seeing need",
+    "Connecting personal emotion to action",
+    "Evolving the mission to address bigger issues",
+    "Empowering others to act quickly"
+  ],
+  "vulnerability": [
+    "I was emotional and decided to act.",
+    "I sat there and I thought.",
+    "I was scared when my wife called.",
+    "Tonight we're announcing something big."
+  ],
+  "signature_words": [
+    "Damn",
+    "Absolutely",
+    "Thank you",
+    "Wow"
+  ],
+  "doc_id": "youtube_transcripts_2018_11_20_s6msvetjzxq_toms_founder_blake_mycoskie_announces_5_million_donation_to",
+  "title": "Toms Founder Blake Mycoskie Announces $5 Million Donation to End Gun Violence",
+  "era": "era_a_toms_builder",
+  "date_key": "2018-11-20"
+}

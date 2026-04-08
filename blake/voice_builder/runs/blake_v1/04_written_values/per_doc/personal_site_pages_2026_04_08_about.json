@@ -1,0 +1,75 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_about",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "Impact through purpose",
+      "q": "Business can be a force for good",
+      "confidence": 0.9
+    },
+    {
+      "v": "Personal growth and resilience",
+      "q": "Pursuit of meaning and resilience",
+      "confidence": 0.85
+    },
+    {
+      "v": "Service and spiritual guiding principles",
+      "q": "Guided by spiritual principles and service",
+      "confidence": 0.8
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Emphasizes impact and purpose",
+      "q": "Business as a force for good",
+      "confidence": 0.9
+    },
+    {
+      "p": "Highlights personal growth",
+      "q": "Pursuit of meaning and resilience",
+      "confidence": 0.85
+    },
+    {
+      "p": "Uses spiritual and service language",
+      "q": "Guided by spiritual principles and service",
+      "confidence": 0.8
+    }
+  ],
+  "lex": {
+    "w": [
+      "impact",
+      "purpose",
+      "meaning",
+      "resilience",
+      "service",
+      "growth"
+    ],
+    "b": [
+      "enough",
+      "carpe diem",
+      "blake",
+      "toms",
+      "impact",
+      "story"
+    ],
+    "t": "Impact, purpose, growth, service, resilience, spiritual principles"
+  },
+  "implications": [
+    "Tone is motivational and purpose-driven",
+    "Focus on personal and societal impact",
+    "Language encourages action and reflection"
+  ],
+  "avoid": [
+    "Overly technical language",
+    "Negative or defeatist tone",
+    "Unfocused or broad generalities"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_about",
+  "title": "About Blake Mycoskie Social Entrepreneur & Mental Wellness Advocate",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

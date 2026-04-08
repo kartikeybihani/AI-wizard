@@ -1,0 +1,164 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "blake",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2015-05-01",
+      "end": "2015-06-12"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Personal Reflection + Call to Action",
+      "description": "Opens with personal insight or gratitude, then invites engagement or action.",
+      "structure_template": "Reflective statement + specific activity or event + call to action or question",
+      "when_it_appears": "frequently in updates about events, campaigns, or milestones",
+      "example_quotes": [
+        "Thanks @alliet_ and the whole gang @toms EMEA. Was so awesome to be with you today and feel your energy and deep engagement in our future together. All my love...",
+        "As I sit back today and reflect, I’m blown away by how far we have come. None of this would have been possible without you, #TOMStribe."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Event/Experience Sharing + Gratitude",
+      "description": "Shares a recent experience or event, often with gratitude or acknowledgment.",
+      "structure_template": "Description of event/experience + acknowledgment or thanks",
+      "when_it_appears": "during event recaps or milestone posts",
+      "example_quotes": [
+        "Great having @robinsharma speak at our @toms global brand conference. He inspired us all! Started my 20/20/20 this morning!",
+        "Thank you @glamourmag for letting me share my paternity leave story with your readers."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Hashtag + Campaign Mention",
+      "description": "Uses hashtags to promote campaigns or themes, often with a call to participate.",
+      "structure_template": "Caption + #campaignhashtag + call to action",
+      "when_it_appears": "during campaign periods or awareness drives",
+      "example_quotes": [
+        "#withoutshoes in #milan. This year we wanted to celebrate One Day Without Shoes in a big way.",
+        "Going #withoutshoes for @toms in Taipei today and just got the whole audience to do it too!"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.88
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Gratitude + Reflection",
+      "formula": "Thank you + reflection on impact or journey",
+      "emotional_job": "Express appreciation and acknowledge progress or community",
+      "example_quotes": [
+        "Thanks @alliet_ and the whole gang @toms EMEA. Was so awesome to be with you today and feel your energy and deep engagement in our future together.",
+        "As I sit back today and reflect, I’m blown away by how far we have come."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Event Highlight + Personal Note",
+      "formula": "Highlight of event + personal reaction or action",
+      "emotional_job": "Share enthusiasm and personal connection",
+      "example_quotes": [
+        "Great having @robinsharma speak at our @toms global brand conference. He inspired us all!",
+        "Thanks @glamourmag for letting me share my paternity leave story."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Campaign Call + Hashtag",
+      "formula": "Campaign hashtag + call to participate or share",
+      "emotional_job": "Encourage community involvement and awareness",
+      "example_quotes": [
+        "#withoutshoes in #milan. Celebrate with us!",
+        "Going #withoutshoes for @toms in Taipei today!"
+      ],
+      "confidence": 0.88
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Thanks",
+      "Thank you",
+      "So great",
+      "Just woke up in"
+    ],
+    "closers": [
+      "All my love...",
+      "Cheers to",
+      "Happy feet washing :)"
+    ],
+    "bridge_phrases": [
+      "Feeling thankful",
+      "Inspired by",
+      "Thanks to"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "share",
+      "celebrate",
+      "feel",
+      "learn",
+      "hope"
+    ],
+    "favorite_nouns": [
+      "team",
+      "community",
+      "experience",
+      "moment",
+      "campaign",
+      "impact"
+    ],
+    "sentence_length_profile": "short, punchy, 1-2 sentences",
+    "line_break_style": "minimal, often no line breaks, or after a single thought"
+  },
+  "voice_tells": [
+    {
+      "tell": "First-person gratitude and reflection",
+      "why_it_matters": "Creates intimacy and authenticity, invites community engagement",
+      "example_quotes": [
+        "Thanks @alliet_ and the whole gang @toms EMEA.",
+        "As I sit back today and reflect, I’m blown away by how far we have come."
+      ]
+    },
+    {
+      "tell": "Use of hashtags to promote campaigns",
+      "why_it_matters": "Builds community and awareness around causes",
+      "example_quotes": [
+        "#withoutshoes in #milan.",
+        "Going #withoutshoes for @toms in Taipei today!"
+      ]
+    },
+    {
+      "tell": "Sharing personal milestones or experiences",
+      "why_it_matters": "Builds personal connection and authenticity",
+      "example_quotes": [
+        "My birthday girl just revealed a new hidden talent.",
+        "Just hanging with my little man."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly promotional language without personal touch",
+    "Long, dense paragraphs",
+    "Vague statements lacking specifics",
+    "Ignoring community or audience engagement",
+    "Excessive hashtags without context",
+    "Overuse of generic motivational quotes",
+    "Lack of personal voice or reflection",
+    "Repetitive phrases without variation"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Authentic, community-focused, personal reflection with campaign integration",
+    "what_changed_vs_older_voice": "More direct, concise, emotionally engaged, less formal",
+    "confidence": 0.92
+  }
+}

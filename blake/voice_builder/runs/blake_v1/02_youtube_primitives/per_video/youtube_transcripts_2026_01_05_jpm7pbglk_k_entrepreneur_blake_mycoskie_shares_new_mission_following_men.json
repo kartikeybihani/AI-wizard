@@ -1,0 +1,155 @@
+{
+  "prompt_version": "voice_builder.youtube.v1",
+  "source_type": "youtube_transcript",
+  "metadata": {
+    "video_id": "youtube_transcripts_2026_01_05_jpm7pbglk_k_entrepreneur_blake_mycoskie_shares_new_mission_following_men",
+    "title": "Entrepreneur Blake Mycoskie shares new mission following mental health struggles",
+    "url": "",
+    "published_at": "2026-01-05",
+    "channel": ""
+  },
+  "transcript_read": {
+    "word_count": 1074,
+    "speaker_mix_notes": "Primarily Blake, conversational, emotional, self-reflective",
+    "audio_noise_notes": "Minimal background noise, clear speech"
+  },
+  "voice_primitives": [
+    {
+      "primitive_name": "Self-correction",
+      "description": "Frequent pauses and corrections, indicating thinking out loud.",
+      "evidence_quotes": [
+        "I think what happened is I sold the company, I accomplished everything I was told I was supposed to do."
+      ],
+      "why_it_matters": "Shows a reflective, honest thought process, vulnerability.",
+      "confidence": 0.9
+    },
+    {
+      "primitive_name": "Bridge words",
+      "description": "Uses phrases like 'it's like', 'you know', to connect thoughts.",
+      "evidence_quotes": [
+        "It's really scary.",
+        "You know, I built a business."
+      ],
+      "why_it_matters": "Indicates a conversational, informal style, easing into deeper topics.",
+      "confidence": 0.8
+    },
+    {
+      "primitive_name": "Repetition for emphasis",
+      "description": "Repeats key phrases for clarity and impact.",
+      "evidence_quotes": [
+        "You are enough. Yes, Gail, I see you."
+      ],
+      "why_it_matters": "Highlights core message, emotional vulnerability.",
+      "confidence": 0.85
+    },
+    {
+      "primitive_name": "Vulnerability",
+      "description": "Shares personal struggles openly, including depression and suicidal thoughts.",
+      "evidence_quotes": [
+        "I started to get depressed. I lost my purpose. I lost my community.",
+        "I didn't even want to be here anymore."
+      ],
+      "why_it_matters": "Builds authenticity, connection, shows emotional depth.",
+      "confidence": 0.95
+    },
+    {
+      "primitive_name": "Anchoring",
+      "description": "Uses physical objects (bracelets) as reminders of self-worth.",
+      "evidence_quotes": [
+        "I created this bracelet as a reminder to wear every day for myself."
+      ],
+      "why_it_matters": "Embeds emotional and mental health themes into tangible symbols.",
+      "confidence": 0.9
+    }
+  ],
+  "rhythm_analysis": {
+    "opening_moves": [
+      "Introductory greeting, establishing connection"
+    ],
+    "bridge_words": [
+      "it's like",
+      "you know",
+      "so"
+    ],
+    "self_corrections": [
+      "I think what happened is...",
+      "I mean, I did everything"
+    ],
+    "sentence_length_profile": "Mixed, with longer reflective sentences and shorter emphatic statements",
+    "closing_moves": [
+      "Reaffirmation of core message, call to action"
+    ]
+  },
+  "thought_process_patterns": [
+    {
+      "pattern_name": "Reflective storytelling",
+      "description": "Shares personal history, struggles, and lessons learned in a narrative flow.",
+      "evidence_quotes": [
+        "I sold the company, I accomplished everything I was told I was supposed to do."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Vulnerability disclosure",
+      "description": "Openly admits emotional pain and mental health challenges.",
+      "evidence_quotes": [
+        "I started to get depressed. I lost my purpose."
+      ],
+      "confidence": 0.95
+    },
+    {
+      "pattern_name": "Reframing and purpose",
+      "description": "Reinterprets struggles as lessons leading to new missions.",
+      "evidence_quotes": [
+        "Maybe the whole reason I went through the depression at all was so that I could then help others."
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "vulnerability_signals": [
+    {
+      "signal": "Sharing suicidal thoughts and depression",
+      "evidence_quotes": [
+        "I didn't even want to be here anymore."
+      ],
+      "interpretation": "Deep emotional openness, risking judgment."
+    },
+    {
+      "signal": "Admitting feelings of not being enough",
+      "evidence_quotes": [
+        "I realized that nothing I could do externally would help me with this wound I had inside."
+      ],
+      "interpretation": "Shows raw honesty about internal struggles."
+    },
+    {
+      "signal": "Discussing mental health journey",
+      "evidence_quotes": [
+        "I did therapy. I went to a hospital to have my brain zapped."
+      ],
+      "interpretation": "Vulnerable sharing of efforts to heal."
+    }
+  ],
+  "signature_language": {
+    "repeated_words": [
+      "enough"
+    ],
+    "repeated_phrases": [
+      "You are enough. Yes, Gail, I see you."
+    ],
+    "metaphor_anchors": [
+      "bracelet as a reminder"
+    ],
+    "emotional_register": "Authentic, empathetic, hopeful"
+  },
+  "era_read": {
+    "era_a_signal": 0.1,
+    "era_b_signal": 0.3,
+    "era_c_signal": 0.6,
+    "current_voice_weight": 0.75,
+    "notes": "Reflects contemporary focus on mental health, vulnerability, and purpose-driven storytelling."
+  },
+  "doc_id": "youtube_transcripts_2026_01_05_jpm7pbglk_k_entrepreneur_blake_mycoskie_shares_new_mission_following_men",
+  "title": "Entrepreneur Blake Mycoskie shares new mission following mental health struggles",
+  "era": "era_c_enough_current",
+  "date_key": "2026-01-05"
+}

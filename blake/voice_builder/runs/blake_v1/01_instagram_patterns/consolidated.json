@@ -1,0 +1,156 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2026-03-26",
+      "end": "2026-04-07"
+    },
+    "era_mix": {
+      "era_a_count": 0,
+      "era_b_count": 0,
+      "era_c_count": 30
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Personal Reflection + Call to Action",
+      "description": "Open with personal insight or story, then invite reflection or action.",
+      "structure_template": "Personal insight / story... + #hashtag + call to action or reflection",
+      "when_it_appears": "Most captions",
+      "example_quotes": [
+        "You don't need to find your purpose before you start. Chase what makes you feel alive.",
+        "Success won't fix what's unresolved inside. Get honest with yourself."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Emotional Honesty + Encouragement",
+      "description": "Share vulnerability or emotional truth, then offer encouragement or reassurance.",
+      "structure_template": "Share emotion or challenge... + #hashtag + reassurance",
+      "when_it_appears": "Many captions about mental health and growth",
+      "example_quotes": [
+        "Sadness is easier to carry than hopelessness. Allow yourself to feel what is there.",
+        "If you're living in a 6, don't wait for it to become a 3 to move forward."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Story + Lesson / Insight",
+      "description": "Tell a brief story or moment, then extract a lesson or insight.",
+      "structure_template": "Story snippet... + lesson / insight + #hashtag",
+      "when_it_appears": "Multiple captions about entrepreneurship and personal growth",
+      "example_quotes": [
+        "Big missions can begin in ordinary moments. Pay attention.",
+        "Clarity isn't found, it's remembered."
+      ],
+      "frequency_estimate": "moderate",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Self-Reflection + Invitation",
+      "formula": "Personal insight / story + reflection / question + hashtag",
+      "emotional_job": "Encourage introspection and connection",
+      "example_quotes": [
+        "Make your own list of what makes you feel alive. Clarity starts there.",
+        "What do you need to feel enough? Start with honesty."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Challenge + Reassurance",
+      "formula": "Identify a challenge or pain point + reassurance / hope + hashtag",
+      "emotional_job": "Validate feelings, offer hope",
+      "example_quotes": [
+        "Living in a 6 isn't enough, but you can choose to move.",
+        "Pessimism floods your body, but optimism is a biological advantage."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Story + Lesson",
+      "formula": "Brief personal story + key lesson or insight + hashtag",
+      "emotional_job": "Share authenticity, teach or inspire",
+      "example_quotes": [
+        "A simple idea started TOMS. Sometimes big change begins small.",
+        "Success isn't peace. The second mountain calls when the first leaves you empty."
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "You don’t need to...",
+      "When I..."
+    ],
+    "closers": [
+      "because you are enough.",
+      "start today."
+    ],
+    "bridge_phrases": [
+      "sometimes",
+      "remember"
+    ],
+    "favorite_verbs": [
+      "feel",
+      "start",
+      "pay attention",
+      "believe"
+    ],
+    "favorite_nouns": [
+      "truth",
+      "clarity",
+      "happiness",
+      "connection"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences with occasional longer reflections",
+    "line_break_style": "Often one sentence per line, emphasizing key points"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal vulnerability and honesty",
+      "why_it_matters": "Builds trust and relatability",
+      "example_quotes": [
+        "I was silently falling apart, and I know how dangerous that silence can be.",
+        "After my divorce, I realized sadness is easier to carry than hopelessness."
+      ]
+    },
+    {
+      "tell": "Encouragement and hope",
+      "why_it_matters": "Inspires action and resilience",
+      "example_quotes": [
+        "You don’t need to overhaul your life, just protect your mornings.",
+        "You are not broken, just being invited to listen."
+      ]
+    },
+    {
+      "tell": "Storytelling with lessons",
+      "why_it_matters": "Provides authenticity and insight",
+      "example_quotes": [
+        "A scribble on a page became a company that gave away 100 million shoes.",
+        "Clarity isn't something you find, it's something you remember."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly generic motivational quotes",
+    "Long-winded, unfocused stories",
+    "Vague advice without personal context",
+    "Overuse of hashtags without substance",
+    "Repetitive phrases lacking variation",
+    "Ignoring emotional honesty",
+    "Too much self-promotion without authenticity",
+    "Avoiding vulnerability"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current voice emphasizes vulnerability, authenticity, and actionable insights, often rooted in personal stories and mental health themes.",
+    "what_changed_vs_older_voice": "More direct, emotionally honest, and focused on mental health and purpose, less on promotional or overly polished content.",
+    "confidence": 0.9
+  }
+}

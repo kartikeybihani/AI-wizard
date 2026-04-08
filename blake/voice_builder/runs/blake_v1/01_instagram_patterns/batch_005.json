@@ -1,0 +1,148 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "blakemycoskie",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2026-01-07",
+      "end": "2026-01-28"
+    },
+    "era_mix": {
+      "era_a_count": 0,
+      "era_b_count": 0,
+      "era_c_count": 30
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Personal Reflection + Call to Action",
+      "description": "Open with personal insight or story, then invite engagement or reflection.",
+      "structure_template": "Personal insight/story + reflection + call to action/link",
+      "when_it_appears": "Most captions",
+      "example_quotes": [
+        "This is from a conversation I just had with Kevin Love on No Magic No Pill, where he shared simple tools for navigating anxiety and his mental health journey.",
+        "My first business didn’t start with a vision. It started with an injury and a pile of dirty laundry."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Affirmation + Reminder",
+      "description": "State an affirmation or core message, then reinforce with a reminder or supportive phrase.",
+      "structure_template": "Affirmation/statement + reinforcement/reminder",
+      "when_it_appears": "Frequently in posts about worth, healing, and impact",
+      "example_quotes": [
+        "You are enough, exactly as you are.",
+        "You have always been enough."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Question + Reflection",
+      "description": "Pose a gentle question to prompt self-reflection or awareness.",
+      "structure_template": "Question + reflection",
+      "when_it_appears": "In captions about mental health, clarity, or growth",
+      "example_quotes": [
+        "This question gently realigns choices with care, clarity, and long-term well-being.",
+        "If you’re feeling off, make your own. Name what you need."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Story + Lesson + Invitation",
+      "formula": "Personal story + lesson learned + invitation or call to action",
+      "emotional_job": "Build connection, share vulnerability, inspire action",
+      "example_quotes": [
+        "I learned early that problems make great teachers if you’re willing to pay attention.",
+        "Healing didn’t come from chasing another rush. It came from slowing down and rebuilding my baseline."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Affirmation + Visual Symbol",
+      "formula": "Core affirmation + visual symbol or product + supportive message",
+      "emotional_job": "Reinforce self-worth, create tangible reminder",
+      "example_quotes": [
+        "ENOUGH exists as a simple reminder, you are not alone in what you’re carrying.",
+        "This bracelet was inspired by the idea that a small, visible symbol can create connection."
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "This is from...",
+      "My first..."
+    ],
+    "closers": [
+      "Link in bio.",
+      "You are enough."
+    ],
+    "bridge_phrases": [
+      "And something unexpected happened.",
+      "That lesson is part of why..."
+    ],
+    "favorite_verbs": [
+      "learned",
+      "reminds",
+      "realized",
+      "started",
+      "taught"
+    ],
+    "favorite_nouns": [
+      "lesson",
+      "reminder",
+      "story",
+      "journey",
+      "impact"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences with occasional longer reflections",
+    "line_break_style": "Often uses line breaks for emphasis, especially before key statements or questions"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal vulnerability and honesty",
+      "why_it_matters": "Builds trust and relatability",
+      "example_quotes": [
+        "My deepest wound was believing I wasn’t enough.",
+        "From the inside, I was struggling."
+      ]
+    },
+    {
+      "tell": "Use of affirmations and reminders",
+      "why_it_matters": "Reinforces positive self-perception",
+      "example_quotes": [
+        "You are enough, exactly as you are.",
+        "You have always been enough."
+      ]
+    },
+    {
+      "tell": "Storytelling with lessons learned",
+      "why_it_matters": "Creates connection through shared experience",
+      "example_quotes": [
+        "I learned early that problems make great teachers.",
+        "Healing didn’t fix me overnight."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly complex language",
+    "Long, dense paragraphs",
+    "Generic motivational quotes without personal context",
+    "Calls to action that are vague or non-specific",
+    "Overuse of hashtags without narrative context",
+    "Repetitive phrases without variation",
+    "Ignoring emotional vulnerability",
+    "Lack of personal voice or authenticity"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake’s current voice is deeply personal, affirming, and focused on healing and self-worth, with a consistent pattern of storytelling and reminders.",
+    "what_changed_vs_older_voice": "More direct, vulnerability-focused, and centered on mental health and self-acceptance, less about external achievement.",
+    "confidence": 0.9
+  }
+}

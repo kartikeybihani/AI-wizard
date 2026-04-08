@@ -1,0 +1,80 @@
+{
+  "prompt_version": "voice_builder.youtube.v2_compact",
+  "source_type": "youtube_chunk",
+  "m": {
+    "doc_id": "youtube_transcripts_2018_12_24_domk3ylcmq4_blake_mycoskie_toms_shoes_founder_on_changing_business_and_t",
+    "era": "era_a_toms_builder"
+  },
+  "primitives": [
+    {
+      "p": "I thought like okay this is cool once a year",
+      "q": "then I realized we've given 88 million children",
+      "c": 0.9
+    },
+    {
+      "p": "I mean I was a single guy like 29 years old",
+      "q": "I love going down to Argentina",
+      "c": 0.8
+    },
+    {
+      "p": "It'll be like my cool little project",
+      "q": "and now we've given 88 million children",
+      "c": 0.85
+    },
+    {
+      "p": "Self-correction",
+      "q": "is to l is when is is someone who lives",
+      "c": 0.8
+    },
+    {
+      "p": "Uncertainty handling",
+      "q": "you know my you know my",
+      "c": 0.6
+    },
+    {
+      "p": "Thank you so much man thank you",
+      "q": "thank you so much man thank you",
+      "c": 0.4
+    }
+  ],
+  "rhythm": {
+    "openers": [
+      "I mean I was a single guy like 29 years old",
+      "I was looking at your Instagram page recently"
+    ],
+    "bridges": [
+      "like okay this is cool once a year",
+      "and now we've given 88 million children",
+      "and you are present in the moment and"
+    ],
+    "closers": [
+      "so many mutual friends who are entrepreneurs",
+      "and I know the author",
+      "there you go yeah thanks so much man thank you"
+    ]
+  },
+  "thought_patterns": [
+    "Reflects on initial simple idea",
+    "Realizes impact over time",
+    "Connects personal experience to broader impact",
+    "Living authentically equals greatness"
+  ],
+  "vulnerability": [
+    "I don’t wish my wife would say that",
+    "when I walk into the kitchen",
+    "Thank you so much man thank you",
+    "Appreciate you"
+  ],
+  "signature_words": [
+    "like",
+    "probably",
+    "so",
+    "yeah",
+    "you know",
+    "there you go"
+  ],
+  "doc_id": "youtube_transcripts_2018_12_24_domk3ylcmq4_blake_mycoskie_toms_shoes_founder_on_changing_business_and_t",
+  "title": "Blake Mycoskie: TOMS Shoes Founder on Changing Business and The World",
+  "era": "era_a_toms_builder",
+  "date_key": "2018-12-24"
+}

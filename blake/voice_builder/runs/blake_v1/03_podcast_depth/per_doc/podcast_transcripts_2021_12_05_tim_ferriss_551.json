@@ -1,0 +1,186 @@
+{
+  "prompt_version": "voice_builder.podcast.v1",
+  "source_type": "podcast_transcript",
+  "metadata": {
+    "source_id": "podcast_transcripts_2021_12_05_tim_ferriss_551",
+    "title": "The Tim Ferriss Show Transcripts: TOMS Founder Blake Mycoskie — Fear{less} with Tim Ferriss (#551)",
+    "url": "",
+    "published_at": "2021-12-05",
+    "host": "Tim Ferriss"
+  },
+  "core_arcs": [
+    {
+      "arc_name": "Fearless Giving",
+      "arc_summary": "Blake's journey from personal fears to embracing vulnerability through philanthropy.",
+      "turning_points": [
+        "Recognized opportunity to blend business and philanthropy.",
+        "Built TOMS to give away shoes, restoring confidence and purpose."
+      ],
+      "language_used": [
+        "learn to fear less",
+        "embracing discomfort",
+        "hard decisions"
+      ],
+      "why_it_matters_for_voice": "Shows how confronting fears leads to impactful change, emphasizing vulnerability as strength.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Origin of Purpose",
+      "arc_summary": "Early experiences and realizations that shaped Blake’s desire to help others through business.",
+      "turning_points": [
+        "Trip to South America sparked purpose-driven vision.",
+        "Recognizing the impact of giving on personal fulfillment."
+      ],
+      "language_used": [
+        "opportunity to make a difference",
+        "blend business and philanthropy"
+      ],
+      "why_it_matters_for_voice": "Highlights foundational values rooted in compassion and social impact.",
+      "confidence": 0.85
+    },
+    {
+      "arc_name": "Living with Intention and Accountability",
+      "arc_summary": "Blake emphasizes scheduling meaningful activities to ensure they happen, fostering accountability.",
+      "turning_points": [
+        "Scheduling activities makes them real and achievable."
+      ],
+      "language_used": [
+        "If it’s on the calendar, it happens."
+      ],
+      "why_it_matters_for_voice": "Conveys a disciplined, intentional approach to life that reflects his lived experience.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Prioritizing Relationships and Connection",
+      "arc_summary": "Blake values maintaining quality time with family and friends, especially as he ages.",
+      "turning_points": [
+        "Learning from his father's regret about neglecting friendships.",
+        "Scheduling time with friends despite busy work trips."
+      ],
+      "language_used": [
+        "Make sure I’m giving time to my buddies.",
+        "Focus on quality, not quantity."
+      ],
+      "why_it_matters_for_voice": "Shows a conscious effort to nurture meaningful relationships, rooted in personal lessons.",
+      "confidence": 0.85
+    },
+    {
+      "arc_name": "Seize the Day / Carpe Diem",
+      "arc_summary": "Living each day fully, driven by the memory of a friend's death and the unpredictability of life.",
+      "turning_points": [
+        "Friend's death in a plane crash inspired his mantra.",
+        "Living as if each day could be his last."
+      ],
+      "language_used": [
+        "Seize the day.",
+        "Live every day as if it might be my last."
+      ],
+      "why_it_matters_for_voice": "Embeds a passionate, urgent tone reflecting his core life philosophy.",
+      "confidence": 0.95
+    }
+  ],
+  "inner_life_patterns": [
+    {
+      "pattern_name": "Overcoming Fear",
+      "description": "Consistently confronting fears to pursue meaningful goals.",
+      "evidence_quotes": [
+        "teach you to fear less",
+        "hard decisions, embracing discomfort"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Purpose-Driven Identity",
+      "description": "Identity shaped by service and making a difference.",
+      "evidence_quotes": [
+        "give away more than 60 million pairs",
+        "restoring eyesight, providing water"
+      ],
+      "confidence": 0.75
+    },
+    {
+      "pattern_name": "Accountability through Scheduling",
+      "description": "Blake consistently uses calendar commitments to ensure personal and relational priorities are met.",
+      "evidence_quotes": [
+        "If it’s on the calendar, it happens."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Valuing Quality Time",
+      "description": "He emphasizes meaningful interactions over time spent, especially with friends and family.",
+      "evidence_quotes": [
+        "Make sure I’m giving time to my buddies."
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "belief_hierarchy": {
+    "top_beliefs": [
+      "Fears can be overcome through purpose",
+      "Helping others enriches one's own life",
+      "Living intentionally is essential.",
+      "Relationships require deliberate effort."
+    ],
+    "secondary_beliefs": [
+      "Discomfort is a sign of growth",
+      "Business can serve social good",
+      "Life is fragile and should be seized.",
+      "Scheduling ensures priorities are met."
+    ],
+    "tensions": [
+      "Balancing profit and philanthropy",
+      "Vulnerability as strength vs. perceived weakness",
+      "Balancing work, family, and friendships",
+      "Maintaining urgency without burnout"
+    ]
+  },
+  "recurring_metaphors": [
+    {
+      "metaphor": "Fear as a weight",
+      "meaning": "Lifting fears allows freedom to act.",
+      "evidence_quotes": [
+        "fear less"
+      ]
+    },
+    {
+      "metaphor": "Journey or path",
+      "meaning": "Personal growth as a continuous walk toward purpose.",
+      "evidence_quotes": [
+        "recognize opportunity",
+        "hard decisions"
+      ]
+    },
+    {
+      "metaphor": "Calendar as life’s blueprint",
+      "meaning": "Scheduling is the foundation for living intentionally.",
+      "evidence_quotes": [
+        "If it’s on the calendar, it happens."
+      ]
+    },
+    {
+      "metaphor": "Living as if each day is last",
+      "meaning": "Approaching life with urgency and purpose.",
+      "evidence_quotes": [
+        "Live every day as if it might be my last."
+      ]
+    }
+  ],
+  "identity_shift_notes": {
+    "who_he_was_before": "Focused on work and family, somewhat reactive to life's demands.",
+    "who_he_is_now": "Deliberate, intentional scheduler and relationship nurturer, driven by mortality awareness.",
+    "what_caused_the_shift": "The death of a close friend and lessons from his father about the importance of relationships.",
+    "confidence": 0.8
+  },
+  "era_read": {
+    "era_a_signal": 0.2,
+    "era_b_signal": 0.8,
+    "era_c_signal": 0.1,
+    "current_voice_weight": 0.75,
+    "notes": "Reflects transition from reactive to intentional living, emphasizing purpose and relationships."
+  },
+  "doc_id": "podcast_transcripts_2021_12_05_tim_ferriss_551",
+  "title": "The Tim Ferriss Show Transcripts: TOMS Founder Blake Mycoskie — Fear{less} with Tim Ferriss (#551)",
+  "bucket": "podcast_transcripts",
+  "era": "era_b_transition_seeker"
+}

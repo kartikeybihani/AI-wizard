@@ -1,0 +1,149 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2020-11-16",
+      "end": "2025-08-26"
+    },
+    "era_mix": {
+      "era_a_count": 8,
+      "era_b_count": 2,
+      "era_c_count": 20
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Reflective + Personal + Call to Action",
+      "description": "Opens with personal reflection or gratitude, shares a story or insight, ends with a question or invitation.",
+      "structure_template": "Opener + Story/Insight + Invitation/Question",
+      "when_it_appears": "Most recent captions, especially in era_c",
+      "example_quotes": [
+        "What I thought would be a quick trip to pick up son, Summit, from camp turned into something much more meaningful.",
+        "Sometimes, the smallest gesture means the most."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Lesson/Insight + Call to Action",
+      "description": "Shares a lesson or insight, then directs to a link or encourages engagement.",
+      "structure_template": "Insight + CTA",
+      "when_it_appears": "Across eras, especially in era_a",
+      "example_quotes": [
+        "Check out Lesson 6 of Next Steps to see how this foundational principle can help you, your business and everyone around you thrive.",
+        "Read The Way of Integrity by @themarthabeck to understand why living with integrity is the key to happiness."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Gratitude + Personal Connection",
+      "description": "Expresses gratitude for people or experiences, often with a personal anecdote.",
+      "structure_template": "Gratitude + Personal Story",
+      "when_it_appears": "Common in era_c",
+      "example_quotes": [
+        "I’m so grateful to Daniella for helping me grow as a photographer.",
+        "Thanks to God, my family, friends and many different healing modalities, I got the help I needed."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.88
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Gratitude & Reflection",
+      "formula": "Gratitude + Reflection + Invitation",
+      "emotional_job": "Express appreciation, share a personal insight, invite engagement",
+      "example_quotes": [
+        "I am so grateful for his friendship and even more for the quiet powerful ripples he creates for Mother Earth every single day.",
+        "This year I let AI give me my playa name for Burning Man. After everything I’ve been through these past few years, it came back with one word: Risen."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Story + Question",
+      "formula": "Share a story or insight + ask a question",
+      "emotional_job": "Engage audience through storytelling and reflection",
+      "example_quotes": [
+        "When you’re face to face with a creature like this, there’s no room for distraction. No thoughts about yesterday, no worries about tomorrow. Just breath. Just presence. Just awe.",
+        "What helps you remember the storm will pass?"
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Sometimes",
+      "I came to",
+      "This is",
+      "What I thought",
+      "Last summer"
+    ],
+    "closers": [
+      "What about you?",
+      "Let me know below.",
+      "Check out the link in bio.",
+      "Would love to hear.",
+      "Comment below."
+    ],
+    "bridge_phrases": [
+      "And I realized",
+      "It was the feeling.",
+      "It’s where I go to",
+      "This gave me",
+      "It’s not about"
+    ],
+    "favorite_verbs": [
+      "feel",
+      "realize",
+      "share",
+      "reflect",
+      "connect"
+    ],
+    "favorite_nouns": [
+      "gratitude",
+      "presence",
+      "growth",
+      "journey",
+      "connection"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often 10-20 words, with occasional longer reflections.",
+    "line_break_style": "Mostly continuous, with occasional line breaks for emphasis or separation of ideas."
+  },
+  "voice_tells": [
+    {
+      "tell": "First-person emotional framing",
+      "why_it_matters": "Creates intimacy and authenticity, invites comment-ready engagement.",
+      "example_quotes": [
+        "Feeling nothing but gratitude for the support along the way.",
+        "I realized it wasn’t the picture itself that mattered. It was the feeling."
+      ]
+    },
+    {
+      "tell": "Inviting reflection or action",
+      "why_it_matters": "Encourages audience participation, comment, or sharing.",
+      "example_quotes": [
+        "What helps you remember the storm will pass?",
+        "Check in on your people. It could change their day or even save their life."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly formal language",
+    "Long, complex sentences",
+    "Generic motivational quotes without personal touch",
+    "Overuse of hashtags without context",
+    "Excessive self-promotion without reflection",
+    "Ignoring emotional or personal tone",
+    "Lack of engagement prompts",
+    "Repetitive structural templates without variation"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake’s current voice is highly personal, reflective, and emotionally open, with frequent calls to action and engagement prompts.",
+    "what_changed_vs_older_voice": "Shift from more formal, corporate tone to intimate, story-driven, and vulnerability-sharing style.",
+    "confidence": 0.92
+  }
+}

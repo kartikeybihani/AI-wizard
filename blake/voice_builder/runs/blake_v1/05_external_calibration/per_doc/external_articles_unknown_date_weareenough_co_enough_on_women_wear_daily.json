@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_weareenough_co_enough_on_women_wear_daily",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "Focused on social initiatives and cultural impact",
+      "e": "Appears committed to social causes and mental health",
+      "confidence": 0.8
+    },
+    {
+      "d": "Expresses personal growth and purpose",
+      "e": "Reflects on identity, self-worth, and purpose",
+      "confidence": 0.75
+    },
+    {
+      "d": "Engages in media appearances and interviews",
+      "e": "Participates in TV, news, and magazine interviews",
+      "confidence": 0.7
+    },
+    {
+      "d": "Discusses business success and personal challenges",
+      "e": "Mentions business growth and emotional struggles",
+      "confidence": 0.75
+    },
+    {
+      "d": "Values reminders and cultural shifts",
+      "e": "Supports reminders to shift social and personal culture",
+      "confidence": 0.8
+    },
+    {
+      "d": "Involved in mental health and social justice efforts",
+      "e": "Supports mental health initiatives and social justice causes",
+      "confidence": 0.75
+    }
+  ],
+  "factual_points": [
+    "Blake Mycoskie discussed social initiatives under his leadership",
+    "He reflected on personal struggles with depression",
+    "Participated in media campaigns about mental health and culture",
+    "His work includes promoting social causes and reminders",
+    "He has appeared on multiple major news outlets",
+    "His initiatives include gun control and mental health advocacy"
+  ],
+  "caution_flags": [
+    "Media framing may emphasize personal struggles",
+    "Sources focus on social causes, not personal style",
+    "Potential bias toward positive portrayal",
+    "Limited detail on personal background"
+  ],
+  "doc_id": "external_articles_unknown_date_weareenough_co_enough_on_women_wear_daily",
+  "title": "Enough on Women Wear Daily",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

@@ -1,0 +1,167 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "blake",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2014-10-06",
+      "end": "2014-12-08"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Simple declarative + emotional reflection",
+      "description": "Short, direct statements expressing feelings or observations, often with a personal touch.",
+      "structure_template": "Statement + personal/emotional insight",
+      "when_it_appears": "Throughout all captions",
+      "example_quotes": [
+        "Enough said",
+        "Life is an adventure, so never give up!!"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Question + call to action",
+      "description": "Poses a question inviting responses or engagement, often with a prompt or incentive.",
+      "structure_template": "Question + prompt/invite",
+      "when_it_appears": "Occasionally, especially in engagement posts",
+      "example_quotes": [
+        "Does my #movember mo look better on me or the limited edition @toms we created to raise money for men's cancer ?",
+        "First 10 to guess correctly I will send a souvenir :)"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Announcement + gratitude",
+      "description": "Sharing news or milestones with expressions of thanks or appreciation.",
+      "structure_template": "Announcement + gratitude/acknowledgment",
+      "when_it_appears": "Often in personal updates",
+      "example_quotes": [
+        "Meet Summit Locke Mycoskie, our healthy and peaceful baby boy.  We are so blessed and thankful.",
+        "Thanks @jessicaalba for the tips on maximizing our launch tonight."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Personal milestone reflection",
+      "formula": "Personal event + emotional insight",
+      "emotional_job": "Share personal growth, gratitude, or joy",
+      "example_quotes": [
+        "First day #bestdayever",
+        "Meet Summit Locke Mycoskie, our healthy and peaceful baby boy."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Engagement prompt",
+      "formula": "Question + response incentive",
+      "emotional_job": "Encourage interaction and responses",
+      "example_quotes": [
+        "Does my #movember mo look better on me or the limited edition @toms?",
+        "First 20 people who answer correctly I will send a signed book to :)"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "structure_name": "Inspirational/observational statement",
+      "formula": "Short, impactful statement + personal insight",
+      "emotional_job": "Inspire or provoke thought",
+      "example_quotes": [
+        "Life is an adventure, so never give up!!",
+        "Sight means being able to capture the beauty and inspiration of my travels."
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Thanks",
+      "Meet",
+      "First day",
+      "From chili",
+      "Running with"
+    ],
+    "closers": [
+      "!!",
+      ":)",
+      "!!!",
+      "and what it can become",
+      "so never give up!!"
+    ],
+    "bridge_phrases": [
+      "so great to",
+      "help @TOMS and me raise awareness",
+      "please join me in",
+      "cheering them on",
+      "investing in them through"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "meet",
+      "share",
+      "learn",
+      "create"
+    ],
+    "favorite_nouns": [
+      "day",
+      "life",
+      "sight",
+      "adventure",
+      "hope"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences (1-2 lines), some longer explanations",
+    "line_break_style": "Occasional line breaks for emphasis, especially in personal reflections or announcements"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal gratitude and celebration",
+      "why_it_matters": "Builds connection through shared joy and milestones",
+      "example_quotes": [
+        "We are so blessed and thankful.",
+        "Thanks @jessicaalba for the tips on maximizing our launch tonight."
+      ]
+    },
+    {
+      "tell": "Engagement through questions and prompts",
+      "why_it_matters": "Encourages responses, community building",
+      "example_quotes": [
+        "Does my #movember mo look better on me or the limited edition @toms?",
+        "First 10 to guess correctly I will send a souvenir :)"
+      ]
+    },
+    {
+      "tell": "Personal storytelling and insights",
+      "why_it_matters": "Creates authenticity and relatability",
+      "example_quotes": [
+        "Life is an adventure, so never give up!!",
+        "Meet Summit Locke Mycoskie, our healthy and peaceful baby boy."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly generic motivational quotes",
+    "Long, unbroken blocks of text",
+    "Vague statements without personal touch",
+    "Excessive hashtags or promotional clutter",
+    "Overuse of emojis without context",
+    "Repetitive phrases without variation",
+    "Lack of emotional framing",
+    "Ignoring audience engagement cues"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Consistent personal, grateful, and engaging tone with a focus on milestones and community.",
+    "what_changed_vs_older_voice": "More direct, emotionally open, and conversational; less formal or promotional.",
+    "confidence": 0.9
+  }
+}

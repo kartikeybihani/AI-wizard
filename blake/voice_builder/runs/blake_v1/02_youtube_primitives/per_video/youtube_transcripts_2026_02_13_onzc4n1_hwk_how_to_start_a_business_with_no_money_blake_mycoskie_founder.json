@@ -1,0 +1,164 @@
+{
+  "prompt_version": "voice_builder.youtube.v1",
+  "source_type": "youtube_transcript",
+  "metadata": {
+    "video_id": "onzc4n1_hwk_how_to_start_a_business_with_no_money_blake_mycoskie_founder",
+    "title": "How to Start A Business With NO Money | Blake Mycoskie (Founder of TOMS)",
+    "url": "https://www.youtube.com/watch?v=onzc4n1_hwk",
+    "published_at": "2026-02-13",
+    "channel": ""
+  },
+  "transcript_read": {
+    "word_count": 644,
+    "speaker_mix_notes": "Primarily Blake, with occasional interruptions and music cues.",
+    "audio_noise_notes": "Music overlays, occasional background hums."
+  },
+  "voice_primitives": [
+    {
+      "primitive_name": "Self-correction",
+      "description": "Blake often restarts thoughts, adding clarifications or shifting direction mid-sentence.",
+      "evidence_quotes": [
+        "I started I started it for $500. My online drivers ed company that I started maybe was... I don't know, $1,500."
+      ],
+      "why_it_matters": "Shows a conversational, unpolished thinking style, emphasizing authenticity and ongoing reflection.",
+      "confidence": 0.9
+    },
+    {
+      "primitive_name": "Bridge words",
+      "description": "Frequent use of phrases like 'it's like', 'you know', 'so', to connect ideas smoothly.",
+      "evidence_quotes": [
+        "It's like you, you know, if you put a bunch of fuel on a fire that's going the wrong direction..."
+      ],
+      "why_it_matters": "Indicates a thought process that is fluid, informal, and accessible.",
+      "confidence": 0.85
+    },
+    {
+      "primitive_name": "Uncertainty handling",
+      "description": "Expresses doubt or re-evaluation, e.g., 'I don't know', 'maybe', 'I think'.",
+      "evidence_quotes": [
+        "I don't know, $1,500.",
+        "I think one of the biggest lies we're told..."
+      ],
+      "why_it_matters": "Reveals openness to new ideas, humility, and a non-dogmatic mindset.",
+      "confidence": 0.9
+    },
+    {
+      "primitive_name": "Opening a thought",
+      "description": "Uses phrases like 'so', 'first thing I would say', 'the thing is' to initiate ideas.",
+      "evidence_quotes": [
+        "So like I've never actually started a business that didn't work...",
+        "The first thing I would say is..."
+      ],
+      "why_it_matters": "Signals a structured yet conversational approach to sharing ideas.",
+      "confidence": 0.88
+    },
+    {
+      "primitive_name": "Landing a thought",
+      "description": "Ends ideas with summaries or decisive statements, e.g., 'that's one of the biggest lies'.",
+      "evidence_quotes": [
+        "That's one of the biggest lies we're told is in a small business is or entrepreneurs is that you need..."
+      ],
+      "why_it_matters": "Provides closure and emphasis, reinforcing key insights.",
+      "confidence": 0.85
+    }
+  ],
+  "rhythm_analysis": {
+    "opening_moves": [
+      "so",
+      "first thing I would say",
+      "the thing is"
+    ],
+    "bridge_words": [
+      "it's like",
+      "you know",
+      "so"
+    ],
+    "self_corrections": [
+      "I started I started it for $500",
+      "I don't know, $1,500"
+    ],
+    "sentence_length_profile": "Mixed, often short with quick restarts, interspersed with longer explanations.",
+    "closing_moves": [
+      "that's one of the biggest lies",
+      "and I think"
+    ]
+  },
+  "thought_process_patterns": [
+    {
+      "pattern_name": "Reflective storytelling",
+      "description": "Blake shares personal experiences, revisiting past mistakes and lessons learned.",
+      "evidence_quotes": [
+        "I built like what I think is the perfect company... I felt empty.",
+        "The one business that I started that didn't work, I spent a couple million dollars on it."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Re-evaluation",
+      "description": "Frequently questions previous beliefs, e.g., 'I don't think that having experience makes success more likely'.",
+      "evidence_quotes": [
+        "I don't think that having experience in an industry makes you more likely to have success."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Narrative loops",
+      "description": "Repeats themes of starting with little money, overcoming doubts, and learning from failures.",
+      "evidence_quotes": [
+        "No cash, no credentials, and started not one company, but a ton of them.",
+        "I started a habit formation company called Made For with a good friend of mine."
+      ],
+      "confidence": 0.88
+    }
+  ],
+  "vulnerability_signals": [
+    {
+      "signal": "Admits feelings of emptiness despite success",
+      "evidence_quotes": [
+        "I made more money than I ever could imagine and I felt empty."
+      ],
+      "interpretation": "Shows openness about emotional struggles behind achievements."
+    },
+    {
+      "signal": "Shares doubts about industry experience",
+      "evidence_quotes": [
+        "I had never made a pair of shoes before I was sitting in Argentina."
+      ],
+      "interpretation": "Indicates humility and willingness to challenge norms."
+    },
+    {
+      "signal": "Mentions failure and loss of money",
+      "evidence_quotes": [
+        "The one business that I started that didn't work... I spent a couple million dollars on it."
+      ],
+      "interpretation": "Displays transparency about setbacks and financial risks."
+    }
+  ],
+  "signature_language": {
+    "repeated_words": [
+      "actually",
+      "so",
+      "I mean"
+    ],
+    "repeated_phrases": [
+      "you don't have to have money",
+      "you don't need credentials"
+    ],
+    "metaphor_anchors": [
+      "fuel on a fire",
+      "fire going the wrong direction"
+    ],
+    "emotional_register": "Conversational, candid, humble, optimistic"
+  },
+  "era_read": {
+    "era_a_signal": 0.1,
+    "era_b_signal": 0.3,
+    "era_c_signal": 0.6,
+    "current_voice_weight": 0.75,
+    "notes": "Content reflects current, informal, self-aware style emphasizing authenticity and resilience."
+  },
+  "doc_id": "youtube_transcripts_2026_02_13_onzc4n1_hwk_how_to_start_a_business_with_no_money_blake_mycoskie_founder",
+  "title": "How to Start A Business With NO Money | Blake Mycoskie (Founder of TOMS)",
+  "era": "era_c_enough_current",
+  "date_key": "2026-02-13"
+}

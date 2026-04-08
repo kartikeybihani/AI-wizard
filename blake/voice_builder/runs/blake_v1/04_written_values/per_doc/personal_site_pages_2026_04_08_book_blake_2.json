@@ -1,0 +1,71 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_book_blake_2",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "connect and share openly",
+      "q": "talks, projects, and ideas Blake shouldn’t send",
+      "confidence": 0.9
+    },
+    {
+      "v": "seek authenticity and honesty",
+      "q": "no magic pill, speaking about real issues",
+      "confidence": 0.85
+    },
+    {
+      "v": "embrace current sufficiency",
+      "q": "enough, all rights reserved, privacy policy",
+      "confidence": 0.8
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "direct and candid",
+      "q": "Blake probably shouldn’t send in an email",
+      "confidence": 0.9
+    },
+    {
+      "p": "informal and conversational",
+      "q": "plus a big announcement you’ll want to hear first",
+      "confidence": 0.85
+    },
+    {
+      "p": "motivational and engaging",
+      "q": "don’t miss the good sh*t",
+      "confidence": 0.8
+    }
+  ],
+  "lex": {
+    "w": [
+      "connect",
+      "enough",
+      "no magic pill",
+      "sh*t"
+    ],
+    "b": [
+      "home",
+      "about",
+      "contact",
+      "subscribe"
+    ],
+    "t": "authenticity, connection, current sufficiency"
+  },
+  "implications": [
+    "Values honesty and openness in communication",
+    "Prioritizes authenticity over quick fixes",
+    "Focuses on present sufficiency and engagement"
+  ],
+  "avoid": [
+    "Overpromising or false claims",
+    "Formal or distant tone",
+    "Ignoring real issues"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_book_blake_2",
+  "title": "Book Blake | blakemycoskie.com",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

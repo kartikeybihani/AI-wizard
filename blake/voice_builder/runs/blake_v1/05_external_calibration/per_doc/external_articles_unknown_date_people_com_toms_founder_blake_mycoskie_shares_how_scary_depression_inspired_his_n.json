@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_people_com_toms_founder_blake_mycoskie_shares_how_scary_depression_inspired_his_n",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "focused on mental health and community",
+      "e": "values connection and shared experience",
+      "confidence": 0.9
+    },
+    {
+      "d": "expresses personal vulnerability and growth",
+      "e": "shares struggles with depression and anxiety",
+      "confidence": 0.85
+    },
+    {
+      "d": "advocates cultural change around mental health",
+      "e": "criticizes social media and capitalism's impact",
+      "confidence": 0.8
+    },
+    {
+      "d": "creates symbolic, wearable messages",
+      "e": "designs bracelets with meaningful words",
+      "confidence": 0.75
+    },
+    {
+      "d": "emphasizes giving and charity",
+      "e": "profits donated to mental health causes",
+      "confidence": 0.8
+    },
+    {
+      "d": "seeks to inspire hope and community",
+      "e": "aims for emotional connection through shared symbols",
+      "confidence": 0.85
+    }
+  ],
+  "factual_points": [
+    "Blake Mycoskie experienced a personal depression struggle",
+    "He meditated for 28 days, felt lighter",
+    "Visited India to meet with someone with depression",
+    "Created the Enough bracelets with a message of self-worth",
+    "Bracelets are sold in pairs, profits go to charities",
+    "He hopes bracelets foster community and connection"
+  ],
+  "caution_flags": [
+    "Potential media framing of mental health as cultural sickness",
+    "Focus on personal narrative may oversimplify issues",
+    "Emphasis on emotional connection could be idealized",
+    "Limited context on broader mental health initiatives"
+  ],
+  "doc_id": "external_articles_unknown_date_people_com_toms_founder_blake_mycoskie_shares_how_scary_depression_inspired_his_n",
+  "title": "TOMS Founder Blake Mycoskie Shares How 'Scary Depression' Inspired His New Mental Health Initiative (Exclusive)",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

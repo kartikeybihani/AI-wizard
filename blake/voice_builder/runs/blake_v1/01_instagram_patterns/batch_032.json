@@ -1,0 +1,168 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2015-02-20",
+      "end": "2015-05-01"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Simple Observation",
+      "description": "Open with a brief, personal observation or activity, often with location or event mention.",
+      "structure_template": "I/We + [activity/observation] + [location/event].",
+      "when_it_appears": "Most captions",
+      "example_quotes": [
+        "Nothing like a morning run in Paris to kick off a press tour.",
+        "Reunited with my buddy @dierksbentley after 15 years."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Expressing Gratitude or Inspiration",
+      "description": "Share thanks or inspiration, often with a call to action or reflection.",
+      "structure_template": "Thank you for + [event/person], or Feeling + [emotion].",
+      "when_it_appears": "Several captions",
+      "example_quotes": [
+        "Thank u @laurenblauren for giving us the tour of @feedprojects.",
+        "A great weekend of discussion and celebration with @TOMS."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Celebratory or Milestone Announcement",
+      "description": "Announce achievements, milestones, or special moments with enthusiasm.",
+      "structure_template": "Proud to + [achievement], or Celebrating + [event].",
+      "when_it_appears": "Multiple captions",
+      "example_quotes": [
+        "So proud of my sis and the opening of her 5th store in San Fran.",
+        "Summit was one happy boy receiving the first pair of rhino shoes."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Activity + Location",
+      "formula": "[Activity] in [Location]",
+      "emotional_job": "Share current activity or environment, creating immediacy.",
+      "example_quotes": [
+        "Morning run in Paris.",
+        "First visit to @toms HQ."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Thanks/Recognition",
+      "formula": "Thank you + [person/group], or shoutout to + [entity]",
+      "emotional_job": "Express gratitude or acknowledgment.",
+      "example_quotes": [
+        "Thank u @laurenblauren.",
+        "Thanks to @nataliabrzezinski."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Achievement/Milestone",
+      "formula": "Proud of + [achievement], or Celebrating + [milestone]",
+      "emotional_job": "Highlight success or special moment.",
+      "example_quotes": [
+        "Celebrating her 5th store opening.",
+        "Received the Next Generation Award."
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Thank u",
+      "Just got to",
+      "Happy",
+      "Summit",
+      "Reunited",
+      "Flight delays"
+    ],
+    "closers": [
+      "#lifeisadventuresonevergiveup",
+      "🇺🇸",
+      "and a wonderful conversation",
+      "next stop",
+      "stay wild"
+    ],
+    "bridge_phrases": [
+      "and",
+      "but still",
+      "already",
+      "about to",
+      "next"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "reunited",
+      "celebrating",
+      "receiving",
+      "announcing"
+    ],
+    "favorite_nouns": [
+      "morning",
+      "summit",
+      "trip",
+      "milestone",
+      "memories"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, 8-15 words.",
+    "line_break_style": "Minimal; often single sentences or brief phrases."
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal activity or milestone",
+      "why_it_matters": "Creates immediacy and relatability.",
+      "example_quotes": [
+        "Morning run in Paris.",
+        "First visit to @toms HQ."
+      ]
+    },
+    {
+      "tell": "Gratitude or recognition",
+      "why_it_matters": "Builds connection and positive tone.",
+      "example_quotes": [
+        "Thank u @laurenblauren.",
+        "Thanks to @nataliabrzezinski."
+      ]
+    },
+    {
+      "tell": "Achievement or celebration",
+      "why_it_matters": "Highlights success, inspires followers.",
+      "example_quotes": [
+        "Celebrating her 5th store opening.",
+        "Received the Next Generation Award."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long sentences",
+    "Generic motivational quotes",
+    "Complex language or jargon",
+    "Heavy self-promotion without personal touch",
+    "Overuse of hashtags or emojis",
+    "Vague statements lacking specificity",
+    "Repetitive phrases without variation",
+    "Ignoring current events or personal updates"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Consistent, personal, activity-focused, positive tone.",
+    "what_changed_vs_older_voice": "More direct, concise, less formal, more personal milestones.",
+    "confidence": 0.9
+  }
+}

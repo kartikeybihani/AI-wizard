@@ -1,0 +1,56 @@
+{
+  "source_weights": {
+    "podcasts_transcripts": 0.45,
+    "substack_personal_site": 0.30,
+    "instagram_captions": 0.20,
+    "external_articles": 0.05
+  },
+  "era_weights": {
+    "era_a_toms_builder": 0.10,
+    "era_b_transition_seeker": 0.30,
+    "era_c_enough_current": 0.60
+  },
+  "models": {
+    "extract": "openai/gpt-4.1-nano",
+    "synthesis": "openai/gpt-4.1-nano",
+    "critic": "openai/gpt-4.1-nano"
+  },
+  "batch_sizes": {
+    "instagram": 30
+  },
+  "chunk_chars": {
+    "youtube": 4500,
+    "longform": 12000,
+    "podcast_depth": 5000,
+    "written_values": 2800,
+    "calibration": 2200
+  },
+  "max_chunks_per_doc": {
+    "youtube": 2,
+    "longform": 4,
+    "podcast_depth": 2,
+    "written_values": 2,
+    "calibration": 1
+  },
+  "llm_max_tokens": {
+    "instagram_batch": 4000,
+    "instagram_consolidate": 4500,
+    "youtube_chunk": 1200,
+    "youtube_consolidate_video": 1600,
+    "youtube_consolidate_global": 2200,
+    "podcast_chunk": 1200,
+    "podcast_consolidate_doc": 1600,
+    "podcast_consolidate_global": 2400,
+    "longform_chunk": 850,
+    "longform_consolidate_doc": 900,
+    "longform_consolidate_global": 1100,
+    "written_chunk": 1200,
+    "written_consolidate_doc": 1500,
+    "written_consolidate_global": 2200,
+    "calibration_chunk": 700,
+    "calibration_consolidate_doc": 1000,
+    "calibration_consolidate_global": 1400,
+    "antipatterns": 1100,
+    "character_bible": 1400
+  }
+}

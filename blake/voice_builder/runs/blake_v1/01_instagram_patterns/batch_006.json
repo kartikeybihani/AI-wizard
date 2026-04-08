@@ -1,0 +1,164 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2025-12-18",
+      "end": "2026-01-06"
+    },
+    "era_mix": {
+      "era_a_count": 0,
+      "era_b_count": 0,
+      "era_c_count": 30
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "affirmation + call to action",
+      "description": "Starts with a personal affirmation or realization, then invites engagement or action.",
+      "structure_template": "I [achievement/realization]. [Message of worth/encouragement]. [Call to action or link].",
+      "when_it_appears": "Most captions in current batch",
+      "example_quotes": [
+        "You are enough. That truth changed everything.",
+        "If this resonates, start small. Reach out today."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "story + lesson",
+      "description": "Shares a personal story or insight, then distills a lesson or advice.",
+      "structure_template": "I [story]. [Lesson or insight]. [Encouragement or question].",
+      "when_it_appears": "Common across captions",
+      "example_quotes": [
+        "I learned the hard way that achievement doesn’t heal you.",
+        "Most people think happiness fades with age. The research says it returns."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "quote + reflection",
+      "description": "Begins with a quote or external idea, then reflects or personalizes.",
+      "structure_template": "I read/think about [quote]. It reminds me that [personal reflection].",
+      "when_it_appears": "Frequent in captions about growth and awareness",
+      "example_quotes": [
+        "This quote reminds me why I’ve always been willing to take the long way.",
+        "Ted Turner said he spent his life climbing the mountain..."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "affirmation + invitation",
+      "formula": "You are enough. [Encouragement]. [Link or call to action].",
+      "emotional_job": "Reinforce self-worth and invite engagement",
+      "example_quotes": [
+        "You are already enough. Visit the link in bio.",
+        "Remember, you don’t have to earn your worth."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "story + lesson",
+      "formula": "I [story]. [Lesson]. [Encouragement].",
+      "emotional_job": "Share vulnerability, offer insight",
+      "example_quotes": [
+        "I learned the hard way that achievement doesn’t heal you.",
+        "Most of my life, I chased validation outside myself."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "quote + personal insight",
+      "formula": "Quote. It [personal reflection].",
+      "emotional_job": "Connect external wisdom with personal growth",
+      "example_quotes": [
+        "This quote reminds me that what I’m moving through might help others.",
+        "Happiness comes down to three simple things."
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "I",
+      "You",
+      "This",
+      "Most of my life"
+    ],
+    "closers": [
+      "If this resonates",
+      "Remember",
+      "Visit the link in bio",
+      "Start small"
+    ],
+    "bridge_phrases": [
+      "And still",
+      "But",
+      "The truth is",
+      "Most people"
+    ],
+    "favorite_verbs": [
+      "learned",
+      "realized",
+      "felt",
+      "started",
+      "remember"
+    ],
+    "favorite_nouns": [
+      "worth",
+      "life",
+      "happiness",
+      "growth",
+      "truth"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences with occasional longer reflections",
+    "line_break_style": "Line breaks used to emphasize key points or separate ideas"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal affirmation of worth",
+      "why_it_matters": "Reinforces self-acceptance and encourages others",
+      "example_quotes": [
+        "You are enough.",
+        "You don’t have to earn your worth."
+      ]
+    },
+    {
+      "tell": "Sharing vulnerability or struggle",
+      "why_it_matters": "Builds connection and authenticity",
+      "example_quotes": [
+        "I thought I was lost but really, I was just disconnected from my values.",
+        "Most of my life, I chased validation outside myself."
+      ]
+    },
+    {
+      "tell": "Offering practical advice or reflection",
+      "why_it_matters": "Provides value and guidance",
+      "example_quotes": [
+        "Start small. Reach out today.",
+        "Take 15 minutes tonight and write down your core values."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly generic motivational quotes",
+    "Long, unbroken blocks of text",
+    "Vague statements without personal touch",
+    "Excessive hashtags unrelated to message",
+    "Calls to action that lack specificity",
+    "Overuse of external quotes without personal insight",
+    "Repetitive phrases without variation",
+    "Ignoring emotional vulnerability"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake’s current voice emphasizes authenticity, self-worth, and practical growth, with a focus on vulnerability and connection.",
+    "what_changed_vs_older_voice": "More direct calls to action, personal stories, and emphasis on mental health and self-acceptance.",
+    "confidence": 0.9
+  }
+}

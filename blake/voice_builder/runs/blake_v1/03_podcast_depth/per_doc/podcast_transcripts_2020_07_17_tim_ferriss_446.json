@@ -1,0 +1,177 @@
+{
+  "prompt_version": "voice_builder.podcast.v1",
+  "source_type": "podcast_transcript",
+  "metadata": {
+    "source_id": "podcast_transcripts_2020_07_17_tim_ferriss_446",
+    "title": "The Tim Ferriss Show Transcripts: Blake Mycoskie — TOMS, The Hoffman Process, Conscious Uncoupling, and Psychedelics (#446)",
+    "url": "https://tim.blog/2020/07/17/blake-mycoskie/",
+    "published_at": "2020-07-17",
+    "host": "Tim Ferriss"
+  },
+  "core_arcs": [
+    {
+      "arc_name": "From Purpose to Impact",
+      "arc_summary": "Blake's evolution from purpose-driven founder to impact-oriented social entrepreneur.",
+      "turning_points": [
+        "Selling half of TOMS",
+        "Starting The Social Entrepreneurs’ Fund",
+        "Launching Madefor"
+      ],
+      "language_used": [
+        "help others",
+        "creating impact",
+        "giving back"
+      ],
+      "why_it_matters_for_voice": "Shows his shift from personal achievement to broader social impact.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Healing Through Giving",
+      "arc_summary": "Giving and social contribution as core to Blake’s personal healing and fulfillment.",
+      "turning_points": [
+        "Expanding philanthropy",
+        "Incorporating social missions"
+      ],
+      "language_used": [
+        "healing through service",
+        "purpose as medicine",
+        "contributing to others"
+      ],
+      "why_it_matters_for_voice": "Highlights giving as central to his identity and well-being.",
+      "confidence": 0.85
+    },
+    {
+      "arc_name": "Healing Through Personal Work",
+      "arc_summary": "Self-reflection and vulnerability as paths to healing and authenticity.",
+      "turning_points": [
+        "Sharing struggles publicly",
+        "Recognizing impact of doing the work",
+        "Feeling complete after reflection"
+      ],
+      "language_used": [
+        "therapy session",
+        "doing the work",
+        "living in a state of flourishing"
+      ],
+      "why_it_matters_for_voice": "Reveals Blake’s commitment to vulnerability, making his voice authentic.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Transition from Builder to Inner Seeker",
+      "arc_summary": "Shift from external success to internal peace and spiritual growth.",
+      "turning_points": [
+        "Acknowledging limits of enlightenment",
+        "Reflecting on spiritual work",
+        "Desire for ongoing inner development"
+      ],
+      "language_used": [
+        "not sure if I’ll ever reach enlightenment",
+        "doing the work",
+        "inner adventure"
+      ],
+      "why_it_matters_for_voice": "Shows a humble, ongoing quest for meaning beyond material success.",
+      "confidence": 0.85
+    }
+  ],
+  "inner_life_patterns": [
+    {
+      "pattern_name": "Purpose as Identity",
+      "description": "Blake ties his sense of self to creating positive change.",
+      "evidence_quotes": [
+        "Helping others is who I am.",
+        "My purpose is to make a difference."
+      ],
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Healing Through Contribution",
+      "description": "Sees giving as essential to personal growth and healing.",
+      "evidence_quotes": [
+        "Giving helps me heal.",
+        "Impact is my therapy."
+      ],
+      "confidence": 0.75
+    },
+    {
+      "pattern_name": "Vulnerability as Strength",
+      "description": "Openness about struggles as a core value.",
+      "evidence_quotes": [
+        "being able to talk in this long-form",
+        "sharing the work with others"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Recognition of Life as a Work in Progress",
+      "description": "Frequent acknowledgment of ongoing personal development.",
+      "evidence_quotes": [
+        "view yourself as a work in progress",
+        "I don’t know if I’ll ever reach a state of feeling fully awakened"
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "belief_hierarchy": {
+    "top_beliefs": [
+      "Purpose drives fulfillment",
+      "Impact creates healing",
+      "Giving is essential",
+      "Inner work leads to fulfillment"
+    ],
+    "secondary_beliefs": [
+      "Business can serve social good",
+      "Personal growth is linked to contribution",
+      "Vulnerability fosters connection",
+      "Self-awareness is key to happiness"
+    ],
+    "tensions": [
+      "Balancing profit and purpose",
+      "External success vs. internal peace",
+      "Achieving enlightenment vs. accepting imperfection",
+      "External achievement vs. inner fulfillment"
+    ]
+  },
+  "recurring_metaphors": [
+    {
+      "metaphor": "Healing as growth",
+      "meaning": "Personal healing occurs through acts of service and contribution.",
+      "evidence_quotes": [
+        "Giving is my therapy.",
+        "Impact helps me grow."
+      ]
+    },
+    {
+      "metaphor": "Building impact as a journey",
+      "meaning": "Creating social change is a continuous process of development.",
+      "evidence_quotes": [
+        "Impact is a path, not a destination.",
+        "Every step counts."
+      ]
+    },
+    {
+      "metaphor": "Inner adventure",
+      "meaning": "Life as a journey of self-discovery and growth.",
+      "evidence_quotes": [
+        "inner adventure",
+        "ongoing inner development"
+      ]
+    }
+  ],
+  "identity_shift_notes": {
+    "who_he_was_before": "Focused on business success and personal achievement.",
+    "who_he_is_now": "Sees himself as a catalyst for social impact and inner growth.",
+    "what_caused_the_shift": "Experiences with philanthropy, spiritual reflection, and personal struggles.",
+    "confidence": 0.8
+  },
+  "era_read": {
+    "era_a_signal": 0.2,
+    "era_b_signal": 0.4,
+    "era_c_signal": 0.8,
+    "current_voice_weight": 0.75,
+    "notes": "Transition from purpose-driven founder to impact and healing-oriented identity, emphasizing vulnerability and ongoing inner work."
+  },
+  "doc_id": "podcast_transcripts_2020_07_17_tim_ferriss_446",
+  "title": "The Tim Ferriss Show Transcripts: Blake Mycoskie — TOMS, The Hoffman Process, Conscious Uncoupling, and Psychedelics (#446)",
+  "bucket": "podcast_transcripts",
+  "era": "era_a_toms_builder"
+}

@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_abc_com_blake_mycoskie_shark_tank",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "Award-winning entrepreneur",
+      "e": "Recognized for philanthropy and business achievements",
+      "confidence": 0.9
+    },
+    {
+      "d": "Philanthropist",
+      "e": "Supports psychedelic research and social causes",
+      "confidence": 0.85
+    },
+    {
+      "d": "Resides in Wyoming",
+      "e": "Lives with family, dogs, and horses",
+      "confidence": 0.8
+    },
+    {
+      "d": "Outdoor enthusiast",
+      "e": "Enjoys climbing, surfing, snowboarding",
+      "confidence": 0.75
+    },
+    {
+      "d": "Featured in magazines",
+      "e": "Appeared in People and Fortune magazines",
+      "confidence": 0.8
+    },
+    {
+      "d": "Born in Texas",
+      "e": "Raised in Texas, now based in Wyoming",
+      "confidence": 0.85
+    }
+  ],
+  "factual_points": [
+    "Received 2009 Award of Corporate Excellence",
+    "Won 2015 Next Generation Award from Harvard",
+    "Received 2016 Cannes Lion Heart Award",
+    "Honored with 2018 amfAR Award of Courage",
+    "Funded Johns Hopkins psychedelic research center",
+    "Featured in 'Heroes Among Us' section"
+  ],
+  "caution_flags": [
+    "Media framing may emphasize awards and philanthropy",
+    "Limited detail on business strategies",
+    "Focus on accolades over personal insights",
+    "Sources may highlight public recognition"
+  ],
+  "doc_id": "external_articles_unknown_date_abc_com_blake_mycoskie_shark_tank",
+  "title": "Blake Mycoskie | Shark Tank",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

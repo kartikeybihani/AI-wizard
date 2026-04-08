@@ -1,0 +1,165 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "blakemycoskie",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2026-02-16",
+      "end": "2026-03-09"
+    },
+    "era_mix": {
+      "era_a_count": 0,
+      "era_b_count": 0,
+      "era_c_count": 30
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Personal Reflection + Call to Action",
+      "description": "Blake shares a personal insight or lesson, often ending with an invitation or encouragement.",
+      "structure_template": "Personal insight/lesson + #hashtags + optional call to action",
+      "when_it_appears": "Most captions in current batch",
+      "example_quotes": [
+        "Send this to someone who might not feel enough. - Blake Mycoskie",
+        "Fail fast. Wasting time pretending everything is perfect… that scares me."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Story + Lesson",
+      "description": "Narrative about an experience or person, ending with a lesson or insight.",
+      "structure_template": "Story + reflection/lesson + #hashtags",
+      "when_it_appears": "Common in captions about personal growth or entrepreneurship",
+      "example_quotes": [
+        "I remember this day like it was yesterday. It was a beautiful, fun, hilarious moment that was a lesson to me...",
+        "Working 80 to 90 hours a week left me burned out, now I prioritize mental health."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Question + Reflection",
+      "description": "Poses a question or thought, prompting reflection or connection.",
+      "structure_template": "Question or thought + #hashtags",
+      "when_it_appears": "Occasional, often in motivational or mental health contexts",
+      "example_quotes": [
+        "What made TOMS spread wasn’t marketing. It was the story.",
+        "Sometimes the breakthrough isn’t changing the product, it’s changing who you’re pitching it to."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.75
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Insight + Hashtags",
+      "formula": "Personal insight or lesson + #hashtags",
+      "emotional_job": "Inspire, motivate, or share a core belief",
+      "example_quotes": [
+        "Titles matter less than results. Let people use whatever title helps them get the job done.",
+        "Living out of alignment with yourself eventually catches up to you."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Story + Lesson",
+      "formula": "Narrative about an experience + reflection/lesson",
+      "emotional_job": "Build connection and impart wisdom",
+      "example_quotes": [
+        "This week a new team member asked me what their title should be...",
+        "I met Muhammad Yunus, and that conversation reshaped how I see business."
+      ],
+      "confidence": 0.8
+    },
+    {
+      "structure_name": "Question + Reflection",
+      "formula": "Pose a question or thought + optional hashtags",
+      "emotional_job": "Encourage introspection or community engagement",
+      "example_quotes": [
+        "Are you living for what feels true to you?",
+        "What’s the real engine behind your purpose?"
+      ],
+      "confidence": 0.75
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Follow your curiosity",
+      "Send this to someone",
+      "I remember",
+      "Sometimes"
+    ],
+    "closers": [
+      "That’s how progress happens.",
+      "Stay in the water.",
+      "Your wave will come.",
+      "Live more honestly."
+    ],
+    "bridge_phrases": [
+      "When we learn to sit with ourselves",
+      "When you start living for what feels true",
+      "Rebuilding through sunlight, stillness, movement"
+    ],
+    "favorite_verbs": [
+      "follow",
+      "send",
+      "learn",
+      "live",
+      "build",
+      "create"
+    ],
+    "favorite_nouns": [
+      "story",
+      "lesson",
+      "purpose",
+      "truth",
+      "progress",
+      "connection"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often 10-20 words",
+    "line_break_style": "Mostly continuous text with occasional line breaks for emphasis"
+  },
+  "voice_tells": [
+    {
+      "tell": "Authentic personal insights",
+      "why_it_matters": "Builds trust and relatability",
+      "example_quotes": [
+        "Depression isn’t a personal failure. It’s a check-engine light.",
+        "Living out of alignment with yourself eventually catches up to you."
+      ]
+    },
+    {
+      "tell": "Storytelling with lessons",
+      "why_it_matters": "Creates emotional connection and imparts wisdom",
+      "example_quotes": [
+        "I remember this day like it was yesterday.",
+        "Working 80 to 90 hours a week left me burned out."
+      ]
+    },
+    {
+      "tell": "Encouragement and motivation",
+      "why_it_matters": "Inspires action and reflection",
+      "example_quotes": [
+        "Fail fast. Wasting time pretending everything is perfect… that scares me.",
+        "Your wave will come."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly promotional language",
+    "Long, dense paragraphs",
+    "Vague generalities without specifics",
+    "Overuse of hashtags without context",
+    "Cliché motivational phrases",
+    "Excessive self-promotion",
+    "Lack of personal voice or authenticity",
+    "Repetitive sentence structures"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake’s current voice emphasizes authenticity, personal growth, and storytelling, with a focus on mental health and purpose.",
+    "what_changed_vs_older_voice": "Shift toward more personal reflection and less promotional language.",
+    "confidence": 0.9
+  }
+}

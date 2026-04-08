@@ -1,0 +1,82 @@
+{
+  "prompt_version": "voice_builder.youtube.v2_compact",
+  "source_type": "youtube_chunk",
+  "m": {
+    "doc_id": "youtube_transcripts_2019_03_02_wjgv9pde_vu_blake_mycoskie_how_to_do_good_and_make_money_toms_brand",
+    "era": "era_a_toms_builder"
+  },
+  "primitives": [
+    {
+      "p": "I guess",
+      "q": "uncertainty about ideas",
+      "c": 0.8
+    },
+    {
+      "p": "so",
+      "q": "bridge word for explanation",
+      "c": 0.7
+    },
+    {
+      "p": "like",
+      "q": "hesitation or approximation",
+      "c": 0.6
+    },
+    {
+      "p": "actually",
+      "q": "self-correction or emphasis",
+      "c": 0.5
+    },
+    {
+      "p": "you know",
+      "q": "filler, signaling thought",
+      "c": 0.6
+    },
+    {
+      "p": "I think",
+      "q": "expressing opinion, vulnerability",
+      "c": 0.7
+    }
+  ],
+  "rhythm": {
+    "openers": [
+      "so",
+      "well",
+      "actually",
+      "back to"
+    ],
+    "bridges": [
+      "and so",
+      "so",
+      "then",
+      "but"
+    ],
+    "closers": [
+      "let's go",
+      "so",
+      "that's it",
+      "anyway"
+    ]
+  },
+  "thought_patterns": [
+    "Reflects on personal motivation",
+    "Uses storytelling to explain ideas",
+    "Expresses uncertainty with fillers",
+    "Self-corrects or clarifies"
+  ],
+  "vulnerability": [
+    "Admits lack of background in philanthropy",
+    "Shares childhood aspirations",
+    "Expresses uncertainty about future",
+    "Shows openness about past doubts"
+  ],
+  "signature_words": [
+    "so",
+    "actually",
+    "like",
+    "you know"
+  ],
+  "doc_id": "youtube_transcripts_2019_03_02_wjgv9pde_vu_blake_mycoskie_how_to_do_good_and_make_money_toms_brand",
+  "title": "Blake Mycoskie: How to do good AND make money (TOMS brand)",
+  "era": "era_a_toms_builder",
+  "date_key": "2019-03-02"
+}

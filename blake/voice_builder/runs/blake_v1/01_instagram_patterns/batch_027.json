@@ -1,0 +1,183 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2016-01-11",
+      "end": "2016-02-15"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Gratitude/Reflection",
+      "description": "Expresses thankfulness or reflection, often with a personal touch.",
+      "structure_template": "Opening + emotional reflection + hashtag/mention",
+      "when_it_appears": "frequently in personal moments or achievements",
+      "example_quotes": [
+        "2016 is the year of #gratitude. @toms",
+        "Leaving Colombia today with a full heart, there is nothing like a day spent giving shoes and playing with the kids. #grateful"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Event/Activity Highlight",
+      "description": "Describes a specific event or activity, often with location or participants.",
+      "structure_template": "Action + participants/setting + hashtag/mention",
+      "when_it_appears": "during trips, events, or moments of engagement",
+      "example_quotes": [
+        "Hitting balls between @justintimberlake and @jordanspieth in prep for Saturday round @attproam",
+        "Love it when archery becomes part of a shoot with @john_urbano and @heathermycoskie"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Call to Action/Advocacy",
+      "description": "Encourages participation, awareness, or support for causes or initiatives.",
+      "structure_template": "Issue + call to action + link/hashtag",
+      "when_it_appears": "when promoting campaigns or social causes",
+      "example_quotes": [
+        "Take the pledge to #JoinTheHerd, make history together and STOP the ivory trade.",
+        "Call all social entrepreneurs! Have you explored the @TOMS Social Entrepreneurship Fund?"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Personal/Family Moments",
+      "description": "Shares personal or family experiences, often with emotional tone.",
+      "structure_template": "Personal note + location or activity + hashtags",
+      "when_it_appears": "during family or personal travel moments",
+      "example_quotes": [
+        "Me and the little guy walking down #2 and @pebblebeach for the @attproam practice round",
+        "And summit has chosen his favorite in the quiver too."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.75
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Gratitude Reflection",
+      "formula": "Express gratitude + personal detail + hashtag",
+      "emotional_job": "Foster connection and positivity",
+      "example_quotes": [
+        "2016 is the year of #gratitude. @toms",
+        "Leaving Colombia today with a full heart, there is nothing like a day spent giving shoes and playing with the kids."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Event Highlight",
+      "formula": "Describe activity + location/participants + hashtag",
+      "emotional_job": "Share memorable moments",
+      "example_quotes": [
+        "Hitting balls between @justintimberlake and @jordanspieth in prep for Saturday round @attproam",
+        "Love it when archery becomes part of a shoot with @john_urbano and @heathermycoskie"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Call to Action",
+      "formula": "Issue + call to action + link/hashtag",
+      "emotional_job": "Mobilize support or awareness",
+      "example_quotes": [
+        "Take the pledge to #JoinTheHerd, make history together and STOP the ivory trade.",
+        "Call all social entrepreneurs! Have you explored the @TOMS Social Entrepreneurship Fund?"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Nothing better than",
+      "Hitting",
+      "Calling all",
+      "Every",
+      "Me and",
+      "Love it when"
+    ],
+    "closers": [
+      "#grateful",
+      "Thanks @att",
+      "Learn more",
+      "Link in bio",
+      "Thanks @shaq",
+      "Thanks for having me!"
+    ],
+    "bridge_phrases": [
+      "Next stop is",
+      "Can't wait until",
+      "Someday I want to",
+      "Just had my first",
+      "And it's done"
+    ],
+    "favorite_verbs": [
+      "celebrating",
+      "hitting",
+      "calling",
+      "walking",
+      "leaving",
+      "sharing"
+    ],
+    "favorite_nouns": [
+      "shoes",
+      "balls",
+      "experience",
+      "moment",
+      "water",
+      "supporter"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences with occasional longer reflections",
+    "line_break_style": "Often no line breaks, sometimes breaks after key phrases or hashtags"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal gratitude and positivity",
+      "why_it_matters": "Builds connection and warmth",
+      "example_quotes": [
+        "2016 is the year of #gratitude. @toms",
+        "Leaving Colombia today with a full heart..."
+      ]
+    },
+    {
+      "tell": "Event enthusiasm and participation",
+      "why_it_matters": "Shows engagement and excitement",
+      "example_quotes": [
+        "Hitting balls between @justintimberlake and @jordanspieth...",
+        "Love it when archery becomes part of a shoot..."
+      ]
+    },
+    {
+      "tell": "Advocacy and social cause promotion",
+      "why_it_matters": "Encourages action and awareness",
+      "example_quotes": [
+        "Take the pledge to #JoinTheHerd...",
+        "Call all social entrepreneurs!..."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly generic motivational quotes",
+    "Excessive hashtags without context",
+    "Long, verbose sentences",
+    "Vague statements without specifics",
+    "Overuse of emojis",
+    "Repetitive phrases like 'great day' or 'amazing experience'",
+    "Too many mentions in one caption",
+    "Lack of personal voice or emotional framing"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current Instagram voice emphasizes personal connection, social impact, and shared experiences with a casual, engaging tone.",
+    "what_changed_vs_older_voice": "Shift toward more explicit advocacy and storytelling, less focus on generic motivational lines.",
+    "confidence": 0.9
+  }
+}

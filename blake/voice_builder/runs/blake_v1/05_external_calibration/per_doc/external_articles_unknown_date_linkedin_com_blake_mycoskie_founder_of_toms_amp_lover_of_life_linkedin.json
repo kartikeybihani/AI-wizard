@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_linkedin_com_blake_mycoskie_founder_of_toms_amp_lover_of_life_linkedin",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "Third-person perspective",
+      "e": "Impersonal, factual tone",
+      "confidence": 0.9
+    },
+    {
+      "d": "Industry-focused",
+      "e": "Discusses apparel and fashion",
+      "confidence": 0.8
+    },
+    {
+      "d": "Concerned with climate impact",
+      "e": "Mentions climate, decarbonization",
+      "confidence": 0.85
+    },
+    {
+      "d": "Emphasizes collective action",
+      "e": "Calls for shared responsibility",
+      "confidence": 0.8
+    },
+    {
+      "d": "Highlights strategy importance",
+      "e": "Focus on brand and product strategy",
+      "confidence": 0.9
+    },
+    {
+      "d": "Mentions founders and brands",
+      "e": "References new industry entrants",
+      "confidence": 0.75
+    }
+  ],
+  "factual_points": [
+    "Apparel emissions increased 7.5%, reversing progress",
+    "Climate impacts worsen in manufacturing regions",
+    "Inaction risks supply chains and business continuity",
+    "Progress requires shared investment and accountability",
+    "Many new fashion brands struggle with surplus inventory",
+    "Strategy is crucial for brand success"
+  ],
+  "caution_flags": [
+    "Media framing may emphasize urgency over nuance",
+    "Focus on industry and climate may bias perspective",
+    "Limited context on individual actors",
+    "Potential overgeneralization of industry trends"
+  ],
+  "doc_id": "external_articles_unknown_date_linkedin_com_blake_mycoskie_founder_of_toms_amp_lover_of_life_linkedin",
+  "title": "Blake Mycoskie - Founder of TOMS &amp; Lover of Life | LinkedIn",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

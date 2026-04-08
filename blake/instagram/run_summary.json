@@ -1,0 +1,17 @@
+{
+  "username": "blakemycoskie",
+  "collected_at": "2026-04-08T02:09:30.107683+00:00",
+  "profile_actor_id": "apify~instagram-profile-scraper",
+  "post_actor_id": "apify~instagram-post-scraper",
+  "profile_items_count": 1,
+  "post_items_count": 1303,
+  "post_records_extracted": 1266,
+  "captions_count": 1241,
+  "outputs": {
+    "profile_json": "blake/instagram/profile.json",
+    "captions_csv": "blake/instagram/captions.csv",
+    "captions_txt": "blake/instagram/captions.txt",
+    "profile_raw": "blake/instagram/raw/20260408T020930.107683+0000_blakemycoskie_profile_items.json",
+    "posts_raw": "blake/instagram/raw/20260408T020930.107683+0000_blakemycoskie_post_items.json"
+  }
+}

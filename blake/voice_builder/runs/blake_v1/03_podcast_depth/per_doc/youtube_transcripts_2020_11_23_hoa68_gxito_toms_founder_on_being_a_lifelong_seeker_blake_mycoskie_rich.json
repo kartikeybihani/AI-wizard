@@ -1,0 +1,167 @@
+{
+  "prompt_version": "voice_builder.podcast.v1",
+  "source_type": "podcast_transcript",
+  "metadata": {
+    "source_id": "youtube_transcripts_2020_11_23_hoa68_gxito_toms_founder_on_being_a_lifelong_seeker_blake_mycoskie_rich",
+    "title": "TOMS Founder on Being a Lifelong Seeker: Blake Mycoskie | Rich Roll Podcast",
+    "url": "https://example.com",
+    "published_at": "2020-11-23",
+    "host": "Rich Roll"
+  },
+  "core_arcs": [
+    {
+      "arc_name": "Lifelong Spiritual Seeker",
+      "arc_summary": "Blake's ongoing quest for spiritual understanding beyond material success.",
+      "turning_points": [
+        "Attended a vision quest with a shaman",
+        "Consults spiritual guides"
+      ],
+      "language_used": [
+        "radically altered many aspects of my life",
+        "connect and communicate with supernatural aspects"
+      ],
+      "why_it_matters_for_voice": "Shows his deep commitment to inner growth, framing his identity as a seeker.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Transformation Through Spiritual Experience",
+      "arc_summary": "Spiritual practices shifted his worldview and values.",
+      "turning_points": [
+        "Participation in a medicine wheel journey",
+        "Life changes after spiritual insights"
+      ],
+      "language_used": [
+        "radically altered",
+        "impossible but accurate"
+      ],
+      "why_it_matters_for_voice": "Highlights openness to transformation and spiritual guidance.",
+      "confidence": 0.85
+    },
+    {
+      "arc_name": "Inner Work and Self-Discovery",
+      "arc_summary": "Reflects on inner work, competitiveness, and self-awareness shaping his life.",
+      "turning_points": [
+        "Realized competitiveness fueled drive but had costs",
+        "Acceptance of inner peace"
+      ],
+      "language_used": [
+        "inner work",
+        "peace and calmness",
+        "self-awareness"
+      ],
+      "why_it_matters_for_voice": "Shows his journey from external achievement to internal peace.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Acceptance and Gratitude",
+      "arc_summary": "Expresses appreciation for life, work, and growth.",
+      "turning_points": [
+        "Valuing life's unfolding without regret",
+        "Impact of his work on others"
+      ],
+      "language_used": [
+        "respect and appreciation",
+        "gratitude",
+        "integrated self"
+      ],
+      "why_it_matters_for_voice": "Adds warmth, depth, and a mature perspective.",
+      "confidence": 0.85
+    }
+  ],
+  "inner_life_patterns": [
+    {
+      "pattern_name": "Seeking Connection with the Supernatural",
+      "description": "Pursuit of understanding unseen spiritual forces.",
+      "evidence_quotes": [
+        "connect and communicate with supernatural aspects"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Transformation via Spiritual Rituals",
+      "description": "Life-changing shifts through sacred practices.",
+      "evidence_quotes": [
+        "radically altered many aspects of my life"
+      ],
+      "confidence": 0.75
+    },
+    {
+      "pattern_name": "Seeking Inner Peace",
+      "description": "Desire for calmness over external success.",
+      "evidence_quotes": [
+        "peace and a calmness that I have today",
+        "wish I would have had earlier"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Integration of Self",
+      "description": "Feeling authentic and whole through inner work.",
+      "evidence_quotes": [
+        "you're who you are",
+        "you're here, you're who you are"
+      ],
+      "confidence": 0.75
+    }
+  ],
+  "belief_hierarchy": {
+    "top_beliefs": [
+      "Spiritual connection is essential for growth",
+      "Transformation is possible through sacred practices",
+      "Inner guidance surpasses external success",
+      "Supernatural insights are real"
+    ],
+    "secondary_beliefs": [
+      "Inner work leads to peace",
+      "Authenticity is vital",
+      "Growth involves acceptance",
+      "Success is a journey, not a destination"
+    ],
+    "tensions": [
+      "Balancing material success with spiritual pursuits",
+      "Trusting unseen forces in daily life",
+      "Drive vs. peace",
+      "External achievement vs. internal calm"
+    ]
+  },
+  "recurring_metaphors": [
+    {
+      "metaphor": "Medicine wheel as a gateway",
+      "meaning": "Portal to spiritual insight and transformation",
+      "evidence_quotes": [
+        "went to the medicine wheel"
+      ]
+    },
+    {
+      "metaphor": "Vision quest as a journey inward",
+      "meaning": "Deep exploration of self and spirit",
+      "evidence_quotes": [
+        "took people on Vision Quest"
+      ]
+    },
+    {
+      "metaphor": "Inner work as a journey",
+      "meaning": "Continuous self-discovery and peace",
+      "evidence_quotes": [
+        "inner work that times"
+      ]
+    }
+  ],
+  "identity_shift_notes": {
+    "who_he_was_before": "Focused on external achievements and success",
+    "who_he_is_now": "Seeker of spiritual truth and inner peace",
+    "what_caused_the_shift": "Profound spiritual experiences and shamanic guidance",
+    "confidence": 0.9
+  },
+  "era_read": {
+    "era_a_signal": 0.2,
+    "era_b_signal": 0.4,
+    "era_c_signal": 0.8,
+    "current_voice_weight": 0.75,
+    "notes": "Shift from material focus to spiritual depth, more reflective and grateful in recent years."
+  },
+  "doc_id": "youtube_transcripts_2020_11_23_hoa68_gxito_toms_founder_on_being_a_lifelong_seeker_blake_mycoskie_rich",
+  "title": "TOMS Founder on Being a Lifelong Seeker: Blake Mycoskie | Rich Roll Podcast",
+  "bucket": "youtube_transcripts",
+  "era": "era_a_toms_builder"
+}

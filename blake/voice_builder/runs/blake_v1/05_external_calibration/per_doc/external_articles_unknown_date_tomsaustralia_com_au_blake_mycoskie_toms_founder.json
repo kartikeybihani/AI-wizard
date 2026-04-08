@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_tomsaustralia_com_au_blake_mycoskie_toms_founder",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "Philanthropic",
+      "e": "consistent focus on social impact",
+      "confidence": 0.9
+    },
+    {
+      "d": "Entrepreneurial",
+      "e": "started multiple businesses before TOMS",
+      "confidence": 0.8
+    },
+    {
+      "d": "Author",
+      "e": "wrote a best-selling book in 2011",
+      "confidence": 0.8
+    },
+    {
+      "d": "Award-winning",
+      "e": "received Cannes Lion Heart Award in 2016",
+      "confidence": 0.9
+    },
+    {
+      "d": "Traveling",
+      "e": "competed in The Amazing Race",
+      "confidence": 0.7
+    },
+    {
+      "d": "Advocate",
+      "e": "promotes giving and social-minded business",
+      "confidence": 0.8
+    }
+  ],
+  "factual_points": [
+    "Blake founded the Social Entrepreneurship Fund in 2015",
+    "He has invested in 15 socially-conscious companies",
+    "Blake's first business was a campus laundry service",
+    "He competed in The Amazing Race with his sister",
+    "He received the Cannes Lion Heart Award in 2016",
+    "His book 'Start Something That Matters' was a bestseller"
+  ],
+  "caution_flags": [
+    "Media framing may emphasize philanthropy over business",
+    "Limited details on personal motivations",
+    "Focus on achievements may overshadow challenges",
+    "Sources may have promotional bias"
+  ],
+  "doc_id": "external_articles_unknown_date_tomsaustralia_com_au_blake_mycoskie_toms_founder",
+  "title": "Blake Mycoskie | TOMS® Founder",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

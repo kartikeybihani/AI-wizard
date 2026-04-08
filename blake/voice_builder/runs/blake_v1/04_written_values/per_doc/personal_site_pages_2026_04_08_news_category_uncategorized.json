@@ -1,0 +1,69 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_news_category_uncategorized",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "Authenticity in connection",
+      "q": "connect speaking enough",
+      "confidence": 0.9
+    },
+    {
+      "v": "Impact through storytelling",
+      "q": "serving as an Executive Producer",
+      "confidence": 0.8
+    },
+    {
+      "v": "Transparency about ideas",
+      "q": "ideas blake probably shouldn’t send",
+      "confidence": 0.7
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Emphasizes authenticity",
+      "q": "connect speaking enough",
+      "confidence": 0.9
+    },
+    {
+      "p": "Highlights impact",
+      "q": "serving as an Executive Producer",
+      "confidence": 0.8
+    },
+    {
+      "p": "Values transparency",
+      "q": "ideas blake probably shouldn’t send",
+      "confidence": 0.7
+    }
+  ],
+  "lex": {
+    "w": [
+      "connect",
+      "impact",
+      "ideas"
+    ],
+    "b": [
+      "enough",
+      "serving",
+      "probably"
+    ],
+    "t": "authentic impact transparency"
+  },
+  "implications": [
+    "Tone is genuine and impact-driven",
+    "Values storytelling and impact",
+    "Prefers transparency in communication"
+  ],
+  "avoid": [
+    "Overly formal language",
+    "Vague generalities",
+    "Excessive jargon"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_news_category_uncategorized",
+  "title": "Uncategorized | blakemycoskie.com",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

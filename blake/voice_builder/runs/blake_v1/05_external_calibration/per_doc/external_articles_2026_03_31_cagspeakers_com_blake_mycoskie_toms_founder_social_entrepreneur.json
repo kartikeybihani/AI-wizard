@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_2026_03_31_cagspeakers_com_blake_mycoskie_toms_founder_social_entrepreneur",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "social entrepreneur",
+      "e": "highly engaged in social causes",
+      "confidence": 0.9
+    },
+    {
+      "d": "founder of TOMS",
+      "e": "started TOMS shoe company",
+      "confidence": 0.9
+    },
+    {
+      "d": "philanthropist",
+      "e": "donated over ninety million shoes",
+      "confidence": 0.9
+    },
+    {
+      "d": "author of 'Start Something that Matters'",
+      "e": "wrote a motivational book",
+      "confidence": 0.8
+    },
+    {
+      "d": "adventurer",
+      "e": "participated in the Amazing Race",
+      "confidence": 0.8
+    },
+    {
+      "d": "serial entrepreneur",
+      "e": "started multiple companies",
+      "confidence": 0.8
+    }
+  ],
+  "factual_points": [
+    "Blake Mycoskie advocates for conscious capitalism",
+    "He emphasizes personal growth and reflection",
+    "He promotes building sustainable habits",
+    "He has launched multiple social ventures",
+    "He believes in transforming ideas into action",
+    "He is involved in in-person speaking events"
+  ],
+  "caution_flags": [
+    "Media framing may emphasize hero narrative",
+    "Focus on entrepreneurial success stories",
+    "Potential bias towards positive portrayal",
+    "Limited context on personal challenges"
+  ],
+  "doc_id": "external_articles_2026_03_31_cagspeakers_com_blake_mycoskie_toms_founder_social_entrepreneur",
+  "title": "Blake Mycoskie | TOMS Founder & Social Entrepreneur",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

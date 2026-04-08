@@ -1,0 +1,142 @@
+{
+  "prompt_version": "voice_builder.youtube.v1",
+  "source_type": "youtube_transcript",
+  "metadata": {
+    "video_id": "youtube_transcripts_2026_01_12_dh0a_gpuisu_blake_mycoskie_on_enough_identity_and_healing_beyond_success",
+    "title": "Blake Mycoskie on “Enough,” Identity, and Healing Beyond Success",
+    "url": "https://www.youtube.com/watch?v=example",
+    "published_at": "2026-01-12",
+    "channel": "Example Channel"
+  },
+  "transcript_read": {
+    "word_count": 650,
+    "speaker_mix_notes": "Mostly Blake, some conversational back-and-forth, occasional interruptions",
+    "audio_noise_notes": "Minimal background noise, clear speech"
+  },
+  "voice_primitives": [
+    {
+      "primitive_name": "Self-interruption",
+      "description": "Frequently interrupts himself to add details or clarify, creating a spontaneous tone.",
+      "evidence_quotes": [
+        "And so my laundry was piling up and piling up in the room.",
+        "I I've uh I'm trying to, you know, start that."
+      ],
+      "why_it_matters": "Shows a thought process that is non-linear, emphasizing authenticity.",
+      "confidence": 0.9
+    },
+    {
+      "primitive_name": "Bridge words",
+      "description": "Uses phrases like 'so', 'and', 'well', 'you know' to connect ideas smoothly.",
+      "evidence_quotes": [
+        "So, I have to admit, so I I think I met you what, 8 10 years ago, maybe?",
+        "it's like I had to almost redefine that"
+      ],
+      "why_it_matters": "Creates a casual, approachable tone, signaling ongoing reflection.",
+      "confidence": 0.85
+    },
+    {
+      "primitive_name": "Repetitive affirmations",
+      "description": "Repeats key phrases like 'I've always been enough' to reinforce core beliefs.",
+      "evidence_quotes": [
+        "I'm enough. I've always been enough. I am enough.",
+        "help, you know, help people"
+      ],
+      "why_it_matters": "Highlights focus on internal reassurance and vulnerability.",
+      "confidence": 0.8
+    }
+  ],
+  "rhythm_analysis": {
+    "opening_moves": [
+      "Casual greeting, recalling past meeting",
+      "Starting with a personal anecdote"
+    ],
+    "bridge_words": [
+      "so",
+      "and",
+      "well",
+      "you know"
+    ],
+    "self_corrections": [
+      "I I've uh I'm trying to, you know, start that."
+    ],
+    "sentence_length_profile": "Mixed, with frequent long, detailed sentences and shorter clarifications",
+    "closing_moves": [
+      "Reflective statements, summarizing personal growth"
+    ]
+  },
+  "thought_process_patterns": [
+    {
+      "pattern_name": "Narrative storytelling",
+      "description": "Shares detailed personal stories to illustrate points, often with chronological flow.",
+      "evidence_quotes": [
+        "I was an athlete growing up... I wanted to be a professional tennis player."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Reflective questioning",
+      "description": "Poses rhetorical or reflective questions to himself or audience.",
+      "evidence_quotes": [
+        "How did your parents take that?"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Repetition for emphasis",
+      "description": "Repeats key ideas or phrases to reinforce meaning.",
+      "evidence_quotes": [
+        "I've always been enough. I am enough."
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "vulnerability_signals": [
+    {
+      "signal": "Admits to starting conversations with no point",
+      "evidence_quotes": [
+        "I am notorious for um starting conversations with no point."
+      ],
+      "interpretation": "Shows self-awareness and acceptance of imperfect social habits."
+    },
+    {
+      "signal": "Shares personal injury and its impact",
+      "evidence_quotes": [
+        "I hurt my Achilles tendon and I was told that I wouldn't be able to play for about six months."
+      ],
+      "interpretation": "Displays openness about setbacks and vulnerability."
+    },
+    {
+      "signal": "Discusses family and environment influences",
+      "evidence_quotes": [
+        "You realize also how much of us are born a certain way."
+      ],
+      "interpretation": "Reflects on personal origins and inherent traits."
+    }
+  ],
+  "signature_language": {
+    "repeated_words": [
+      "um",
+      "so",
+      "you know"
+    ],
+    "repeated_phrases": [
+      "I've always been enough"
+    ],
+    "metaphor_anchors": [
+      "piling up in the room",
+      "firewall at school"
+    ],
+    "emotional_register": "Casual, reflective, open"
+  },
+  "era_read": {
+    "era_a_signal": 0.1,
+    "era_b_signal": 0.3,
+    "era_c_signal": 0.6,
+    "current_voice_weight": 0.75,
+    "notes": "Reflects current emphasis on vulnerability, storytelling, and authenticity typical of 2026"
+  },
+  "doc_id": "youtube_transcripts_2026_01_12_dh0a_gpuisu_blake_mycoskie_on_enough_identity_and_healing_beyond_success",
+  "title": "Blake Mycoskie on “Enough,” Identity, and Healing Beyond Success",
+  "era": "era_c_enough_current",
+  "date_key": "2026-01-12"
+}

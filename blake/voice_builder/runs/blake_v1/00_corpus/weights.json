@@ -1,0 +1,13 @@
+{
+  "source_weights": {
+    "podcasts_transcripts": 0.45,
+    "substack_personal_site": 0.3,
+    "instagram_captions": 0.2,
+    "external_articles": 0.05
+  },
+  "era_weights": {
+    "era_a_toms_builder": 0.1,
+    "era_b_transition_seeker": 0.3,
+    "era_c_enough_current": 0.6
+  }
+}

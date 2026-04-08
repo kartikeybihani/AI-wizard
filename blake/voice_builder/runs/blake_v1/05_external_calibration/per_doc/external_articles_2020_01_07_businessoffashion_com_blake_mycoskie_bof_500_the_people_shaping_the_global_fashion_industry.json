@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_2020_01_07_businessoffashion_com_blake_mycoskie_bof_500_the_people_shaping_the_global_fashion_industry",
+    "era": "era_a_toms_builder"
+  },
+  "descriptors": [
+    {
+      "d": "American",
+      "e": "nationality",
+      "confidence": 0.9
+    },
+    {
+      "d": "founder of Toms",
+      "e": "career role",
+      "confidence": 0.8
+    },
+    {
+      "d": "engaged with NGOs",
+      "e": "philanthropic activity",
+      "confidence": 0.7
+    },
+    {
+      "d": "social entrepreneur",
+      "e": "values",
+      "confidence": 0.7
+    },
+    {
+      "d": "born 1976",
+      "e": "birth year",
+      "confidence": 0.9
+    },
+    {
+      "d": "public speaker",
+      "e": "public engagement",
+      "confidence": 0.6
+    }
+  ],
+  "factual_points": [
+    "Founded Toms in 2006",
+    "Announced $5 million donation for gun violence in 2018",
+    "Promoted social entrepreneurship",
+    "Offered royalties to fund startups",
+    "Appeared on Jimmy Fallon Show",
+    "Involved in philanthropy and conferences"
+  ],
+  "caution_flags": [
+    "Media focus on funding and media events",
+    "Limited detail on personal motivations",
+    "Potential framing around philanthropy and business",
+    "Focus on public appearances and donations"
+  ],
+  "doc_id": "external_articles_2020_01_07_businessoffashion_com_blake_mycoskie_bof_500_the_people_shaping_the_global_fashion_industry",
+  "title": "Blake Mycoskie | BoF 500 | The People Shaping the Global Fashion Industry",
+  "bucket": "external_articles",
+  "era": "era_a_toms_builder"
+}

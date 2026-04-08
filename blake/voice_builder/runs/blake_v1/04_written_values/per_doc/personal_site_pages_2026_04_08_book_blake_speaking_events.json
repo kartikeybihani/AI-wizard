@@ -1,0 +1,73 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_book_blake_speaking_events",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "connect and share openly",
+      "q": "talks, projects, and ideas Blake shouldn’t send",
+      "confidence": 0.9
+    },
+    {
+      "v": "pursuit of authenticity",
+      "q": "no magic pill, enough, good sh*t",
+      "confidence": 0.8
+    },
+    {
+      "v": "growth through engagement",
+      "q": "subscribe, get notified, connect enough",
+      "confidence": 0.85
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "emphasizes authenticity and openness",
+      "q": "talks, projects, and ideas Blake shouldn’t send",
+      "confidence": 0.9
+    },
+    {
+      "p": "uses casual, energetic language",
+      "q": "don’t miss the good sh*t",
+      "confidence": 0.8
+    },
+    {
+      "p": "invites community and connection",
+      "q": "subscribe, get notified, connect enough",
+      "confidence": 0.85
+    }
+  ],
+  "lex": {
+    "w": [
+      "connect",
+      "enough",
+      "sh*t",
+      "no magic pill",
+      "good"
+    ],
+    "b": [
+      "Blake",
+      "speaking",
+      "projects",
+      "ideas",
+      "announcements"
+    ],
+    "t": "authenticity, connection, openness"
+  },
+  "implications": [
+    "Values genuine connection and openness",
+    "Prioritizes authenticity over perfection",
+    "Encourages active community engagement"
+  ],
+  "avoid": [
+    "Overly formal language",
+    "Complex jargon",
+    "Detachment from audience"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_book_blake_speaking_events",
+  "title": "Book Blake Speaking Events | blakemycoskie.com",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

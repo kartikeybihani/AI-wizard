@@ -1,0 +1,147 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2013-03-28",
+      "end": "2013-06-30"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Simple statement + hashtag",
+      "description": "Starts with a straightforward statement, often includes a hashtag.",
+      "structure_template": "[Statement] + [hashtag]",
+      "when_it_appears": "Throughout the batch",
+      "example_quotes": [
+        "Gypsy's first road trip",
+        "Step down heel feature on #meetthepaseos is perfect for airport travel"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Personal reflection or gratitude",
+      "description": "Expresses personal feelings, gratitude, or milestones.",
+      "structure_template": "I [feeling/action], [emotion/milestone]",
+      "when_it_appears": "Often in special moments",
+      "example_quotes": [
+        "Happy Mother's Day mom. I love u so much!",
+        "proud parent to a company and #OneforOne movement that turns 7 today!"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Event or activity update",
+      "description": "Shares ongoing or recent activities, often with location or context.",
+      "structure_template": "Just arrived/doing [activity], [location]",
+      "when_it_appears": "Consistently",
+      "example_quotes": [
+        "Just arrived to Mexico ready for my buddy Pete's wedding celebration! Margarita's in hands.",
+        "Traveling #withoutshoes - @TOMS"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Milestone + gratitude",
+      "formula": "[Milestone/achievement], [emotion]",
+      "emotional_job": "Celebrate success, express gratitude",
+      "example_quotes": [
+        "proud parent to a company and #OneforOne movement that turns 7 today!",
+        "Giving the commencement speech at Pepperdine and getting my 1st degree wearing @TOMS shades"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Personal anecdote + hashtag",
+      "formula": "My [family/member] + [activity], #[hashtag]",
+      "emotional_job": "Share personal moments, connect with community",
+      "example_quotes": [
+        "My family & I on the first \"shoe drop\" circa 2007. I am genuinely so excited about bringing 50 @TOMS fans in to the field on a Giving Trip this year, and having them be part of the TOMS family! #tickettogive",
+        "My grandpa turned 90, defying all the health tips I have ever heard or followed"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Feels",
+      "Happy",
+      "Just arrived",
+      "Thank you",
+      "Good morning"
+    ],
+    "closers": [
+      "!",
+      ".",
+      "😊",
+      "🙌"
+    ],
+    "bridge_phrases": [
+      "Can u guess",
+      "And it is finished.",
+      "Just realized",
+      "A friend just texted this to me"
+    ],
+    "favorite_verbs": [
+      "feels",
+      "love",
+      "thank",
+      "arrived",
+      "rocking"
+    ],
+    "favorite_nouns": [
+      "morning",
+      "family",
+      "shoes",
+      "event",
+      "trip"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often under 10 words",
+    "line_break_style": "Minimal line breaks, often single sentences or brief phrases"
+  },
+  "voice_tells": [
+    {
+      "tell": "Expresses personal feelings or milestones",
+      "why_it_matters": "Creates emotional connection and authenticity",
+      "example_quotes": [
+        "Happy Mother's Day mom. I love u so much!",
+        "proud parent to a company and #OneforOne movement that turns 7 today!"
+      ]
+    },
+    {
+      "tell": "Shares activity or event updates",
+      "why_it_matters": "Provides context and invites engagement",
+      "example_quotes": [
+        "Just arrived to Mexico ready for my buddy Pete's wedding celebration! Margarita's in hands.",
+        "Traveling #withoutshoes - @TOMS"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long sentences",
+    "Complex or abstract language",
+    "Vague statements without specifics",
+    "Excessive hashtags",
+    "Overuse of emojis",
+    "Generic motivational quotes",
+    "Self-promotional language without context",
+    "Repetitive phrases without variation"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Consistent, personal, and activity-focused with emotional undertones",
+    "what_changed_vs_older_voice": "More direct, less verbose, more community and milestone emphasis",
+    "confidence": 0.9
+  }
+}

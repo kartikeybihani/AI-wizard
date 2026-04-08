@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_blakemycoskie_com_blake_mycoskie_founder_of_enough_toms_mental_wellness_advocate",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "public figure",
+      "e": "appears successful externally",
+      "confidence": 0.8
+    },
+    {
+      "d": "struggling internally",
+      "e": "experienced emotional challenges",
+      "confidence": 0.9
+    },
+    {
+      "d": "self-reflective",
+      "e": "shares personal healing journey",
+      "confidence": 0.85
+    },
+    {
+      "d": "vulnerable",
+      "e": "discloses darkest life moments",
+      "confidence": 0.8
+    },
+    {
+      "d": "growth-oriented",
+      "e": "emphasizes healing and self-acceptance",
+      "confidence": 0.75
+    },
+    {
+      "d": "motivational",
+      "e": "promotes self-worth and enoughness",
+      "confidence": 0.8
+    }
+  ],
+  "factual_points": [
+    "Sold company before facing emotional struggles",
+    "Experienced a dark, transformative life moment",
+    "Focused on healing and self-acceptance",
+    "Shared personal story publicly",
+    "Emphasizes the message 'I am enough'",
+    "Transitioned from founder to human being"
+  ],
+  "caution_flags": [
+    "Media framing may emphasize vulnerability",
+    "Potential bias towards personal redemption narrative",
+    "Limited context on external achievements",
+    "Focus on emotional struggles may skew perception"
+  ],
+  "doc_id": "external_articles_unknown_date_blakemycoskie_com_blake_mycoskie_founder_of_enough_toms_mental_wellness_advocate",
+  "title": "Blake Mycoskie | Founder of ENOUGH & TOMS | Mental Wellness Advocate",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

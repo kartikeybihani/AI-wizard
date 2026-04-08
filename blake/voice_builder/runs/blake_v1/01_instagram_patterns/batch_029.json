@@ -1,0 +1,212 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2015-09-06",
+      "end": "2015-11-12"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Announcement + Link",
+      "description": "Open with a statement or update, then include a call-to-action or link.",
+      "structure_template": "Intro + context + call-to-action/link",
+      "when_it_appears": "frequently in updates, projects, or initiatives",
+      "example_quotes": [
+        "We all start somewhere. No job is too small or idea too big. The key is to stay inspired and keep creating! Great round-up by @TIME – link in my bio if you want to check it out.",
+        "In honor of #WorldSightDay let’s spread awareness about the 285 million people that are blind or visually impaired, but 80% of them don't have to be. With access to sight-saving eye care, most of these people could regain their vision. At @TOMS we’re focused on the gift of sight – link in my bio to learn more."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Gratitude + Recognition",
+      "description": "Express thanks or acknowledge others, often with hashtags.",
+      "structure_template": "Thank you + specific group/individual + context",
+      "when_it_appears": "in posts about events, collaborations, or support",
+      "example_quotes": [
+        "Thank you to the men and women who serve our country. We are grateful for your service today and every day. #VeteransDay #Heroes",
+        "Honored to have talked #socialentrepreneurship with the brilliant @CTurlington at #FCNY tonight!"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Personal Milestone",
+      "description": "Share personal achievements or moments, often with emojis or casual tone.",
+      "structure_template": "Personal milestone + details + emojis",
+      "when_it_appears": "when sharing life updates",
+      "example_quotes": [
+        "Just got my first Tattoo!!! Actually got 2!! 1. The coordinates of montauk where Heather and I met. 2. The summit symbol and his name. Close ups coming :) thx @winter_stone",
+        "Summit is having trouble with his Instagram account (hahaha) so he asked me to post this for grandparents day. Happy grandparents day mom and dad from summit!"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Call to Action / Link in Bio",
+      "description": "Encourage followers to learn more via link in bio, often after sharing a story.",
+      "structure_template": "Story + call to action + 'link in my bio'",
+      "when_it_appears": "when promoting initiatives, stories, or resources",
+      "example_quotes": [
+        "Great round-up by @TIME – link in my bio if you want to check it out.",
+        "Link to the story in my bio. #TOMS #experiencegiving"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Inspirational / Values Statement",
+      "description": "Share core beliefs or movement statements, often with a link or hashtag.",
+      "structure_template": "Core belief/statement + link or hashtag",
+      "when_it_appears": "in posts about mission, values, or movement",
+      "example_quotes": [
+        "This is not a shoe, This is a movement. And here is our anthem - link in my bio",
+        "Our WHY is not One for One, that is our model. Our WHY is For One, Another. Here is how it comes to life… link to the full anthem in my bio."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.85
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Event/Update + Link",
+      "formula": "Announcement/Update + 'link in my bio'",
+      "emotional_job": "Inform and direct followers to more info",
+      "example_quotes": [
+        "In honor of #WorldSightDay let’s spread awareness about the 285 million people that are blind or visually impaired, but 80% of them don't have to be. With access to sight-saving eye care, most of these people could regain their vision. At @TOMS we’re focused on the gift of sight – link in my bio to learn more.",
+        "Great round-up by @TIME – link in my bio if you want to check it out."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Personal Milestone + Emojis",
+      "formula": "Personal achievement or moment + emojis",
+      "emotional_job": "Share personal life in casual, engaging way",
+      "example_quotes": [
+        "Just got my first Tattoo!!! Actually got 2!! 1. The coordinates of montauk where Heather and I met. 2. The summit symbol and his name. Close ups coming :) thx @winter_stone",
+        "Summit is having trouble with his Instagram account (hahaha) so he asked me to post this for grandparents day. Happy grandparents day mom and dad from summit!"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "structure_name": "Gratitude + Hashtags",
+      "formula": "Thank you + group/individual + hashtags",
+      "emotional_job": "Express appreciation publicly",
+      "example_quotes": [
+        "Thank you to the men and women who serve our country. We are grateful for your service today and every day. #VeteransDay #Heroes",
+        "Thanks @davidlauren for the sweet #polotech  Makes working out a lot more fun and productive! @ralphlauren"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Movement/Values Statement + Link",
+      "formula": "Core belief/statement + 'link in my bio'",
+      "emotional_job": "Share mission or movement core",
+      "example_quotes": [
+        "This is not a shoe, This is a movement. And here is our anthem - link in my bio",
+        "Our WHY is not One for One, that is our model. Our WHY is For One, Another. Here is how it comes to life… link to the full anthem in my bio."
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Thanks",
+      "Honored",
+      "Just",
+      "Ok here is",
+      "In honor of",
+      "Let’s"
+    ],
+    "closers": [
+      "link in my bio",
+      "link to the story in my bio",
+      "link in my profile",
+      "link in my bio to learn more",
+      "link in my bio"
+    ],
+    "bridge_phrases": [
+      "and yes",
+      "so he asked me",
+      "so he asked me to post this",
+      "and here is how",
+      "here is how it comes to life"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "honor",
+      "support",
+      "share",
+      "get",
+      "make"
+    ],
+    "favorite_nouns": [
+      "story",
+      "movement",
+      "achievement",
+      "moment",
+      "initiative",
+      "vision"
+    ],
+    "sentence_length_profile": "short, punchy, 1-2 sentences",
+    "line_break_style": "mostly continuous, occasional line breaks for emphasis"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal commitment to social impact",
+      "why_it_matters": "Establishes authenticity and purpose",
+      "example_quotes": [
+        "Our WHY is not One for One, that is our model. Our WHY is For One, Another.",
+        "It was an honor to give AVA the $25K Social Entrepreneurship Award at yesterday's #KairosSociety Summit."
+      ]
+    },
+    {
+      "tell": "Expresses gratitude publicly",
+      "why_it_matters": "Builds community and appreciation",
+      "example_quotes": [
+        "Thank you to the men and women who serve our country.",
+        "Thanks @davidlauren for the sweet #polotech"
+      ]
+    },
+    {
+      "tell": "Shares personal milestones or moments",
+      "why_it_matters": "Creates relatability and authenticity",
+      "example_quotes": [
+        "Just got my first Tattoo!!!",
+        "Summit is having trouble with his Instagram account (hahaha)"
+      ]
+    },
+    {
+      "tell": "Highlights movement or mission statements",
+      "why_it_matters": "Reinforces core values and purpose",
+      "example_quotes": [
+        "This is not a shoe, This is a movement.",
+        "Our WHY is For One, Another."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly promotional language without personal touch",
+    "Long, dense paragraphs",
+    "Vague statements lacking specifics",
+    "Overuse of hashtags without context",
+    "Excessive emojis or slang",
+    "Repetitive calls to action without variation",
+    "Generic motivational quotes without personal insight",
+    "Overly formal or detached tone"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current Instagram voice is concise, personal, and mission-driven, emphasizing social impact, gratitude, and milestones.",
+    "what_changed_vs_older_voice": "Shift from more formal or promotional to more personal and authentic storytelling.",
+    "confidence": 0.9
+  }
+}

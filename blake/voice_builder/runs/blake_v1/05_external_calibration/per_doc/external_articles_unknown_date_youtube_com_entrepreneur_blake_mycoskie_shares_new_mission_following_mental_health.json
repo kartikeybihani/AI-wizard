@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_youtube_com_entrepreneur_blake_mycoskie_shares_new_mission_following_mental_health",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "Third-person entrepreneur",
+      "e": "Neutral tone",
+      "confidence": 0.9
+    },
+    {
+      "d": "Public figure",
+      "e": "Impersonal language",
+      "confidence": 0.8
+    },
+    {
+      "d": "Focus on mental health",
+      "e": "Contextual emphasis",
+      "confidence": 0.85
+    },
+    {
+      "d": "Recent activity mention",
+      "e": "Temporal marker",
+      "confidence": 0.75
+    },
+    {
+      "d": "No personal details",
+      "e": "Lack of personal info",
+      "confidence": 0.9
+    },
+    {
+      "d": "No media framing cues",
+      "e": "Objective tone",
+      "confidence": 0.8
+    }
+  ],
+  "factual_points": [
+    "Article discusses Blake Mycoskie's new mission after mental health struggles",
+    "Published around April 2026",
+    "Mentions external articles and online platforms",
+    "Focus on professional and mental health topics",
+    "No personal or biographical details provided",
+    "Content appears neutral and informational"
+  ],
+  "caution_flags": [
+    "Lacks detailed personal information",
+    "Minimal context about mental health struggles",
+    "Limited source credibility details",
+    "No direct quotes or interviews"
+  ],
+  "doc_id": "external_articles_unknown_date_youtube_com_entrepreneur_blake_mycoskie_shares_new_mission_following_mental_health",
+  "title": "Entrepreneur Blake Mycoskie shares new mission following mental health struggles",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

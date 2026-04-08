@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_newsletter_storytellingforentrepreneurs_com_the_625m_brand_built_on_one_simple_story",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "Entrepreneurial",
+      "e": "focused on social impact",
+      "confidence": 0.9
+    },
+    {
+      "d": "Visionary",
+      "e": "pioneered 'One for One' model",
+      "confidence": 0.85
+    },
+    {
+      "d": "Emotionally driven",
+      "e": "storytelling inspired action",
+      "confidence": 0.8
+    },
+    {
+      "d": "Simplistic",
+      "e": "message was clear and shareable",
+      "confidence": 0.9
+    },
+    {
+      "d": "Growth-oriented",
+      "e": "scaled operations and impact",
+      "confidence": 0.8
+    },
+    {
+      "d": "Impact-focused",
+      "e": "donated millions of shoes globally",
+      "confidence": 0.85
+    }
+  ],
+  "factual_points": [
+    "Blake sold 50% of TOMS to Bain Capital in 2014",
+    "TOMS generated $250 million in sales by 2013",
+    "Over 100 million shoes donated in 76 countries",
+    "TOMS was valued at approximately $625 million in 2014",
+    "Blake's story emphasized simplicity and emotional appeal",
+    "TOMS partnered with over 100 giving partners worldwide"
+  ],
+  "caution_flags": [
+    "Media framing may emphasize heroism over systemic impact",
+    "Details on Blake's personal motivations are limited",
+    "Financial figures may be selectively highlighted",
+    "Narrative may oversimplify business complexity"
+  ],
+  "doc_id": "external_articles_unknown_date_newsletter_storytellingforentrepreneurs_com_the_625m_brand_built_on_one_simple_story",
+  "title": "👟 The $625M Brand Built on One Simple Story",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

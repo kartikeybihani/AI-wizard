@@ -1,0 +1,73 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "substack_posts_2025_11_28_too_many_apps_open",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "Balance energy through management",
+      "q": "I manage it differently, sleep, rest, listen to my body",
+      "confidence": 0.9
+    },
+    {
+      "v": "Prioritize sustainability over optimization",
+      "q": "I'm chasing sustainability, a steady mind and body",
+      "confidence": 0.85
+    },
+    {
+      "v": "Recognize personal limits and rhythms",
+      "q": "I feel swings between focus and depletion",
+      "confidence": 0.8
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Use metaphor of apps and energy",
+      "q": "Life feels like open apps draining energy",
+      "confidence": 0.9
+    },
+    {
+      "p": "Appeal to self-awareness",
+      "q": "Trying to be more honest with myself",
+      "confidence": 0.85
+    },
+    {
+      "p": "Cite expert authority",
+      "q": "Huberman talks about state management",
+      "confidence": 0.8
+    }
+  ],
+  "lex": {
+    "w": [
+      "manage",
+      "energy",
+      "sustainability",
+      "balance",
+      "focus"
+    ],
+    "b": [
+      "apps",
+      "battery",
+      "energy",
+      "swing",
+      "charge"
+    ],
+    "t": "Managing energy and rhythms for steadiness"
+  },
+  "implications": [
+    "Focus on self-care and rhythm",
+    "Avoid burnout and depletion",
+    "Prioritize long-term well-being"
+  ],
+  "avoid": [
+    "Chasing perfection",
+    "Ignoring personal limits",
+    "Overloading with projects"
+  ],
+  "doc_id": "substack_posts_2025_11_28_too_many_apps_open",
+  "title": "Too Many Apps Open",
+  "bucket": "substack_posts",
+  "era": "era_c_enough_current"
+}

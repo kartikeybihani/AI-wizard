@@ -1,0 +1,167 @@
+{
+  "prompt_version": "voice_builder.youtube.v1",
+  "source_type": "youtube_transcript",
+  "metadata": {
+    "video_id": "vhnarj7nqgs",
+    "title": "Blake Mycoskie Interview on TOMS Shoes Story & Business Model for Social Responsibility",
+    "url": "https://www.youtube.com/watch?v=vhnarj7nqgs",
+    "published_at": "2023-10-09",
+    "channel": ""
+  },
+  "transcript_read": {
+    "word_count": 1074,
+    "speaker_mix_notes": "Primarily Blake, occasional background noise, steady pace",
+    "audio_noise_notes": "Minimal background noise, clear speech"
+  },
+  "voice_primitives": [
+    {
+      "primitive_name": "Self-correction",
+      "description": "Frequent repetitions and filler words like 'uh', 'you know', 'so', indicating thinking out loud.",
+      "evidence_quotes": [
+        "uh I was uh traveling in Argentina",
+        "so um I"
+      ],
+      "why_it_matters": "Shows a conversational, reflective style, emphasizing thought process over polished delivery.",
+      "confidence": 0.9
+    },
+    {
+      "primitive_name": "Bridge words",
+      "description": "Use of phrases like 'it's like', 'so', 'and so', to connect ideas smoothly.",
+      "evidence_quotes": [
+        "it's like if I can afford to buy a pair of shoes",
+        "so it was really a very simple idea"
+      ],
+      "why_it_matters": "Creates a casual, approachable tone, signaling thought transitions.",
+      "confidence": 0.85
+    },
+    {
+      "primitive_name": "Open-ended opening",
+      "description": "Starts thoughts with broad, contextual statements like 'originally it started', 'what I found was'.",
+      "evidence_quotes": [
+        "originally it it started nine years ago",
+        "what I found was"
+      ],
+      "why_it_matters": "Sets a storytelling rhythm, framing ideas as evolving narratives.",
+      "confidence": 0.8
+    },
+    {
+      "primitive_name": "Landing phrases",
+      "description": "Ends thoughts with summarizing or reflective statements, e.g., 'and I think that you', 'so sometimes'.",
+      "evidence_quotes": [
+        "and I think that you",
+        "so sometimes times ideas become big things"
+      ],
+      "why_it_matters": "Provides closure, emphasizing personal insight and moral reflection.",
+      "confidence": 0.8
+    }
+  ],
+  "rhythm_analysis": {
+    "opening_moves": [
+      "broad contextual statements",
+      "storytelling intro"
+    ],
+    "bridge_words": [
+      "so",
+      "and so",
+      "it's like"
+    ],
+    "self_corrections": [
+      "uh",
+      "you know",
+      "so um"
+    ],
+    "sentence_length_profile": "Mostly long, flowing sentences with frequent pauses and fillers",
+    "closing_moves": [
+      "reflective summaries",
+      "moral or philosophical conclusions"
+    ]
+  },
+  "thought_process_patterns": [
+    {
+      "pattern_name": "Narrative framing",
+      "description": "Begins with a story or background, then reflects on lessons or implications.",
+      "evidence_quotes": [
+        "originally it it started nine years ago",
+        "but I will just point out that Blake did"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Contrast and comparison",
+      "description": "Uses 'but', 'however', to contrast ideas or highlight differences.",
+      "evidence_quotes": [
+        "but I will just point out that Blake did",
+        "but I mean Bill Clinton"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Hypothetical reasoning",
+      "description": "Mentions 'what if' scenarios or hypothetical questions.",
+      "evidence_quotes": [
+        "even if it would have only stayed a simple idea",
+        "if I can afford to buy a pair of shoes"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Moral reflection",
+      "description": "Expresses values or moral judgments, e.g., 'it seemed ridiculous', 'helping someone'.",
+      "evidence_quotes": [
+        "it just seemed ridiculous",
+        "helping someone and to make the world a better place"
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "vulnerability_signals": [
+    {
+      "signal": "Admits uncertainty about future sustainability",
+      "evidence_quotes": [
+        "my question was and my concern was is the sustainability of the program"
+      ],
+      "interpretation": "Shows openness about potential challenges, humanizes the speaker."
+    },
+    {
+      "signal": "Expresses humility about success",
+      "evidence_quotes": [
+        "I'm super thankful and I feel today"
+      ],
+      "interpretation": "Acknowledges gratitude and the role of luck or external factors."
+    },
+    {
+      "signal": "Mentions lack of complete control",
+      "evidence_quotes": [
+        "it was actually very simple very natural and and and very common sensical"
+      ],
+      "interpretation": "Highlights reliance on straightforward ideas rather than complex mastery."
+    }
+  ],
+  "signature_language": {
+    "repeated_words": [
+      "so",
+      "and",
+      "uh",
+      "you know"
+    ],
+    "repeated_phrases": [
+      "it's like",
+      "helping someone"
+    ],
+    "metaphor_anchors": [
+      "buy a pair of shoes and give a pair"
+    ],
+    "emotional_register": "Casual, reflective, optimistic"
+  },
+  "era_read": {
+    "era_a_signal": 0.1,
+    "era_b_signal": 0.7,
+    "era_c_signal": 0.2,
+    "current_voice_weight": 0.75,
+    "notes": "Reflects transitional, optimistic, entrepreneurial tone typical of era_b."
+  },
+  "doc_id": "youtube_transcripts_2023_10_09_vhnarj7nqgs_blake_mycoskie_interview_on_toms_shoes_story_business_model",
+  "title": "Blake Mycoskie Interview on TOMS Shoes Story & Business Model for Social Responsibility",
+  "era": "era_b_transition_seeker",
+  "date_key": "2023-10-09"
+}

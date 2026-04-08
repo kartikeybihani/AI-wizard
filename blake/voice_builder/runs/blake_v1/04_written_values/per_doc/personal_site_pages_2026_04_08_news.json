@@ -1,0 +1,69 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_news",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "connect authentically",
+      "q": "connect speaking enough",
+      "confidence": 0.9
+    },
+    {
+      "v": "embrace authenticity",
+      "q": "no magic pill",
+      "confidence": 0.8
+    },
+    {
+      "v": "prioritize impact",
+      "q": "serving veterans' struggles",
+      "confidence": 0.7
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "asserts authenticity",
+      "q": "connect speaking enough",
+      "confidence": 0.9
+    },
+    {
+      "p": "emphasizes impact",
+      "q": "serving veterans' struggles",
+      "confidence": 0.8
+    },
+    {
+      "p": "uses personal tone",
+      "q": "big announcement you’ll want to hear",
+      "confidence": 0.7
+    }
+  ],
+  "lex": {
+    "w": [
+      "connect",
+      "enough",
+      "no magic pill"
+    ],
+    "b": [
+      "home",
+      "about",
+      "projects"
+    ],
+    "t": "authenticity impact connection"
+  },
+  "implications": [
+    "Tone is personal and authentic",
+    "Values impact and connection",
+    "Focus on real issues"
+  ],
+  "avoid": [
+    "superficiality",
+    "pretension",
+    "detachment"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_news",
+  "title": "News – Post List | blakemycoskie.com",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

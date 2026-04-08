@@ -1,0 +1,118 @@
+{
+  "prompt_version": "voice_builder.youtube.v1",
+  "source_type": "youtube_transcript",
+  "metadata": {
+    "video_id": "odgjcf00fpg",
+    "title": "He Had Everything. Midlife Broke Him Anyway | Blake Mycoskie",
+    "url": "https://www.youtube.com/watch?v=odgjcf00fpg",
+    "published_at": "2026-01-16",
+    "channel": ""
+  },
+  "transcript_read": {
+    "word_count": 1074,
+    "speaker_mix_notes": "Primarily Blake, some Chip, conversational, informal tone.",
+    "audio_noise_notes": "Background music, casual ambiance."
+  },
+  "voice_primitives": [
+    {
+      "primitive_name": "Repetition and Emphasis",
+      "description": "Repeats key phrases like 'connection and community' or 'it's like' for emphasis and flow.",
+      "evidence_quotes": [
+        "connection and community. It's all about connection and community."
+      ],
+      "why_it_matters": "Reinforces core themes, creates a memorable, authentic voice.",
+      "confidence": 0.9
+    },
+    {
+      "primitive_name": "Self-interruption and Repetition",
+      "description": "Frequently restarts sentences or shifts mid-thought with fillers like 'I mean', 'like'.",
+      "evidence_quotes": [
+        "I mean I think back of those times",
+        "like I don't want to be here anymore"
+      ],
+      "why_it_matters": "Shows reflective, vulnerable, conversational style.",
+      "confidence": 0.9
+    },
+    {
+      "primitive_name": "Vulnerability and Emotional Openness",
+      "description": "Shares struggles with mental health, despair, or personal challenges.",
+      "evidence_quotes": [
+        "really suicidal",
+        "I was totally trapped"
+      ],
+      "why_it_matters": "Displays authenticity, builds trust, key to Blake's voice.",
+      "confidence": 0.95
+    }
+  ],
+  "rhythm_analysis": {
+    "opening_moves": [
+      "Broad philosophical statements",
+      "Personal anecdotes"
+    ],
+    "bridge_words": [
+      "so",
+      "you know",
+      "like"
+    ],
+    "self_corrections": [
+      "I think that life is all about..."
+    ],
+    "sentence_length_profile": "Mixed, with frequent repetitions and pauses for emphasis.",
+    "closing_moves": [
+      "Summarizes with reflective statements or emotional signals."
+    ]
+  },
+  "thought_process_patterns": [
+    {
+      "pattern_name": "Reflective Loop",
+      "description": "Repeats or restates core ideas to deepen understanding.",
+      "evidence_quotes": [
+        "connection and community. It's all about connection and community."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Vulnerability and Reflection",
+      "description": "Expresses personal struggles and emotional openness.",
+      "evidence_quotes": [
+        "really suicidal",
+        "I was totally trapped"
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "vulnerability_signals": [
+    {
+      "signal": "Shares mental health struggles",
+      "evidence_quotes": [
+        "really suicidal",
+        "I was totally trapped"
+      ],
+      "interpretation": "Openly discusses emotional and mental health, indicating vulnerability."
+    }
+  ],
+  "signature_language": {
+    "repeated_words": [
+      "I was",
+      "like"
+    ],
+    "repeated_phrases": [
+      "I mean I think back of those times"
+    ],
+    "metaphor_anchors": [
+      "it's like a movie"
+    ],
+    "emotional_register": "Authentic, reflective, warm"
+  },
+  "era_read": {
+    "era_a_signal": 0.1,
+    "era_b_signal": 0.3,
+    "era_c_signal": 0.6,
+    "current_voice_weight": 0.75,
+    "notes": "Reflects current, emotionally open style with emphasis on vulnerability and connection, consistent with era_c."
+  },
+  "doc_id": "youtube_transcripts_2026_01_16_odgjcf00fpg_he_had_everything_midlife_broke_him_anyway_blake_mycoskie",
+  "title": "He Had Everything. Midlife Broke Him Anyway | Blake Mycoskie",
+  "era": "era_c_enough_current",
+  "date_key": "2026-01-16"
+}

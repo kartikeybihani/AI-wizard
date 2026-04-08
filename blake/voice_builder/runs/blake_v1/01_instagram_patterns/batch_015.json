@@ -1,0 +1,157 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2019-11-28",
+      "end": "2020-01-01"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Reflective Personal Thought",
+      "description": "Opens with a personal reflection or gratitude, often with a direct address or emotional tone.",
+      "structure_template": "Personal statement + reflection/emotion + call to action or invitation",
+      "when_it_appears": "Most captions",
+      "example_quotes": [
+        "Dear 2019, I hope our paths never cross again.",
+        "Make “recharging” a habit in your life, not an emergency response."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Question & Engagement",
+      "description": "Starts with a question to engage audience or provoke thought.",
+      "structure_template": "Question + personal insight or invitation",
+      "when_it_appears": "Often in lifestyle or activity posts",
+      "example_quotes": [
+        "What’s your favorite way to connect with nature?",
+        "For anyone who has become addicted to surfing..."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Gratitude & Acknowledgment",
+      "description": "Expresses thanks or appreciation, often mentioning people or experiences.",
+      "structure_template": "Thank you + specific mention + emotional tone",
+      "when_it_appears": "In personal milestones or reflections",
+      "example_quotes": [
+        "Thank you for giving me so many great memories.",
+        "My deepest thanks to @wilderness for capturing these memories."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.85
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Personal Reflection & Invitation",
+      "formula": "Personal insight + emotional framing + call to action",
+      "emotional_job": "Connects emotionally, invites engagement",
+      "example_quotes": [
+        "Let’s dance, sing, laugh and love like never before.",
+        "I encourage you to get outside and experience everything this earth has to offer."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Question & Personal Response",
+      "formula": "Question + personal anecdote or insight",
+      "emotional_job": "Stimulates thought, shares personal experience",
+      "example_quotes": [
+        "What was “that wave” for you?",
+        "How do you recharge?"
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Dear",
+      "Make",
+      "Today is",
+      "I get asked",
+      "Have you ever"
+    ],
+    "closers": [
+      "Love and light.",
+      "Let me know what you think.",
+      "Encourage you to listen and come back.",
+      "What’s your favorite way?",
+      "I challenge you to..."
+    ],
+    "bridge_phrases": [
+      "This idea is giving me peace today",
+      "I learned how to",
+      "I seek wisdom wherever my heart leads me",
+      "Every once in a while",
+      "I have a challenge for everyone"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "encourage",
+      "share",
+      "connect",
+      "reflect"
+    ],
+    "favorite_nouns": [
+      "memories",
+      "gratitude",
+      "adventure",
+      "wisdom",
+      "connection"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often 10-20 words.",
+    "line_break_style": "Occasional line breaks for emphasis, mostly continuous sentences."
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal emotional framing",
+      "why_it_matters": "Creates intimacy and relatability",
+      "example_quotes": [
+        "Love and light.",
+        "Feeling truly blessed for the people in my life."
+      ]
+    },
+    {
+      "tell": "Invitations to engage or reflect",
+      "why_it_matters": "Encourages audience participation",
+      "example_quotes": [
+        "What’s your favorite way to connect with nature?",
+        "Tag someone you think this would resonate with."
+      ]
+    },
+    {
+      "tell": "Use of gratitude and appreciation",
+      "why_it_matters": "Builds positive emotional tone",
+      "example_quotes": [
+        "Thank you for giving me so many great memories.",
+        "Deepest thanks to @wilderness for capturing these memories."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly generic motivational quotes",
+    "Long, dense paragraphs without spacing",
+    "Vague statements lacking personal touch",
+    "Overuse of hashtags without context",
+    "Excessive self-promotion without emotional depth",
+    "Repetitive phrases without variation",
+    "Ignoring audience engagement prompts",
+    "Lack of personal stories or reflections"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake’s current voice is highly personal, reflective, and invitational, emphasizing emotional connection and mindfulness.",
+    "what_changed_vs_older_voice": "More direct engagement and emotional openness, less formal or corporate tone.",
+    "confidence": 0.9
+  }
+}

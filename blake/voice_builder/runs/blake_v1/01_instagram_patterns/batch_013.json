@@ -1,0 +1,171 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "blake",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2020-02-04",
+      "end": "2020-03-20"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Reflective/Inspirational",
+      "description": "Open with a reflection or insight, often about personal growth, nature, or connection.",
+      "structure_template": "Intro + personal insight + call to reflection or action",
+      "when_it_appears": "Most captions",
+      "example_quotes": [
+        "Each morning when you wake up you have a new opportunity to live life with intention.",
+        "I encourage you to get outside. What helps you stay creative?"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Gratitude/Connection",
+      "description": "Express gratitude or emphasize connection, often with loved ones or community.",
+      "structure_template": "Express gratitude + mention of loved ones or community",
+      "when_it_appears": "Several captions",
+      "example_quotes": [
+        "Love and light.",
+        "I am with you and equally humbled by my inability to predict what tomorrow will bring."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Call to Action/Challenge",
+      "description": "Invite followers to reflect, act, or share, often with a direct question or challenge.",
+      "structure_template": "Statement + call to action or question",
+      "when_it_appears": "Multiple captions",
+      "example_quotes": [
+        "I challenge you this weekend to be vulnerable and call an old friend.",
+        "Let me know how decluttering made you feel."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Personal Updates/Milestones",
+      "description": "Share personal achievements, milestones, or experiences with a reflective tone.",
+      "structure_template": "Announcement + reflection + future outlook",
+      "when_it_appears": "Several captions",
+      "example_quotes": [
+        "Today is my sister's 40th birthday. I am so proud of who she has become.",
+        "Launching a new chapter in my growth as an entrepreneur."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Reflective Insight",
+      "formula": "Personal experience + insight + reflection",
+      "emotional_job": "Encourage reflection and connection",
+      "example_quotes": [
+        "I still can't believe these peaks are in my backyard.",
+        "When we are alone, we can actually feel more connected."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Gratitude & Connection",
+      "formula": "Express gratitude + mention loved ones or community",
+      "emotional_job": "Foster warmth and appreciation",
+      "example_quotes": [
+        "Love and light.",
+        "I'm with you and humbled by the future."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Call to Action",
+      "formula": "Statement + question or challenge",
+      "emotional_job": "Engage followers actively",
+      "example_quotes": [
+        "What helps you stay creative?",
+        "Declutter your space this weekend."
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "I",
+      "Today",
+      "Now more than ever",
+      "After",
+      "When"
+    ],
+    "closers": [
+      "Love and light.",
+      "Stay healthy.",
+      "Let’s do this!",
+      "Keep on, keeping on.",
+      "Love and light."
+    ],
+    "bridge_phrases": [
+      "and I encourage you to",
+      "I challenge you to",
+      "what's your",
+      "let me know",
+      "check out"
+    ],
+    "favorite_verbs": [
+      "reflect",
+      "connect",
+      "share",
+      "encourage",
+      "love"
+    ],
+    "favorite_nouns": [
+      "connection",
+      "growth",
+      "reflection",
+      "adventure",
+      "light"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences with occasional longer reflections",
+    "line_break_style": "Mostly paragraph style with natural breaks for emphasis"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal authenticity and vulnerability",
+      "why_it_matters": "Builds trust and relatability",
+      "example_quotes": [
+        "Love and light.",
+        "I am humbled by my inability to predict what tomorrow will bring."
+      ]
+    },
+    {
+      "tell": "Encourages reflection and connection",
+      "why_it_matters": "Fosters community and shared growth",
+      "example_quotes": [
+        "When we are alone, we can actually feel more connected.",
+        "Deep feelings of interconnectedness are possible during these times."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly promotional language",
+    "Long, unbroken blocks of text",
+    "Vague or generic statements",
+    "Lack of personal voice",
+    "Overuse of hashtags without context",
+    "Excessive self-promotion without reflection",
+    "Ignoring emotional or personal tone",
+    "Repetitive phrases without variation"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current voice emphasizes authenticity, reflection, connection, and gentle encouragement, suited for personal growth and shared experiences.",
+    "what_changed_vs_older_voice": "Recent captions are more concise, emotionally direct, and invite engagement through questions and challenges.",
+    "confidence": 0.9
+  }
+}

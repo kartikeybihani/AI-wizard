@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_modernluxury_com_blake_mycoskie_s_enough_mental_health_movement_inspires_healing",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "advocates for mental health awareness",
+      "e": "values community and conversation",
+      "confidence": 0.9
+    },
+    {
+      "d": "focuses on cultural impact",
+      "e": "emphasizes emotional well-being",
+      "confidence": 0.85
+    },
+    {
+      "d": "promotes inclusivity",
+      "e": "seeks social change",
+      "confidence": 0.8
+    },
+    {
+      "d": "positions as a social entrepreneur",
+      "e": "driven by purpose",
+      "confidence": 0.75
+    },
+    {
+      "d": "uses simple, direct messaging",
+      "e": "aims for broad reach",
+      "confidence": 0.7
+    },
+    {
+      "d": "aligns with wellness movement",
+      "e": "integrates social activism",
+      "confidence": 0.65
+    }
+  ],
+  "factual_points": [
+    "Launched ENOUGH in January to promote mental health",
+    "Focuses on cultural intervention beyond funds",
+    "Aims to build community and reduce stigma",
+    "Highlights the message 'we are enough'",
+    "Seeks to foster open conversations about mental health",
+    "Positioned as a social movement for healing"
+  ],
+  "caution_flags": [
+    "Limited detail on specific initiatives",
+    "Potential media framing bias",
+    "Focuses on emotional messaging",
+    "Lacks personal or biographical context"
+  ],
+  "doc_id": "external_articles_unknown_date_modernluxury_com_blake_mycoskie_s_enough_mental_health_movement_inspires_healing",
+  "title": "Blake Mycoskie's ENOUGH: Mental Health Movement Inspires Healing",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

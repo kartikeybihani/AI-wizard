@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_edmylett_com_blake_mycoskie_the_business_of_changing_lives_ed_mylett",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "Focuses on personal growth and habit formation",
+      "e": "Uses scientific research and neuroplasticity concepts",
+      "confidence": 0.9
+    },
+    {
+      "d": "Emphasizes commitment to 30-day challenges",
+      "e": "Values deep learning and monotony for habit change",
+      "confidence": 0.85
+    },
+    {
+      "d": "Highlights importance of communication skills",
+      "e": "Relates to relationships and personal success",
+      "confidence": 0.8
+    },
+    {
+      "d": "Mentions Blake Mycoskie's collaboration with Pat Dossett",
+      "e": "Focus on positive change and fulfillment",
+      "confidence": 0.75
+    },
+    {
+      "d": "Uses language of neuroplasticity and deep learning",
+      "e": "Encourages small promises and habit consistency",
+      "confidence": 0.8
+    },
+    {
+      "d": "Suggests change is accessible regardless of entrepreneurship",
+      "e": "Broad applicability to personal and relational contexts",
+      "confidence": 0.7
+    }
+  ],
+  "factual_points": [
+    "Blake Mycoskie advocates for 30-day habit commitments",
+    "Research shows deep learning requires focused effort",
+    "Neuroplasticity enables changing habits and thoughts",
+    "Communication skills are valuable beyond entrepreneurship",
+    "Small promises build self-confidence",
+    "Deep learning involves monotony and obsession"
+  ],
+  "caution_flags": [
+    "Text emphasizes scientific concepts without detailed evidence",
+    "Focus on self-help language may frame change as simple",
+    "Mentions collaboration but lacks context",
+    "Language may oversimplify neuroplasticity processes"
+  ],
+  "doc_id": "external_articles_unknown_date_edmylett_com_blake_mycoskie_the_business_of_changing_lives_ed_mylett",
+  "title": "Blake Mycoskie - The Business of Changing Lives - Ed Mylett",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

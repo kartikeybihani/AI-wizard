@@ -1,0 +1,143 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2020-07-25",
+      "end": "2020-11-13"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Reflective/Personal Insight",
+      "description": "Opens with a personal reflection or insight, often about growth, challenges, or experiences.",
+      "structure_template": "I/We [personal experience or insight], and [lesson or reflection].",
+      "when_it_appears": "Throughout, especially when sharing lessons or personal growth.",
+      "example_quotes": [
+        "One thing I can guarantee about your business is that you are going to face challenges along the way.",
+        "Since I started using a real camera again, I have found myself slowing down and looking for moments like this one."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Call to Action / Link in Bio",
+      "description": "Encourages engagement or directs followers to a link, often with a simple prompt.",
+      "structure_template": "Check out [resource or event], link in bio.",
+      "when_it_appears": "Often at the end of captions promoting projects, events, or resources.",
+      "example_quotes": [
+        "Head to the link in my bio.",
+        "Link in bio to read Lesson 2."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Question / Engagement Invite",
+      "description": "Poses a question to followers to invite comments or reflection.",
+      "structure_template": "How are you/are you [activity or state] these days?",
+      "when_it_appears": "Often at the end, to foster interaction.",
+      "example_quotes": [
+        "How are you and yours “playing” these days?",
+        "What are your kids leading you to do today?"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.85
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Personal Growth Reflection",
+      "formula": "I/We [personal experience], and [lesson or insight].",
+      "emotional_job": "Share authenticity, inspire reflection.",
+      "example_quotes": [
+        "I have loved talking to people more instead of texting.",
+        "Waking up every day without caffeine or a shower feels really good."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Announcement / Update",
+      "formula": "I'm excited to [share/update], link in bio.",
+      "emotional_job": "Build anticipation, inform followers.",
+      "example_quotes": [
+        "I’m excited to finally be able to share this with you all.",
+        "Tonight is the night! Tune-in to the season premiere."
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Since I started...",
+      "One thing I can guarantee...",
+      "While the world waits..."
+    ],
+    "closers": [
+      "Link in bio.",
+      "What are your kids leading you to do today?",
+      "Hope you enjoy :)"
+    ],
+    "bridge_phrases": [
+      "and I discovered...",
+      "check out...",
+      "here is what I have learned:"
+    ],
+    "favorite_verbs": [
+      "share",
+      "build",
+      "connect",
+      "learn",
+      "enjoy"
+    ],
+    "favorite_nouns": [
+      "moment",
+      "challenge",
+      "lesson",
+      "experience",
+      "growth"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often 10-20 words.",
+    "line_break_style": "Occasional line breaks for emphasis, especially before key points or questions."
+  },
+  "voice_tells": [
+    {
+      "tell": "First-person reflection and personal experience",
+      "why_it_matters": "Creates authenticity and relatability.",
+      "example_quotes": [
+        "Since I started using a real camera again...",
+        "Over the past month, I have done many podcasts..."
+      ]
+    },
+    {
+      "tell": "Encouragement and invitation",
+      "why_it_matters": "Invites engagement and community building.",
+      "example_quotes": [
+        "What are your kids leading you to do today?",
+        "All parents out there, what are your kids leading you to do today?"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly promotional language without personal insight",
+    "Long, dense paragraphs lacking spacing",
+    "Vague statements without specifics",
+    "Excessive use of hashtags unrelated to content",
+    "Lack of personal voice or reflection",
+    "Overuse of generic motivational quotes",
+    "Ignoring engagement prompts",
+    "Repetitive phrasing without variation"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current voice emphasizes authenticity, personal growth, and community engagement, with a conversational, reflective tone.",
+    "what_changed_vs_older_voice": "More direct calls to action and resource sharing, with increased focus on personal experiences and lessons.",
+    "confidence": 0.9
+  }
+}

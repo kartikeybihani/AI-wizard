@@ -1,0 +1,146 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2026-01-29",
+      "end": "2026-02-16"
+    },
+    "era_mix": {
+      "era_a_count": 0,
+      "era_b_count": 0,
+      "era_c_count": 30
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Personal Reflection + Invitation",
+      "description": "Open with personal insight or experience, then invite or suggest action.",
+      "structure_template": "I [personal insight], [suggestion or invitation].",
+      "when_it_appears": "Most captions",
+      "example_quotes": [
+        "If traditional meditation has felt frustrating or hard to stick with, that’s okay. Walking meditation changed everything for me.",
+        "Healing doesn’t come from adding more tools or trying harder, it comes from creating space to listen honestly."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Emphasizing Inner Worth",
+      "description": "Statements affirming self-worth, often with a focus on enoughness.",
+      "structure_template": "You are [adjective], [affirmation].",
+      "when_it_appears": "Multiple captions",
+      "example_quotes": [
+        "You don’t need to earn your worth or explain your presence because simply being you has always been enough.",
+        "Success won’t make you feel enough. That has to come from within."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Growth & Learning",
+      "description": "Reflections on personal or professional growth, often with lessons learned.",
+      "structure_template": "When [situation], I learned that [lesson].",
+      "when_it_appears": "Several captions",
+      "example_quotes": [
+        "Many don’t know this about my mom…",
+        "The biggest problem in your business might be your biggest opportunity."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Self-affirmation + Action",
+      "formula": "I [personal insight], [call to action or reflection].",
+      "emotional_job": "Encourage self-acceptance and motivate reflection or change.",
+      "example_quotes": [
+        "Success can look perfect on the outside and still feel empty on the inside. Healing begins the moment you stop running and realize you were always enough.",
+        "Sometimes feeling low is part of recalibrating, not breaking. With patience and the right support, the mind finds its way back to light."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Quote + Personal Context",
+      "formula": "Quote (by someone else). I [personal experience or reflection].",
+      "emotional_job": "Connect universal wisdom to personal journey.",
+      "example_quotes": [
+        "\"In the midst of winter, I found there was, within me, an invincible summer.\" - Albert Camus. Spent yesterday with one of the greatest living artists and storytellers, @petertunney.",
+        "Jim Carrey once described realizing that thoughts are not who we are, but something we can observe. That shift opens a feeling of freedom."
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "If",
+      "Sometimes",
+      "You don’t need to",
+      "Here’s what I wish I knew earlier"
+    ],
+    "closers": [
+      "That’s more powerful than any ad spend.",
+      "I’d love to hear from you.",
+      "This is just the beginning.",
+      "Grateful for legends who become friends."
+    ],
+    "bridge_phrases": [
+      "and",
+      "then",
+      "because",
+      "when"
+    ],
+    "favorite_verbs": [
+      "realize",
+      "learn",
+      "find",
+      "listen",
+      "grow"
+    ],
+    "favorite_nouns": [
+      "light",
+      "truth",
+      "worth",
+      "growth",
+      "journey"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences with occasional longer reflections.",
+    "line_break_style": "Often uses line breaks for emphasis, especially before key insights or calls to action."
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal authenticity and vulnerability",
+      "why_it_matters": "Builds trust and relatability, invites engagement.",
+      "example_quotes": [
+        "I chased every distraction I could find to feel better.",
+        "I’m 49. Here are five things I’d tell my 19-year-old self."
+      ]
+    },
+    {
+      "tell": "Encouragement of self-acceptance and growth",
+      "why_it_matters": "Fosters positive mindset, aligns with current themes of enoughness.",
+      "example_quotes": [
+        "You are enough.",
+        "Healing begins when achievement stops being the answer."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly generic motivational quotes without personal context",
+    "Long, complex sentences that reduce comment-readiness",
+    "Negative self-talk or self-deprecation",
+    "Overuse of hashtags as filler",
+    "Vague statements lacking specific insight",
+    "Repetitive calls to action without variation",
+    "Excessive self-promotion without substance",
+    "Ignoring emotional or personal depth"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake’s current voice emphasizes authenticity, self-acceptance, and growth, with a conversational, encouraging tone.",
+    "what_changed_vs_older_voice": "Shift from more external achievements to internal worth and mindfulness themes.",
+    "confidence": 0.9
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2020-05-07",
+      "end": "2020-07-22"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Reflective/Gratitude Openers",
+      "description": "Starts with personal reflection or gratitude, often expressing thanks or appreciation.",
+      "structure_template": "I am grateful for... / Thank you for... / I love...",
+      "when_it_appears": "frequently at start or middle of captions",
+      "example_quotes": [
+        "I’m grateful for all the reading recommendations you all have sent.",
+        "Thank you @araksyakarapetyan for having me on yesterday."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Personal/Emotional Sharing",
+      "description": "Shares personal feelings, experiences, or insights directly, often in first person.",
+      "structure_template": "Today I... / I love being... / I realized...",
+      "when_it_appears": "throughout captions, often as main body",
+      "example_quotes": [
+        "I love being a dad!",
+        "Today I sit with a heaviness for so many souls..."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Invitations/Calls to Action",
+      "description": "Includes direct invitations or prompts, often with a link or hashtag.",
+      "structure_template": "Link in bio / Swipe right / How are you finding balance?",
+      "when_it_appears": "at end or middle",
+      "example_quotes": [
+        "Link in bio.",
+        "How are you finding balance in this new normal?"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Gratitude & Reflection",
+      "formula": "I am grateful for... / Thank you... / I love...",
+      "emotional_job": "Express appreciation, set a positive tone",
+      "example_quotes": [
+        "I’m grateful for all the reading recommendations you all have sent.",
+        "Thank you @araksyakarapetyan for having me on yesterday."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Personal Insight & Experience",
+      "formula": "Today I... / I realized... / I love being...",
+      "emotional_job": "Share personal growth or feelings",
+      "example_quotes": [
+        "I love being a dad!",
+        "Today I sit with a heaviness for so many souls..."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Call to Action / Engagement",
+      "formula": "Link in bio / Swipe right / How are you?",
+      "emotional_job": "Encourage interaction or further engagement",
+      "example_quotes": [
+        "Link in bio.",
+        "How are you finding balance in this new normal?"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "I’m grateful",
+      "Thank you",
+      "Today I",
+      "I love"
+    ],
+    "closers": [
+      "Link in bio",
+      "Happy Father’s Day",
+      "Love, Blake"
+    ],
+    "bridge_phrases": [
+      "and so much of your",
+      "it reminded me",
+      "I realized"
+    ],
+    "favorite_verbs": [
+      "love",
+      "thank",
+      "realize",
+      "share",
+      "learn"
+    ],
+    "favorite_nouns": [
+      "gratitude",
+      "balance",
+      "moments",
+      "experience",
+      "love"
+    ],
+    "sentence_length_profile": "short to medium, often 1-3 sentences",
+    "line_break_style": "frequent line breaks after opening or key points"
+  },
+  "voice_tells": [
+    {
+      "tell": "First-person emotional framing",
+      "why_it_matters": "Creates intimacy and authenticity",
+      "example_quotes": [
+        "I love being a dad!",
+        "Today I sit with a heaviness for so many souls..."
+      ]
+    },
+    {
+      "tell": "Use of gratitude and appreciation",
+      "why_it_matters": "Builds positive connection and warmth",
+      "example_quotes": [
+        "Thank you @araksyakarapetyan for having me on yesterday.",
+        "I am grateful for all the reading recommendations..."
+      ]
+    },
+    {
+      "tell": "Personal insights and realizations",
+      "why_it_matters": "Shares vulnerability and growth",
+      "example_quotes": [
+        "I realized...",
+        "Today I..."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly formal language",
+    "Long, complex sentences",
+    "Generic motivational quotes without personal touch",
+    "Overuse of hashtags without context",
+    "Vague statements lacking specificity",
+    "Excessive self-promotion without authenticity",
+    "Ignoring emotional or personal tone",
+    "Repetitive structural templates without variation"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Authentic, personal, gratitude-driven, reflective, with a focus on connection and growth.",
+    "what_changed_vs_older_voice": "More vulnerability, less polished, more conversational and emotionally open.",
+    "confidence": 0.9
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2018-11-01",
+      "end": "2018-12-02"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Call to Action + Hashtag",
+      "description": "Starts with an imperative or invitation, often ending with a hashtag.",
+      "structure_template": "Verb/imperative + message + #hashtag",
+      "when_it_appears": "frequently in activism and campaign posts",
+      "example_quotes": [
+        "Let’s #endgunviolencetogether - go to TOMS.com to send your representative a postcard demanding they take action.",
+        "Join us in helping with these relief efforts by donating any amount you can to these organizations."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Express Gratitude + Call to Action",
+      "description": "Expresses thanks and encourages ongoing participation.",
+      "structure_template": "Thank you + support/effort + call to action",
+      "when_it_appears": "in campaign updates and community engagement",
+      "example_quotes": [
+        "Thank you to everyone who has supported this important campaign and helped make this all possible.",
+        "Thanks to all who have reached out - our family and animals are evacuated and safe."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Personal Observation + Emotional Framing",
+      "description": "Shares a personal moment or feeling, often starting with 'I' or 'we'.",
+      "structure_template": "I/we + verb + personal insight or emotion",
+      "when_it_appears": "in reflective or motivational posts",
+      "example_quotes": [
+        "I hardly slept last night. Something is stirring.",
+        "The last 10 days of my life have been the most intense and emotional in my career."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.88
+    },
+    {
+      "pattern_name": "Announcement + Gratitude",
+      "description": "Announces a milestone or event, often with thanks.",
+      "structure_template": "We/I'm + achievement + thanks",
+      "when_it_appears": "in updates about campaigns or personal milestones",
+      "example_quotes": [
+        "We’ve already sent over 285,000 postcards to representatives, asking them to take action.",
+        "Thank you for being a part of TOMS since we started this journey 12 years ago."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.87
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Call to Action + Hashtag",
+      "formula": "Verb + message + #hashtag",
+      "emotional_job": "Mobilizes followers to participate or act",
+      "example_quotes": [
+        "Send your postcard urging Congress to pass universal background checks.",
+        "Join us by sending a postcard to your Representative at toms.com."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Express Gratitude + Call to Action",
+      "formula": "Thank you + support/effort + call to action",
+      "emotional_job": "Builds community and encourages ongoing support",
+      "example_quotes": [
+        "Thank you to everyone who has supported this important campaign.",
+        "Thanks to all who have reached out — our family and animals are evacuated and safe."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Personal Reflection + Emotion",
+      "formula": "I/we + verb + personal insight or feeling",
+      "emotional_job": "Creates intimacy and shares personal motivation",
+      "example_quotes": [
+        "I hardly slept last night. Something is stirring.",
+        "The last 10 days have been the most intense and emotional in my career."
+      ],
+      "confidence": 0.88
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Thank you",
+      "Thanks",
+      "I",
+      "We",
+      "Let’s"
+    ],
+    "closers": [
+      "#endgunviolencetogether",
+      "Join us",
+      "Let’s do this"
+    ],
+    "bridge_phrases": [
+      "and",
+      "plus",
+      "also",
+      "then"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "support",
+      "join",
+      "send",
+      "act"
+    ],
+    "favorite_nouns": [
+      "postcards",
+      "support",
+      "campaign",
+      "efforts"
+    ],
+    "sentence_length_profile": "short, punchy, 10-20 words",
+    "line_break_style": "frequent line breaks, emphasis on clarity"
+  },
+  "voice_tells": [
+    {
+      "tell": "First-person emotional framing",
+      "why_it_matters": "Creates intimacy and authenticity",
+      "example_quotes": [
+        "I hardly slept last night. Something is stirring.",
+        "The last 10 days have been the most intense and emotional in my career."
+      ]
+    },
+    {
+      "tell": "Direct calls to action",
+      "why_it_matters": "Encourages immediate engagement",
+      "example_quotes": [
+        "Send your postcard urging Congress to pass universal background checks.",
+        "Join us in helping with these relief efforts."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long sentences",
+    "Vague statements without specifics",
+    "Lack of personal voice",
+    "No clear call to action",
+    "Overuse of hashtags without context",
+    "Generic motivational quotes without personal framing",
+    "Excessive repetition of the same phrase",
+    "Ignoring emotional or personal tone"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake’s captions are highly action-oriented, personal, and emotionally engaging, emphasizing community and activism.",
+    "what_changed_vs_older_voice": "Recent captions focus more on direct calls to action and personal reflections, less on generic statements.",
+    "confidence": 0.92
+  }
+}

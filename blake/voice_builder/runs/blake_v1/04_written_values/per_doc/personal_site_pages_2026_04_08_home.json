@@ -1,0 +1,75 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_home",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "Worth is universal and self-defined",
+      "q": "ENOUGH helps others remember their worth",
+      "confidence": 0.9
+    },
+    {
+      "v": "Self-worth is inherent, not earned",
+      "q": "Push back against earning worth",
+      "confidence": 0.9
+    },
+    {
+      "v": "Healing through personal journey",
+      "q": "Blake’s story is a healing journey",
+      "confidence": 0.85
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Emphasizes universal message",
+      "q": "Message of ENOUGH is universal",
+      "confidence": 0.9
+    },
+    {
+      "p": "Uses personal storytelling",
+      "q": "Blake’s story is personal",
+      "confidence": 0.85
+    },
+    {
+      "p": "Invokes collective action",
+      "q": "Thoughtful citizens can change the world",
+      "confidence": 0.8
+    }
+  ],
+  "lex": {
+    "w": [
+      "enough",
+      "worth",
+      "healing",
+      "journey",
+      "change",
+      "universal"
+    ],
+    "b": [
+      "Blake",
+      "ENOUGH",
+      "story",
+      "small group",
+      "world",
+      "personal"
+    ],
+    "t": "Values self-worth, healing, collective effort"
+  },
+  "implications": [
+    "Tone is motivational and personal",
+    "Focus on collective change",
+    "Encourages self-reflection"
+  ],
+  "avoid": [
+    "Overgeneralizations",
+    "Technical jargon",
+    "Negative language"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_home",
+  "title": "Blake Mycoskie | Founder of ENOUGH & TOMS | Mental Wellness Advocate",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

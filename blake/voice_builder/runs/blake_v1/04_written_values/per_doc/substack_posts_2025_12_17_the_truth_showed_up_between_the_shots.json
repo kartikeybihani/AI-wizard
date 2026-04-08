@@ -1,0 +1,73 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "substack_posts_2025_12_17_the_truth_showed_up_between_the_shots",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "Authenticity",
+      "q": "Something honest. Something more me.",
+      "confidence": 0.9
+    },
+    {
+      "v": "connection over attention",
+      "q": "This version of me needs connection",
+      "confidence": 0.9
+    },
+    {
+      "v": "growth",
+      "q": "Stepping out of my own spotlight.",
+      "confidence": 0.8
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Emphasizes honesty and self-awareness",
+      "q": "I’ve been changed by my mental health journey.",
+      "confidence": 0.9
+    },
+    {
+      "p": "encourages introspection",
+      "q": "What part of your life feels lopsided?",
+      "confidence": 0.9
+    },
+    {
+      "p": "Focuses on personal evolution",
+      "q": "Stepping out of my own spotlight.",
+      "confidence": 0.8
+    }
+  ],
+  "lex": {
+    "w": [
+      "honest",
+      "seeing",
+      "light",
+      "truth",
+      "healed"
+    ],
+    "b": [
+      "spotlight",
+      "camera",
+      "shoots",
+      "story",
+      "work"
+    ],
+    "t": "Authentic, present, evolving"
+  },
+  "implications": [
+    "Comment tone is sincere and reflective",
+    "Values connection and vulnerability",
+    "Shows personal growth and authenticity"
+  ],
+  "avoid": [
+    "Superficiality",
+    "Detachment",
+    "Pretense"
+  ],
+  "doc_id": "substack_posts_2025_12_17_the_truth_showed_up_between_the_shots",
+  "title": "The Truth Showed Up Between the Shots",
+  "bucket": "substack_posts",
+  "era": "era_c_enough_current"
+}

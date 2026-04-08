@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_2011_09_20_entrepreneur_com_how_i_did_it_the_toms_story",
+    "era": "era_a_toms_builder"
+  },
+  "descriptors": [
+    {
+      "d": "Entrepreneur with a story-driven approach",
+      "e": "Values personal connections and in-person engagement",
+      "confidence": 0.9
+    },
+    {
+      "d": "Focuses on consumer feedback over experts",
+      "e": "Emphasizes storytelling as a sales tool",
+      "confidence": 0.85
+    },
+    {
+      "d": "Proactive in retail outreach",
+      "e": "Visits stores directly to pitch products",
+      "confidence": 0.8
+    },
+    {
+      "d": "Relies on media coverage for exposure",
+      "e": "Secures articles from fashion writers",
+      "confidence": 0.75
+    },
+    {
+      "d": "Responds quickly to demand surges",
+      "e": "Uses alternative channels like Craigslist",
+      "confidence": 0.7
+    },
+    {
+      "d": "Sees shoes as more than just products",
+      "e": "Highlights storytelling as a core value",
+      "confidence": 0.8
+    }
+  ],
+  "factual_points": [
+    "Visited American Rag store to pitch TOMS in person",
+    "Story gained media coverage in Los Angeles Times",
+    "Received 900 orders initially, then 2,200 after article",
+    "Had only 160 pairs of shoes left after surge",
+    "Relied on Craigslist to fulfill orders quickly",
+    "Believed personal engagement beats remote communication"
+  ],
+  "caution_flags": [
+    "Media framing may emphasize storytelling over product quality",
+    "Focus on personal connection may overlook scalability",
+    "Rapid demand surge risks inventory shortages",
+    "Media coverage could inflate perceived success"
+  ],
+  "doc_id": "external_articles_2011_09_20_entrepreneur_com_how_i_did_it_the_toms_story",
+  "title": "How I Did It: The TOMS Story",
+  "bucket": "external_articles",
+  "era": "era_a_toms_builder"
+}

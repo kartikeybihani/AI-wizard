@@ -1,0 +1,72 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_news_author_infoblakemycoskie_com",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "connect through authenticity",
+      "q": "connect speaking enough",
+      "confidence": 0.9
+    },
+    {
+      "v": "prioritize mental wellness",
+      "q": "mental wellness & social activism",
+      "confidence": 0.8
+    },
+    {
+      "v": "embrace real impact",
+      "q": "serving as an Executive Producer",
+      "confidence": 0.7
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "asserts authenticity",
+      "q": "no magic pill",
+      "confidence": 0.9
+    },
+    {
+      "p": "emphasizes impact",
+      "q": "shine such an important light",
+      "confidence": 0.8
+    },
+    {
+      "p": "uses personal connection",
+      "q": "grateful we were able to sit down",
+      "confidence": 0.7
+    }
+  ],
+  "lex": {
+    "w": [
+      "connect",
+      "enough",
+      "impact",
+      "wellness",
+      "real",
+      "authenticity"
+    ],
+    "b": [
+      "no magic pill",
+      "serving as",
+      "shine such an important light"
+    ],
+    "t": "values authenticity, impact, wellness"
+  },
+  "implications": [
+    "Tone is genuine and impact-driven",
+    "Values authenticity over hype",
+    "Focus on real stories and wellness"
+  ],
+  "avoid": [
+    "Overly promotional language",
+    "Hype or exaggeration",
+    "Superficial content"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_news_author_infoblakemycoskie_com",
+  "title": "Blake Mycoskie | blakemycoskie.com",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

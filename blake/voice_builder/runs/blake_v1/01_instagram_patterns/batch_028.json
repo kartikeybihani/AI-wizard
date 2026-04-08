@@ -1,0 +1,189 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2015-11-12",
+      "end": "2016-01-11"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Reflective/Emotional Opener",
+      "description": "Starts with a personal reflection or emotional statement, often expressing gratitude or awe.",
+      "structure_template": "Adjective/Emotion + statement",
+      "when_it_appears": "Throughout the batch",
+      "example_quotes": [
+        "My god daughter luisa says \"uncle Blake, what beautiful mountains\". I have to agree.  Wow!!!",
+        "Good truth as I start writing out my new year goals for 2016.  This is going to be a really big year..."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Activity/Experience Description",
+      "description": "Describes an activity or experience with enthusiasm, often including gratitude or acknowledgment.",
+      "structure_template": "Verb + activity + context/thanks",
+      "when_it_appears": "Multiple captions",
+      "example_quotes": [
+        "Drop the driver......\nBiodegradable golf balls and the most memorable drive ever....long and straight!",
+        "Make my the summit after 6 hours felt so good above queenstown yesterday."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Personal/Family Moment",
+      "description": "Shares a personal or family moment, often with a sense of pride or love.",
+      "structure_template": "Personal anecdote + quote or reflection",
+      "when_it_appears": "Several captions",
+      "example_quotes": [
+        "My favorite moment of the day was when summit told me \"this was the best year of his life\". Happy 1st birthday my sweet son",
+        "My god daughter luisa says \"uncle Blake, what beautiful mountains\". I have to agree.  Wow!!!"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Call to Action / Cause",
+      "description": "Encourages support or awareness for a cause, often with a link or hashtag.",
+      "structure_template": "Verb + cause/initiative + call to action",
+      "when_it_appears": "Multiple captions",
+      "example_quotes": [
+        "Help us celebrate Summit’s first birthday by giving the gift of clean water to others that don’t readily have access to it.",
+        "Supporting homeless & disabled artists. This original piece was the perfect Holiday gift for a special family member!"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.85
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Gratitude & Reflection",
+      "formula": "Expresses gratitude or reflection + personal insight",
+      "emotional_job": "Builds connection, authenticity, and warmth",
+      "example_quotes": [
+        "Thanks @jimmy_chin for this wonderful image to start thanksgiving day.  Yes, we all have so much to be thankful for.",
+        "This is going to be a really big year, and the beginning of many great things."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Experience & Achievement",
+      "formula": "Describes an activity or achievement + acknowledgment",
+      "emotional_job": "Showcases accomplishments, sharing enthusiasm",
+      "example_quotes": [
+        "Make my the summit after 6 hours felt so good above queenstown yesterday.",
+        "Greates powder week of my life. Thank you CMH!"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Personal Moment",
+      "formula": "Share a personal or family moment + emotional reflection",
+      "emotional_job": "Fosters intimacy and relatability",
+      "example_quotes": [
+        "My favorite moment of the day was when summit told me \"this was the best year of his life\".",
+        "Summit's first kiss, what precision and love how he looks up to make sure we were watching his delivery after he plants one on her :)"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "structure_name": "Cause & Support",
+      "formula": "Call to support or promote a cause + link/hashtag",
+      "emotional_job": "Encourages engagement and social impact",
+      "example_quotes": [
+        "Let’s live ‘for one another’ and incorporate giving into everything we do.",
+        "Supporting homeless & disabled artists. This original piece was the perfect Holiday gift for a special family member!"
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "My",
+      "Thanks",
+      "Good",
+      "Introducing",
+      "What does it say"
+    ],
+    "closers": [
+      "Wow!!!",
+      "Thanks",
+      "Happy",
+      "Now",
+      "Let's"
+    ],
+    "bridge_phrases": [
+      "and the",
+      "for the",
+      "this is",
+      "so",
+      "with"
+    ],
+    "favorite_verbs": [
+      "make",
+      "support",
+      "live",
+      "test",
+      "celebrate"
+    ],
+    "favorite_nouns": [
+      "mountains",
+      "water",
+      "year",
+      "trip",
+      "gift"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often 8-15 words",
+    "line_break_style": "Frequent line breaks for emphasis, often after key phrases"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal gratitude and reflection",
+      "why_it_matters": "Builds authenticity and emotional connection",
+      "example_quotes": [
+        "Thanks @jimmy_chin for this wonderful image to start thanksgiving day.",
+        "This is going to be a really big year..."
+      ]
+    },
+    {
+      "tell": "Celebration of experiences and achievements",
+      "why_it_matters": "Conveys enthusiasm and success",
+      "example_quotes": [
+        "Make my the summit after 6 hours felt so good above queenstown yesterday.",
+        "Greates powder week of my life. Thank you CMH!"
+      ]
+    },
+    {
+      "tell": "Sharing personal/family moments",
+      "why_it_matters": "Creates intimacy and relatability",
+      "example_quotes": [
+        "My favorite moment of the day was when summit told me \"this was the best year of his life\".",
+        "My god daughter luisa says \"uncle Blake, what beautiful mountains\"."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly generic motivational quotes",
+    "Long, unbroken paragraphs",
+    "Vague statements without specifics",
+    "Excessive hashtags or links in captions",
+    "Overuse of emojis without context",
+    "Repetitive phrases without variation",
+    "Cliché expressions like 'living the dream'",
+    "Overly promotional language without personal touch"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's captions are highly personal, reflective, and experience-driven, emphasizing authenticity and connection.",
+    "what_changed_vs_older_voice": "Recent captions show more focus on family moments and cause-driven messages, less on generic motivational quotes.",
+    "confidence": 0.9
+  }
+}

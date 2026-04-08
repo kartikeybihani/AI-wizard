@@ -1,0 +1,205 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2020-01-02",
+      "end": "2020-02-03"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Reflective/Inspirational Quote",
+      "description": "Opens with a quote or reflection, often referencing a book, poem, or personal insight.",
+      "structure_template": "Quote/Thought + personal connection/emotion",
+      "when_it_appears": "Often in moments of introspection or gratitude",
+      "example_quotes": [
+        "Einstein has a great quote, “I live in that solitude which is painful in youth, but delicious in the years of maturity.”",
+        "“We have been sold a lifestyle, when what our soul desired was life.”"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Question/Invitation",
+      "description": "Opens with a question inviting engagement or reflection.",
+      "structure_template": "Question + personal or community call-to-action",
+      "when_it_appears": "In posts encouraging interaction or sharing",
+      "example_quotes": [
+        "What helps keep you grounded?",
+        "What are you grateful for today?"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Sharing Personal Routine or Practice",
+      "description": "Describes daily habits, routines, or practices with a personal tone.",
+      "structure_template": "I do X, I encourage Y, I invite Z",
+      "when_it_appears": "In posts about mindfulness, mornings, or self-care",
+      "example_quotes": [
+        "Here’s my morning routine and I’d love to hear how you spend your mornings.",
+        "Every day I open my journal and write."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Gratitude/Family Moments",
+      "description": "Highlights family, friends, or moments of gratitude with emotional framing.",
+      "structure_template": "Express gratitude + specific moment or person",
+      "when_it_appears": "In posts about family, nature, or personal blessings",
+      "example_quotes": [
+        "I thank God every day for Summit and Charlie.",
+        "Feeling blessed for this trip and the people I share it with."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Call to Action / Giveaway",
+      "description": "Mentions a giveaway or action, often with instructions.",
+      "structure_template": "Giveaway/Action + steps + hashtag",
+      "when_it_appears": "In promotional or community engagement posts",
+      "example_quotes": [
+        "For a chance to unplug for 3 days: follow, like, tag a friend.",
+        "Win a signed copy of my book—like, tag, follow!"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Quote + Personal Reflection",
+      "formula": "Quote/Thought + 'and it is really speaking to me today' + personal emotion",
+      "emotional_job": "Connects a universal idea to personal experience",
+      "example_quotes": [
+        "Einstein has a great quote... and it is really speaking to me today.",
+        "This line is SO powerful... it connects with every cell in my body."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Question + Engagement",
+      "formula": "What helps you? / What are you grateful for? + emoji or personal note",
+      "emotional_job": "Invites reflection and community sharing",
+      "example_quotes": [
+        "What helps keep you grounded?",
+        "What are you grateful for today?"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Routine/Practice Sharing",
+      "formula": "Here’s my routine/practice + invitation for others to share",
+      "emotional_job": "Builds connection through shared habits",
+      "example_quotes": [
+        "Here’s my morning routine and I’d love to hear how you spend your mornings.",
+        "Every day I open my journal and write."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Gratitude/Family Highlight",
+      "formula": "Express gratitude + specific moment or person",
+      "emotional_job": "Fosters warmth and appreciation",
+      "example_quotes": [
+        "I thank God every day for Summit and Charlie.",
+        "Feeling blessed for this trip and the people I share it with."
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Throughout my career",
+      "Who says",
+      "Einstein has a great quote",
+      "I am a strong believer",
+      "Hello from"
+    ],
+    "closers": [
+      "#motivationmonday",
+      "#mindfulness",
+      "🙏",
+      "❤️",
+      "#gratitude"
+    ],
+    "bridge_phrases": [
+      "and it is really speaking to me today",
+      "Really feeling",
+      "I encourage everyone to",
+      "I am a strong believer that"
+    ],
+    "favorite_verbs": [
+      "surrounded",
+      "help",
+      "drive",
+      "make",
+      "encourage",
+      "share",
+      "believe",
+      "thank"
+    ],
+    "favorite_nouns": [
+      "quotes",
+      "routine",
+      "moment",
+      "gratitude",
+      "connection",
+      "life",
+      "practice"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences with occasional longer reflections",
+    "line_break_style": "Often single sentences or short paragraphs, sometimes with emojis or hashtags"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal reflection and gratitude",
+      "why_it_matters": "Creates emotional resonance and authenticity",
+      "example_quotes": [
+        "Feeling blessed for this trip and the people I share it with.",
+        "Your soul and the souls you touch afterward will thank you."
+      ]
+    },
+    {
+      "tell": "Inviting community sharing",
+      "why_it_matters": "Encourages engagement and connection",
+      "example_quotes": [
+        "What helps keep you grounded?",
+        "What are you grateful for today?"
+      ]
+    },
+    {
+      "tell": "Sharing routines/practices",
+      "why_it_matters": "Builds relatability and shared identity",
+      "example_quotes": [
+        "Here’s my morning routine and I’d love to hear how you spend your mornings.",
+        "Every day I open my journal and write."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly promotional language",
+    "Long, dense paragraphs",
+    "Generic motivational quotes without personal context",
+    "Negative or overly serious tone",
+    "Overuse of hashtags or emojis",
+    "Vague statements lacking specificity",
+    "Repetitive phrases without variation",
+    "Ignoring community engagement prompts"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current voice is warm, reflective, community-oriented, and personal, emphasizing gratitude, routines, and introspection.",
+    "what_changed_vs_older_voice": "More direct engagement prompts and personal routines, less abstract motivation, more conversational tone.",
+    "confidence": 0.92
+  }
+}

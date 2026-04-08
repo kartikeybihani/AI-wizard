@@ -1,0 +1,161 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2019-08-10",
+      "end": "2019-11-27"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Question + Invitation",
+      "description": "Starts with a question or prompt, inviting comments or engagement.",
+      "structure_template": "Question/statement + call to action or question",
+      "when_it_appears": "Often in posts asking for input or reflection.",
+      "example_quotes": [
+        "What works for you?",
+        "Who lifts you up and why?"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Personal Reflection + Call to Action",
+      "description": "Shares a personal insight or experience, then invites response or action.",
+      "structure_template": "Personal insight + question or prompt",
+      "when_it_appears": "In posts about growth, challenges, or habits.",
+      "example_quotes": [
+        "This is one of my favorite mantras.",
+        "Today I am thankful for..."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Announcement + Link/Challenge",
+      "description": "Introduces a challenge or event with a call to action and link.",
+      "structure_template": "Announcement + call to action + link",
+      "when_it_appears": "In posts promoting challenges or initiatives.",
+      "example_quotes": [
+        "Join me for a 30 Day Sober October Challenge.",
+        "Tap the link in my bio to join."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Reflective Question",
+      "formula": "Question + optional follow-up",
+      "emotional_job": "Engages audience in reflection or sharing.",
+      "example_quotes": [
+        "What are you going to do with this one precious life?",
+        "Who lifts you up and why?"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Personal Insight + Prompt",
+      "formula": "Insight + question or call to action",
+      "emotional_job": "Builds connection through vulnerability, invites response.",
+      "example_quotes": [
+        "This is one of my favorite mantras.",
+        "I am so thankful to God and my spirit guides."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Challenge Announcement",
+      "formula": "Challenge + instructions + link",
+      "emotional_job": "Motivates participation, fosters community.",
+      "example_quotes": [
+        "Join me for a 30 Day Sober October Challenge.",
+        "Tap the link in my bio to get started!"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "What",
+      "Today",
+      "In"
+    ],
+    "closers": [
+      "Carpe diem",
+      "Love you bud",
+      "Yeehaw"
+    ],
+    "bridge_phrases": [
+      "And BTW",
+      "While we are so proud",
+      "So what are you going to do"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "embrace",
+      "join",
+      "ask",
+      "share"
+    ],
+    "favorite_nouns": [
+      "adventure",
+      "gratitude",
+      "challenge",
+      "signs",
+      "growth"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences with occasional longer reflections.",
+    "line_break_style": "Often uses line breaks for emphasis or separation of ideas."
+  },
+  "voice_tells": [
+    {
+      "tell": "First-person emotional framing",
+      "why_it_matters": "Creates intimacy and authenticity.",
+      "example_quotes": [
+        "I am so thankful",
+        "My dear friend"
+      ]
+    },
+    {
+      "tell": "Use of personal anecdotes and experiences",
+      "why_it_matters": "Builds credibility and relatability.",
+      "example_quotes": [
+        "Last sunrise session",
+        "One year ago today"
+      ]
+    },
+    {
+      "tell": "Encourages reflection and action",
+      "why_it_matters": "Fosters engagement and community.",
+      "example_quotes": [
+        "What are you going to do?",
+        "Let us die before we die"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly promotional language without personal touch",
+    "Long, dense paragraphs lacking spacing",
+    "Generic motivational quotes without personal context",
+    "Avoiding direct questions or calls to action",
+    "Lack of emotional framing or vulnerability",
+    "Overuse of hashtags without narrative",
+    "Impersonal statements or third-person tone",
+    "Repetitive phrases without variation"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current voice is authentic, personal, and community-oriented, emphasizing reflection, gratitude, and engagement.",
+    "what_changed_vs_older_voice": "Recent captions are more direct, inviting, and concise, with a focus on actionable prompts and personal stories.",
+    "confidence": 0.9
+  }
+}

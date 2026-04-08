@@ -1,0 +1,74 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_connect",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "authenticity",
+      "q": "We won't bother you unless it's worth it",
+      "confidence": 0.9
+    },
+    {
+      "v": "purpose",
+      "q": "explores purpose, mental wellness, and meaningful living",
+      "confidence": 0.9
+    },
+    {
+      "v": "connection",
+      "q": "connect speaking about no magic pill",
+      "confidence": 0.8
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "direct engagement",
+      "q": "join the mailing list",
+      "confidence": 0.9
+    },
+    {
+      "p": "personal tone",
+      "q": "blake probably shouldn’t send in an email",
+      "confidence": 0.8
+    },
+    {
+      "p": "informal invitation",
+      "q": "plus a big announcement you’ll want to hear first",
+      "confidence": 0.8
+    }
+  ],
+  "lex": {
+    "w": [
+      "connect",
+      "talks",
+      "projects",
+      "updates",
+      "purpose",
+      "wellness"
+    ],
+    "b": [
+      "no magic pill",
+      "blake",
+      "connect",
+      "hear",
+      "worth"
+    ],
+    "t": "personal, authentic, purposeful"
+  },
+  "implications": [
+    "Tone is approachable and genuine",
+    "Focus on meaningful connection",
+    "Values authenticity and purpose"
+  ],
+  "avoid": [
+    "Overly formal language",
+    "Generic marketing phrases",
+    "Vague statements"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_connect",
+  "title": "Connect with Blake Mycoskie | Get in Touch",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

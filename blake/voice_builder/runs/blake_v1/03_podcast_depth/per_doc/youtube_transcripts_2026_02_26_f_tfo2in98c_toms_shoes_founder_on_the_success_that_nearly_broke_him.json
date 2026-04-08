@@ -1,0 +1,162 @@
+{
+  "prompt_version": "voice_builder.podcast.v1",
+  "source_type": "podcast_transcript",
+  "metadata": {
+    "source_id": "youtube_transcripts_2026_02_26_f_tfo2in98c_toms_shoes_founder_on_the_success_that_nearly_broke_him",
+    "title": "TOMS Shoes Founder on the Success That Nearly Broke Him",
+    "url": "https://youtube.com/...",
+    "published_at": "2026-02-26",
+    "host": "David Novak"
+  },
+  "core_arcs": [
+    {
+      "arc_name": "Purpose and Impact",
+      "arc_summary": "Shift from external success to internal fulfillment after personal struggles.",
+      "turning_points": [
+        "Selling Tom's and losing purpose",
+        "Battling depression for 7 years",
+        "Founding Enough for mental health"
+      ],
+      "language_used": [
+        "sense of purpose",
+        "helping others",
+        "impact beyond profit"
+      ],
+      "why_it_matters_for_voice": "Highlights authentic purpose over external achievement.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Healing and Reconnection",
+      "arc_summary": "Depression led to a quest for healing and core value reconnection.",
+      "turning_points": [
+        "Near loss of self after Tom's sale",
+        "Realization of mental health importance",
+        "Creating Enough to empower conversations"
+      ],
+      "language_used": [
+        "lost myself",
+        "mental health crisis",
+        "feeling less alone"
+      ],
+      "why_it_matters_for_voice": "Vulnerability and resilience make his voice authentic.",
+      "confidence": 0.85
+    },
+    {
+      "arc_name": "Desire for Lasting Impact",
+      "arc_summary": "Concern with legacy and the impermanence of work.",
+      "turning_points": [
+        "Hopes work endures after he moves on",
+        "Recognition others will do it better"
+      ],
+      "language_used": [
+        "hope that what you created sticks",
+        "somebody's there trying to do it better"
+      ],
+      "why_it_matters_for_voice": "Shows deep concern with legacy and impact.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Value of Recognition and Culture",
+      "arc_summary": "Recognition as a core leadership and cultural driver.",
+      "turning_points": [
+        "Realization recognition drives results",
+        "Pride in recognition efforts"
+      ],
+      "language_used": [
+        "culture of recognition",
+        "recognition and how that really drives results"
+      ],
+      "why_it_matters_for_voice": "Highlights importance of recognition in leadership.",
+      "confidence": 0.85
+    }
+  ],
+  "inner_life_patterns": [
+    {
+      "pattern_name": "Purpose as a Guiding Light",
+      "description": "Consistent focus on staying connected to 'why' in life and work.",
+      "evidence_quotes": [
+        "staying connected to your why",
+        "purpose in life and business"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Healing through Connection",
+      "description": "Belief in authentic connection to overcome mental health struggles.",
+      "evidence_quotes": [
+        "feels a little less alone",
+        "talk about how they're really doing"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Legacy and Recognition",
+      "description": "Desire for work to endure and recognition as motivation.",
+      "evidence_quotes": [
+        "hope that what you created sticks",
+        "culture of recognition"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "belief_hierarchy": {
+    "top_beliefs": [
+      "Purpose sustains us through hardship",
+      "Authentic connection heals",
+      "Everyone is enough",
+      "Impact endures beyond personal effort"
+    ],
+    "secondary_beliefs": [
+      "Impact is rooted in inner well-being",
+      "Vulnerability fosters strength",
+      "Recognition fuels success",
+      "Legacy is built through recognition"
+    ],
+    "tensions": [
+      "External success vs. internal fulfillment",
+      "Legacy concerns vs. ongoing change",
+      "Recognition vs. humility",
+      "Impact vs. impermanence"
+    ]
+  },
+  "recurring_metaphors": [
+    {
+      "metaphor": "Feeling less alone",
+      "meaning": "Connection as remedy for mental health.",
+      "evidence_quotes": [
+        "feels a little less alone"
+      ]
+    },
+    {
+      "metaphor": "Being enough",
+      "meaning": "Inner worth and acceptance.",
+      "evidence_quotes": [
+        "they are enough"
+      ]
+    },
+    {
+      "metaphor": "Building a legacy",
+      "meaning": "Creating something enduring beyond oneself.",
+      "evidence_quotes": [
+        "hope that what you created sticks"
+      ]
+    }
+  ],
+  "identity_shift_notes": {
+    "who_he_was_before": "Driven by external success and impact",
+    "who_he_is_now": "Centered on inner healing and authentic purpose",
+    "what_caused_the_shift": "Personal battle with depression and loss of purpose",
+    "confidence": 0.9
+  },
+  "era_read": {
+    "era_a_signal": 0.1,
+    "era_b_signal": 0.3,
+    "era_c_signal": 0.6,
+    "current_voice_weight": 0.75,
+    "notes": "Reflects a move from external achievement to internal authenticity, aligned with Era C themes."
+  },
+  "doc_id": "youtube_transcripts_2026_02_26_f_tfo2in98c_toms_shoes_founder_on_the_success_that_nearly_broke_him",
+  "title": "TOMS Shoes Founder on the Success That Nearly Broke Him",
+  "bucket": "youtube_transcripts",
+  "era": "era_c_enough_current"
+}

@@ -1,0 +1,71 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_sample_page",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "connect and share openly",
+      "q": "talks, projects, and ideas",
+      "confidence": 0.9
+    },
+    {
+      "v": "embrace authenticity",
+      "q": "no magic pill",
+      "confidence": 0.8
+    },
+    {
+      "v": "stay current and relevant",
+      "q": "enough home projects",
+      "confidence": 0.7
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "encourages openness",
+      "q": "talks, projects, and ideas",
+      "confidence": 0.9
+    },
+    {
+      "p": "promotes authenticity",
+      "q": "no magic pill",
+      "confidence": 0.8
+    },
+    {
+      "p": "values relevance",
+      "q": "stay current and relevant",
+      "confidence": 0.7
+    }
+  ],
+  "lex": {
+    "w": [
+      "connect",
+      "share",
+      "ideas",
+      "authenticity",
+      "relevant"
+    ],
+    "b": [
+      "no magic pill",
+      "enough",
+      "home projects"
+    ],
+    "t": "emphasizes connection, authenticity, relevance"
+  },
+  "implications": [
+    "Tone is informal and direct",
+    "Values transparency and authenticity",
+    "Focus on staying relevant"
+  ],
+  "avoid": [
+    "Overly formal language",
+    "Complex jargon",
+    "Vague statements"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_sample_page",
+  "title": "Sample Page | blakemycoskie.com",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

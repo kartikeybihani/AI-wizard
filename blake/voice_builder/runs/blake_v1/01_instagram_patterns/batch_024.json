@@ -1,0 +1,164 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2016-07-11",
+      "end": "2016-10-20"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Reflective/Grateful Sentiments",
+      "description": "Expressing gratitude or reflection on the day, experience, or feelings.",
+      "structure_template": "Short statement + hashtag(s) or mention(s)",
+      "when_it_appears": "End of day or post-activity",
+      "example_quotes": [
+        "Great words to end the week and think about the possibilities that the next one will bring",
+        "The perfect ending to an awesome day. #grateful"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Activity/Experience Sharing",
+      "description": "Describing a specific activity, event, or moment, often with enthusiasm.",
+      "structure_template": "Subject + verb + details + optional hashtags",
+      "when_it_appears": "During or after activities",
+      "example_quotes": [
+        "Summit checking out the waves for dada. Great day to be in Southern California #homebreak",
+        "First steps"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Open-ended or Inviting Statements",
+      "description": "Posing a thought or inviting reflection, often open-ended.",
+      "structure_template": "Short phrase + question or reflection",
+      "when_it_appears": "Mid or end of caption",
+      "example_quotes": [
+        "Nothing like a day spent shoe giving in the USA and then having the child school me in a game of one on one basketball.",
+        "My @TOMS cheering on the Deacs with @wubetu_shimelash #godeacs"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Gratitude/Reflection",
+      "formula": "Feeling + activity/experience + hashtag(s)",
+      "emotional_job": "Express appreciation or reflection",
+      "example_quotes": [
+        "Thanks @dierksbentley for letting me co-pilot last night. An experience I will never forget!!!",
+        "Great words to end the week and think about the possibilities that the next one will bring"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Activity Highlight",
+      "formula": "Subject + verb + details + optional hashtags",
+      "emotional_job": "Share activity or moment",
+      "example_quotes": [
+        "Summit checking out the waves for dada. Great day to be in Southern California #homebreak",
+        "First steps"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Personal Milestone/Announcement",
+      "formula": "I am + action/feeling + milestone",
+      "emotional_job": "Share personal achievement or milestone",
+      "example_quotes": [
+        "I am charging into my 40th b day! Feeling connected to the land and my tribe carpe freaking diem!",
+        "Landing back here never fails to take my breath away."
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Thanks",
+      "Great",
+      "Nothing like",
+      "Guess I am"
+    ],
+    "closers": [
+      "#grateful",
+      "!!!",
+      "never forget",
+      "can't wait"
+    ],
+    "bridge_phrases": [
+      "and then",
+      "but",
+      "or",
+      "so"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "feel",
+      "share",
+      "enjoy",
+      "love"
+    ],
+    "favorite_nouns": [
+      "day",
+      "experience",
+      "moment",
+      "trip",
+      "activity"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences (1-2 lines), some with multiple clauses",
+    "line_break_style": "Minimal; often single paragraph or separated by hashtags"
+  },
+  "voice_tells": [
+    {
+      "tell": "First-person emotional framing",
+      "why_it_matters": "Creates intimacy and authenticity",
+      "example_quotes": [
+        "Feeling connected to the land and my tribe",
+        "An experience I will never forget!!!"
+      ]
+    },
+    {
+      "tell": "Use of gratitude and reflection",
+      "why_it_matters": "Builds positive, community-oriented tone",
+      "example_quotes": [
+        "Thanks @dierksbentley for letting me co-pilot last night.",
+        "Great words to end the week"
+      ]
+    },
+    {
+      "tell": "Sharing activity details with enthusiasm",
+      "why_it_matters": "Engages followers with vivid moments",
+      "example_quotes": [
+        "Summit checking out the waves for dada.",
+        "First steps"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long captions",
+    "Vague statements without specifics",
+    "Excessive hashtags unrelated to content",
+    "Generic motivational quotes",
+    "Overuse of emojis",
+    "Repetitive phrases without variation",
+    "Too many self-promotional links",
+    "Lack of personal voice or emotion"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current Instagram voice is personal, reflective, activity-focused, with gratitude and enthusiasm.",
+    "what_changed_vs_older_voice": "Shift toward more concise, emotionally direct captions; less verbose storytelling.",
+    "confidence": 0.9
+  }
+}

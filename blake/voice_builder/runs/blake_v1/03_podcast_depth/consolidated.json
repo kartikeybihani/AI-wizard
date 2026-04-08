@@ -1,0 +1,179 @@
+{
+  "prompt_version": "voice_builder.podcast.v1",
+  "source_type": "podcast_transcript",
+  "metadata": {
+    "source_id": "multiple",
+    "title": "Consolidated Deep Personal Arcs",
+    "url": "",
+    "published_at": "",
+    "host": ""
+  },
+  "core_arcs": [
+    {
+      "arc_name": "Spiritual Seeker & Inner Transformation",
+      "arc_summary": "Blake's ongoing pursuit of spiritual understanding, shifting from external achievement to internal peace.",
+      "turning_points": [
+        "Vision quests",
+        "Spiritual rituals",
+        "Practicing 'enough' for 40 days"
+      ],
+      "language_used": [
+        "radically altered",
+        "inner work",
+        "connection with supernatural",
+        "peace and calmness"
+      ],
+      "why_it_matters_for_voice": "Expresses his deep commitment to inner growth, framing his identity as a seeker.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Transition from External Success to Inner Fulfillment",
+      "arc_summary": "Shift from defining himself through achievements to valuing inner peace, vulnerability, and authenticity.",
+      "turning_points": [
+        "Reflecting on long journey",
+        "Practicing 'enough'",
+        "Spiritual insights"
+      ],
+      "language_used": [
+        "I'm enough",
+        "healing beyond success",
+        "doing it in a relax",
+        "living in a state of flourishing"
+      ],
+      "why_it_matters_for_voice": "Highlights his evolving values, emphasizing vulnerability and internal validation.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Resilience & Midlife Transformation",
+      "arc_summary": "Midlife as a period of profound change, resilience, and authentic growth through setbacks and reflection.",
+      "turning_points": [
+        "Midlife setbacks",
+        "Discovering impact-driven purpose",
+        "Realizing connection is vital"
+      ],
+      "language_used": [
+        "profound transformation",
+        "impact, a different form of ROI",
+        "life-giving passion",
+        "midlife chrysalis"
+      ],
+      "why_it_matters_for_voice": "Shows Blake overcoming setbacks with resilience, emphasizing connection and growth.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Purpose, Impact & Legacy",
+      "arc_summary": "From external achievement to creating lasting social impact, emphasizing purpose and contribution.",
+      "turning_points": [
+        "Selling TOMS",
+        "Starting impact initiatives",
+        "Hopes work endures"
+      ],
+      "language_used": [
+        "help others",
+        "creating impact",
+        "giving back",
+        "impact that perpetuates itself"
+      ],
+      "why_it_matters_for_voice": "Defines his core motivation as service, impact, and legacy.",
+      "confidence": 0.9
+    }
+  ],
+  "inner_life_patterns": [
+    {
+      "pattern_name": "Seeking Connection with the Spiritual & Human",
+      "description": "Pursuit of unseen spiritual forces and authentic relationships.",
+      "evidence_quotes": [
+        "connect and communicate with supernatural aspects",
+        "connection and community",
+        "invest in those connections"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Transformation via Rituals & Reflection",
+      "description": "Life-changing shifts through sacred practices and self-reflection.",
+      "evidence_quotes": [
+        "radically altered many aspects of my life",
+        "inner work",
+        "practicing 'enough'"
+      ],
+      "confidence": 0.75
+    },
+    {
+      "pattern_name": "Valuing Inner Peace & Authentic Joy",
+      "description": "Desire for calmness, presence, and genuine fulfillment over external success.",
+      "evidence_quotes": [
+        "peace and a calmness",
+        "doing it in a relax",
+        "live every day as if it might be my last"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Integration of Self & Purpose",
+      "description": "Feeling authentic and whole through inner work and purpose-driven actions.",
+      "evidence_quotes": [
+        "you're who you are",
+        "help those in need",
+        "making a difference"
+      ],
+      "confidence": 0.75
+    }
+  ],
+  "belief_hierarchy": {
+    "top_beliefs": [
+      "Inner worth is inherent, not earned",
+      "Transformation is possible through sacred practices",
+      "Inner guidance surpasses external success",
+      "Supernatural insights are real"
+    ],
+    "secondary_beliefs": [
+      "Inner work leads to peace",
+      "Authenticity is vital",
+      "Growth involves acceptance",
+      "Joy in process is more important than success"
+    ],
+    "tensions": [
+      "Balancing material success with spiritual pursuits",
+      "Trusting unseen forces in daily life",
+      "Drive vs. peace",
+      "External achievement vs. internal calm"
+    ]
+  },
+  "recurring_metaphors": [
+    {
+      "metaphor": "Medicine wheel as a gateway",
+      "meaning": "Portal to spiritual insight and transformation",
+      "evidence_quotes": [
+        "went to the medicine wheel"
+      ]
+    },
+    {
+      "metaphor": "Journey inward as a quest",
+      "meaning": "Deep exploration of self and spirit",
+      "evidence_quotes": [
+        "took people on Vision Quest"
+      ]
+    },
+    {
+      "metaphor": "Inner work as a journey",
+      "meaning": "Continuous self-discovery and peace",
+      "evidence_quotes": [
+        "inner work that times"
+      ]
+    }
+  ],
+  "identity_shift_notes": {
+    "who_he_was_before": "Achievement-driven, externally validated.",
+    "who_he_is_now": "Seeker of spiritual truth and inner peace.",
+    "what_caused_the_shift": "Profound spiritual experiences and reflection.",
+    "confidence": 0.9
+  },
+  "era_read": {
+    "era_a_signal": 0.2,
+    "era_b_signal": 0.4,
+    "era_c_signal": 0.8,
+    "current_voice_weight": 0.75,
+    "notes": "Shift from material focus to spiritual depth, more reflective and grateful."
+  }
+}

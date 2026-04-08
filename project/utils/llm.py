@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from typing import Any, Dict, Optional
 
 import requests
@@ -8,6 +9,10 @@ import requests
 
 class LLMError(RuntimeError):
     """Raised when LLM response is malformed or request fails."""
+
+    def __init__(self, message: str, details: Optional[Dict[str, Any]] = None):
+        super().__init__(message)
+        self.details = details or {}
 
 
 class OpenRouterClient:
@@ -61,7 +66,13 @@ class OpenRouterClient:
         )
         if not response.ok:
             raise LLMError(
-                f"OpenRouter request failed ({response.status_code}): {response.text[:500]}"
+                f"OpenRouter request failed ({response.status_code}): {response.text[:500]}",
+                details={
+                    "status_code": response.status_code,
+                    "response_text_prefix": response.text[:2000],
+                    "model": self.model,
+                    "max_tokens": max_tokens,
+                },
             )
 
         body = response.json()
@@ -69,20 +80,70 @@ class OpenRouterClient:
         if not choices:
             raise LLMError("OpenRouter response contained no choices")
 
-        content = choices[0].get("message", {}).get("content", "")
+        first_choice = choices[0]
+        finish_reason = str(first_choice.get("finish_reason", "") or "")
+        content = first_choice.get("message", {}).get("content", "")
+        usage = body.get("usage") or {}
+        completion_tokens_raw = usage.get("completion_tokens")
+        completion_tokens: Optional[int]
+        try:
+            completion_tokens = int(completion_tokens_raw)
+        except (TypeError, ValueError):
+            completion_tokens = None
+
+        if isinstance(content, dict):
+            return content
         if isinstance(content, list):
             content = "".join(
                 str(part.get("text", "")) for part in content if isinstance(part, dict)
             )
 
-        return self._extract_json_object(str(content))
+        try:
+            return self._extract_json_object(str(content))
+        except LLMError as exc:
+            likely_truncated = finish_reason.lower() == "length"
+            if completion_tokens is not None and completion_tokens >= max_tokens - 2:
+                likely_truncated = True
+
+            if likely_truncated:
+                raise LLMError(
+                    "Model output likely truncated. "
+                    f"finish_reason={finish_reason or 'unknown'}, "
+                    f"completion_tokens={completion_tokens}, "
+                    f"max_tokens={max_tokens}. "
+                    f"Consider larger max_tokens or smaller input batch. Parse error: {exc}",
+                    details={
+                        "finish_reason": finish_reason,
+                        "completion_tokens": completion_tokens,
+                        "max_tokens": max_tokens,
+                        "model": self.model,
+                        "raw_content": str(content),
+                    },
+                ) from exc
+            raise LLMError(
+                "Model output was not valid JSON. "
+                f"finish_reason={finish_reason or 'unknown'}, "
+                f"completion_tokens={completion_tokens}. "
+                f"Parse error: {exc}",
+                details={
+                    "finish_reason": finish_reason,
+                    "completion_tokens": completion_tokens,
+                    "max_tokens": max_tokens,
+                    "model": self.model,
+                    "raw_content": str(content),
+                },
+            ) from exc
 
     def _extract_json_object(self, content: str) -> Dict[str, Any]:
         text = content.strip()
         if text.startswith("```"):
-            text = text.strip("`")
-            if text.startswith("json"):
-                text = text[4:].strip()
+            fenced = re.match(r"^```(?:json)?\s*(.*?)\s*```$", text, flags=re.DOTALL | re.IGNORECASE)
+            if fenced:
+                text = fenced.group(1).strip()
+            else:
+                text = text.strip("`")
+                if text.lower().startswith("json"):
+                    text = text[4:].strip()
 
         try:
             parsed = json.loads(text)
@@ -91,28 +152,66 @@ class OpenRouterClient:
         except json.JSONDecodeError:
             pass
 
-        # Fallback: parse first balanced JSON object.
+        # Fallback 1: decode first JSON object from offset.
         start = text.find("{")
         if start == -1:
             raise LLMError(f"No JSON object found in LLM output: {content[:300]}")
 
+        decoder = json.JSONDecoder()
+        try:
+            parsed, _end = decoder.raw_decode(text[start:])
+            if isinstance(parsed, dict):
+                return parsed
+        except json.JSONDecodeError:
+            pass
+
+        # Fallback 2: quote-aware balanced brace scan.
+        in_string = False
+        escape = False
         depth = 0
         for idx in range(start, len(text)):
-            char = text[idx]
-            if char == "{":
+            ch = text[idx]
+            if in_string:
+                if escape:
+                    escape = False
+                elif ch == "\\":
+                    escape = True
+                elif ch == '"':
+                    in_string = False
+                continue
+
+            if ch == '"':
+                in_string = True
+            elif ch == "{":
                 depth += 1
-            elif char == "}":
+            elif ch == "}":
                 depth -= 1
                 if depth == 0:
                     snippet = text[start : idx + 1]
-                    try:
-                        parsed = json.loads(snippet)
-                        if isinstance(parsed, dict):
-                            return parsed
-                    except json.JSONDecodeError:
-                        break
+                    parsed = self._parse_json_snippet(snippet)
+                    if isinstance(parsed, dict):
+                        return parsed
 
+        # Likely truncated object if we saw a start brace but never closed depth.
+        if depth > 0:
+            raise LLMError(
+                f"Unable to parse JSON object (likely truncated output). "
+                f"LLM output prefix: {content[:300]}"
+            )
         raise LLMError(f"Unable to parse JSON object from LLM output: {content[:300]}")
+
+    def _parse_json_snippet(self, snippet: str) -> Optional[Dict[str, Any]]:
+        candidates = [snippet]
+        # Common cleanup: remove trailing commas before object/array close.
+        candidates.append(re.sub(r",\s*([}\]])", r"\1", snippet))
+        for cand in candidates:
+            try:
+                parsed = json.loads(cand)
+                if isinstance(parsed, dict):
+                    return parsed
+            except json.JSONDecodeError:
+                continue
+        return None
 
 
 def coerce_score(value: Any) -> float:

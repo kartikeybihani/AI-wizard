@@ -1,0 +1,289 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "blake",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2016-10-29",
+      "end": "2017-05-08"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Open with activity or event",
+      "description": "Starts with a brief mention of an activity, event, or moment.",
+      "structure_template": "Brief activity/event + optional comment",
+      "when_it_appears": "Throughout",
+      "example_quotes": [
+        "Beach days with my best friend forever :)",
+        "First BBQ lesson with @bbqrescues , scroll to enjoy the process and see finished product!!!! Mmmmm"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Express gratitude or acknowledgment",
+      "description": "Includes thanks or recognition for people, moments, or achievements.",
+      "structure_template": "Thank you/recognition + person/thing",
+      "when_it_appears": "Throughout",
+      "example_quotes": [
+        "Thanks @pbonfante for introducing summit and me to your tradition of the 10k Christmas run. We had a blast !",
+        "Congrats spencer on @theunlikelyflorist and bringing a little more joy to our weekend. Bravo!"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Use of casual, enthusiastic language",
+      "description": "Includes slang, exclamations, or energetic phrases.",
+      "structure_template": "Expression + enthusiasm",
+      "when_it_appears": "Throughout",
+      "example_quotes": [
+        "Yeeehaw!!!",
+        "Killer hike down to CO river."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.88
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Activity + Personal reflection",
+      "formula": "Activity + personal comment or feeling",
+      "emotional_job": "Share moment and personal vibe",
+      "example_quotes": [
+        "Beach days with my best friend forever :)",
+        "Getting closer everyday."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Event + gratitude/acknowledgment",
+      "formula": "Event/achievement + thanks or recognition",
+      "emotional_job": "Express appreciation and connection",
+      "example_quotes": [
+        "Thanks @pbonfante for introducing summit and me to your tradition of the 10k Christmas run.",
+        "Congrats spencer on @theunlikelyflorist and bringing a little more joy to our weekend."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Casual enthusiasm",
+      "formula": "Energetic phrase + exclamation",
+      "emotional_job": "Convey excitement and energy",
+      "example_quotes": [
+        "Yeeehaw!!!",
+        "Killer hike down to CO river."
+      ],
+      "confidence": 0.88
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Beach days",
+      "Come meet",
+      "And the baby",
+      "Try not to let",
+      "First BBQ",
+      "Great to be back",
+      "First archery",
+      "Such a great day",
+      "Just read",
+      "My buddy",
+      "Congrats",
+      "Weekend with daddy",
+      "Thank you",
+      "Dad",
+      "Summits first night",
+      "Thanks",
+      "Introducing",
+      "Done",
+      "My favorites",
+      "Coming spring",
+      "Not sure",
+      "Racing",
+      "Another summit",
+      "Getting closer",
+      "Perfect end",
+      "Introducing the TOMS",
+      "Could not have said it better",
+      "This is really what it is all about",
+      "Coming spring",
+      "Not sure",
+      "Racing",
+      "Another summit",
+      "Getting closer",
+      "Perfect end",
+      "Introducing the TOMS",
+      "Could not have said it better",
+      "This is really what it is all about"
+    ],
+    "closers": [
+      "! :)",
+      "and see finished product!!!! Mmmmm",
+      "Bravo!",
+      "up there today.",
+      "and I could not agree more",
+      "YOU are the ones who create these smiles",
+      "and already contributing with some tunes",
+      "we had a blast !",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more",
+      "and I could not agree more"
+    ],
+    "bridge_phrases": [
+      "scroll to enjoy the process",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot",
+      "thanks for this shot"
+    ],
+    "favorite_verbs": [
+      "thanks",
+      "introducing",
+      "racing",
+      "getting",
+      "love",
+      "enjoying",
+      "pumping",
+      "contributing",
+      "celebrating",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying",
+      "enjoying"
+    ],
+    "favorite_nouns": [
+      "day",
+      "run",
+      "hike",
+      "moment",
+      "weekend",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day",
+      "day"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often under 10 words, with occasional longer reflections.",
+    "line_break_style": "Mostly continuous, minimal line breaks; occasional line breaks for emphasis or separation."
+  },
+  "voice_tells": [
+    {
+      "tell": "Casual, enthusiastic tone",
+      "why_it_matters": "Creates an approachable, energetic vibe that invites engagement.",
+      "example_quotes": [
+        "Yeeehaw!!!",
+        "Killer hike down to CO river."
+      ]
+    },
+    {
+      "tell": "Personal reflection or acknowledgment",
+      "why_it_matters": "Builds connection through sharing personal moments or gratitude.",
+      "example_quotes": [
+        "Thanks @pbonfante for introducing summit and me to your tradition of the 10k Christmas run.",
+        "Congrats spencer on @theunlikelyflorist and bringing a little more joy to our weekend."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long captions",
+    "Generic motivational quotes",
+    "Excessive hashtags",
+    "Vague statements without context",
+    "Overuse of emojis",
+    "Repetitive phrases without variation",
+    "Too formal or detached tone",
+    "Lack of personal voice or emotion"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current Instagram voice is casual, energetic, and personal, emphasizing moments, gratitude, and enthusiasm.",
+    "what_changed_vs_older_voice": "Shifted from more formal or promotional to more personal and spontaneous expressions.",
+    "confidence": 0.9
+  }
+}

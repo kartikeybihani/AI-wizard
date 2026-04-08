@@ -1,0 +1,79 @@
+{
+  "prompt_version": "voice_builder.youtube.v2_compact",
+  "source_type": "youtube_chunk",
+  "m": {
+    "doc_id": "youtube_transcripts_2015_09_08_uoflz8heprk_blake_mycoskie_on_the_mission_behind_toms",
+    "era": "era_a_toms_builder"
+  },
+  "primitives": [
+    {
+      "p": "I guess nine years ago",
+      "q": "I started Tom's",
+      "c": 0.8
+    },
+    {
+      "p": "so we created",
+      "q": "we made",
+      "c": 0.7
+    },
+    {
+      "p": "it's been much more successful",
+      "q": "it's exceeded expectations",
+      "c": 0.8
+    },
+    {
+      "p": "really trade directly with the farmers",
+      "q": "cut out middlemen",
+      "c": 0.75
+    },
+    {
+      "p": "It's hard to believe",
+      "q": "I guess",
+      "c": 0.8
+    },
+    {
+      "p": "And we have a store in Amsterdam, and... it's been a journey.",
+      "q": "Signals vulnerability with pauses and repetition.",
+      "c": 0.5
+    }
+  ],
+  "rhythm": {
+    "openers": [
+      "I started",
+      "so we created",
+      "and I wanted"
+    ],
+    "bridges": [
+      "then",
+      "so",
+      "and then"
+    ],
+    "closers": [
+      "it's been",
+      "we've helped",
+      "we just opened"
+    ]
+  },
+  "thought_patterns": [
+    "Connecting actions to impact",
+    "Reflecting on success",
+    "Explaining process",
+    "Expressing hope"
+  ],
+  "vulnerability": [
+    "It's hard to believe",
+    "I guess",
+    "it's been much more successful",
+    "we realized"
+  ],
+  "signature_words": [
+    "so",
+    "and",
+    "really",
+    "I guess"
+  ],
+  "doc_id": "youtube_transcripts_2015_09_08_uoflz8heprk_blake_mycoskie_on_the_mission_behind_toms",
+  "title": "Blake Mycoskie on the Mission Behind Toms",
+  "era": "era_a_toms_builder",
+  "date_key": "2015-09-08"
+}

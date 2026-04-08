@@ -1,0 +1,198 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2020-03-21",
+      "end": "2020-05-04"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Reflective/Inspirational Quote",
+      "description": "Opens with a quote or insight, often followed by personal reflection or application.",
+      "structure_template": "Quote / Insight + Personal Reflection / Application",
+      "when_it_appears": "Frequently in captions about mindset, growth, or life lessons.",
+      "example_quotes": [
+        "It goes by too fast",
+        "Love is all we need"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Personal Story / Experience",
+      "description": "Shares a recent personal event or lesson, often with emotional framing.",
+      "structure_template": "Personal Event + Reflection + Gratitude / Lesson",
+      "when_it_appears": "In captions about family, quarantine, or life changes.",
+      "example_quotes": [
+        "For the past six weeks, I've been quarantined...",
+        "Last year I began growing my own food..."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Call to Action / Engagement",
+      "description": "Invites followers to participate, respond, or reflect.",
+      "structure_template": "Prompt / Question + Tag / Challenge",
+      "when_it_appears": "In captions encouraging community or personal growth.",
+      "example_quotes": [
+        "Respond to the question above in your Story",
+        "Who’s up for the challenge?"
+      ],
+      "frequency_estimate": "moderate",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Gratitude / Appreciation",
+      "description": "Expresses thanks or appreciation, often with a specific mention.",
+      "structure_template": "Thank you / Appreciation + Specific Mention",
+      "when_it_appears": "In captions about people, community, or support.",
+      "example_quotes": [
+        "Thank you @MindBodyGreen",
+        "Thanks Kate for coming all the way up"
+      ],
+      "frequency_estimate": "moderate",
+      "confidence": 0.75
+    },
+    {
+      "pattern_name": "Nature / Environment Focus",
+      "description": "Highlights nature, environment, or outdoor experiences.",
+      "structure_template": "Observation / Photo + Reflection / Connection",
+      "when_it_appears": "In captions about outdoor activities, environment, or mindfulness.",
+      "example_quotes": [
+        "Here's a sunrise shot I took",
+        "Respond to the question above in your Story"
+      ],
+      "frequency_estimate": "moderate",
+      "confidence": 0.7
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Quote + Reflection",
+      "formula": "Quote/Insight + Personal Reflection",
+      "emotional_job": "Inspire, motivate, or provoke thought.",
+      "example_quotes": [
+        "It goes by too fast",
+        "Love is all we need"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Storytelling + Lesson",
+      "formula": "Personal story + Lesson or insight",
+      "emotional_job": "Build connection and share growth.",
+      "example_quotes": [
+        "Last year I began growing my own food...",
+        "For the past six weeks, I've been quarantined..."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Call to Action",
+      "formula": "Prompt or question + Tag or challenge",
+      "emotional_job": "Engage community and encourage participation.",
+      "example_quotes": [
+        "Respond to the question above in your Story",
+        "Who’s up for the challenge?"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "structure_name": "Gratitude Expression",
+      "formula": "Thank you / Appreciation + Specific mention",
+      "emotional_job": "Express warmth and acknowledgment.",
+      "example_quotes": [
+        "Thank you @MindBodyGreen",
+        "Thanks Kate for coming all the way up"
+      ],
+      "confidence": 0.75
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Thank you",
+      "In honor of",
+      "Dear Earth",
+      "Love",
+      "Thanks"
+    ],
+    "closers": [
+      "Love and light",
+      "Stay safe",
+      "Grateful",
+      "Keep shining"
+    ],
+    "bridge_phrases": [
+      "Here's what I wrote",
+      "I was moved by",
+      "Respond to the question"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "love",
+      "share",
+      "reflect",
+      "encourage"
+    ],
+    "favorite_nouns": [
+      "gratitude",
+      "love",
+      "growth",
+      "connection",
+      "mindset"
+    ],
+    "sentence_length_profile": "Mostly short to medium, punchy sentences, often with line breaks.",
+    "line_break_style": "Frequent line breaks for emphasis, especially before key phrases or quotes."
+  },
+  "voice_tells": [
+    {
+      "tell": "First-person emotional framing",
+      "why_it_matters": "Creates intimacy and authenticity, inviting connection.",
+      "example_quotes": [
+        "I am missing HOME today more than others.",
+        "My kiddos helped me express my inner thoughts."
+      ]
+    },
+    {
+      "tell": "Use of direct address and questions",
+      "why_it_matters": "Engages followers actively, invites responses.",
+      "example_quotes": [
+        "What positive memories are you making?",
+        "Who’s up for the challenge?"
+      ]
+    },
+    {
+      "tell": "Incorporation of gratitude and appreciation",
+      "why_it_matters": "Builds warmth, community, and positive tone.",
+      "example_quotes": [
+        "Thank you @MindBodyGreen",
+        "Thanks Kate for coming all the way up"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly formal language",
+    "Long, dense paragraphs",
+    "Vague statements without specifics",
+    "Overuse of hashtags without context",
+    "Excessive self-promotion without value",
+    "Negative or fear-based language",
+    "Lack of personal voice or emotion",
+    "Overly complex sentence structures"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current voice is authentic, reflective, and community-oriented, emphasizing growth, gratitude, and connection.",
+    "what_changed_vs_older_voice": "Shift toward more personal storytelling, emotional openness, and direct engagement, less formal or abstract.",
+    "confidence": 0.9
+  }
+}

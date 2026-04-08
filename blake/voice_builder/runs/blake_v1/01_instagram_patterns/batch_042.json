@@ -1,0 +1,157 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 11,
+    "date_range": {
+      "start": "2013-03-07",
+      "end": "2013-03-27"
+    },
+    "era_mix": {
+      "era_a_count": 11,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Event/Activity Announcement",
+      "description": "Open with a brief mention of what was done or experienced, often with a personal touch.",
+      "structure_template": "Just/Help/Join/First + [activity/event] + [details]",
+      "when_it_appears": "Throughout batch",
+      "example_quotes": [
+        "Help me I want to shower http://www.showerstrike.com/campaign/display/profile.do?campaignId=6960",
+        "Join my friends at Well Aware World this Friday in Austin, TX for their #WorldWaterDay event!"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Personal/Emotional Reflection",
+      "description": "Express feelings or thoughts about recent experiences or moments.",
+      "structure_template": "Just spent [time] at [place/event] and [emotion]",
+      "when_it_appears": "Often at start or end",
+      "example_quotes": [
+        "Just spent 3 days at esalen for a conscious capitalism retreat and feel so inspired",
+        "Hanging @shelbymeade at Sxsw. Such a wonderful time"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Casual/Everyday Moments",
+      "description": "Share simple, relatable daily moments or milestones.",
+      "structure_template": "First/Just/Meet + [thing/person] + [small detail]",
+      "when_it_appears": "Throughout",
+      "example_quotes": [
+        "First car ride without crate :)",
+        "Meet Buddha and gypsy"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Event Invitation",
+      "formula": "Join/Help + [event/activity] + [details]",
+      "emotional_job": "Encourage participation or awareness",
+      "example_quotes": [
+        "Help me I want to shower http://www.showerstrike.com/campaign/display/profile.do?campaignId=6960",
+        "Join my friends at Well Aware World this Friday in Austin, TX for their #WorldWaterDay event!"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Personal Reflection",
+      "formula": "Just spent/Feel + [emotion] + [activity]",
+      "emotional_job": "Share personal feelings or experiences",
+      "example_quotes": [
+        "Just spent 3 days at esalen for a conscious capitalism retreat and feel so inspired",
+        "Hanging @shelbymeade at Sxsw. Such a wonderful time"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Milestone/Everyday Moment",
+      "formula": "First/Just/Meet + [thing/person] + [small detail]",
+      "emotional_job": "Highlight simple moments",
+      "example_quotes": [
+        "First car ride without crate :)",
+        "Meet Buddha and gypsy"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Just",
+      "Help",
+      "Join",
+      "First"
+    ],
+    "closers": [
+      "Thanks",
+      "Such a wonderful time",
+      "Followed :)"
+    ],
+    "bridge_phrases": [
+      "and",
+      "with",
+      "at"
+    ],
+    "favorite_verbs": [
+      "spent",
+      "help",
+      "join",
+      "gave",
+      "had",
+      "hanging",
+      "meet"
+    ],
+    "favorite_nouns": [
+      "time",
+      "event",
+      "moment",
+      "dogs",
+      "car",
+      "people"
+    ],
+    "sentence_length_profile": "Mostly short, 1-2 sentences",
+    "line_break_style": "Minimal, often single line or simple paragraph"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal sharing of experiences",
+      "why_it_matters": "Builds connection and authenticity",
+      "example_quotes": [
+        "Just spent 3 days at esalen for a conscious capitalism retreat and feel so inspired",
+        "Hanging @shelbymeade at Sxsw. Such a wonderful time"
+      ]
+    },
+    {
+      "tell": "Invitation or call to action",
+      "why_it_matters": "Encourages engagement and participation",
+      "example_quotes": [
+        "Help me I want to shower http://www.showerstrike.com/campaign/display/profile.do?campaignId=6960",
+        "Join my friends at Well Aware World this Friday in Austin, TX for their #WorldWaterDay event!"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long sentences",
+    "Generic motivational quotes",
+    "Vague statements without specifics",
+    "Excessive hashtags or links",
+    "Repetitive phrases without variation",
+    "Overuse of emojis",
+    "Too formal or detached tone",
+    "Lack of personal touch"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Focuses on personal moments, casual sharing, and community engagement.",
+    "what_changed_vs_older_voice": "More direct, personal, and event-focused; less abstract or overly polished.",
+    "confidence": 0.9
+  }
+}

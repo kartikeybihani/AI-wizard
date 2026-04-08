@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_2026_01_06_finance_yahoo_com_toms_founder_blake_mycoskie_launches_enough_a_mental_health_focused_br",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "focused on mental health awareness",
+      "e": "advocates purpose-driven branding",
+      "confidence": 0.9
+    },
+    {
+      "d": "owns nonprofit fully",
+      "e": "profits go to mental health nonprofits",
+      "confidence": 0.85
+    },
+    {
+      "d": "promotes daily self-affirmation",
+      "e": "uses tangible reminders like bracelets",
+      "confidence": 0.8
+    },
+    {
+      "d": "connects purpose and design",
+      "e": "aims to foster connection through wear",
+      "confidence": 0.75
+    },
+    {
+      "d": "aligns with current social causes",
+      "e": "integrates mental health into branding",
+      "confidence": 0.8
+    },
+    {
+      "d": "emphasizes community and conversation",
+      "e": "encourages dialogue around mental health",
+      "confidence": 0.75
+    }
+  ],
+  "factual_points": [
+    "Blake Mycoskie launched ENOUGH, a mental health brand",
+    "ENOUGH donates 100% of profits to nonprofits",
+    "Nonprofits include NAMI, Born this Way Foundation",
+    "Brand uses green color for mental health awareness",
+    "Bracelets serve as daily reminders of 'enoughness'",
+    "Brand aims to connect purpose with design"
+  ],
+  "caution_flags": [
+    "Source may frame mental health positively, biasing tone",
+    "Focus on branding may overshadow individual stories",
+    "Limited detail on actual mental health impact",
+    "Potential promotional bias towards ENOUGH"
+  ],
+  "doc_id": "external_articles_2026_01_06_finance_yahoo_com_toms_founder_blake_mycoskie_launches_enough_a_mental_health_focused_br",
+  "title": "TOMS FOUNDER, BLAKE MYCOSKIE, LAUNCHES ENOUGH, A MENTAL-HEALTH FOCUSED BRAND GIVING 100% OF PROCEEDS TO NONPROFIT PARTNERS",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

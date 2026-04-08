@@ -1,0 +1,76 @@
+{
+  "prompt_version": "voice_builder.youtube.v2_compact",
+  "source_type": "youtube_chunk",
+  "m": {
+    "doc_id": "youtube_transcripts_2018_10_01_7_uqmdtpacm_blake_mycoskie_founder_of_toms_the_brave_ones",
+    "era": "era_a_toms_builder"
+  },
+  "primitives": [
+    {
+      "p": "I think",
+      "q": "really propelled Thomas",
+      "c": 0.8
+    },
+    {
+      "p": "we make shoes and I",
+      "q": "think some of you have received our shoes",
+      "c": 0.7
+    },
+    {
+      "p": "every time we sell a",
+      "q": "we also give a pair of shoes",
+      "c": 0.9
+    },
+    {
+      "p": "okay where are we going now",
+      "q": "let's do it",
+      "c": 0.6
+    },
+    {
+      "p": "and then figure out what size",
+      "q": "I've been on giving trips all over",
+      "c": 0.75
+    },
+    {
+      "p": "we've been partnering with for quite",
+      "q": "we've been partnering with for some time",
+      "c": 0.65
+    }
+  ],
+  "rhythm": {
+    "openers": [
+      "most entrepreneurs part of our life is a spinning",
+      "well we're so glad to be here"
+    ],
+    "bridges": [
+      "and one of the things that I think",
+      "so we're excited to be here"
+    ],
+    "closers": [
+      "thank you sir",
+      "let's do it"
+    ]
+  },
+  "thought_patterns": [
+    "Thinking about impact and purpose",
+    "Reflecting on personal experience",
+    "Connecting community and mission",
+    "Expressing enthusiasm"
+  ],
+  "vulnerability": [
+    "I think some of you have received our shoes",
+    "I've never actually done a giving trip",
+    "we've never done a giving day in LA",
+    "I'm powering kids"
+  ],
+  "signature_words": [
+    "really",
+    "think",
+    "so",
+    "okay"
+  ],
+  "doc_id": "youtube_transcripts_2018_10_01_7_uqmdtpacm_blake_mycoskie_founder_of_toms_the_brave_ones",
+  "title": "Blake Mycoskie, Founder of TOMS | The Brave Ones",
+  "era": "era_a_toms_builder",
+  "date_key": "2018-10-01"
+}

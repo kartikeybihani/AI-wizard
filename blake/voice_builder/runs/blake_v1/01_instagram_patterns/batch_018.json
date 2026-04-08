@@ -1,0 +1,179 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2018-12-03",
+      "end": "2019-01-22"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Call to Action + Hashtag",
+      "description": "Starts with a direct call or statement, often ending with a hashtag.",
+      "structure_template": "Statement/Call + #hashtag",
+      "when_it_appears": "Often in advocacy or movement-related posts.",
+      "example_quotes": [
+        "Help us reach our goal of 1 million by tagging 4 friends and encouraging them to send a postcard – one for each of the 4 Americans taken by gun violence every hour. #endgunviolencetogether",
+        "Take 30 seconds to go to TOMS.com and send your Representative a postcard demanding they pass this bill."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Personal Reflection + Gratitude",
+      "description": "Expresses personal feelings or gratitude, often with a specific event or moment.",
+      "structure_template": "I am/We are + emotion/thanks + for + specific reason",
+      "when_it_appears": "In family, personal, or community moments.",
+      "example_quotes": [
+        "Feeling so blessed to be a dad, to learn so much from this little soul about curiosity, compassion, and joy.",
+        "Thank you @toms men’s design team for bringing this waterproof boot to the line this winter."
+      ],
+      "frequency_estimate": "moderate",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Quote + Attribution",
+      "description": "Shares a quote, often with attribution or context.",
+      "structure_template": "“Quote” - Author",
+      "when_it_appears": "In moments of inspiration or reflection.",
+      "example_quotes": [
+        "The mountains are calling and I must go” - Muir",
+        "Today, Congress introduced a bill to require universal background checks for gun sales..."
+      ],
+      "frequency_estimate": "moderate",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Announcement + Link in Bio",
+      "description": "Announces a new content or event, directing followers to link in bio.",
+      "structure_template": "We/He/She + action + in bio",
+      "when_it_appears": "In podcast, video, or campaign promotions.",
+      "example_quotes": [
+        "Loved doing @erikanderslang podcast and talking through life, golf, and finding your purpose. Full podcast link in bio.",
+        "Thanks @lewishowes for having me on the show. The past 6 weeks have been the most meaningful of my entrepreneurial life."
+      ],
+      "frequency_estimate": "moderate",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Personal + Call to Action",
+      "formula": "I/We + personal insight/feeling + call to action",
+      "emotional_job": "Connects personally while motivating followers to act.",
+      "example_quotes": [
+        "I am here LA. I am alive. And I am ready to make shit happen.",
+        "Help us reach our goal of 1 million by tagging 4 friends..."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Event + Reflection",
+      "formula": "Describes an event + personal or collective reflection",
+      "emotional_job": "Shares experience and reinforces community or movement.",
+      "example_quotes": [
+        "Yesterday was a very important day. As part of our efforts to #EndGunViolenceTogether...",
+        "Saturday morning dip with little man. Might be our newest tradition."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Quote + Context",
+      "formula": "Quote + brief context or attribution",
+      "emotional_job": "Provides inspiration or thought leadership.",
+      "example_quotes": [
+        "The mountains are calling and I must go” - Muir",
+        "Don’t worry dad, he is a nice monster. He is our friend."
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Feeling",
+      "Thanks",
+      "Today",
+      "I am",
+      "We are"
+    ],
+    "closers": [
+      "#endgunviolenceTogther",
+      "Let’s see what you come up with!",
+      "Help us reach our goal!",
+      "Stay inspired"
+    ],
+    "bridge_phrases": [
+      "And now",
+      "Then",
+      "So",
+      "Because"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "help",
+      "love",
+      "share",
+      "join",
+      "support"
+    ],
+    "favorite_nouns": [
+      "moment",
+      "day",
+      "week",
+      "tradition",
+      "movement",
+      "campaign"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often 10-20 words.",
+    "line_break_style": "Minimal, often single sentences or short paragraphs."
+  },
+  "voice_tells": [
+    {
+      "tell": "First-person emotional framing",
+      "why_it_matters": "Creates intimacy and authenticity.",
+      "example_quotes": [
+        "Feeling so blessed to be a dad, to learn so much from this little soul.",
+        "I am here LA. I am alive. And I am ready to make shit happen."
+      ]
+    },
+    {
+      "tell": "Direct calls to action",
+      "why_it_matters": "Encourages engagement and movement participation.",
+      "example_quotes": [
+        "Help us reach our goal of 1 million by tagging 4 friends.",
+        "Take 30 seconds to go to TOMS.com and send your Representative a postcard."
+      ]
+    },
+    {
+      "tell": "Use of hashtags for movement",
+      "why_it_matters": "Builds community and visibility around causes.",
+      "example_quotes": [
+        "#endgunviolenceTogther",
+        "#EndGunViolenceTogether"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long sentences",
+    "Vague statements without specifics",
+    "Lack of personal voice",
+    "No calls to action",
+    "Excessive hashtags without context",
+    "Generic motivational quotes without personal touch",
+    "Overuse of emojis without purpose",
+    "Repetitive phrasing without variation"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Consistent personal, action-oriented, community-focused, emotionally authentic.",
+    "what_changed_vs_older_voice": "More direct calls to action, increased use of hashtags, emphasis on advocacy.",
+    "confidence": 0.9
+  }
+}

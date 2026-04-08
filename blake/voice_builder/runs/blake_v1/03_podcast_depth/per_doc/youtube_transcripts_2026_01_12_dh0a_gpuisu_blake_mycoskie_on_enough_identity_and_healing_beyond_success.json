@@ -1,0 +1,168 @@
+{
+  "prompt_version": "voice_builder.podcast.v1",
+  "source_type": "podcast_transcript",
+  "metadata": {
+    "source_id": "youtube_transcripts_2026_01_12_dh0a_gpuisu_blake_mycoskie_on_enough_identity_and_healing_beyond_success",
+    "title": "Blake Mycoskie on “Enough,” Identity, and Healing Beyond Success",
+    "url": "https://youtube.com/...",
+    "published_at": "2026-01-12",
+    "host": "Unknown"
+  },
+  "core_arcs": [
+    {
+      "arc_name": "Journey to Self-Acceptance",
+      "arc_summary": "Blake's ongoing process of recognizing his inherent worth beyond achievements.",
+      "turning_points": [
+        "Practicing 'enough' for 40 days",
+        "Feeling different after the practice"
+      ],
+      "language_used": [
+        "I'm enough. I've always been enough.",
+        "Feeling totally different."
+      ],
+      "why_it_matters_for_voice": "Conveys a deep shift from external validation to internal worth, grounding his current voice.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "From Achievement to Inner Peace",
+      "arc_summary": "Transition from defining himself through success to seeking inner healing.",
+      "turning_points": [
+        "Reflecting on long journey and past pursuits",
+        "Moving from being a serial entrepreneur to focusing on healing"
+      ],
+      "language_used": [
+        "Long journey for me.",
+        "Healing beyond success."
+      ],
+      "why_it_matters_for_voice": "Highlights his evolving values, emphasizing inner peace over external accomplishments.",
+      "confidence": 0.85
+    },
+    {
+      "arc_name": "Finding Purpose in Art and Relaxation",
+      "arc_summary": "Blake shifts from pushing success to enjoying creative pursuits like photography, emphasizing relaxation and authenticity.",
+      "turning_points": [
+        "Realizing art is a form of relaxation, not pressure",
+        "Launching project during mental health awareness month"
+      ],
+      "language_used": [
+        "enjoying doing it",
+        "relax whenever I'm in the right city",
+        "not really pushing hard"
+      ],
+      "why_it_matters_for_voice": "Shows a move from achievement-driven identity to valuing presence and enjoyment.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Transition from Performance to Presence",
+      "arc_summary": "Blake describes a shift from external validation to internal peace, focusing on authentic engagement.",
+      "turning_points": [
+        "Noticing the importance of doing things in a relaxed way",
+        "Choosing to launch projects aligned with personal values"
+      ],
+      "language_used": [
+        "doing it in a relax",
+        "enjoying doing it",
+        "not really pushing hard"
+      ],
+      "why_it_matters_for_voice": "Reflects a deeper inner shift towards mindfulness and authenticity.",
+      "confidence": 0.85
+    }
+  ],
+  "inner_life_patterns": [
+    {
+      "pattern_name": "Vulnerability and Reflection",
+      "description": "Regular openness about past struggles and current growth.",
+      "evidence_quotes": [
+        "I think I met you 8-10 years ago.",
+        "It has been a long time and a hell of a journey."
+      ],
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Seeking Inner Truth",
+      "description": "Consistent focus on internal validation and self-worth.",
+      "evidence_quotes": [
+        "You're enough. I've always been enough.",
+        "Feeling totally different."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Pursuit of Authentic Joy",
+      "description": "Prioritizing activities that feel genuine and fulfilling over external success.",
+      "evidence_quotes": [
+        "enjoying doing it",
+        "relax whenever I'm in the right city",
+        "not really pushing hard"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Reframing Success",
+      "description": "Moving from achievement to enjoyment and mental well-being.",
+      "evidence_quotes": [
+        "launch it during mental health awareness month",
+        "if people like it, I'll do some more"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "belief_hierarchy": {
+    "top_beliefs": [
+      "Inner worth is inherent, not earned.",
+      "Healing is a journey, not a destination.",
+      "Authentic engagement over external validation.",
+      "Joy in process is more important than success."
+    ],
+    "secondary_beliefs": [
+      "External success doesn't define me.",
+      "Vulnerability fosters growth.",
+      "Projects aligned with personal values are more meaningful.",
+      "Mental health is a priority."
+    ],
+    "tensions": [
+      "Balancing ambition with inner peace.",
+      "Reconciliation of past achievements with current values."
+    ]
+  },
+  "recurring_metaphors": [
+    {
+      "metaphor": "Setting a timer for 40 days",
+      "meaning": "A disciplined practice to internalize worth.",
+      "evidence_quotes": [
+        "for the next 40 days, for 20 minutes..."
+      ]
+    },
+    {
+      "metaphor": "Journey",
+      "meaning": "Personal growth as an ongoing process.",
+      "evidence_quotes": [
+        "long journey for me."
+      ]
+    },
+    {
+      "metaphor": "Art as relaxation",
+      "meaning": "Creative pursuits as a way to find peace and authenticity.",
+      "evidence_quotes": [
+        "art like an art project"
+      ]
+    }
+  ],
+  "identity_shift_notes": {
+    "who_he_was_before": "Achievement-driven, externally validated.",
+    "who_he_is_now": "Inner-focused, healing-oriented.",
+    "what_caused_the_shift": "Practicing self-affirmation and reflection.",
+    "confidence": 0.9
+  },
+  "era_read": {
+    "era_a_signal": 0.1,
+    "era_b_signal": 0.3,
+    "era_c_signal": 0.6,
+    "current_voice_weight": 0.85,
+    "notes": "Strong emphasis on healing and self-acceptance in current era."
+  },
+  "doc_id": "youtube_transcripts_2026_01_12_dh0a_gpuisu_blake_mycoskie_on_enough_identity_and_healing_beyond_success",
+  "title": "Blake Mycoskie on “Enough,” Identity, and Healing Beyond Success",
+  "bucket": "youtube_transcripts",
+  "era": "era_c_enough_current"
+}

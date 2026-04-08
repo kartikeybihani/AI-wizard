@@ -1,0 +1,69 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_book_blake",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "Authenticity over magic solutions",
+      "q": "No magic pill",
+      "confidence": 0.9
+    },
+    {
+      "v": "Connection and sharing matter",
+      "q": "connect speaking enough",
+      "confidence": 0.8
+    },
+    {
+      "v": "Focus on real ideas",
+      "q": "a handful of ideas blake probably shouldn’t send",
+      "confidence": 0.75
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Emphasizes authenticity",
+      "q": "No magic pill",
+      "confidence": 0.9
+    },
+    {
+      "p": "Encourages connection",
+      "q": "connect speaking enough",
+      "confidence": 0.8
+    },
+    {
+      "p": "Promotes realness over hype",
+      "q": "a handful of ideas blake probably shouldn’t send",
+      "confidence": 0.75
+    }
+  ],
+  "lex": {
+    "w": [
+      "connect",
+      "enough",
+      "no magic pill"
+    ],
+    "b": [
+      "blake",
+      "ideas",
+      "sh*t"
+    ],
+    "t": "authentic, connection-focused, real ideas"
+  },
+  "implications": [
+    "Values authenticity and genuine connection",
+    "Prefers honesty over hype",
+    "Prioritizes real ideas over superficiality"
+  ],
+  "avoid": [
+    "Hype and magic solutions",
+    "Superficial content",
+    "Inauthentic messaging"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_book_blake",
+  "title": "Book Blake | blakemycoskie.com",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

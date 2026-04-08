@@ -1,0 +1,21 @@
+{
+  "doc_count": 58,
+  "caption_count": 1241,
+  "doc_bucket_counts": {
+    "youtube_transcripts": 16,
+    "podcast_transcripts": 3,
+    "substack_posts": 5,
+    "personal_site_pages": 15,
+    "external_articles": 19
+  },
+  "doc_era_counts": {
+    "era_a_toms_builder": 12,
+    "era_b_transition_seeker": 4,
+    "era_c_enough_current": 42
+  },
+  "caption_era_counts": {
+    "era_c_enough_current": 261,
+    "era_b_transition_seeker": 1,
+    "era_a_toms_builder": 979
+  }
+}

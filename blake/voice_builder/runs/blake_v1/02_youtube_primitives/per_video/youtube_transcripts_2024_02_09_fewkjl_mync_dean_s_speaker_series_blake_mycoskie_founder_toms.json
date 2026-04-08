@@ -1,0 +1,132 @@
+{
+  "prompt_version": "voice_builder.youtube.v1",
+  "source_type": "youtube_transcript",
+  "metadata": {
+    "video_id": "fewkjl_mync_dean_s_speaker_series_blake_mycoskie_founder_toms",
+    "title": "Dean's Speaker Series | Blake Mycoskie, Founder, TOMS",
+    "url": "https://www.youtube.com/watch?v=fewkjl_mync",
+    "published_at": "2024-02-09",
+    "channel": "Dean's Speaker Series"
+  },
+  "transcript_read": {
+    "word_count": 607,
+    "speaker_mix_notes": "Primarily Blake, with some moderator interruptions",
+    "audio_noise_notes": "Clear, no significant noise"
+  },
+  "voice_primitives": [
+    {
+      "primitive_name": "Repetition for emphasis",
+      "description": "Repeats key ideas or phrases to reinforce points.",
+      "evidence_quotes": [
+        "you become really good at it. And when you become really good at anything, usually you make money at it.",
+        "thank you for listening. We hope you were inspired to go out and try something really meaningful."
+      ],
+      "why_it_matters": "Highlights core beliefs, emphasizes importance of mastery and impact.",
+      "confidence": 0.85
+    },
+    {
+      "primitive_name": "Self-correction",
+      "description": "Blake often restarts or clarifies mid-thought, indicating a reflective, adaptive thinking style.",
+      "evidence_quotes": [
+        "it's like, I know, 15 years of speaking now. And I and I've had people come up to me...",
+        "uh this month was a 16-year-old teacher. uh this month was a 16-year-old teacher."
+      ],
+      "why_it_matters": "Shows openness and authenticity, reflects thinking out loud.",
+      "confidence": 0.9
+    },
+    {
+      "primitive_name": "Bridge words/phrases",
+      "description": "Uses phrases like 'it's like' or 'you know' to connect ideas smoothly or soften statements.",
+      "evidence_quotes": [
+        "it's like, I know, 15 years of speaking now.",
+        "it's like a gas station attendant, someone who volunteers, children's hospital..."
+      ],
+      "why_it_matters": "Creates a conversational, approachable tone, signals thought fluidity.",
+      "confidence": 0.85
+    }
+  ],
+  "rhythm_analysis": {
+    "opening_moves": [
+      "So",
+      "And I was like",
+      "Well"
+    ],
+    "bridge_words": [
+      "it's like",
+      "you know",
+      "and"
+    ],
+    "self_corrections": [
+      "and I and I've",
+      "uh this month was a 16-year-old teacher"
+    ],
+    "sentence_length_profile": "Mostly medium-length, conversational sentences with frequent pauses and corrections.",
+    "closing_moves": [
+      "so there you go.",
+      "thank you"
+    ]
+  },
+  "thought_process_patterns": [
+    {
+      "pattern_name": "Reflective reasoning",
+      "description": "Blake often reflects on ideas, connecting personal anecdotes to broader concepts.",
+      "evidence_quotes": [
+        "I was thinking, well, this is not good for our safety on our California highways.",
+        "and I was thinking, well, this is not good for our safety on our California highways."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Exploratory questioning",
+      "description": "Uses questions to probe ideas, e.g., 'why is learning to drive not that exciting?'",
+      "evidence_quotes": [
+        "And I said, well, what why is learning to drive not that exciting?"
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "vulnerability_signals": [
+    {
+      "signal": "Self-corrections and hesitations",
+      "evidence_quotes": [
+        "and I and I've",
+        "uh this month was a 16-year-old teacher."
+      ],
+      "interpretation": "Shows authenticity and openness to imperfection."
+    },
+    {
+      "signal": "Sharing personal stories of failure or uncertainty",
+      "evidence_quotes": [
+        "we know that many of you are doing meaningful and interesting things for your local communities",
+        "thank you for listening. We hope you were inspired"
+      ],
+      "interpretation": "Displays vulnerability through collective effort and positive intent."
+    }
+  ],
+  "signature_language": {
+    "repeated_words": [
+      "thank you",
+      "we know"
+    ],
+    "repeated_phrases": [
+      "thank you for listening",
+      "we hope"
+    ],
+    "metaphor_anchors": [
+      "kind act",
+      "sweet stories"
+    ],
+    "emotional_register": "Warm, encouraging, community-focused"
+  },
+  "era_read": {
+    "era_a_signal": 0.1,
+    "era_b_signal": 0.7,
+    "era_c_signal": 0.2,
+    "current_voice_weight": 0.75,
+    "notes": "Reflects transitional, community-oriented style typical of Era B, with openness to vulnerability and collective storytelling."
+  },
+  "doc_id": "youtube_transcripts_2024_02_09_fewkjl_mync_dean_s_speaker_series_blake_mycoskie_founder_toms",
+  "title": "Dean's Speaker Series | Blake Mycoskie, Founder, TOMS",
+  "era": "era_b_transition_seeker",
+  "date_key": "2024-02-09"
+}

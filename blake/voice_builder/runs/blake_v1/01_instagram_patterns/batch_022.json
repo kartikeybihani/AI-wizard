@@ -1,0 +1,161 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2017-06-07",
+      "end": "2017-10-02"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Simple declarative with personal touch",
+      "description": "Short, direct statements often including personal experiences or opinions.",
+      "structure_template": "Adjective/noun + verb + personal detail",
+      "when_it_appears": "Throughout the batch",
+      "example_quotes": [
+        "Weekend.....time for adventure",
+        "Thanks max for the new @toms chalk bag stitched together with some flag bags."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Question + reflection",
+      "description": "Asks a question to engage or provoke thought, often followed by a personal reflection.",
+      "structure_template": "Question + personal insight",
+      "when_it_appears": "Occasionally",
+      "example_quotes": [
+        "Stop trying to skip the struggle What are your goals?",
+        "Where do your @toms shades take you today?"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.75
+    },
+    {
+      "pattern_name": "Celebratory or achievement statement",
+      "description": "Highlights a milestone, achievement, or special moment with enthusiasm.",
+      "structure_template": "Achievement + celebration",
+      "when_it_appears": "Multiple instances",
+      "example_quotes": [
+        "First summit, nine to go on the #grandtraverse with @pat_dossett @mrgrahamhill @dougworkman @mikepoborsky",
+        "Summit's first fish, scroll for play by play. Safely put back in the stream for another lucky boy to catch"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Personal achievement update",
+      "formula": "Achievement/experience + context + personal comment",
+      "emotional_job": "Share progress, inspire, connect",
+      "example_quotes": [
+        "Day 3, summit # 5.  5 more to go #grandtraverse",
+        "Starting up the north ridge of #grandteton on day 2 of #grandtraverse with @pat_dossett"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Event or moment highlight",
+      "formula": "Event + personal reaction or detail",
+      "emotional_job": "Express joy, surprise, or significance",
+      "example_quotes": [
+        "Great to be at the @acehotel for the @toms global sales summit. So many friends and new faces figuring out how to change the 🌎 together!!!",
+        "Nothing like opening day on flat creek with @westbankanglers #catchandrelease"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Personal reflection or question",
+      "formula": "Question + personal insight or goal",
+      "emotional_job": "Engage audience, provoke thought",
+      "example_quotes": [
+        "Stop trying to skip the struggle What are your goals?",
+        "Nothing makes me happier. Nothing beats the original."
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Thanks",
+      "Thanks max",
+      "Thanks @"
+    ],
+    "closers": [
+      "!!!",
+      "😊",
+      "❤️"
+    ],
+    "bridge_phrases": [
+      "scroll for play by play",
+      "on the look for",
+      "with some"
+    ],
+    "favorite_verbs": [
+      "love",
+      "thanks",
+      "started",
+      "summited",
+      "sharing"
+    ],
+    "favorite_nouns": [
+      "adventure",
+      "summit",
+      "wedding",
+      "fish",
+      "day"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often under 15 words",
+    "line_break_style": "Mostly single lines, occasional line breaks for emphasis"
+  },
+  "voice_tells": [
+    {
+      "tell": "Expresses gratitude and enthusiasm",
+      "why_it_matters": "Builds connection and positivity",
+      "example_quotes": [
+        "Thanks max for the new @toms chalk bag stitched together with some flag bags.",
+        "Great to be at the @acehotel for the @toms global sales summit."
+      ]
+    },
+    {
+      "tell": "Shares personal milestones or moments",
+      "why_it_matters": "Creates authenticity and relatability",
+      "example_quotes": [
+        "First summit, nine to go on the #grandtraverse",
+        "Summit's first fish, scroll for play by play."
+      ]
+    },
+    {
+      "tell": "Uses exclamations and emojis for emphasis",
+      "why_it_matters": "Conveys excitement and emotion",
+      "example_quotes": [
+        "WOW!!!!!!",
+        "Thanks @pat_dossett @mrgrahamhill @dougworkman and @mikepoborsky for a day I will never forget."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long sentences",
+    "Vague generalities",
+    "Lack of personal voice",
+    "Excessive hashtags without context",
+    "Repetitive phrases without variation",
+    "Overuse of emojis",
+    "Too formal or detached tone",
+    "Ignoring audience engagement"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current Instagram voice is casual, enthusiastic, and personal, emphasizing achievements, moments, and gratitude.",
+    "what_changed_vs_older_voice": "Shift toward more storytelling and reflection, less formal or promotional language.",
+    "confidence": 0.9
+  }
+}

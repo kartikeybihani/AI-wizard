@@ -1,0 +1,73 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_enough",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "You are enough",
+      "q": "I discovered I am enough",
+      "confidence": 0.9
+    },
+    {
+      "v": "Helping others remember worth",
+      "q": "A commitment to helping others remember theirs",
+      "confidence": 0.8
+    },
+    {
+      "v": "Mental wellness importance",
+      "q": "Profits go to mental health organizations",
+      "confidence": 0.7
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Repetition of 'enough'",
+      "q": "You are enough, I am enough, We are enough",
+      "confidence": 0.9
+    },
+    {
+      "p": "Personal storytelling",
+      "q": "My own pain led to this message",
+      "confidence": 0.8
+    },
+    {
+      "p": "Universal appeal",
+      "q": "Message of ENOUGH is universal",
+      "confidence": 0.7
+    }
+  ],
+  "lex": {
+    "w": [
+      "enough",
+      "helping",
+      "mental",
+      "wellness",
+      "truth"
+    ],
+    "b": [
+      "commitment",
+      "journey",
+      "lie",
+      "pain",
+      "healing"
+    ],
+    "t": "repetition, personal story, universal message"
+  },
+  "implications": [
+    "Tone is empathetic and empowering",
+    "Focus on internal worth over external success",
+    "Encourages collective cultural change"
+  ],
+  "avoid": [
+    "Overly technical language",
+    "Negative framing",
+    "Complex jargon"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_enough",
+  "title": "ENOUGH | Blake Mycoskie’s New Mission to Support Mental Wellness",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

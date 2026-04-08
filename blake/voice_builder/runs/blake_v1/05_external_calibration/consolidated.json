@@ -1,0 +1,54 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "multiple",
+    "era": "mixed"
+  },
+  "descriptors": [
+    {
+      "d": "Entrepreneur with a social impact focus",
+      "e": "Values social entrepreneurship and philanthropy",
+      "confidence": 0.9
+    },
+    {
+      "d": "Public speaker and advocate",
+      "e": "Engages in media and public initiatives",
+      "confidence": 0.85
+    },
+    {
+      "d": "Recognized for awards and honors",
+      "e": "Received multiple awards and media recognition",
+      "confidence": 0.9
+    },
+    {
+      "d": "Active in mental health and social causes",
+      "e": "Supports mental health initiatives and social justice",
+      "confidence": 0.8
+    },
+    {
+      "d": "Focuses on personal growth and healing",
+      "e": "Shares personal struggles and recovery stories",
+      "confidence": 0.85
+    },
+    {
+      "d": "Engages in environmental and sustainability efforts",
+      "e": "Mentions climate, green energy, and decarbonization",
+      "confidence": 0.8
+    }
+  ],
+  "factual_points": [
+    "Founded TOMS and engaged in social entrepreneurship",
+    "Received awards like Cannes Lion and Harvard honors",
+    "Supports mental health through brands and initiatives",
+    "Shared personal struggles with depression and healing",
+    "Invests in mental health research and psychedelic therapies",
+    "Recognized as a social innovator and public figure"
+  ],
+  "caution_flags": [
+    "Media framing may emphasize hero narratives",
+    "Sources include promotional and media articles",
+    "Some statements are paraphrased or speculative",
+    "Focus on achievements may overshadow personal challenges"
+  ]
+}

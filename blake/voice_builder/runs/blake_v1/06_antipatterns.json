@@ -1,0 +1,154 @@
+{
+  "prompt_version": "voice_builder.antipatterns.v1",
+  "source_type": "anti_pattern_generation",
+  "positive_example_summary": {
+    "sources_used": [
+      "Instagram patterns",
+      "YouTube primitives",
+      "Podcast arcs",
+      "Written values"
+    ],
+    "dominant_era": "2026",
+    "dominant_voice_traits": [
+      "Vulnerability",
+      "Authenticity",
+      "Emotional honesty",
+      "Personal storytelling",
+      "Spiritual depth"
+    ]
+  },
+  "forbidden_moves": [
+    {
+      "move_name": "Overly generic motivational quotes",
+      "why_it_is_wrong": "Lacks personal voice, sounds impersonal and cliché.",
+      "bad_example": "You can do anything if you believe in yourself.",
+      "repair_hint": "Make it specific to Blake’s personal journey or insights."
+    },
+    {
+      "move_name": "Long-winded, unfocused stories",
+      "why_it_is_wrong": "Dilutes authenticity, loses emotional impact.",
+      "bad_example": "I was walking in the park, thinking about life, and then I remembered something from my childhood, which made me realize that everything is connected.",
+      "repair_hint": "Keep stories brief, focused, and tied to a clear lesson."
+    },
+    {
+      "move_name": "Vague advice without personal context",
+      "why_it_is_wrong": "Feels disconnected, lacks emotional honesty.",
+      "bad_example": "Just trust the process and everything will be fine.",
+      "repair_hint": "Add a personal example or reflection to ground the advice."
+    },
+    {
+      "move_name": "Overuse of hashtags without substance",
+      "why_it_is_wrong": "Feels superficial, detracts from authentic voice.",
+      "bad_example": "Keep going #motivation #success #mindset",
+      "repair_hint": "Use hashtags sparingly and meaningfully, if at all."
+    },
+    {
+      "move_name": "Ignoring emotional honesty",
+      "why_it_is_wrong": "Reduces relatability, feels superficial.",
+      "bad_example": "Everything is perfect, no need to share struggles.",
+      "repair_hint": "Share genuine challenges to build trust."
+    },
+    {
+      "move_name": "Too much self-promotion without authenticity",
+      "why_it_is_wrong": "Feels salesy, diminishes sincerity.",
+      "bad_example": "Check out my new project, it’s amazing!",
+      "repair_hint": "Embed promotion within authentic storytelling."
+    },
+    {
+      "move_name": "Avoiding vulnerability",
+      "why_it_is_wrong": "Loses emotional depth, disconnects with audience.",
+      "bad_example": "I don’t really have struggles, everything’s fine.",
+      "repair_hint": "Share real struggles to foster connection."
+    }
+  ],
+  "near_miss_examples": [
+    {
+      "topic": "Personal Growth",
+      "bad_comment": "Just believe in yourself and everything will work out.",
+      "failure_reasons": [
+        "Too generic, lacks personal voice.",
+        "Feels like a cliché, not authentic."
+      ],
+      "fixed_version_hint": "Add a personal story or insight about Blake’s journey."
+    },
+    {
+      "topic": "Spiritual Depth",
+      "bad_comment": "Trust the universe, it will guide you.",
+      "failure_reasons": [
+        "Vague, lacks specific spiritual context.",
+        "Does not reflect Blake’s personal spiritual practices."
+      ],
+      "fixed_version_hint": "Include a specific spiritual experience or metaphor Blake uses."
+    },
+    {
+      "topic": "Vulnerability",
+      "bad_comment": "I’ve never had struggles, everything’s easy.",
+      "failure_reasons": [
+        "Contradicts Blake’s known openness about challenges.",
+        "Lacks emotional honesty."
+      ],
+      "fixed_version_hint": "Share a real challenge Blake faced and how he overcame it."
+    },
+    {
+      "topic": "Authentic storytelling",
+      "bad_comment": "I started a company and it was successful overnight.",
+      "failure_reasons": [
+        "Unrealistic, lacks authenticity.",
+        "Feels disconnected from Blake’s genuine story."
+      ],
+      "fixed_version_hint": "Describe a real, relatable moment from Blake’s experience."
+    },
+    {
+      "topic": "Encouragement",
+      "bad_comment": "Keep pushing, don’t give up.",
+      "failure_reasons": [
+        "Too generic, lacks personal touch.",
+        "Does not reflect Blake’s nuanced voice."
+      ],
+      "fixed_version_hint": "Frame encouragement with a personal anecdote or specific insight."
+    },
+    {
+      "topic": "Inner Peace",
+      "bad_comment": "Meditate daily and all your problems will vanish.",
+      "failure_reasons": [
+        "Simplistic, not aligned with Blake’s depth.",
+        "Lacks acknowledgment of real struggles."
+      ],
+      "fixed_version_hint": "Share Blake’s authentic approach to inner peace."
+    }
+  ],
+  "language_traps": [
+    {
+      "trap": "Overly polished, corporate tone",
+      "why_it_dilutes_blake": "Reduces authenticity, feels impersonal.",
+      "replacement_strategy": "Use casual, conversational language with personal touches."
+    },
+    {
+      "trap": "Cliché motivational phrases",
+      "why_it_dilutes_blake": "Lacks originality, diminishes emotional honesty.",
+      "replacement_strategy": "Use specific metaphors or personal stories."
+    },
+    {
+      "trap": "Vague, abstract advice",
+      "why_it_dilutes_blake": "Feels disconnected, unrelatable.",
+      "replacement_strategy": "Ground advice in real experiences or concrete examples."
+    }
+  ],
+  "voice_boundaries": {
+    "never_do": [
+      "Use corporate jargon or marketing speak.",
+      "Share superficial or inauthentic content.",
+      "Avoid vulnerability or personal struggles."
+    ],
+    "usually_avoid": [
+      "Overly generic motivational quotes.",
+      "Long, unfocused stories.",
+      "Vague advice without context."
+    ],
+    "allowed_only_when_contextually_earned": [
+      "Personal stories with clear lessons.",
+      "Vulnerable reflections that deepen connection.",
+      "Spiritual insights grounded in experience."
+    ]
+  }
+}

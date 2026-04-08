@@ -1,0 +1,182 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2016-04-22",
+      "end": "2016-07-10"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Simple statement + emotional reflection",
+      "description": "Open with a straightforward statement or greeting, then add a personal or emotional note.",
+      "structure_template": "[Opener], [personal/emotional reflection]",
+      "when_it_appears": "frequently throughout",
+      "example_quotes": [
+        "Happy 4th from our family to yours.",
+        "Love this @tomsnewyork Remember the Earth is not given to us by our fathers, but borrowed from our children!!! #earthday"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Celebratory or milestone announcement",
+      "description": "Announces an achievement, event, or milestone with gratitude or pride.",
+      "structure_template": "Today we [celebrate/mark] [event/milestone]. [Personal reflection]",
+      "when_it_appears": "occasionally",
+      "example_quotes": [
+        "Today we celebrate a decade of TOMS. What a journey.",
+        "Deeply honored to be on the cover of @incmagazine."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Call to action or social cause",
+      "description": "Encourages participation or highlights a cause, often with hashtags.",
+      "structure_template": "Join us [action] / [support] [cause] #hashtag",
+      "when_it_appears": "frequently",
+      "example_quotes": [
+        "Stop trying to skip the struggle. The climb is always worth the view #tetons #grateful",
+        "Kick off your shoes with us. For every #withoutshoes photo, we're giving a pair of shoes to a child in need."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Gratitude or appreciation",
+      "description": "Expresses thanks or appreciation for people, experiences, or blessings.",
+      "structure_template": "Thanks to [person/group], I am grateful for [reason]",
+      "when_it_appears": "occasionally",
+      "example_quotes": [
+        "Thanks to my dear friend @charlizeafrica for all the incredible work you do!",
+        "I have had many blessings in my life but being a father the past 18 months is only second to being the son of my dad."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Personal reflection + milestone",
+      "formula": "[Personal reflection], [milestone or achievement]",
+      "emotional_job": "Share personal growth or success",
+      "example_quotes": [
+        "Our journey started 7 years ago when fate brought us together in rural Ethiopia and now @wubetu_shimelash is a high school graduate and on his way to #wakeforestuniversity",
+        "I did it again. @winter_stone thanks for the new ink."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Event or trip highlight + gratitude",
+      "formula": "[Event/trip], [personal gratitude]",
+      "emotional_job": "Share experiences and thankfulness",
+      "example_quotes": [
+        "Thx @miguelsacramentophoto for this awesome shot from indo. Was a great trip and can't wait to do it again",
+        "Good morning 👍"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "structure_name": "Call to action + hashtag",
+      "formula": "Join us [action], [hashtag]",
+      "emotional_job": "Encourage participation in causes",
+      "example_quotes": [
+        "Started my #withoutshoes day for @toms in the water and my feet were cold!!!",
+        "Kick off your shoes with us. For every #withoutshoes photo, we're giving a pair of shoes to a child in need."
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Happy",
+      "Thanks",
+      "Thanks to",
+      "Thanks to my",
+      "Thanks to our",
+      "Thanks to everyone"
+    ],
+    "closers": [
+      "#grateful",
+      "#carpediem",
+      "#impact",
+      "#together",
+      "#blessed"
+    ],
+    "bridge_phrases": [
+      "Love this",
+      "Deeply honored",
+      "Thanks to",
+      "Join us",
+      "Start my day by"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "celebrate",
+      "join",
+      "start",
+      "love",
+      "appreciate"
+    ],
+    "favorite_nouns": [
+      "journey",
+      "milestone",
+      "trip",
+      "experience",
+      "impact",
+      "movement"
+    ],
+    "sentence_length_profile": "mostly short, punchy sentences, often 8-12 words",
+    "line_break_style": "mostly continuous, minimal line breaks, occasional paragraph separation for emphasis"
+  },
+  "voice_tells": [
+    {
+      "tell": "First-person emotional framing",
+      "why_it_matters": "Creates intimacy and authenticity",
+      "example_quotes": [
+        "I have had many blessings in my life but being a father the past 18 months is only second to being the son of my dad.",
+        "Thanks to my dear friend @charlizeafrica for all the incredible work you do!"
+      ]
+    },
+    {
+      "tell": "Use of gratitude and appreciation",
+      "why_it_matters": "Builds connection and positive tone",
+      "example_quotes": [
+        "Deeply honored to be on the cover of @incmagazine.",
+        "Thanks to everyone for making our final decision a tough one."
+      ]
+    },
+    {
+      "tell": "Encouragement and call to action",
+      "why_it_matters": "Mobilizes audience participation",
+      "example_quotes": [
+        "Join us #withoutshoes and help children in need.",
+        "Start my #withoutshoes day for @toms in the water."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly promotional language without personal touch",
+    "Long, dense paragraphs lacking brevity",
+    "Vague statements without emotional or personal context",
+    "Overuse of hashtags without narrative",
+    "Generic greetings like 'Good morning' without follow-up",
+    "Lack of direct engagement or questions",
+    "Repetitive phrases that do not add new meaning",
+    "Overly formal or impersonal tone"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Consistent personal, grateful, and action-oriented tone with short, punchy sentences.",
+    "what_changed_vs_older_voice": "Shift toward more direct calls to action and community engagement, less formal.",
+    "confidence": 0.9
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_publicaffairs_missouristate_edu_blake_mycoskie_public_affairs_convocation_public_affairs_missouri_stat",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "Recognized as a top young businessman",
+      "e": "Named on Fortune's '40 Under 40' list in 2011",
+      "confidence": 0.9
+    },
+    {
+      "d": "Entrepreneurial with multiple ventures",
+      "e": "Started five businesses before TOMS Shoes",
+      "confidence": 0.85
+    },
+    {
+      "d": "Travel and reading enthusiast",
+      "e": "Travels globally, avid reader and traveler",
+      "confidence": 0.8
+    },
+    {
+      "d": "Social-minded and philanthropic",
+      "e": "Encourages giving and social impact in business",
+      "confidence": 0.85
+    },
+    {
+      "d": "Media recognition in prominent outlets",
+      "e": "Featured in Time Magazine and Bill Gates article",
+      "confidence": 0.8
+    },
+    {
+      "d": "Competitive and adventurous",
+      "e": "Participated in The Amazing Race with sister",
+      "confidence": 0.75
+    }
+  ],
+  "factual_points": [
+    "Blake was featured in Time Magazine and Bill Gates article",
+    "Named on Fortune's '40 Under 40' list in 2011",
+    "Started five businesses before TOMS Shoes",
+    "Competed in The Amazing Race with his sister",
+    "Traveled the world, nearly winning $1 million",
+    "Passionate about inspiring youth and social impact"
+  ],
+  "caution_flags": [
+    "Source may emphasize success and recognition",
+    "Limited detail on personal motivations",
+    "Potential media framing of achievements",
+    "Focus on accolades over challenges"
+  ],
+  "doc_id": "external_articles_unknown_date_publicaffairs_missouristate_edu_blake_mycoskie_public_affairs_convocation_public_affairs_missouri_stat",
+  "title": "Blake Mycoskie - Public Affairs Convocation - Public Affairs - Missouri State",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

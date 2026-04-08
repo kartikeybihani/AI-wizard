@@ -1,0 +1,191 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2013-11-30",
+      "end": "2014-02-27"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Question + Personal Reflection",
+      "description": "Open with a question or prompt, then share a personal thought or reflection.",
+      "structure_template": "#Question? + [Personal insight]",
+      "when_it_appears": "Throughout the batch",
+      "example_quotes": [
+        "Who won?",
+        "Maybe it is my subconscious telling me to play more ?"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Announcement + Excitement",
+      "description": "Share upcoming news or events with enthusiasm.",
+      "structure_template": "Exciting news about [event/product]! Can't wait to share.",
+      "when_it_appears": "Multiple captions",
+      "example_quotes": [
+        "exciting news about the next One for One product coming soon!",
+        "I'll be making the announcement at @sxsw."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Descriptive Observation",
+      "description": "Describe a scene or moment with vivid detail.",
+      "structure_template": "Beautiful [scene], hitting the peak in [location].",
+      "when_it_appears": "Consistently",
+      "example_quotes": [
+        "Beautiful sunrise hitting the peak in Davos.",
+        "Testing new @toms searcher boots. And a baby hammock."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Personal Activity + Casual Tone",
+      "description": "Share a personal activity or experience casually.",
+      "structure_template": "My [activity], [adjective] day.",
+      "when_it_appears": "Frequent",
+      "example_quotes": [
+        "My omelet just reminded me of my childhood.",
+        "My next trick"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Question + Reflection",
+      "formula": "Question? + [Personal insight]",
+      "emotional_job": "Engage audience with curiosity, then share personal thought",
+      "example_quotes": [
+        "Who won?",
+        "Maybe it is my subconscious telling me to play more ?"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Announcement + Excitement",
+      "formula": "Exciting news about [event/product]! Can't wait to share.",
+      "emotional_job": "Build anticipation and enthusiasm",
+      "example_quotes": [
+        "exciting news about the next One for One product coming soon!",
+        "I'll be making the announcement at @sxsw."
+      ],
+      "confidence": 0.8
+    },
+    {
+      "structure_name": "Scene Description",
+      "formula": "Beautiful [scene], hitting the peak in [location].",
+      "emotional_job": "Create vivid imagery and mood",
+      "example_quotes": [
+        "Beautiful sunrise hitting the peak in Davos.",
+        "Testing new @toms searcher boots. And a baby hammock."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Casual Personal Share",
+      "formula": "My [activity], [adjective] day.",
+      "emotional_job": "Share personal moments casually",
+      "example_quotes": [
+        "My omelet just reminded me of my childhood.",
+        "My next trick"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "My",
+      "Testing",
+      "Come one come all",
+      "Let's",
+      "Just starting",
+      "Turn out"
+    ],
+    "closers": [
+      "Can't wait to share.",
+      "Feeling really proud.",
+      "Really great days.",
+      "Love it.",
+      "Exactly how I feel."
+    ],
+    "bridge_phrases": [
+      "And",
+      "Then",
+      "So",
+      "Now"
+    ],
+    "favorite_verbs": [
+      "sharing",
+      "playing",
+      "rocking",
+      "trying",
+      "adopting",
+      "seeing"
+    ],
+    "favorite_nouns": [
+      "sunrise",
+      "scene",
+      "moment",
+      "activity",
+      "milestone",
+      "adventure"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, 5-15 words.",
+    "line_break_style": "Occasional line breaks for emphasis, often after a thought or question."
+  },
+  "voice_tells": [
+    {
+      "tell": "Use of questions to engage",
+      "why_it_matters": "Creates interaction and invites comments",
+      "example_quotes": [
+        "Who won?",
+        "Anyone watch the segment?"
+      ]
+    },
+    {
+      "tell": "Casual, conversational tone",
+      "why_it_matters": "Builds relatability and approachability",
+      "example_quotes": [
+        "My omelet just reminded me of my childhood.",
+        "Exactly how I feel"
+      ]
+    },
+    {
+      "tell": "Sharing personal moments or milestones",
+      "why_it_matters": "Builds authenticity and connection",
+      "example_quotes": [
+        "First TOMS shoe in Haiti!",
+        "Adopted canyon from rescue center."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly promotional language without personal touch",
+    "Long, dense paragraphs",
+    "Vague statements lacking detail",
+    "Excessive hashtags or links",
+    "Overuse of emojis",
+    "Generic motivational quotes",
+    "Repetitive phrases without variation",
+    "Too formal or scripted tone"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current Instagram voice is casual, personal, and engaging, with frequent questions and vivid scene descriptions.",
+    "what_changed_vs_older_voice": "Shift from era_a more promotional and formal to era_c more personal and conversational.",
+    "confidence": 0.9
+  }
+}

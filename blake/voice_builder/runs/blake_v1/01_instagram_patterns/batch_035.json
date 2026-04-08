@@ -1,0 +1,161 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2014-06-04",
+      "end": "2014-10-04"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Thought/Observation + Personal Touch",
+      "description": "Opens with a brief thought or observation, often personal or reflective.",
+      "structure_template": "Intro + personal insight",
+      "when_it_appears": "Throughout, especially in casual, reflective posts.",
+      "example_quotes": [
+        "Decisions decisions...",
+        "Hope he does not sleep walk :)"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Event/Activity + Excitement/Emotion",
+      "description": "Shares an activity or event with a tone of excitement or gratitude.",
+      "structure_template": "Activity/achievement + emotional expression",
+      "when_it_appears": "In posts about trips, milestones, or achievements.",
+      "example_quotes": [
+        "Made the grand Teton summit in one day. Now I just have to get down. I love you all!",
+        "Early flight this morning for a big day!"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Personal/Reflective + Gratitude/Invitation",
+      "description": "Expresses gratitude or invites engagement, often with a personal note.",
+      "structure_template": "Personal reflection + call to action or gratitude",
+      "when_it_appears": "In birthday, memorial, or community posts.",
+      "example_quotes": [
+        "Yesterday we lost Charlie Lang, heather's grandpa and a dear friend to me. I am so thankful I got to celebrate his 90th b day with him.",
+        "My b day wish: that this world knows how much I love it. carpe diem"
+      ],
+      "frequency_estimate": "moderate",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Reflective Statement",
+      "formula": "Thought/observation + personal insight",
+      "emotional_job": "Share personal reflections or insights in a casual, approachable way.",
+      "example_quotes": [
+        "Decisions decisions...",
+        "Hope he does not sleep walk :)"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Achievement/Activity + Emotional Tone",
+      "formula": "Activity/achievement + emotion",
+      "emotional_job": "Celebrate milestones or activities with enthusiasm.",
+      "example_quotes": [
+        "Made the grand Teton summit in one day. Now I just have to get down. I love you all!",
+        "Early flight this morning for a big day!"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Personal Reflection + Gratitude",
+      "formula": "Personal story or reflection + gratitude or invitation",
+      "emotional_job": "Express thankfulness or invite engagement around personal moments.",
+      "example_quotes": [
+        "Yesterday we lost Charlie Lang, heather's grandpa and a dear friend to me.",
+        "My b day wish: that this world knows how much I love it."
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Decisions decisions...",
+      "Hope he does not sleep walk :)",
+      "Yesterday we lost Charlie..."
+    ],
+    "closers": [
+      "We love you all!",
+      "carpe diem",
+      "I love it"
+    ],
+    "bridge_phrases": [
+      "Here's to...",
+      "Now I just have to...",
+      "What do u see in the mirror?"
+    ],
+    "favorite_verbs": [
+      "love",
+      "celebrate",
+      "make",
+      "find",
+      "do"
+    ],
+    "favorite_nouns": [
+      "day",
+      "world",
+      "love",
+      "achievement",
+      "moment"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often 5-15 words.",
+    "line_break_style": "Occasional line breaks for emphasis, especially in personal or reflective posts."
+  },
+  "voice_tells": [
+    {
+      "tell": "Casual, personal tone",
+      "why_it_matters": "Creates intimacy and approachability.",
+      "example_quotes": [
+        "Hope he does not sleep walk :)",
+        "Made the grand Teton in one day."
+      ]
+    },
+    {
+      "tell": "Use of emojis and hashtags",
+      "why_it_matters": "Enhances expressiveness and engagement.",
+      "example_quotes": [
+        "#lifeisawesome",
+        "#carprdiem"
+      ]
+    },
+    {
+      "tell": "Expresses gratitude or celebration",
+      "why_it_matters": "Builds positive emotional connection.",
+      "example_quotes": [
+        "We love you and will miss you.",
+        "Here's to Charlie!"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long sentences",
+    "Generic motivational quotes without personal touch",
+    "Vague statements lacking emotional framing",
+    "Excessive hashtags or emojis",
+    "Overuse of cliches",
+    "Impersonal or promotional language",
+    "Negative or overly serious tone",
+    "Lack of personal insight or reflection"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current style is casual, reflective, and emotionally open, emphasizing personal stories and achievements.",
+    "what_changed_vs_older_voice": "Shift toward more personal reflection and gratitude, less promotional or generic.",
+    "confidence": 0.9
+  }
+}

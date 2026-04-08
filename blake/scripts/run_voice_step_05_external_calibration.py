@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import subprocess
+import sys
+from pathlib import Path
+
+
+def main() -> int:
+    base = Path(__file__).resolve().with_name("run_voice_builder.py")
+    cmd = [sys.executable, str(base), "--steps", "05_external_calibration", *sys.argv[1:]]
+    return subprocess.call(cmd)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

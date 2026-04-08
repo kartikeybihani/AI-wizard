@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_en_wikipedia_org_blake_mycoskie_wikipedia",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "Entrepreneur and social innovator",
+      "e": "Known for social entrepreneurship and philanthropy",
+      "confidence": 0.9
+    },
+    {
+      "d": "Award-winning communicator",
+      "e": "Received multiple awards and honors",
+      "confidence": 0.85
+    },
+    {
+      "d": "Active in sports and adventure",
+      "e": "Enjoys rock climbing and polo",
+      "confidence": 0.8
+    },
+    {
+      "d": "Recognized for leadership",
+      "e": "Honored by Harvard and Fortune",
+      "confidence": 0.75
+    },
+    {
+      "d": "Media presence and recognition",
+      "e": "Featured in CNN, Vogue, NPR",
+      "confidence": 0.8
+    },
+    {
+      "d": "Involved in multiple ventures",
+      "e": "Investor at Urban Golf and Athletic Brewing",
+      "confidence": 0.8
+    }
+  ],
+  "factual_points": [
+    "Founded Toms Shoes and engaged in social entrepreneurship",
+    "Received Cannes LionHeart Award in 2016",
+    "Honored with Harvard Next Generation Award in 2015",
+    "Named one of the 'Five Best Communicators' in 2013",
+    "Featured in media outlets like CNN and Vogue",
+    "Enjoys rock climbing and polo"
+  ],
+  "caution_flags": [
+    "Media framing may emphasize awards over personal details",
+    "Sources include promotional and media articles",
+    "Some references are archived or dead links",
+    "Focus on achievements may overshadow challenges"
+  ],
+  "doc_id": "external_articles_unknown_date_en_wikipedia_org_blake_mycoskie_wikipedia",
+  "title": "Blake Mycoskie - Wikipedia",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

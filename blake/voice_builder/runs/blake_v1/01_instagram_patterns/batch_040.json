@@ -1,0 +1,211 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2013-07-13",
+      "end": "2013-10-07"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Event/Activity Highlight",
+      "description": "Open with a brief activity or event, often mentioning location or participants.",
+      "structure_template": "Doing/at [activity/location], [additional detail]",
+      "when_it_appears": "most captions",
+      "example_quotes": [
+        "Hanging with a leopard at Branson's safari lodge. Amazing.",
+        "Leading the first tee open at @pebblebeach with my #dad"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Personal/Reflective Statement",
+      "description": "Share a personal thought, mood, or reflection, often with a casual tone.",
+      "structure_template": "Feeling [emotion], [additional comment]",
+      "when_it_appears": "occasionally",
+      "example_quotes": [
+        "I think today could be the halfway mark... 🏁 #birthday",
+        "California dreaming."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.75
+    },
+    {
+      "pattern_name": "Call to Action/Engagement",
+      "description": "Encourage participation, donations, or joining a cause.",
+      "structure_template": "Help me [action], [link or hashtag]",
+      "when_it_appears": "frequently",
+      "example_quotes": [
+        "Everyone join me in this commitment today!!!",
+        "Help me raise $20,000 for charity: water - every dollar helps!"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Photo/Video Context",
+      "description": "Mention the content or editing process, often with a casual tone.",
+      "structure_template": "Shot in [place], edited with [app]",
+      "when_it_appears": "occasionally",
+      "example_quotes": [
+        "Shot this in Venice and edited with piclab. Love this app",
+        "Everyone join me in this commitment today!!!"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.7
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Activity + Personal Reflection",
+      "formula": "[Activity/Location], [emotion/observation]",
+      "emotional_job": "Share a moment or experience with a personal touch.",
+      "example_quotes": [
+        "Hanging with a leopard at Branson's safari lodge. Amazing.",
+        "Leading the first tee open at @pebblebeach with my #dad"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Call to Action + Personal Note",
+      "formula": "Help me [action], [personal comment]",
+      "emotional_job": "Engage followers in a cause or activity.",
+      "example_quotes": [
+        "Everyone join me in this commitment today!!!",
+        "Help me raise $20,000 for charity: water - every dollar helps!"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Mood/Reflection + Context",
+      "formula": "Feeling [emotion], [context]",
+      "emotional_job": "Express mood or reflection tied to a moment.",
+      "example_quotes": [
+        "I think today could be the halfway mark... 🏁 #birthday",
+        "California dreaming."
+      ],
+      "confidence": 0.75
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "And here is",
+      "Hanging with",
+      "Loved speaking to",
+      "Round 2",
+      "Saturday",
+      "What state am I in?",
+      "Match time",
+      "my #birthday campaign",
+      "Nice @shinloa article",
+      "Babysitting now",
+      "Liam. Bamm.",
+      "Everyone join me"
+    ],
+    "closers": [
+      "Help me",
+      "please read more",
+      "go to",
+      "see the link",
+      "love this app",
+      "hit newsstand today!",
+      "about our commitment",
+      "every penny of the money raised",
+      "help me raise",
+      "help me",
+      "help me",
+      "help me"
+    ],
+    "bridge_phrases": [
+      "and me celebrating",
+      "at dinner",
+      "at Branson's",
+      "in South Africa",
+      "at #CGI2013",
+      "with my dogs",
+      "and @humanpoweredproductcustomizer",
+      "and #livecustomtoms"
+    ],
+    "favorite_verbs": [
+      "hanging",
+      "loved",
+      "leading",
+      "visited",
+      "shot",
+      "thinking",
+      "help",
+      "join",
+      "share",
+      "made",
+      "wearing",
+      "put",
+      "about"
+    ],
+    "favorite_nouns": [
+      "lion",
+      "leopard",
+      "safari lodge",
+      "TOMS shoes",
+      "charity water",
+      "app",
+      "Venice",
+      "California",
+      "documentary",
+      "dogs",
+      "coffee",
+      "campaign"
+    ],
+    "sentence_length_profile": "mostly short, punchy sentences, often 5-15 words",
+    "line_break_style": "mostly continuous, minimal line breaks, occasional use of hashtags or emojis"
+  },
+  "voice_tells": [
+    {
+      "tell": "Casual, personal tone",
+      "why_it_matters": "Creates intimacy and relatability",
+      "example_quotes": [
+        "Liam. Bamm. Where's my coffee",
+        "Nice @shinloa article in esquire. Wearing mine :)"
+      ]
+    },
+    {
+      "tell": "Use of hashtags and mentions",
+      "why_it_matters": "Connects to broader conversations and communities",
+      "example_quotes": [
+        "Ha! #regram #TOMSshoes",
+        "at #CGI2013"
+      ]
+    },
+    {
+      "tell": "Occasional humor or playful tone",
+      "why_it_matters": "Engages followers with personality",
+      "example_quotes": [
+        "Last week I visited the future site of the Haiti factory...",
+        "It's finally getting weird @humanpoweredproductcustomizer"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long sentences",
+    "Formal or corporate language",
+    "Heavy hashtags without context",
+    "Vague statements without specifics",
+    "Overuse of emojis",
+    "Repetitive phrases without variation",
+    "Too many calls to action in one caption",
+    "Lack of personal voice or anecdote"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current Instagram voice is casual, engaging, and action-oriented, emphasizing personal moments and causes.",
+    "what_changed_vs_older_voice": "Shift from more formal or generic captions to more personal, story-driven, and community-focused posts.",
+    "confidence": 0.85
+  }
+}

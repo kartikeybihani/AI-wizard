@@ -1,0 +1,73 @@
+{
+  "run_id": "blake_v1",
+  "run_dir": "blake/voice_builder/runs/blake_v1",
+  "dry_run": false,
+  "selected_steps": [
+    "07_character_bible"
+  ],
+  "completed_steps": [
+    "07_character_bible"
+  ],
+  "extract_model": "openai/gpt-4.1-nano",
+  "synthesis_model": "openai/gpt-4.1-nano",
+  "llm_max_tokens": {
+    "instagram_batch": 4000,
+    "instagram_consolidate": 4500,
+    "youtube_chunk": 1200,
+    "youtube_consolidate_video": 1600,
+    "youtube_consolidate_global": 2200,
+    "podcast_chunk": 1200,
+    "podcast_consolidate_doc": 1600,
+    "podcast_consolidate_global": 2400,
+    "longform_chunk": 850,
+    "longform_consolidate_doc": 900,
+    "longform_consolidate_global": 1100,
+    "written_chunk": 1200,
+    "written_consolidate_doc": 1500,
+    "written_consolidate_global": 2200,
+    "calibration_chunk": 700,
+    "calibration_consolidate_doc": 1000,
+    "calibration_consolidate_global": 1400,
+    "antipatterns": 1100,
+    "character_bible": 1400
+  },
+  "stats": {
+    "doc_count": 58,
+    "caption_count": 1241,
+    "doc_bucket_counts": {
+      "youtube_transcripts": 16,
+      "podcast_transcripts": 3,
+      "substack_posts": 5,
+      "personal_site_pages": 15,
+      "external_articles": 19
+    },
+    "doc_era_counts": {
+      "era_a_toms_builder": 12,
+      "era_b_transition_seeker": 4,
+      "era_c_enough_current": 42
+    },
+    "caption_era_counts": {
+      "era_c_enough_current": 261,
+      "era_b_transition_seeker": 1,
+      "era_a_toms_builder": 979
+    }
+  },
+  "character_bible_path_json": "blake/voice_builder/runs/blake_v1/07_character_bible.json",
+  "character_bible_path_md": "blake/voice_builder/runs/blake_v1/07_character_bible.md",
+  "character_bible_keys": [
+    "anti_patterns",
+    "bucket_examples",
+    "character_name",
+    "comment_generation_checklist",
+    "confidence",
+    "era_weights",
+    "evidence_trace",
+    "generation_policy",
+    "identity_core",
+    "prompt_version",
+    "source_weights",
+    "voice_positioning",
+    "voice_rules",
+    "who_blake_is"
+  ]
+}

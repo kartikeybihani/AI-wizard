@@ -1,0 +1,150 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "blakemycoskie",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2025-11-05",
+      "end": "2025-12-18"
+    },
+    "era_mix": {
+      "era_a_count": 0,
+      "era_b_count": 0,
+      "era_c_count": 30
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Personal Reflection + Call to Action",
+      "description": "Opens with personal insight, ends with a prompt or link.",
+      "structure_template": "I [personal insight]. [Call to action or link]",
+      "when_it_appears": "Most captions in current era",
+      "example_quotes": [
+        "Start inside. Then go build.",
+        "Move your body before the thoughts take over."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Storytelling + Gratitude",
+      "description": "Shares a personal story, ends with gratitude or lesson.",
+      "structure_template": "I [story]. Thank you [person/thing].",
+      "when_it_appears": "Common in recent captions",
+      "example_quotes": [
+        "My mom wrote a cookbook called Butter Busters... I was 15 watching it all happen.",
+        "Love you mom! And thank you rhinos!!"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Observation + Advice",
+      "description": "States an observation, offers a simple piece of advice.",
+      "structure_template": "When [observation], [advice].",
+      "when_it_appears": "Frequent in current captions",
+      "example_quotes": [
+        "If you know a veteran, call them.",
+        "If it’s not on your calendar, it’s not a priority."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Insight + Link",
+      "formula": "I [insight]. [Link or call to action]",
+      "emotional_job": "Share a thought, direct to further content",
+      "example_quotes": [
+        "The full story is on my Substack. Link in my bio!",
+        "I just wrote a new Substack about this idea. Click the link in my bio."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Question + Reflection",
+      "formula": "Question: [question]? Reflection: [thought]",
+      "emotional_job": "Engage audience, provoke thought",
+      "example_quotes": [
+        "Which leg of your stool needs the most attention right now?",
+        "Are you making space for what matters?"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Start inside.",
+      "A reminder.",
+      "Lately I’ve realized..."
+    ],
+    "closers": [
+      "Love you mom!",
+      "And thank you rhinos!!",
+      "Wishing you a day full of connection, purpose, and maybe a little adventure."
+    ],
+    "bridge_phrases": [
+      "Then today after a great night sleep, I woke up and felt great again.",
+      "Sometimes the hardest chapters come from a combination of small shifts."
+    ],
+    "favorite_verbs": [
+      "share",
+      "remember",
+      "invest",
+      "learn",
+      "build"
+    ],
+    "favorite_nouns": [
+      "story",
+      "truth",
+      "purpose",
+      "connection",
+      "energy"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often 1-2 lines.",
+    "line_break_style": "Frequent line breaks after key ideas or for emphasis."
+  },
+  "voice_tells": [
+    {
+      "tell": "Authentic vulnerability",
+      "why_it_matters": "Builds trust and relatability",
+      "example_quotes": [
+        "Yesterday was really scary. I woke up and felt depressed again.",
+        "Sometimes it’s your body saying, “I can’t play this role anymore.”"
+      ]
+    },
+    {
+      "tell": "Personal growth & reflection",
+      "why_it_matters": "Encourages self-awareness",
+      "example_quotes": [
+        "Growth mindset isn’t motivation.... it’s endurance.",
+        "Open loops. Half-finished thoughts. Endless tabs in my mind."
+      ]
+    },
+    {
+      "tell": "Gratitude & connection",
+      "why_it_matters": "Fosters community and appreciation",
+      "example_quotes": [
+        "Love you mom! And thank you rhinos!!",
+        "Invest in the people who lift you back up."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly generic motivational quotes",
+    "Long, unbroken paragraphs",
+    "Vague statements without personal insight",
+    "Overuse of hashtags without context",
+    "Excessive self-promotion without substance",
+    "Ignoring emotional vulnerability",
+    "Repetitive call-to-actions without variation",
+    "Lack of storytelling or personal narrative"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake’s current voice is authentic, vulnerable, and focused on personal growth, connection, and practical advice.",
+    "what_changed_vs_older_voice": "More storytelling and emotional honesty, less abstract motivation.",
+    "confidence": 0.9
+  }
+}

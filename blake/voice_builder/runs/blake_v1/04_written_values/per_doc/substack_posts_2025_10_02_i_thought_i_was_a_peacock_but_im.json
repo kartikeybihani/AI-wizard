@@ -1,0 +1,73 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "substack_posts_2025_10_02_i_thought_i_was_a_peacock_but_im",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "Authenticity in simple focus",
+      "q": "Focus on what truly matters",
+      "confidence": 0.9
+    },
+    {
+      "v": "Embrace individual uniqueness",
+      "q": "Be true to your nature",
+      "confidence": 0.85
+    },
+    {
+      "v": "Trust in personal rhythm",
+      "q": "Follow your own beat",
+      "confidence": 0.88
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Metaphor of animals",
+      "q": "Woodpecker as self-identity",
+      "confidence": 0.9
+    },
+    {
+      "p": "Personal storytelling",
+      "q": "Sharing transformative experience",
+      "confidence": 0.85
+    },
+    {
+      "p": "Contrast of grand vs. simple",
+      "q": "Rejecting need for admiration",
+      "confidence": 0.88
+    }
+  ],
+  "lex": {
+    "w": [
+      "focus",
+      "trust",
+      "alive",
+      "pecking",
+      "purpose"
+    ],
+    "b": [
+      "woodpecker",
+      "animal",
+      "nature",
+      "hike",
+      "mushrooms"
+    ],
+    "t": "Emphasizes authenticity, individual rhythm, humility"
+  },
+  "implications": [
+    "Value genuine self-expression over external validation",
+    "Prioritize inner connection and purpose",
+    "Find happiness in simple, focused work"
+  ],
+  "avoid": [
+    "Seeking approval from others",
+    "Overcomplicating identity",
+    "Ignoring personal rhythm"
+  ],
+  "doc_id": "substack_posts_2025_10_02_i_thought_i_was_a_peacock_but_im",
+  "title": "I thought I was a Peacock, but I’m a Woodpecker",
+  "bucket": "substack_posts",
+  "era": "era_c_enough_current"
+}

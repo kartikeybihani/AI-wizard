@@ -1,0 +1,78 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_no_magic_pill_pod",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "Mental wellness requires honest stories and proven practices",
+      "q": "Exploring resilience and real human stories for lasting change",
+      "confidence": 0.9
+    },
+    {
+      "v": "Authenticity over image",
+      "q": "I wanted to be a “wow” animal",
+      "confidence": 0.9
+    },
+    {
+      "v": "Self-awareness and letting go are key to peace",
+      "q": "Letting go of chaos to find peace",
+      "confidence": 0.85
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Use personal stories to inspire change",
+      "q": "My healing journey and depression battle",
+      "confidence": 0.9
+    },
+    {
+      "p": "Contrast of animal imagery",
+      "q": "A wolf, maybe. Or a peacock.",
+      "confidence": 0.8
+    },
+    {
+      "p": "Challenge ego-driven illusions",
+      "q": "Ego needs something to fix",
+      "confidence": 0.85
+    }
+  ],
+  "lex": {
+    "w": [
+      "peace",
+      "chaos",
+      "ego",
+      "story",
+      "change",
+      "wow",
+      "animal",
+      "power",
+      "presence"
+    ],
+    "b": [
+      "no magic pill",
+      "mental wellness",
+      "reflection",
+      "resilience",
+      "success",
+      "depression"
+    ],
+    "t": "Honest, reflective, transformative"
+  },
+  "implications": [
+    "Encourages vulnerability in sharing struggles",
+    "Values authenticity over quick fixes",
+    "Prioritizes ongoing self-awareness"
+  ],
+  "avoid": [
+    "Simplistic solutions",
+    "Superficiality",
+    "Disconnection from feelings"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_no_magic_pill_pod",
+  "title": "No Magic Pill Podcast by Blake Mycoskie | Mental Wellness",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

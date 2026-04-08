@@ -1,0 +1,162 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2015-06-20",
+      "end": "2015-09-03"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Simple declarative with emotional emphasis",
+      "description": "Short, direct statements expressing feelings or highlights.",
+      "structure_template": "Subject + verb + complement + [emoji/hashtag]",
+      "when_it_appears": "Most captions",
+      "example_quotes": [
+        "Pure joy. Pure adventure",
+        "Nothing more beautiful than a snake river cutthroat caught on a spring creek all by yourself."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Announcement + call to action",
+      "description": "Sharing news or experiences with an invitation or link.",
+      "structure_template": "I/We + verb + details + [call to action/hashtag]",
+      "when_it_appears": "Captions about events or media appearances",
+      "example_quotes": [
+        "We woke up like this ;) Summit and I chatting with Poppy Harlow on @CNN about the merits of paternity leave!",
+        "My @TODAYshow interview about why paternity leave is good for business is now live- check it out through the link in my profile."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Celebratory or gratitude note",
+      "description": "Expressing thanks or celebrating milestones.",
+      "structure_template": "Thanks/Thank you + for + reason/milestone",
+      "when_it_appears": "Birthdays, achievements, milestones",
+      "example_quotes": [
+        "Thank you for a wonderful birthday week :)",
+        "Thanks to @att , I can get my work done from anywhere."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Personal highlight + emotion",
+      "formula": "Subject + verb + detail + emotion/hashtag",
+      "emotional_job": "Share personal joy, pride, or reflection",
+      "example_quotes": [
+        "First word is.....",
+        "No better feeling in the world than this."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Event + reaction",
+      "formula": "Event + description + personal reaction",
+      "emotional_job": "Share experiences and feelings about events",
+      "example_quotes": [
+        "Great weekend in the Tetons.",
+        "Heading up for the fireworks show"
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "One of my",
+      "Good bye",
+      "Thanks",
+      "Today I am",
+      "Nothing more",
+      "Gotta love",
+      "Yep I have",
+      "Finding inspiration"
+    ],
+    "closers": [
+      "thank u!!!",
+      "check it out",
+      "happy Saturday",
+      "love this",
+      "enjoyed sharing"
+    ],
+    "bridge_phrases": [
+      "and",
+      "plus",
+      "also",
+      "with",
+      "about"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "celebrating",
+      "finding",
+      "heading",
+      "woke",
+      "enjoyed"
+    ],
+    "favorite_nouns": [
+      "moment",
+      "week",
+      "experience",
+      "parade",
+      "interview",
+      "fireworks"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often under 10 words",
+    "line_break_style": "Minimal line breaks, often single sentences or brief phrases"
+  },
+  "voice_tells": [
+    {
+      "tell": "First-person emotional framing",
+      "why_it_matters": "Creates intimacy and relatability",
+      "example_quotes": [
+        "No better feeling in the world than this.",
+        "My first is such a joy"
+      ]
+    },
+    {
+      "tell": "Use of exclamations and emojis",
+      "why_it_matters": "Conveys enthusiasm and friendliness",
+      "example_quotes": [
+        "Happy Saturday",
+        "Fly boarding is the closest thing to the back to the future hovercraft I have ever experienced.  If u have the chance DO IT!"
+      ]
+    },
+    {
+      "tell": "Sharing milestones and gratitude",
+      "why_it_matters": "Builds community and positive tone",
+      "example_quotes": [
+        "Thanks to @att , I can get my work done from anywhere.",
+        "Thanks Rory Sabbatini for my sweet b day present :)"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long sentences",
+    "Vague statements without specifics",
+    "Lack of personal emotion",
+    "Excessive hashtags or emojis",
+    "Generic motivational quotes",
+    "Repetitive phrases without variation",
+    "Overuse of hashtags in captions",
+    "Ignoring personal voice or tone"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Consistent personal, upbeat, and milestone-focused tone with emphasis on gratitude, experiences, and informal engagement.",
+    "what_changed_vs_older_voice": "Shift toward more emotional, milestone-driven captions rather than purely informational or promotional.",
+    "confidence": 0.9
+  }
+}

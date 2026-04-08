@@ -1,0 +1,137 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2019-01-26",
+      "end": "2019-08-06"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Emotional Framing + Personal Reflection",
+      "description": "Open with a personal emotion or thought, often followed by reflection or a call to action.",
+      "structure_template": "I [emotion/experience]. [Reflection or insight].",
+      "when_it_appears": "Most captions, especially those sharing feelings or experiences.",
+      "example_quotes": [
+        "I am just so sad. And exhausted. And frustrated and truthfully, feeling totally powerless.",
+        "Because each day on this planet is a gift 🎁"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Observation + Invitation/Call to Action",
+      "description": "State an observation, then invite engagement or action.",
+      "structure_template": "What is going on [observation]. [Call to action or reflection].",
+      "when_it_appears": "Often in posts about current events or social issues.",
+      "example_quotes": [
+        "What is going on Mother Earth. It’s June 8th and we have snow and summit does not understand why ski school is not open today. :)",
+        "Thanks @griffinloop for 1 of 40 #launchintention sweatshirts. My intention is to practice radical acceptance in all areas of my life."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.85
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Personal Reflection + Future Hope",
+      "formula": "Reflects on a personal experience or feeling + expresses hope or prayer for the future.",
+      "emotional_job": "Connects personal growth with broader hopes or societal change.",
+      "example_quotes": [
+        "My prayer is that I always balance the desire to expose my son to adventures but make him feel loved and fully accepted.",
+        "I pray that there will be compassion in the hearts of our representatives as they vote on HR-8."
+      ],
+      "confidence": 0.88
+    },
+    {
+      "structure_name": "Celebration + Gratitude",
+      "formula": "Expresses joy or pride + thanks or acknowledges others.",
+      "emotional_job": "Builds community and shared purpose.",
+      "example_quotes": [
+        "What a pleasure to share so much with @shrmofficial in Las Vegas today. I am leaving with a full heart.",
+        "Thank you winter. Next stop__________"
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "I am",
+      "Because",
+      "Thanks",
+      "What is going on",
+      "My prayer"
+    ],
+    "closers": [
+      "God bless",
+      "Happy Father’s Day",
+      "Let’s make sure our voices are heard",
+      "Pray for",
+      "Cheers!"
+    ],
+    "bridge_phrases": [
+      "and to push him hard enough",
+      "as we head into",
+      "deeply proud of",
+      "especially with",
+      "deeply inspired by"
+    ],
+    "favorite_verbs": [
+      "feel",
+      "reflect",
+      "share",
+      "thank",
+      "pray"
+    ],
+    "favorite_nouns": [
+      "moment",
+      "hope",
+      "gratitude",
+      "journey",
+      "voice"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often 10-20 words.",
+    "line_break_style": "Occasional line breaks for emphasis, especially after emotional or key points."
+  },
+  "voice_tells": [
+    {
+      "tell": "Authentic emotional sharing",
+      "why_it_matters": "Builds connection through vulnerability and personal insight.",
+      "example_quotes": [
+        "I am just so sad. And exhausted. And frustrated and truthfully, feeling totally powerless.",
+        "My prayer is that I always balance the desire to expose my son to adventures but make him feel loved."
+      ]
+    },
+    {
+      "tell": "Call for action or reflection",
+      "why_it_matters": "Encourages engagement and shared purpose.",
+      "example_quotes": [
+        "Thanks @griffinloop for 1 of 40 #launchintention sweatshirts.",
+        "Deeply proud of @toms for taking this bold stand and demanding a safer America."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long paragraphs",
+    "Vague generalities without specifics",
+    "Excessive hashtags unrelated to content",
+    "Overuse of emojis without context",
+    "Repetitive phrases without variation",
+    "Lack of personal voice or emotion",
+    "Too formal or detached tone",
+    "Ignoring current events or social issues"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake’s current Instagram voice is highly personal, emotionally expressive, and action-oriented, emphasizing social issues and personal growth.",
+    "what_changed_vs_older_voice": "Shift toward more direct social activism and emotional vulnerability, less formal or detached tone.",
+    "confidence": 0.9
+  }
+}

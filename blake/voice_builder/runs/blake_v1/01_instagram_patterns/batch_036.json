@@ -1,0 +1,158 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2014-04-03",
+      "end": "2014-06-03"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Personal update + call to action",
+      "description": "Open with personal note or activity, often ending with a prompt or hashtag.",
+      "structure_template": "Personal statement + [context or activity] + [call to action or hashtag]",
+      "when_it_appears": "frequently in recent captions",
+      "example_quotes": [
+        "Join us and lose your shoes today. #withoutshoes",
+        "Thanks for supporting One Day Without Shoes 2014!"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Gratitude + acknowledgment",
+      "description": "Express thanks or recognition, often tagging others or referencing partnerships.",
+      "structure_template": "Thank you @user for [thing], [additional praise]",
+      "when_it_appears": "common in event or partnership posts",
+      "example_quotes": [
+        "Thank you @atticaofficial for the amazing window and partnership here in Greece.",
+        "Thanks for supporting our movement this week!"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Quote or reflection",
+      "description": "Share a quote or personal insight, often with minimal context.",
+      "structure_template": "Quote or reflection + optional hashtag",
+      "when_it_appears": "occasional, especially in reflective posts",
+      "example_quotes": [
+        "Jean vanier quote just found in my wallet. Great reminder on what is freedom.",
+        "Aren't moms awesome? Throw back to a 2009 Giving Trip."
+      ],
+      "frequency_estimate": "low",
+      "confidence": 0.7
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Activity + emotional reflection",
+      "formula": "[Activity or event] + [personal feeling or thought]",
+      "emotional_job": "Share personal engagement and mood",
+      "example_quotes": [
+        "Had a blast at first TOMS Roasting Co launch party in Amsterdam.",
+        "Getting rid of my @toms tan in prep for #odws on April 29th."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Announcement + call to action",
+      "formula": "[Announcement or news] + [prompt or hashtag]",
+      "emotional_job": "Encourage participation or awareness",
+      "example_quotes": [
+        "Join us and lose your shoes today. #withoutshoes",
+        "Take off your shoes and join us on Tuesday 4/29."
+      ],
+      "confidence": 0.8
+    },
+    {
+      "structure_name": "Personal gratitude + tagging",
+      "formula": "Thank you @user for [thing], [additional praise]",
+      "emotional_job": "Express appreciation and foster community",
+      "example_quotes": [
+        "Thank you @atticaofficial for the amazing window and partnership here in Greece.",
+        "Thanks for supporting our movement this week!"
+      ],
+      "confidence": 0.75
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Had a great time",
+      "Thank you",
+      "In",
+      "On",
+      "My"
+    ],
+    "closers": [
+      "Join us",
+      "Let's build a better tomorrow",
+      "Happy Saturday!",
+      "Thanks for supporting",
+      "Sending a huge thank you"
+    ],
+    "bridge_phrases": [
+      "and I am so proud of her",
+      "always an inspiration to me",
+      "great reminder on what is freedom",
+      "such a treat to spend time with"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "support",
+      "join",
+      "celebrate",
+      "share"
+    ],
+    "favorite_nouns": [
+      "support",
+      "movement",
+      "shoes",
+      "partner",
+      "inspiration"
+    ],
+    "sentence_length_profile": "mostly short, 1-2 sentences, often punchy",
+    "line_break_style": "mostly continuous, occasional line breaks for emphasis"
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal engagement and authenticity",
+      "why_it_matters": "Builds connection and trust with audience",
+      "example_quotes": [
+        "In Paris, the journal as my only companion.",
+        "Ollie's point here we come #perfectright"
+      ]
+    },
+    {
+      "tell": "Call to action or community involvement",
+      "why_it_matters": "Encourages participation and shared purpose",
+      "example_quotes": [
+        "Join us and lose your shoes today. #withoutshoes",
+        "Take off your shoes and join us on Tuesday 4/29."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly long captions",
+    "Vague statements without context",
+    "Excessive hashtags unrelated to message",
+    "Lack of personal voice or reflection",
+    "Generic motivational quotes without personal touch",
+    "Overuse of promotional language without authenticity",
+    "Ignoring audience engagement prompts",
+    "Repetitive phrasing without variation"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Consistent personal, community-focused, action-oriented tone with emphasis on gratitude and participation.",
+    "what_changed_vs_older_voice": "More direct calls to action, increased use of hashtags, concise sentences, less abstract reflection.",
+    "confidence": 0.9
+  }
+}

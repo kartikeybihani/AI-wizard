@@ -1,0 +1,73 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "substack_posts_2025_10_09_when_the_ego_gets_bored_it_starts",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "Ego feeds on problems to survive",
+      "q": "My ego can’t survive without problems",
+      "confidence": 0.9
+    },
+    {
+      "v": "Simplify to find peace",
+      "q": "I’ve been dismantling all that complexity",
+      "confidence": 0.8
+    },
+    {
+      "v": "Self-awareness dissolves ego's control",
+      "q": "Making the unconscious conscious",
+      "confidence": 0.85
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Metaphor of fire and curtain",
+      "q": "Curtain on an illusion I’d been falling for",
+      "confidence": 0.8
+    },
+    {
+      "p": "Contrast of complexity and simplicity",
+      "q": "Built a prison of complexity",
+      "confidence": 0.75
+    },
+    {
+      "p": "Reference to spiritual teachers",
+      "q": "Eckhart Tolle calls this the 'pain-body'",
+      "confidence": 0.8
+    }
+  ],
+  "lex": {
+    "w": [
+      "ego",
+      "problems",
+      "fire",
+      "complexity",
+      "simplify"
+    ],
+    "b": [
+      "illusion",
+      "prison",
+      "fire",
+      "fix",
+      "manage"
+    ],
+    "t": "Focus on ego, problems, and simplification"
+  },
+  "implications": [
+    "Addressing ego reduces unnecessary problems",
+    "Simplification fosters peace",
+    "Self-awareness diminishes ego's influence"
+  ],
+  "avoid": [
+    "Ignoring ego's role",
+    "Overcomplicating life",
+    "Blaming fate"
+  ],
+  "doc_id": "substack_posts_2025_10_09_when_the_ego_gets_bored_it_starts",
+  "title": "When the Ego Gets Bored, it Starts a Fire",
+  "bucket": "substack_posts",
+  "era": "era_c_enough_current"
+}

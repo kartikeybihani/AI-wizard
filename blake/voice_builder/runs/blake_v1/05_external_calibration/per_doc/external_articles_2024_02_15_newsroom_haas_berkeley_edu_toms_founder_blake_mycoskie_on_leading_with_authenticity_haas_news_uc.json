@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_2024_02_15_newsroom_haas_berkeley_edu_toms_founder_blake_mycoskie_on_leading_with_authenticity_haas_news_uc",
+    "era": "era_b_transition_seeker"
+  },
+  "descriptors": [
+    {
+      "d": "Reflects on luck and ideas as partly spiritual",
+      "e": "uncertain about origins of ideas and success",
+      "confidence": 0.8
+    },
+    {
+      "d": "Values hard work and timing in success",
+      "e": "believes effort influences luck and impact",
+      "confidence": 0.8
+    },
+    {
+      "d": "Mentions global social impact ventures",
+      "e": "focuses on shoes, water, vision projects",
+      "confidence": 0.7
+    },
+    {
+      "d": "Suggests sustainability and green energy as future focus",
+      "e": "emphasizes climate issues and innovation",
+      "confidence": 0.75
+    },
+    {
+      "d": "Expresses humility about expertise in new fields",
+      "e": "admits limited experience in green energy",
+      "confidence": 0.7
+    },
+    {
+      "d": "Discusses entrepreneurial opportunities in necessity",
+      "e": "sees challenges as chances for innovation",
+      "confidence": 0.75
+    }
+  ],
+  "factual_points": [
+    "Blake Mycoskie credits luck and ideas for success",
+    "He started on a farm in Argentina",
+    "His ventures include shoes, water, and vision projects",
+    "He advocates for green energy and sustainability",
+    "He feels fortunate to have brought ideas to life",
+    "He believes technology is key to solving climate issues"
+  ],
+  "caution_flags": [
+    "Quotes are paraphrased, not direct speech",
+    "Focuses on personal beliefs, not verified facts",
+    "Some statements are speculative about future trends",
+    "Limited context on specific projects or outcomes"
+  ],
+  "doc_id": "external_articles_2024_02_15_newsroom_haas_berkeley_edu_toms_founder_blake_mycoskie_on_leading_with_authenticity_haas_news_uc",
+  "title": "TOMS Founder Blake Mycoskie on leading with authenticity  - Haas News | UC Berkeley Haas",
+  "bucket": "external_articles",
+  "era": "era_b_transition_seeker"
+}

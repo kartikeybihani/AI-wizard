@@ -1,0 +1,79 @@
+{
+  "prompt_version": "voice_builder.youtube.v2_compact",
+  "source_type": "youtube_chunk",
+  "m": {
+    "doc_id": "youtube_transcripts_2020_11_23_hoa68_gxito_toms_founder_on_being_a_lifelong_seeker_blake_mycoskie_rich",
+    "era": "era_a_toms_builder"
+  },
+  "primitives": [
+    {
+      "p": "I think you're really going to enjoy it.",
+      "q": "I think you're really going to enjoy it.",
+      "c": 0.8
+    },
+    {
+      "p": "So many cool things to talk about.",
+      "q": "So many cool things to talk about.",
+      "c": 0.7
+    },
+    {
+      "p": "Because there's so many, but maybe one.",
+      "q": "Because there's so many, but maybe one.",
+      "c": 0.6
+    },
+    {
+      "p": "I appreciate you coming out here.",
+      "q": "I appreciate you coming out here.",
+      "c": 0.9
+    },
+    {
+      "p": "Yeah",
+      "q": "Yeah",
+      "c": 0.7
+    },
+    {
+      "p": "Thanks dude",
+      "q": "Thanks dude",
+      "c": 0.6
+    }
+  ],
+  "rhythm": {
+    "openers": [
+      "Hey everybody",
+      "Right on man",
+      "So many cool things"
+    ],
+    "bridges": [
+      "And without further Ado",
+      "Because there's so many",
+      "I went uh to the medicine wheel"
+    ],
+    "closers": [
+      "Please enjoy my conversation",
+      "So hit that subscribe button",
+      "And it radically altered"
+    ]
+  },
+  "thought_patterns": [
+    "Expresses curiosity about the guest",
+    "Mentions long time efforts",
+    "Reflects on personal experiences",
+    "Considers multiple angles"
+  ],
+  "vulnerability": [
+    "Admits difficulty remembering details",
+    "Shares personal spiritual experiences",
+    "Expresses appreciation openly",
+    "Shows openness to guidance"
+  ],
+  "signature_words": [
+    "amazing",
+    "cool",
+    "radically",
+    "really"
+  ],
+  "doc_id": "youtube_transcripts_2020_11_23_hoa68_gxito_toms_founder_on_being_a_lifelong_seeker_blake_mycoskie_rich",
+  "title": "TOMS Founder on Being a Lifelong Seeker: Blake Mycoskie | Rich Roll Podcast",
+  "era": "era_a_toms_builder",
+  "date_key": "2020-11-23"
+}

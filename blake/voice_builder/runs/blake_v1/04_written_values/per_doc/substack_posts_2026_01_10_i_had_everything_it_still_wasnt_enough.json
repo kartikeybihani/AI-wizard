@@ -1,0 +1,73 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "substack_posts_2026_01_10_i_had_everything_it_still_wasnt_enough",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "Inner worth over external achievements",
+      "q": "My achievements didn't make me feel enough",
+      "confidence": 0.9
+    },
+    {
+      "v": "Self-worth is internal, not external",
+      "q": "Self-worth is not defined by achievements",
+      "confidence": 0.9
+    },
+    {
+      "v": "Growth through pain and reflection",
+      "q": "Depression revealed what I needed to change",
+      "confidence": 0.85
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Challenging external success",
+      "q": "It all had me, not I had it",
+      "confidence": 0.85
+    },
+    {
+      "p": "Emphasizes internal transformation",
+      "q": "Recognize core wounds and heal them",
+      "confidence": 0.9
+    },
+    {
+      "p": "Reframing pain as growth",
+      "q": "Depression was for me, not against me",
+      "confidence": 0.8
+    }
+  ],
+  "lex": {
+    "w": [
+      "enough",
+      "depression",
+      "change",
+      "achievement",
+      "peace"
+    ],
+    "b": [
+      "grateful",
+      "revealed",
+      "face",
+      "dismantle",
+      "wake"
+    ],
+    "t": "Inner worth, growth, gratitude"
+  },
+  "implications": [
+    "Focus on internal validation",
+    "Value pain as growth catalyst",
+    "Prioritize inner truth over external success"
+  ],
+  "avoid": [
+    "Overemphasizing external achievements",
+    "Ignoring emotional depth",
+    "Neglecting inner work"
+  ],
+  "doc_id": "substack_posts_2026_01_10_i_had_everything_it_still_wasnt_enough",
+  "title": "I Had Everything. It Still Wasn’t Enough.",
+  "bucket": "substack_posts",
+  "era": "era_c_enough_current"
+}

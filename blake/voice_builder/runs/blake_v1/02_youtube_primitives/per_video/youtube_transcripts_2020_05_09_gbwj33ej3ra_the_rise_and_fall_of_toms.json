@@ -1,0 +1,82 @@
+{
+  "prompt_version": "voice_builder.youtube.v2_compact",
+  "source_type": "youtube_chunk",
+  "m": {
+    "doc_id": "youtube_transcripts_2020_05_09_gbwj33ej3ra_the_rise_and_fall_of_toms",
+    "era": "era_a_toms_builder"
+  },
+  "primitives": [
+    {
+      "p": "I think",
+      "q": "maybe",
+      "c": 0.2
+    },
+    {
+      "p": "I'm not sure but",
+      "q": "kind of",
+      "c": 0.15
+    },
+    {
+      "p": "It seems like",
+      "q": "probably",
+      "c": 0.1
+    },
+    {
+      "p": "Honestly",
+      "q": "frankly",
+      "c": 0.05
+    },
+    {
+      "p": "Self-corrects or clarifies mid-sentence",
+      "q": "I think Tom's is it is a learning organization",
+      "c": 0.8
+    },
+    {
+      "p": "Signals vulnerability or humility",
+      "q": "trust me we're all learning",
+      "c": 0.65
+    }
+  ],
+  "rhythm": {
+    "openers": [
+      "So, um",
+      "Well",
+      "Actually",
+      "You know"
+    ],
+    "bridges": [
+      "And then",
+      "But also",
+      "So",
+      "Actually"
+    ],
+    "closers": [
+      "Right?",
+      "You see",
+      "I mean",
+      "So"
+    ]
+  },
+  "thought_patterns": [
+    "Connecting ideas with uncertainty",
+    "Reflecting on motivations",
+    "Questioning outcomes",
+    "Expressing personal perspective"
+  ],
+  "vulnerability": [
+    "I'm not sure if",
+    "Maybe I was wrong",
+    "I guess I don't know",
+    "Honestly, I wonder"
+  ],
+  "signature_words": [
+    "probably",
+    "maybe",
+    "kind of",
+    "sort of"
+  ],
+  "doc_id": "youtube_transcripts_2020_05_09_gbwj33ej3ra_the_rise_and_fall_of_toms",
+  "title": "The Rise And Fall Of Toms",
+  "era": "era_a_toms_builder",
+  "date_key": "2020-05-09"
+}

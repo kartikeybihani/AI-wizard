@@ -1,0 +1,170 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "unknown",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2026-03-09",
+      "end": "2026-03-25"
+    },
+    "era_mix": {
+      "era_a_count": 0,
+      "era_b_count": 0,
+      "era_c_count": 30
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Personal Reflection + Call to Action",
+      "description": "Blake shares personal stories or insights, then invites reflection or action.",
+      "structure_template": "Personal story/lesson + hashtag + call to action or reflection",
+      "when_it_appears": "Most captions",
+      "example_quotes": [
+        "I built TOMS, gave away 100 million shoes, and still ended up in the darkest place of my life.",
+        "Healing rarely arrives in one big breakthrough, it grows through small practices repeated with patience and honesty."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Question + Self-Reflection",
+      "description": "Starts with a question prompting self-awareness or perspective shift.",
+      "structure_template": "Question + reflection or advice",
+      "when_it_appears": "Captions 32, 46, 58",
+      "example_quotes": [
+        "Ask yourself, “what am I stressed about RIGHT NOW?”",
+        "Before you correct your child today ask yourself one question, is this about their growth or my fear?"
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Success + Inner Truth",
+      "description": "Mentions achievements but emphasizes internal worth or lessons learned.",
+      "structure_template": "Achievement + realization of worth or lesson",
+      "when_it_appears": "Captions 42, 55",
+      "example_quotes": [
+        "I built TOMS, gave away 100 million shoes, and sold the company for over $600 million — and two years ago I thought about taking my own life.",
+        "Success can sometimes hide what’s really going on inside. Real change begins when you stop trying to prove yourself."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.85
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Story + Lesson + Hashtag",
+      "formula": "Personal story or achievement + lesson learned + hashtags",
+      "emotional_job": "Share authenticity, inspire reflection",
+      "example_quotes": [
+        "I started TOMS with $3,000, no investors, and no experience in footwear — just an idea I couldn't stop thinking about.",
+        "The wound underneath it all was one core belief: I was not enough."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Question + Reflection",
+      "formula": "Pose a question + offer insight or advice",
+      "emotional_job": "Encourage self-awareness",
+      "example_quotes": [
+        "Ask yourself, “what am I stressed about RIGHT NOW?”",
+        "Before you correct your child today ask yourself one question, is this about their growth or my fear?"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Achievement + Internal Shift",
+      "formula": "Achievement + realization of internal worth or change",
+      "emotional_job": "Highlight internal growth beyond success",
+      "example_quotes": [
+        "I built TOMS, gave away 100 million shoes, and still ended up in the darkest place of my life.",
+        "Success never fixed the feeling that I was not enough."
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "I built",
+      "You are probably",
+      "Just know that",
+      "No amount of success",
+      "How Toms grew fast",
+      "I’ve always been known as"
+    ],
+    "closers": [
+      "Visit the link in bio.",
+      "This is for you.",
+      "Follow the thread.",
+      "Take what’s useful and leave the rest.",
+      "If this message resonates."
+    ],
+    "bridge_phrases": [
+      "and still",
+      "then",
+      "but",
+      "that’s why",
+      "so"
+    ],
+    "favorite_verbs": [
+      "built",
+      "gave",
+      "sold",
+      "realized",
+      "learned",
+      "healed"
+    ],
+    "favorite_nouns": [
+      "success",
+      "growth",
+      "impact",
+      "worth",
+      "belief",
+      "purpose"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences with occasional longer reflections.",
+    "line_break_style": "Mostly paragraph style with some line breaks for emphasis."
+  },
+  "voice_tells": [
+    {
+      "tell": "Personal storytelling",
+      "why_it_matters": "Builds authenticity and relatability.",
+      "example_quotes": [
+        "I built TOMS with $3,000, no investors, and no experience.",
+        "Success never fixed the feeling that I was not enough."
+      ]
+    },
+    {
+      "tell": "Invites reflection or action",
+      "why_it_matters": "Encourages engagement and self-awareness.",
+      "example_quotes": [
+        "Ask yourself, “what am I stressed about RIGHT NOW?”",
+        "Visit the link in bio."
+      ]
+    },
+    {
+      "tell": "Mentions internal vs external success",
+      "why_it_matters": "Highlights internal growth over external validation.",
+      "example_quotes": [
+        "Success can sometimes hide what’s really going on inside.",
+        "We are already ENOUGH."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly generic motivational quotes",
+    "Excessive self-promotion without reflection",
+    "Long, unbroken blocks of text",
+    "Vague advice without personal context",
+    "Repetitive hashtags without substance",
+    "Overuse of exclamation points",
+    "Ignoring emotional vulnerability",
+    "Lack of specific examples or stories"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake’s current voice emphasizes authenticity, vulnerability, and internal growth, blending personal stories with reflective questions.",
+    "what_changed_vs_older_voice": "Shift from purely achievement-focused to more introspective and mental health-oriented messaging.",
+    "confidence": 0.9
+  }
+}

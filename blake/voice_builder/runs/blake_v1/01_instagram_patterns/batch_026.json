@@ -1,0 +1,209 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2016-02-18",
+      "end": "2016-04-22"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Gratitude/Reflection",
+      "description": "Expresses thankfulness or personal reflection, often with hashtags.",
+      "structure_template": "Feeling/Thankful + [emotion/subject] + #hashtag",
+      "when_it_appears": "Frequently at start or end of captions",
+      "example_quotes": [
+        "Thank you @toms_korea for a great 10 year anniversary kick off party.",
+        "Feeling incredibly humbled and grateful after Hollywood’s biggest weekend."
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Event/Activity Highlight",
+      "description": "Describes a specific event, trip, or activity with minimal commentary.",
+      "structure_template": "Doing/Visited + [place/activity], + [emotion/observation]",
+      "when_it_appears": "Mid-caption or opening",
+      "example_quotes": [
+        "Pic on left is 2 years ago doing the BBC, and one on right is today.",
+        "Incredible day visiting the Grand Gateway @TOMS store in Shanghai!"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Personal/Family Moment",
+      "description": "Shares a personal or family moment, often with hashtags like #grateful.",
+      "structure_template": "Back home with + [family member], + #grateful",
+      "when_it_appears": "Often at start or end",
+      "example_quotes": [
+        "Back home with my little man. #grateful",
+        "Loving #ted2016 with my lovely wife @heathermycoskie."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Call to Action/Thank You",
+      "description": "Expresses thanks or invites engagement, often with tags.",
+      "structure_template": "Thank you + [tag/partner], + [emotion]",
+      "when_it_appears": "Typically at end",
+      "example_quotes": [
+        "Thank you team @TOMS China for the amazing afternoon.",
+        "Thank you @att for making the impossible, possible."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Inspirational/Advice",
+      "description": "Shares motivational thoughts or advice, often with exclamations.",
+      "structure_template": "Make your own luck!!!! + [holiday/moment]",
+      "when_it_appears": "At start or as closing",
+      "example_quotes": [
+        "Make your own luck!!!! Happy #stpatricksday",
+        "Try on new @toms at the @tomsflagship in his hands and on his feet."
+      ],
+      "frequency_estimate": "low",
+      "confidence": 0.6
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Gratitude/Reflection",
+      "formula": "[Feeling/Thankful] + [subject/emotion] + [hashtag]",
+      "emotional_job": "Express appreciation, reflect on experiences",
+      "example_quotes": [
+        "Thank you @toms_korea for a great 10 year anniversary kick off party.",
+        "Feeling incredibly humbled and grateful after Hollywood’s biggest weekend."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Event Highlight",
+      "formula": "Visited/Did + [place/activity], + [observation]",
+      "emotional_job": "Share experiences, showcase travels or events",
+      "example_quotes": [
+        "Pic on left is 2 years ago doing the BBC, and one on right is today.",
+        "Incredible day visiting the Grand Gateway @TOMS store in Shanghai!"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Personal Moment",
+      "formula": "Back home with + [family], + #grateful",
+      "emotional_job": "Share personal life, foster connection",
+      "example_quotes": [
+        "Back home with my little man. #grateful",
+        "Loving #ted2016 with my lovely wife @heathermycoskie."
+      ],
+      "confidence": 0.8
+    },
+    {
+      "structure_name": "Thank You/Call to Action",
+      "formula": "Thank you + [partner/tag], + [emotion]",
+      "emotional_job": "Express gratitude, invite engagement",
+      "example_quotes": [
+        "Thank you team @TOMS China for the amazing afternoon.",
+        "Thank you @att for making the impossible, possible."
+      ],
+      "confidence": 0.8
+    },
+    {
+      "structure_name": "Inspirational/Advice",
+      "formula": "Make your own luck!!!! + [holiday/moment]",
+      "emotional_job": "Motivate, inspire action",
+      "example_quotes": [
+        "Make your own luck!!!! Happy #stpatricksday",
+        "Try on new @toms at the @tomsflagship in his hands and on his feet."
+      ],
+      "confidence": 0.6
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Thank you",
+      "Feeling",
+      "Back home",
+      "Incredible day",
+      "Trying on"
+    ],
+    "closers": [
+      "#grateful",
+      "More to come...",
+      "Happy #stpatricksday",
+      "and on"
+    ],
+    "bridge_phrases": [
+      "and so many friends",
+      "with my",
+      "at the",
+      "incredible day"
+    ],
+    "favorite_verbs": [
+      "thank",
+      "feeling",
+      "loving",
+      "trying",
+      "experiencing"
+    ],
+    "favorite_nouns": [
+      "team",
+      "day",
+      "moment",
+      "experience",
+      "story"
+    ],
+    "sentence_length_profile": "Mostly short, 8-15 words",
+    "line_break_style": "Often no line breaks, sometimes comma-separated or paragraph"
+  },
+  "voice_tells": [
+    {
+      "tell": "Expresses gratitude and personal reflection",
+      "why_it_matters": "Builds connection and authenticity",
+      "example_quotes": [
+        "Thank you @toms_korea for a great 10 year anniversary kick off party.",
+        "Feeling incredibly humbled and grateful after Hollywood’s biggest weekend."
+      ]
+    },
+    {
+      "tell": "Shares travel and event highlights",
+      "why_it_matters": "Showcases lifestyle and experiences",
+      "example_quotes": [
+        "Pic on left is 2 years ago doing the BBC, and one on right is today.",
+        "Incredible day visiting the Grand Gateway @TOMS store in Shanghai!"
+      ]
+    },
+    {
+      "tell": "Mentions family or personal moments",
+      "why_it_matters": "Fosters intimacy and relatability",
+      "example_quotes": [
+        "Back home with my little man. #grateful",
+        "Loving #ted2016 with my lovely wife @heathermycoskie."
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly promotional language",
+    "Long, complex sentences",
+    "Vague or generic statements",
+    "Lack of personal voice",
+    "Overuse of hashtags without context",
+    "Excessive emojis or slang",
+    "Repetitive phrases without variation",
+    "Ignoring emotional framing"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Consistent personal, grateful, experience-sharing tone with a focus on authenticity and connection.",
+    "what_changed_vs_older_voice": "Shift toward more personal moments and gratitude, less promotional or generic.",
+    "confidence": 0.9
+  }
+}

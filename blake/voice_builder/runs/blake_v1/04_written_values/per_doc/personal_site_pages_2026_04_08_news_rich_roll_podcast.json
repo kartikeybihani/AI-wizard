@@ -1,0 +1,71 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_news_rich_roll_podcast",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "connection and authenticity",
+      "q": "connect speaking enough",
+      "confidence": 0.9
+    },
+    {
+      "v": "gratitude and appreciation",
+      "q": "incredibly grateful we sat down",
+      "confidence": 0.8
+    },
+    {
+      "v": "simplicity over magic",
+      "q": "no magic pill",
+      "confidence": 0.85
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "emphasizes connection",
+      "q": "connect speaking enough",
+      "confidence": 0.9
+    },
+    {
+      "p": "expresses gratitude",
+      "q": "incredibly grateful we sat down",
+      "confidence": 0.8
+    },
+    {
+      "p": "rejects quick fixes",
+      "q": "no magic pill",
+      "confidence": 0.85
+    }
+  ],
+  "lex": {
+    "w": [
+      "connect",
+      "enough",
+      "gratitude",
+      "speaking",
+      "no magic pill"
+    ],
+    "b": [
+      "gratitude",
+      "connect",
+      "enough"
+    ],
+    "t": "values connection, authenticity, and simplicity"
+  },
+  "implications": [
+    "Tone is genuine and appreciative",
+    "Focus on meaningful connection",
+    "Skeptical of quick solutions"
+  ],
+  "avoid": [
+    "Overly technical language",
+    "Superficial positivity",
+    "Complex jargon"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_news_rich_roll_podcast",
+  "title": "Blake Mycoskie | Rich Roll Podcast | blakemycoskie.com",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}

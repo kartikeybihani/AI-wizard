@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_lifestylesmagazine_com_100_million_commitment_to_psychedelic_research_for_mental_health_treat",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "Entrepreneur involved in psychedelic industry",
+      "e": "confidence: 0.8",
+      "confidence": 0.8
+    },
+    {
+      "d": "Invests in mental health research",
+      "e": "confidence: 0.7",
+      "confidence": 0.7
+    },
+    {
+      "d": "Supports telemedicine treatments",
+      "e": "confidence: 0.75",
+      "confidence": 0.75
+    },
+    {
+      "d": "Engages in mental health advocacy",
+      "e": "confidence: 0.7",
+      "confidence": 0.7
+    },
+    {
+      "d": "Invests despite claims of non-profit motives",
+      "e": "confidence: 0.65",
+      "confidence": 0.65
+    },
+    {
+      "d": "Active in psychedelic research funding",
+      "e": "confidence: 0.7",
+      "confidence": 0.7
+    }
+  ],
+  "factual_points": [
+    "Blake Mycoskie is a 46-year-old entrepreneur.",
+    "He invested in Mind Medicine Inc. and MAPS-related funding.",
+    "He claims financial gain is not his primary goal.",
+    "He supports psychedelic research and mental health treatments.",
+    "He has funded MDMA FDA clearance efforts.",
+    "He advocates for innovative mental health therapies."
+  ],
+  "caution_flags": [
+    "Source may have media framing bias.",
+    "Focus on investment may overshadow personal motives.",
+    "Limited context on public statements.",
+    "Potential promotional tone in article."
+  ],
+  "doc_id": "external_articles_unknown_date_lifestylesmagazine_com_100_million_commitment_to_psychedelic_research_for_mental_health_treat",
+  "title": "$100 million commitment to psychedelic research for mental-health treatments by 46-year-old entrepreneur Blake Mycoskie – Lifestyles Magazine",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

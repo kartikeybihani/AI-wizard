@@ -1,0 +1,128 @@
+{
+  "prompt_version": "voice_builder.podcast.v1",
+  "source_type": "podcast_transcript",
+  "metadata": {
+    "source_id": "youtube_transcripts_2026_01_16_odgjcf00fpg_he_had_everything_midlife_broke_him_anyway_blake_mycoskie",
+    "title": "He Had Everything. Midlife Broke Him Anyway | Blake Mycoskie",
+    "url": "https://youtube.com/...",
+    "published_at": "2026-01-16",
+    "host": "Chip Connley"
+  },
+  "core_arcs": [
+    {
+      "arc_name": "Resilience and Transformation",
+      "arc_summary": "Midlife as a period of profound change, resilience, and authentic growth.",
+      "turning_points": [
+        "Failure in mid-20s",
+        "Midlife setbacks",
+        "Discovering impact-driven purpose"
+      ],
+      "language_used": [
+        "profound transformation",
+        "impact, a different form of ROI",
+        "life-giving passion"
+      ],
+      "why_it_matters_for_voice": "Highlights Blake's lived experience of overcoming setbacks through resilience and purpose.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Deep Connection as Core Value",
+      "arc_summary": "Prioritizing relationships and community as essential for fulfillment.",
+      "turning_points": [
+        "Realizing connection is more vital than success",
+        "Daily effort to nurture relationships"
+      ],
+      "language_used": [
+        "connection and community",
+        "invest in those connections",
+        "lifeblood of purpose"
+      ],
+      "why_it_matters_for_voice": "Reveals Blake's authentic emphasis on human connection shaping his voice.",
+      "confidence": 0.9
+    }
+  ],
+  "inner_life_patterns": [
+    {
+      "pattern_name": "Value of Connection",
+      "description": "Consistent emphasis on relationships as life's foundation.",
+      "evidence_quotes": [
+        "connection and community",
+        "invest in those connections",
+        "daily connection"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Transformation Mindset",
+      "description": "Viewing midlife and challenges as opportunities for growth.",
+      "evidence_quotes": [
+        "midlife isn't a crisis, but a chrysalis",
+        "profound transformation",
+        "most meaningful chapter"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Resilience Through Struggle",
+      "description": "Acknowledging pain and mental health as part of growth.",
+      "evidence_quotes": [
+        "emotional and mental challenges",
+        "suicidal ideation",
+        "bonding experience"
+      ],
+      "confidence": 0.88
+    }
+  ],
+  "belief_hierarchy": {
+    "top_beliefs": [
+      "Relationships are central to a meaningful life",
+      "Midlife is a period of growth, not decline",
+      "Challenges foster resilience"
+    ],
+    "secondary_beliefs": [
+      "Connection requires daily effort",
+      "Transformation involves embracing pain",
+      "Authenticity deepens relationships"
+    ],
+    "tensions": [
+      "Balancing success with emotional health",
+      "Navigating societal expectations of midlife",
+      "Maintaining vulnerability in a performance-driven culture"
+    ]
+  },
+  "recurring_metaphors": [
+    {
+      "metaphor": "Chrysalis",
+      "meaning": "Midlife as a transformative cocoon leading to rebirth.",
+      "evidence_quotes": [
+        "midlife chrysalis",
+        "profound transformation"
+      ]
+    },
+    {
+      "metaphor": "Connection as Lifeblood",
+      "meaning": "Deep relationships sustain and define purpose.",
+      "evidence_quotes": [
+        "connection and community",
+        "invest in those connections"
+      ]
+    }
+  ],
+  "identity_shift_notes": {
+    "who_he_was_before": "A high-profile founder and CEO, defined by success.",
+    "who_he_is_now": "Values vulnerability, connection, and midlife growth.",
+    "what_caused_the_shift": "Experiencing mental health struggles and reflecting on life's deeper purpose.",
+    "confidence": 0.9
+  },
+  "era_read": {
+    "era_a_signal": 0.1,
+    "era_b_signal": 0.3,
+    "era_c_signal": 0.6,
+    "current_voice_weight": 0.85,
+    "notes": "Blake's current narrative emphasizes resilience, connection, and transformation, aligning with Era C themes."
+  },
+  "doc_id": "youtube_transcripts_2026_01_16_odgjcf00fpg_he_had_everything_midlife_broke_him_anyway_blake_mycoskie",
+  "title": "He Had Everything. Midlife Broke Him Anyway | Blake Mycoskie",
+  "bucket": "youtube_transcripts",
+  "era": "era_c_enough_current"
+}

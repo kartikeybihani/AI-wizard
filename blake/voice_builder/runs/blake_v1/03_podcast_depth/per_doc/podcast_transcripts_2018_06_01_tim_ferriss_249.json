@@ -1,0 +1,164 @@
+{
+  "prompt_version": "voice_builder.podcast.v1",
+  "source_type": "podcast_transcript",
+  "metadata": {
+    "source_id": "podcast_transcripts_2018_06_01_tim_ferriss_249",
+    "title": "The Tim Ferriss Show Transcripts: Blake Mycoskie (#249)",
+    "url": "https://tim.blog/podcast/",
+    "published_at": "2018-06-01",
+    "host": "Tim Ferriss"
+  },
+  "core_arcs": [
+    {
+      "arc_name": "Purpose through Service",
+      "arc_summary": "Blake's identity centers on creating impact via business and philanthropy.",
+      "turning_points": [
+        "Trip to South America inspired TOMS' model",
+        "Recognizing the power of giving back"
+      ],
+      "language_used": [
+        "making a difference",
+        "help those in need",
+        "give away millions"
+      ],
+      "why_it_matters_for_voice": "Defines his unwavering purpose-driven identity.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Value of Simple Relationships",
+      "arc_summary": "Prioritizes genuine human connection over material pursuits.",
+      "turning_points": [
+        "Traveling to Ethiopia and witnessing happiness in poverty",
+        "Realizing relationships matter more than possessions"
+      ],
+      "language_used": [
+        "life is so simple",
+        "relationship and loving one another"
+      ],
+      "why_it_matters_for_voice": "Highlights Blake’s belief that happiness stems from human connection.",
+      "confidence": 0.9
+    },
+    {
+      "arc_name": "Reevaluating Success and Work-Life Balance",
+      "arc_summary": "Shifts from relentless work to valuing personal experiences and family.",
+      "turning_points": [
+        "Transition from working 11 months straight",
+        "Prioritizing surfing and family"
+      ],
+      "language_used": [
+        "I don’t work 11 months",
+        "the people and the memories"
+      ],
+      "why_it_matters_for_voice": "Shows his move towards presence and fulfillment.",
+      "confidence": 0.85
+    },
+    {
+      "arc_name": "Transformative Business Philosophy",
+      "arc_summary": "Blake’s approach intertwines profit with social impact, evolving over time.",
+      "turning_points": [
+        "Recognition of blending business and philanthropy",
+        "Scaling giving with growth"
+      ],
+      "language_used": [
+        "business and philanthropy",
+        "impact-driven"
+      ],
+      "why_it_matters_for_voice": "Reflects his view of success as service and impact.",
+      "confidence": 0.85
+    }
+  ],
+  "inner_life_patterns": [
+    {
+      "pattern_name": "Purpose as Identity",
+      "description": "Blake frames his life around making a meaningful difference.",
+      "evidence_quotes": [
+        "making a difference",
+        "help those in need",
+        "give away millions"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Family as Foundation",
+      "description": "His upbringing shapes his caring and entrepreneurial values.",
+      "evidence_quotes": [
+        "serious and intellectual",
+        "hands-on, caring"
+      ],
+      "confidence": 0.8
+    },
+    {
+      "pattern_name": "Growth through Impact",
+      "description": "Business growth is tied to expanding social impact, not just profit.",
+      "evidence_quotes": [
+        "blending business and philanthropy",
+        "scaling giving"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Appreciation for Simplicity",
+      "description": "Values happiness in minimalism and authentic relationships.",
+      "evidence_quotes": [
+        "people who are living in the most poverty",
+        "life is so simple"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "belief_hierarchy": {
+    "top_beliefs": [
+      "Making a difference is central to success",
+      "Business can serve social good"
+    ],
+    "secondary_beliefs": [
+      "Family influences shape core values",
+      "Impact grows with scale"
+    ],
+    "tensions": [
+      "Balancing profit and purpose",
+      "Maintaining authenticity in growth"
+    ]
+  },
+  "recurring_metaphors": [
+    {
+      "metaphor": "Stool analogy",
+      "meaning": "Balance of different life aspects",
+      "evidence_quotes": [
+        "the stool analogy changed Blake’s life"
+      ]
+    },
+    {
+      "metaphor": "Giving as a cycle",
+      "meaning": "Impact that perpetuates itself",
+      "evidence_quotes": [
+        "give away millions",
+        "help those in need"
+      ]
+    },
+    {
+      "metaphor": "Life as simple as water and food",
+      "meaning": "Focus on basic needs and relationships",
+      "evidence_quotes": [
+        "their only daily chores is making sure they have water and food"
+      ]
+    }
+  ],
+  "identity_shift_notes": {
+    "who_he_was_before": "Focused on personal achievement and business",
+    "who_he_is_now": "Driven by purpose, impact, and service",
+    "what_caused_the_shift": "Trip to South America and realization of social impact potential",
+    "confidence": 0.85
+  },
+  "era_read": {
+    "era_a_signal": 0.2,
+    "era_b_signal": 0.4,
+    "era_c_signal": 0.8,
+    "current_voice_weight": 0.75,
+    "notes": "Transition from entrepreneurial founder to purpose-driven impact leader."
+  },
+  "doc_id": "podcast_transcripts_2018_06_01_tim_ferriss_249",
+  "title": "The Tim Ferriss Show Transcripts: Blake Mycoskie (#249)",
+  "bucket": "podcast_transcripts",
+  "era": "era_a_toms_builder"
+}

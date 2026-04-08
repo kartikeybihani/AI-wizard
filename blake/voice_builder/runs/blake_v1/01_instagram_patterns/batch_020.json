@@ -1,0 +1,176 @@
+{
+  "prompt_version": "voice_builder.instagram.v1",
+  "source_type": "instagram_captions_batch",
+  "batch_summary": {
+    "username": "",
+    "total_captions": 30,
+    "date_range": {
+      "start": "2018-05-04",
+      "end": "2018-10-31"
+    },
+    "era_mix": {
+      "era_a_count": 30,
+      "era_b_count": 0,
+      "era_c_count": 0
+    }
+  },
+  "top_patterns": [
+    {
+      "pattern_name": "Personal reflection + call to action",
+      "description": "Opens with personal insight or gratitude, often ending with a direct call or invitation.",
+      "structure_template": "Personal thought / gratitude / observation + [call to action / link / invitation]",
+      "when_it_appears": "Throughout the batch",
+      "example_quotes": [
+        "Feeling so blessed to have received the courage award from @amfar last night alongside @katyperry",
+        "Climbing has changed my life, let’s give 100,000 kids that same opportunity"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Celebratory or milestone announcement",
+      "description": "Announces a special event, milestone, or achievement with enthusiasm.",
+      "structure_template": "Celebration / milestone + details + emojis or hashtags",
+      "when_it_appears": "Multiple captions",
+      "example_quotes": [
+        "Happy 1st my little love. May all your days be filled with unicorns and rainbows.",
+        "12 years ago today we sold the first pair of @toms to a guy named Ben"
+      ],
+      "frequency_estimate": "high",
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Observation + social or environmental message",
+      "description": "Shares an observation with a message or call for awareness.",
+      "structure_template": "Observation + message / call to action / hashtag",
+      "when_it_appears": "Several captions",
+      "example_quotes": [
+        "Grizzly Bears are NOT a trophy! Shoot’em With A Camera ....NOT a gun!",
+        "Love @cleancause Yerba mate and it’s mission and commitment to helping those recovering stay clean."
+      ],
+      "frequency_estimate": "medium",
+      "confidence": 0.8
+    }
+  ],
+  "archetypal_structures": [
+    {
+      "structure_name": "Gratitude + Call to Action",
+      "formula": "Express gratitude + invite engagement or support",
+      "emotional_job": "Builds connection, encourages support",
+      "example_quotes": [
+        "Thanks @ryan_keith_white for the epic photos and @soill and @toms for the sneak peak of the new gear to come.",
+        "Thanks Ben and the 85 million people who have supported our mission since then!"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "structure_name": "Milestone + Reflection",
+      "formula": "Announce milestone + reflect on significance",
+      "emotional_job": "Celebrates achievement, shares personal journey",
+      "example_quotes": [
+        "12 years ago today we sold the first pair of @toms to a guy named Ben",
+        "At age 95 and having lived a full life, my sweet grandpa passed away today."
+      ],
+      "confidence": 0.85
+    },
+    {
+      "structure_name": "Observation + Advocacy",
+      "formula": "Share an observation + advocate for cause",
+      "emotional_job": "Raises awareness, motivates action",
+      "example_quotes": [
+        "Grizzly Bears are NOT a trophy! Shoot’em With A Camera ....NOT a gun!",
+        "Love @cleancause Yerba mate and it’s mission and commitment to helping those recovering stay clean."
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "language_habits": {
+    "openers": [
+      "Feeling",
+      "Happy",
+      "Thanks",
+      "Love",
+      "Good night",
+      "Trying to"
+    ],
+    "closers": [
+      "#lifeisawesome",
+      "Join us. LINK IN BIO",
+      "Please share and spread the word",
+      "Thanks",
+      "Love",
+      "RIP"
+    ],
+    "bridge_phrases": [
+      "and I",
+      "with",
+      "for",
+      "to",
+      "about",
+      "when"
+    ],
+    "favorite_verbs": [
+      "feeling",
+      "hope",
+      "put",
+      "received",
+      "sold",
+      "crushed",
+      "shaved",
+      "looked"
+    ],
+    "favorite_nouns": [
+      "blessing",
+      "moment",
+      "adventure",
+      "trip",
+      "milestone",
+      "support",
+      "gear",
+      "story"
+    ],
+    "sentence_length_profile": "Mostly short, punchy sentences, often under 20 words",
+    "line_break_style": "Mostly continuous, minimal line breaks, occasional use of emojis or hashtags"
+  },
+  "voice_tells": [
+    {
+      "tell": "First-person emotional framing",
+      "why_it_matters": "Creates intimacy and authenticity",
+      "example_quotes": [
+        "Feeling so blessed to have received the courage award from @amfar last night",
+        "Good night my friend"
+      ]
+    },
+    {
+      "tell": "Use of gratitude and celebration",
+      "why_it_matters": "Builds positive connection and community",
+      "example_quotes": [
+        "Thanks @_greghill_ for encouraging me and @keith_esh to summit mount baker.",
+        "Happy birthday America"
+      ]
+    },
+    {
+      "tell": "Occasional humor or lightness",
+      "why_it_matters": "Adds personality and relatability",
+      "example_quotes": [
+        "Summit came to work with me today, both types #dothework",
+        "Charlie sage already looks at home on @almondsurfboards"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "Overly generic motivational quotes",
+    "Excessive hashtags unrelated to content",
+    "Long, dense paragraphs",
+    "Vague statements without personal touch",
+    "Overuse of emojis without context",
+    "Repetitive calls to action without variation",
+    "Overly promotional language",
+    "Lack of emotional authenticity"
+  ],
+  "synthesis_notes": {
+    "what_this_batch_says_about_current_voice": "Blake's current voice is authentic, personal, and community-focused, emphasizing gratitude, milestones, and advocacy.",
+    "what_changed_vs_older_voice": "More direct calls to action and advocacy, less generic motivational content.",
+    "confidence": 0.9
+  }
+}

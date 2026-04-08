@@ -1,0 +1,157 @@
+{
+  "prompt_version": "voice_builder.youtube.v1",
+  "source_type": "youtube_transcript",
+  "metadata": {
+    "video_id": "youtube_transcripts_2026_02_26_f_tfo2in98c_toms_shoes_founder_on_the_success_that_nearly_broke_him",
+    "title": "TOMS Shoes Founder on the Success That Nearly Broke Him",
+    "url": "https://youtube.com/watch?v=...",
+    "published_at": "2026-02-26",
+    "channel": "How Leaders Lead"
+  },
+  "transcript_read": {
+    "word_count": 680,
+    "speaker_mix_notes": "Primarily Blake, conversational tone",
+    "audio_noise_notes": "Clear speech"
+  },
+  "voice_primitives": [
+    {
+      "primitive_name": "Self-correction",
+      "description": "Blake revises or clarifies thoughts mid-sentence, indicating reflection.",
+      "evidence_quotes": [
+        "no pun intended. [laughter] Um, and and that's not what I set out to do."
+      ],
+      "why_it_matters": "Shows authenticity and self-awareness.",
+      "confidence": 0.9
+    },
+    {
+      "primitive_name": "Bridge words",
+      "description": "Uses 'so,' 'then,' 'and' to connect ideas smoothly.",
+      "evidence_quotes": [
+        "then the the next year we got a booth um right at the orientation",
+        "so what happened was by being there by having that booth there every parent"
+      ],
+      "why_it_matters": "Creates conversational flow, approachable style.",
+      "confidence": 0.85
+    },
+    {
+      "primitive_name": "Vulnerability",
+      "description": "Shares personal struggles and uncertainties openly.",
+      "evidence_quotes": [
+        "success didn't protect Blake from a 7-year battle with depression",
+        "he really lost his sense of purpose and nearly lost himself"
+      ],
+      "why_it_matters": "Signals emotional honesty, fosters connection.",
+      "confidence": 0.9
+    },
+    {
+      "primitive_name": "Opening a thought",
+      "description": "Starts ideas with 'I think,' 'so,' signaling reflection.",
+      "evidence_quotes": [
+        "I think it really was just having amazing parents.",
+        "so, we launched the business"
+      ],
+      "why_it_matters": "Indicates humility and thoughtfulness.",
+      "confidence": 0.8
+    },
+    {
+      "primitive_name": "Landing a thought",
+      "description": "Concludes ideas with summaries or decisive statements.",
+      "evidence_quotes": [
+        "and that meant staying up all night doing people's laundry myself",
+        "we went from having like no business to hundreds of thousands of dollars in laundry sales in one day"
+      ],
+      "why_it_matters": "Provides clarity and emphasis.",
+      "confidence": 0.85
+    }
+  ],
+  "rhythm_analysis": {
+    "opening_moves": [
+      "greetings",
+      "introduction of guest"
+    ],
+    "bridge_words": [
+      "so",
+      "then",
+      "and"
+    ],
+    "self_corrections": [
+      "no pun intended. [laughter] Um, and and"
+    ],
+    "sentence_length_profile": "Mixed, reflective and clarifying sentences",
+    "closing_moves": [
+      "summarizing insights",
+      "teasing upcoming content"
+    ]
+  },
+  "thought_process_patterns": [
+    {
+      "pattern_name": "Reflective storytelling",
+      "description": "Revisits past experiences to illustrate lessons.",
+      "evidence_quotes": [
+        "I think it really was just having amazing parents.",
+        "I realized I actually had to do the laundry to be able to manage the people"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "pattern_name": "Problem-solution framing",
+      "description": "Describes challenges and responses.",
+      "evidence_quotes": [
+        "we hardly got any customers and and we were really kind of thought we were just kind of dead in the water",
+        "by being there by having that booth there every parent assumed that every student signed up"
+      ],
+      "confidence": 0.85
+    },
+    {
+      "pattern_name": "Sequential reasoning",
+      "description": "Explains steps leading to success.",
+      "evidence_quotes": [
+        "we launched the business and we offered it to all the students",
+        "then the the next year we got a booth"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "vulnerability_signals": [
+    {
+      "signal": "Discusses depression and loss of purpose",
+      "evidence_quotes": [
+        "success didn't protect Blake from a 7-year battle with depression",
+        "he really lost his sense of purpose and nearly lost himself"
+      ],
+      "interpretation": "Shows emotional openness about struggles."
+    },
+    {
+      "signal": "Admits initial uncertainty about business success",
+      "evidence_quotes": [
+        "we hardly got any customers and and we were really kind of thought we were just kind of dead in the water"
+      ],
+      "interpretation": "Reveals vulnerability in early challenges."
+    }
+  ],
+  "signature_language": {
+    "repeated_words": [
+      "really",
+      "and"
+    ],
+    "repeated_phrases": [
+      "you know",
+      "so"
+    ],
+    "metaphor_anchors": [
+      "getting hands dirty"
+    ],
+    "emotional_register": "Authentic, reflective, candid"
+  },
+  "era_read": {
+    "era_a_signal": 0.1,
+    "era_b_signal": 0.3,
+    "era_c_signal": 0.6,
+    "current_voice_weight": 0.75,
+    "notes": "Reflects current openness, emotional depth, storytelling style typical of 2026."
+  },
+  "doc_id": "youtube_transcripts_2026_02_26_f_tfo2in98c_toms_shoes_founder_on_the_success_that_nearly_broke_him",
+  "title": "TOMS Shoes Founder on the Success That Nearly Broke Him",
+  "era": "era_c_enough_current",
+  "date_key": "2026-02-26"
+}

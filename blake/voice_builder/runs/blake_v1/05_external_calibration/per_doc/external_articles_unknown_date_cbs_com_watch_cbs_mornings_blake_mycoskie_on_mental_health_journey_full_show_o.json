@@ -1,0 +1,58 @@
+{
+  "prompt_version": "voice_builder.external_calibration.v1",
+  "source_type": "external_article_chunk",
+  "m": {
+    "doc_id": "external_articles_unknown_date_cbs_com_watch_cbs_mornings_blake_mycoskie_on_mental_health_journey_full_show_o",
+    "era": "era_c_enough_current"
+  },
+  "descriptors": [
+    {
+      "d": "Entrepreneur and founder of TOMS",
+      "e": "recurrent business identity",
+      "confidence": 0.9
+    },
+    {
+      "d": "Struggled with mental health after selling TOMS",
+      "e": "personal challenge",
+      "confidence": 0.8
+    },
+    {
+      "d": "Speaks openly about his healing journey",
+      "e": "public transparency",
+      "confidence": 0.85
+    },
+    {
+      "d": "Created \"Enough\" bracelets as a reminder",
+      "e": "product for mental health awareness",
+      "confidence": 0.8
+    },
+    {
+      "d": "Discusses mental health on CBS Mornings",
+      "e": "media engagement",
+      "confidence": 0.75
+    },
+    {
+      "d": "Focuses on self-acceptance and enoughness",
+      "e": "values and messaging",
+      "confidence": 0.8
+    }
+  ],
+  "factual_points": [
+    "Sold TOMS in 2019",
+    "Struggled with mental health post-sale",
+    "Launched \"Enough\" bracelets",
+    "Appeared on CBS Mornings in 2026",
+    "Discussed his healing journey publicly",
+    "Campaign promotes self-acceptance"
+  ],
+  "caution_flags": [
+    "Media framing may emphasize personal struggle",
+    "Limited context on mental health details",
+    "Focus on personal narrative over broader issues",
+    "Potential bias towards positive messaging"
+  ],
+  "doc_id": "external_articles_unknown_date_cbs_com_watch_cbs_mornings_blake_mycoskie_on_mental_health_journey_full_show_o",
+  "title": "Watch CBS Mornings: Blake Mycoskie on mental health journey - Full show on CBS",
+  "bucket": "external_articles",
+  "era": "era_c_enough_current"
+}

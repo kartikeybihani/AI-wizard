@@ -1,0 +1,72 @@
+{
+  "prompt_version": "voice_builder.youtube.v2_compact",
+  "source_type": "youtube_chunk",
+  "m": {
+    "doc_id": "youtube_transcripts_2019_01_18_nlharu4ipt0_toms_blake_mycoskie_how_to_make_big_marketing_moves_to_grow",
+    "era": "era_a_toms_builder"
+  },
+  "primitives": [
+    {
+      "p": "Self-corrects mid-sentence: \"even have this moment when I started\"",
+      "q": "I didn't even have this moment",
+      "c": 0.8
+    },
+    {
+      "p": "Uncertainty signals: \"maybe you could retell it here\"",
+      "q": "maybe you could retell it",
+      "c": 0.7
+    },
+    {
+      "p": "Vulnerability: \"happened close to my family\"",
+      "q": "happened close to my family",
+      "c": 0.9
+    },
+    {
+      "p": "Rhythm opener: \"so I just knew\"",
+      "q": "just knew that someone was me",
+      "c": 0.6
+    },
+    {
+      "p": "Bridge word: \"and\"",
+      "q": "and I didn't think it was",
+      "c": 0.4
+    },
+    {
+      "p": "Closer: \"so you know\"",
+      "q": "so you know",
+      "c": 0.3
+    }
+  ],
+  "rhythm": {
+    "openers": [
+      "so I just knew"
+    ],
+    "bridges": [
+      "and"
+    ],
+    "closers": [
+      "so you know"
+    ]
+  },
+  "thought_patterns": [
+    "Reflects on pivotal moments",
+    "Expresses uncertainty",
+    "Mentions emotional triggers",
+    "Questions timing and purpose"
+  ],
+  "vulnerability": [
+    "Admits personal impact of tragedy",
+    "Shares emotional connection",
+    "Expresses doubt about timing",
+    "Shows openness about feelings"
+  ],
+  "signature_words": [
+    "just knew",
+    "maybe",
+    "happened close"
+  ],
+  "doc_id": "youtube_transcripts_2019_01_18_nlharu4ipt0_toms_blake_mycoskie_how_to_make_big_marketing_moves_to_grow",
+  "title": "TOMS, Blake Mycoskie | How to Make BIG Marketing Moves to Grow Your Brand",
+  "era": "era_a_toms_builder",
+  "date_key": "2019-01-18"
+}

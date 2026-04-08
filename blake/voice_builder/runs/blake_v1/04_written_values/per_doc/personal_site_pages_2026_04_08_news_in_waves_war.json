@@ -1,0 +1,73 @@
+{
+  "prompt_version": "voice_builder.written_values.v1",
+  "source_type": "written_chunk",
+  "m": {
+    "doc_id": "personal_site_pages_2026_04_08_news_in_waves_war",
+    "era": "era_c_enough_current"
+  },
+  "values": [
+    {
+      "v": "Seek genuine connection and healing",
+      "q": "connect speaking enough",
+      "confidence": 0.9
+    },
+    {
+      "v": "Highlight real struggles, avoid magic solutions",
+      "q": "no magic pill",
+      "confidence": 0.9
+    },
+    {
+      "v": "Honor veterans' stories and resilience",
+      "q": "shines such an important light",
+      "confidence": 0.8
+    }
+  ],
+  "rhetoric": [
+    {
+      "p": "Emphasizes authenticity and connection",
+      "q": "connect speaking enough",
+      "confidence": 0.9
+    },
+    {
+      "p": "Rejects false quick fixes",
+      "q": "no magic pill",
+      "confidence": 0.9
+    },
+    {
+      "p": "Celebrates hope and resilience",
+      "q": "unexpected hope and healing",
+      "confidence": 0.8
+    }
+  ],
+  "lex": {
+    "w": [
+      "connect",
+      "enough",
+      "no magic pill",
+      "hope",
+      "healing"
+    ],
+    "b": [
+      "honor",
+      "struggles",
+      "resilience",
+      "realities",
+      "light"
+    ],
+    "t": "Authentic connection, rejection of quick fixes, hope for veterans"
+  },
+  "implications": [
+    "Tone is sincere and empathetic",
+    "Focus on genuine solutions",
+    "Values resilience and authenticity"
+  ],
+  "avoid": [
+    "Overly optimistic promises",
+    "Simplistic solutions",
+    "Detachment from real struggles"
+  ],
+  "doc_id": "personal_site_pages_2026_04_08_news_in_waves_war",
+  "title": "In Waves & War | Now on Netflix | blakemycoskie.com",
+  "bucket": "personal_site_pages",
+  "era": "era_c_enough_current"
+}
