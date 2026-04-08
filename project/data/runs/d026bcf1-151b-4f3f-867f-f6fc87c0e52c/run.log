@@ -1,0 +1,16 @@
+[2026-04-08T17:29:01.753Z] [seed] [stdout] [seed] skipping Apify hashtag discovery (missing APIFY_TOKEN/APIFY_HASHTAG_ACTOR_ID or --skip-apify)
+[2026-04-08T17:29:01.753Z] [seed] [stdout] [seed] wrote 224 deduplicated handles -> data/raw_handles.csv
+[2026-04-08T17:36:10.459Z] [enrich] [stdout] [enrich] loaded 224 handles from data/raw_handles.csv
+[2026-04-08T17:36:10.464Z] [enrich] [stdout] [enrich] post batch failed (30 handles): Actor run did not succeed (status=FAILED)
+[2026-04-08T17:36:10.464Z] [enrich] [stdout] [enrich] post batch failed (20 handles): Apify actor run failed (403): {
+[2026-04-08T17:36:10.464Z] [enrich] [stdout]   "error": {
+[2026-04-08T17:36:10.464Z] [enrich] [stdout]     "type": "platform-feature-disabled",
+[2026-04-08T17:36:10.464Z] [enrich] [stdout]     "message": "Monthly usage hard limit exceeded"
+[2026-04-08T17:36:10.464Z] [enrich] [stdout]   }
+[2026-04-08T17:36:10.464Z] [enrich] [stdout] }
+[2026-04-08T17:36:10.464Z] [enrich] [stdout] [enrich] comment actor equals post actor, using embedded comments from post scrape
+[2026-04-08T17:36:10.464Z] [enrich] [stdout] [enrich] wrote 224 enriched accounts -> data/enriched.json
+[2026-04-08T17:41:04.913Z] [score] [stdout] [score] loaded 224 accounts from data/enriched.json
+[2026-04-08T17:41:04.913Z] [score] [stdout] [score] wrote 224 scored accounts -> data/scored.csv
+[2026-04-08T17:41:05.613Z] [rank] [stdout] [rank] wrote 60 ranked accounts -> data/final_ranked.csv
+[2026-04-08T17:41:05.613Z] [rank] [stdout] [rank] wrote 1 review accounts -> data/review_bucket.csv

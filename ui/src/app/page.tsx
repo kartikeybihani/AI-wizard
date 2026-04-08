@@ -375,7 +375,7 @@ export default function RunPage() {
       <section className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
         <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-slate-900">Start New Run</h2>
+            <h2 className="text-lg font-semibold text-slate-900">Start Discovery Run</h2>
             <button
               type="button"
               onClick={() => setAdvancedOpen((previous) => !previous)}
@@ -462,7 +462,7 @@ export default function RunPage() {
               onClick={startRun}
               className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
             >
-              {busy ? "Starting..." : "Start Run"}
+              {busy ? "Starting..." : "Start Discovery Run"}
             </button>
             {selectedRun && (selectedRun.status === "running" || selectedRun.status === "queued") ? (
               <button

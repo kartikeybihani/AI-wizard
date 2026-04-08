@@ -21,7 +21,7 @@ import type {
   StepState,
   StepStatus,
 } from "@/lib/types";
-import { countCsvRows, parseCsv } from "@/lib/server/csv";
+import { countCsvRows, parseCsv, writeCsv } from "@/lib/server/csv";
 import {
   buildRunConfig,
   buildStepCommands,
@@ -63,6 +63,10 @@ interface ActiveProcess {
 
 function nowIso(): string {
   return new Date().toISOString();
+}
+
+function normalizeHandle(value: string): string {
+  return String(value || "").trim().replace(/^@+/, "").toLowerCase();
 }
 
 function clone<T>(value: T): T {
@@ -666,6 +670,64 @@ export class RunService {
       run,
       finalRanked: parseCsv(run.artifacts.finalRanked),
       reviewBucket: parseCsv(run.artifacts.reviewBucket),
+    };
+  }
+
+  removeUsernameFromRunResults(
+    runId: string,
+    username: string
+  ): {
+    removedFromFinalRanked: number;
+    removedFromReviewBucket: number;
+    summary: RunSummary;
+  } | null {
+    const run = this.getRunInternal(runId);
+    if (!run) {
+      return null;
+    }
+
+    const normalized = normalizeHandle(username);
+    if (!normalized) {
+      throw new Error("Username is required.");
+    }
+
+    const removeFromCsvFile = (filepath?: string): number => {
+      const parsed = parseCsv(filepath);
+      if (!filepath || parsed.columns.length === 0) {
+        return 0;
+      }
+      const before = parsed.rows.length;
+      if (before === 0) {
+        return 0;
+      }
+      const filtered = parsed.rows.filter(
+        (row) => normalizeHandle(String(row.username || "")) !== normalized
+      );
+      const removed = before - filtered.length;
+      if (removed > 0) {
+        writeCsv(filepath, parsed.columns, filtered);
+      }
+      return removed;
+    };
+
+    const removedFromFinalRanked = removeFromCsvFile(run.artifacts.finalRanked);
+    const removedFromReviewBucket = removeFromCsvFile(run.artifacts.reviewBucket);
+
+    if (removedFromFinalRanked === 0 && removedFromReviewBucket === 0) {
+      return {
+        removedFromFinalRanked: 0,
+        removedFromReviewBucket: 0,
+        summary: run.summary,
+      };
+    }
+
+    run.summary = summarizeArtifacts(run.artifacts);
+    this.saveRun(run);
+
+    return {
+      removedFromFinalRanked,
+      removedFromReviewBucket,
+      summary: run.summary,
     };
   }
 

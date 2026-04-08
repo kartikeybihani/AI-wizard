@@ -1,0 +1,9 @@
+[2026-04-08T17:17:14.552Z] [seed] [stdout] [seed] skipping Apify hashtag discovery (missing APIFY_TOKEN/APIFY_HASHTAG_ACTOR_ID or --skip-apify)
+[2026-04-08T17:17:14.552Z] [seed] [stdout] [seed] wrote 60 deduplicated handles -> data/raw_handles.csv
+[2026-04-08T17:20:26.742Z] [enrich] [stdout] [enrich] loaded 60 handles from data/raw_handles.csv
+[2026-04-08T17:20:26.746Z] [enrich] [stdout] [enrich] comment actor equals post actor, using embedded comments from post scrape
+[2026-04-08T17:20:26.746Z] [enrich] [stdout] [enrich] wrote 60 enriched accounts -> data/enriched.json
+[2026-04-08T17:21:34.063Z] [score] [stdout] [score] loaded 60 accounts from data/enriched.json
+[2026-04-08T17:21:34.070Z] [score] [stdout] [score] wrote 60 scored accounts -> data/scored.csv
+[2026-04-08T17:21:34.481Z] [rank] [stdout] [rank] wrote 19 ranked accounts -> data/final_ranked.csv
+[2026-04-08T17:21:34.482Z] [rank] [stdout] [rank] wrote 0 review accounts -> data/review_bucket.csv

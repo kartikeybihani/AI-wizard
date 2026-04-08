@@ -41,6 +41,42 @@ export function parseCsv(filepath?: string): CsvTableResult {
   }
 }
 
+function csvEscapeCell(value: unknown): string {
+  const text = String(value ?? "");
+  if (/[",\n\r]/.test(text)) {
+    return `"${text.replace(/"/g, '""')}"`;
+  }
+  return text;
+}
+
+export function writeCsv(
+  filepath: string | undefined,
+  columns: string[],
+  rows: Record<string, string>[]
+): void {
+  if (!filepath) {
+    return;
+  }
+
+  const safeColumns = columns.filter((column) => column && column.trim().length > 0);
+  const effectiveColumns =
+    safeColumns.length > 0
+      ? safeColumns
+      : rows.length > 0
+        ? Object.keys(rows[0])
+        : [];
+
+  const header = effectiveColumns.map((column) => csvEscapeCell(column)).join(",");
+  const body = rows
+    .map((row) =>
+      effectiveColumns.map((column) => csvEscapeCell(row[column] ?? "")).join(",")
+    )
+    .join("\n");
+
+  const output = body ? `${header}\n${body}\n` : `${header}\n`;
+  fs.writeFileSync(filepath, output, "utf-8");
+}
+
 function inferColumnsFromHeader(text: string): string[] {
   const firstLine = text.split(/\r?\n/, 1)[0]?.trim();
   if (!firstLine) {

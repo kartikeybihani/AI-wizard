@@ -19,6 +19,7 @@ export interface StepCommand {
 const booleanField = z.boolean().optional();
 const numberField = z.number().finite().optional();
 const stringField = z.string().trim().min(1).optional();
+const FULL_SEED_COUNT = 9999;
 
 export const startRunRequestSchema = z.object({
   preset: z.enum(["short", "standard", "deep"]).default("short"),
@@ -77,8 +78,8 @@ const PRESET_CONFIGS: Record<PresetName, Omit<RunConfig, "preset">> = {
   short: {
     seed: {
       delaySeconds: 2.5,
-      manualCount: 10,
-      aggregatorCount: 10,
+      manualCount: FULL_SEED_COUNT,
+      aggregatorCount: FULL_SEED_COUNT,
       hashtagLimitPerTag: 5,
       skipApify: false,
       overwrite: true,
@@ -111,8 +112,8 @@ const PRESET_CONFIGS: Record<PresetName, Omit<RunConfig, "preset">> = {
   standard: {
     seed: {
       delaySeconds: 2.5,
-      manualCount: 30,
-      aggregatorCount: 30,
+      manualCount: FULL_SEED_COUNT,
+      aggregatorCount: FULL_SEED_COUNT,
       hashtagLimitPerTag: 20,
       skipApify: false,
       overwrite: true,
@@ -145,8 +146,8 @@ const PRESET_CONFIGS: Record<PresetName, Omit<RunConfig, "preset">> = {
   deep: {
     seed: {
       delaySeconds: 2.5,
-      manualCount: 30,
-      aggregatorCount: 30,
+      manualCount: FULL_SEED_COUNT,
+      aggregatorCount: FULL_SEED_COUNT,
       hashtagLimitPerTag: 60,
       skipApify: false,
       overwrite: true,

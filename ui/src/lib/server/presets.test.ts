@@ -6,7 +6,8 @@ describe("buildRunConfig", () => {
   it("returns short preset defaults", () => {
     const config = buildRunConfig("short");
     expect(config.preset).toBe("short");
-    expect(config.seed.manualCount).toBe(10);
+    expect(config.seed.manualCount).toBe(9999);
+    expect(config.seed.aggregatorCount).toBe(9999);
     expect(config.enrich.maxPostAccounts).toBe(15);
     expect(config.rank.maxAccounts).toBe(20);
   });

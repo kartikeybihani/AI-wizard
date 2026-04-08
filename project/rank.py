@@ -12,6 +12,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", default="data/final_ranked.csv")
     parser.add_argument("--review-output", default="data/review_bucket.csv")
     parser.add_argument("--min-followers", type=int, default=5000)
+    parser.add_argument("--min-audience-intent", type=float, default=0.4)
     parser.add_argument("--max-accounts", type=int, default=100)
     parser.add_argument("--top-per-tier", type=int, default=0)
     return parser.parse_args()
@@ -49,10 +50,16 @@ def main() -> None:
 
     df["followers"] = pd.to_numeric(df.get("followers"), errors="coerce").fillna(0).astype(int)
     df["final_score"] = pd.to_numeric(df.get("final_score"), errors="coerce").fillna(0.0)
+    if "audience_intent_score" in df.columns:
+        df["audience_intent_score"] = pd.to_numeric(df["audience_intent_score"], errors="coerce").fillna(0.0)
+    else:
+        df["audience_intent_score"] = 0.0
     df["tier"] = df["followers"].apply(tier_from_followers)
 
     if args.min_followers > 0:
         df = df[df["followers"] >= args.min_followers].copy()
+    if args.min_audience_intent > 0:
+        df = df[df["audience_intent_score"] >= float(args.min_audience_intent)].copy()
 
     if "needs_review" in df.columns:
         df["needs_review"] = (

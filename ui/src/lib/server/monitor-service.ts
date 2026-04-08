@@ -889,6 +889,42 @@ export class MonitorService {
     }
   }
 
+  clearEngageQueue(options?: { clearSeenPosts?: boolean }): {
+    queueCleared: number;
+    processingCleared: number;
+    suggestionsCleared: number;
+    seenPostsCleared: number;
+  } {
+    ensureMonitorDbFile();
+    const db = new Database(PIPELINE_MONITOR_DB);
+    try {
+      const clearSeenPosts = Boolean(options?.clearSeenPosts);
+      let queueCleared = 0;
+      let processingCleared = 0;
+      let suggestionsCleared = 0;
+      let seenPostsCleared = 0;
+
+      const tx = db.transaction(() => {
+        suggestionsCleared = db.prepare("DELETE FROM comment_suggestions").run().changes;
+        processingCleared = db.prepare("DELETE FROM post_processing").run().changes;
+        queueCleared = db.prepare("DELETE FROM new_posts_queue").run().changes;
+        if (clearSeenPosts) {
+          seenPostsCleared = db.prepare("DELETE FROM seen_posts").run().changes;
+        }
+      });
+      tx();
+
+      return {
+        queueCleared,
+        processingCleared,
+        suggestionsCleared,
+        seenPostsCleared,
+      };
+    } finally {
+      db.close();
+    }
+  }
+
   approveSuggestion(suggestionId: number, editedText?: string): {
     postId: string;
     queueId: number;

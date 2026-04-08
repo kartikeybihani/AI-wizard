@@ -57,19 +57,38 @@ function formatFollowers(value: string): string {
   return String(Math.floor(count));
 }
 
+function instagramProfileUrl(username: string): string {
+  const handle = String(username || "")
+    .trim()
+    .replace(/^@+/, "");
+  if (!handle) {
+    return "";
+  }
+  return `https://www.instagram.com/${encodeURIComponent(handle)}/`;
+}
+
 export default function ResultsPage() {
   const [runs, setRuns] = useState<RunRecord[]>([]);
   const [selectedRunId, setSelectedRunId] = useState<string | null>(null);
   const [selectedRun, setSelectedRun] = useState<RunRecord | null>(null);
-  const [finalRanked, setFinalRanked] = useState<CsvTableResult>({ columns: [], rows: [] });
-  const [reviewBucket, setReviewBucket] = useState<CsvTableResult>({ columns: [], rows: [] });
+  const [finalRanked, setFinalRanked] = useState<CsvTableResult>({
+    columns: [],
+    rows: [],
+  });
+  const [reviewBucket, setReviewBucket] = useState<CsvTableResult>({
+    columns: [],
+    rows: [],
+  });
   const [searchText, setSearchText] = useState("");
   const [tierFilter, setTierFilter] = useState<string>("all");
   const [confidenceFilter, setConfidenceFilter] = useState<string>("all");
   const [sortField, setSortField] = useState<string>("final_score");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [rowDetail, setRowDetail] = useState<Record<string, string> | null>(null);
+  const [rowDetail, setRowDetail] = useState<Record<string, string> | null>(
+    null,
+  );
+  const [removingRow, setRemovingRow] = useState(false);
 
   const refreshRuns = useCallback(async () => {
     const response = await fetch("/api/runs", { cache: "no-store" });
@@ -86,7 +105,9 @@ export default function ResultsPage() {
   }, [selectedRunId]);
 
   const refreshResults = useCallback(async (runId: string) => {
-    const response = await fetch(`/api/runs/${runId}/results`, { cache: "no-store" });
+    const response = await fetch(`/api/runs/${runId}/results`, {
+      cache: "no-store",
+    });
     if (!response.ok) {
       const payload = (await response.json()) as { error?: string };
       throw new Error(payload.error || "Failed to load results.");
@@ -110,7 +131,9 @@ export default function ResultsPage() {
       return;
     }
     const timer = window.setTimeout(() => {
-      refreshResults(selectedRunId).catch((error) => setErrorMessage((error as Error).message));
+      refreshResults(selectedRunId).catch((error) =>
+        setErrorMessage((error as Error).message),
+      );
     }, 0);
     return () => window.clearTimeout(timer);
   }, [refreshResults, selectedRunId]);
@@ -147,8 +170,17 @@ export default function ResultsPage() {
           .toLowerCase()
           .includes(normalizedQuery);
       })
-      .sort((a, b) => compareValues(a[sortField] || "", b[sortField] || "", sortDirection));
-  }, [confidenceFilter, finalRanked.rows, searchText, sortDirection, sortField, tierFilter]);
+      .sort((a, b) =>
+        compareValues(a[sortField] || "", b[sortField] || "", sortDirection),
+      );
+  }, [
+    confidenceFilter,
+    finalRanked.rows,
+    searchText,
+    sortDirection,
+    sortField,
+    tierFilter,
+  ]);
 
   const toggleSort = (field: string) => {
     if (sortField === field) {
@@ -157,6 +189,45 @@ export default function ResultsPage() {
     }
     setSortField(field);
     setSortDirection("desc");
+  };
+
+  const removeRowFromRun = async () => {
+    if (!selectedRunId || !rowDetail?.username || removingRow) {
+      return;
+    }
+
+    const confirmed =
+      typeof window === "undefined"
+        ? true
+        : window.confirm(
+            `Remove @${rowDetail.username} from this run's Final Ranked/Review Bucket results?`,
+          );
+    if (!confirmed) {
+      return;
+    }
+
+    setRemovingRow(true);
+    setErrorMessage(null);
+    try {
+      const response = await fetch(`/api/runs/${selectedRunId}/rows/remove`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: rowDetail.username }),
+      });
+      const payload = (await response.json()) as { error?: string };
+      if (!response.ok) {
+        throw new Error(payload.error || "Failed to remove row.");
+      }
+      setRowDetail(null);
+      await refreshResults(selectedRunId);
+      await refreshRuns();
+    } catch (error) {
+      setErrorMessage((error as Error).message);
+    } finally {
+      setRemovingRow(false);
+    }
   };
 
   return (
@@ -173,7 +244,11 @@ export default function ResultsPage() {
           </div>
           <button
             type="button"
-            onClick={() => refreshRuns().catch((error) => setErrorMessage((error as Error).message))}
+            onClick={() =>
+              refreshRuns().catch((error) =>
+                setErrorMessage((error as Error).message),
+              )
+            }
             className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"
           >
             Refresh Runs
@@ -189,7 +264,9 @@ export default function ResultsPage() {
 
       <section className="grid gap-6 lg:grid-cols-[320px_1fr]">
         <aside className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <h2 className="text-base font-semibold text-slate-900">Run History</h2>
+          <h2 className="text-base font-semibold text-slate-900">
+            Run History
+          </h2>
           <div className="mt-3 max-h-[650px] space-y-2 overflow-auto pr-1">
             {runs.length === 0 ? (
               <p className="rounded-lg border border-dashed border-slate-200 p-3 text-sm text-slate-500">
@@ -207,7 +284,9 @@ export default function ResultsPage() {
                       : "border-slate-200 hover:bg-slate-50"
                   }`}
                 >
-                  <p className="font-semibold text-slate-900">{run.id.slice(0, 8)}</p>
+                  <p className="font-semibold text-slate-900">
+                    {run.id.slice(0, 8)}
+                  </p>
                   <p className="mt-1 text-xs text-slate-500">
                     {run.preset} · {run.status}
                   </p>
@@ -224,7 +303,9 @@ export default function ResultsPage() {
           <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h2 className="text-base font-semibold text-slate-900">Final Ranked Table</h2>
+                <h2 className="text-base font-semibold text-slate-900">
+                  Final Ranked Table
+                </h2>
                 <p className="text-xs text-slate-500">
                   {selectedRun
                     ? `Run ${selectedRun.id.slice(0, 8)} · ${selectedRun.summary.finalRankedCount} rows`
@@ -310,12 +391,20 @@ export default function ResultsPage() {
                 }}
                 className="rounded-lg border border-slate-300 px-3 py-2 text-sm"
               >
-                <option value="final_score:desc">Final Score (High → Low)</option>
-                <option value="final_score:asc">Final Score (Low → High)</option>
+                <option value="final_score:desc">
+                  Final Score (High → Low)
+                </option>
+                <option value="final_score:asc">
+                  Final Score (Low → High)
+                </option>
                 <option value="followers:desc">Followers (High → Low)</option>
                 <option value="followers:asc">Followers (Low → High)</option>
-                <option value="confidence_score:desc">Confidence (High → Low)</option>
-                <option value="confidence_score:asc">Confidence (Low → High)</option>
+                <option value="confidence_score:desc">
+                  Confidence (High → Low)
+                </option>
+                <option value="confidence_score:asc">
+                  Confidence (Low → High)
+                </option>
               </select>
             </div>
 
@@ -334,7 +423,11 @@ export default function ResultsPage() {
                       ["content_depth_score", "Depth"],
                       ["confidence_grade", "Conf"],
                     ].map(([field, label]) => (
-                      <th key={field} className="cursor-pointer px-3 py-2" onClick={() => toggleSort(field)}>
+                      <th
+                        key={field}
+                        className="cursor-pointer px-3 py-2"
+                        onClick={() => toggleSort(field)}
+                      >
                         {label}
                       </th>
                     ))}
@@ -363,11 +456,17 @@ export default function ResultsPage() {
                           </button>
                         </td>
                         <td className="px-3 py-2">{row.tier}</td>
-                        <td className="px-3 py-2">{formatFollowers(row.followers)}</td>
+                        <td className="px-3 py-2">
+                          {formatFollowers(row.followers)}
+                        </td>
                         <td className="px-3 py-2">{row.final_score}</td>
                         <td className="px-3 py-2">{row.relevance_score}</td>
-                        <td className="px-3 py-2">{row.audience_intent_score}</td>
-                        <td className="px-3 py-2">{row.engagement_quality_score}</td>
+                        <td className="px-3 py-2">
+                          {row.audience_intent_score}
+                        </td>
+                        <td className="px-3 py-2">
+                          {row.engagement_quality_score}
+                        </td>
                         <td className="px-3 py-2">{row.content_depth_score}</td>
                         <td className="px-3 py-2">{row.confidence_grade}</td>
                       </tr>
@@ -379,7 +478,9 @@ export default function ResultsPage() {
           </article>
 
           <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-            <h2 className="text-base font-semibold text-slate-900">Review Bucket</h2>
+            <h2 className="text-base font-semibold text-slate-900">
+              Review Bucket
+            </h2>
             <p className="mt-1 text-xs text-slate-500">
               Low-confidence but promising candidates for manual evaluation.
             </p>
@@ -398,12 +499,17 @@ export default function ResultsPage() {
                   {reviewBucket.rows.length === 0 ? (
                     <tr>
                       <td colSpan={4} className="px-3 py-4 text-slate-500">
-                        Empty for this run. This means no low-confidence/high-potential accounts crossed the review threshold.
+                        Empty for this run. This means no
+                        low-confidence/high-potential accounts crossed the
+                        review threshold.
                       </td>
                     </tr>
                   ) : (
                     reviewBucket.rows.map((row, index) => (
-                      <tr key={`${row.username || "review"}-${index}`} className="border-t border-slate-200">
+                      <tr
+                        key={`${row.username || "review"}-${index}`}
+                        className="border-t border-slate-200"
+                      >
                         <td className="px-3 py-2">{row.username}</td>
                         <td className="px-3 py-2">{row.tier}</td>
                         <td className="px-3 py-2">{row.final_score}</td>
@@ -419,36 +525,74 @@ export default function ResultsPage() {
       </section>
 
       {rowDetail ? (
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="flex items-center justify-between">
-            <h2 className="text-base font-semibold text-slate-900">
-              {rowDetail.username} · Detail
-            </h2>
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/45 p-4"
+          onClick={() => setRowDetail(null)}
+        >
+          <section
+            className="relative max-h-[90vh] w-full max-w-5xl overflow-auto rounded-2xl border border-slate-200 bg-white p-5 shadow-xl"
+            onClick={(event) => event.stopPropagation()}
+          >
             <button
               type="button"
+              aria-label="Close detail modal"
               onClick={() => setRowDetail(null)}
-              className="rounded-lg border border-slate-200 px-3 py-1 text-xs text-slate-600 hover:bg-slate-100"
+              className="absolute right-3 top-3 rounded-full px-2 text-2xl leading-none text-slate-500 hover:bg-slate-100 hover:text-slate-700"
             >
-              Close
+              ×
             </button>
-          </div>
 
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm">
-              <p className="font-semibold text-slate-900">Why Selected</p>
-              <p className="mt-2 text-slate-700">{rowDetail.why_selected || "N/A"}</p>
+            <div className="pr-8">
+              <h2 className="text-base font-semibold text-slate-900">
+                {rowDetail.username} · Detail
+              </h2>
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                {instagramProfileUrl(rowDetail.username) ? (
+                  <a
+                    href={instagramProfileUrl(rowDetail.username)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-lg border border-slate-200 px-3 py-1 text-xs text-slate-700 hover:bg-slate-100"
+                  >
+                    Open Instagram Profile
+                  </a>
+                ) : null}
+                <button
+                  type="button"
+                  disabled={removingRow}
+                  onClick={() => void removeRowFromRun()}
+                  className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-1 text-xs text-rose-700 hover:bg-rose-100 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {removingRow ? "Removing..." : "Remove from this list"}
+                </button>
+              </div>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm">
-              <p className="font-semibold text-slate-900">Caption Evidence</p>
-              <p className="mt-2 text-slate-700">{rowDetail.sample_caption || "N/A"}</p>
+
+            <div className="mt-4 grid gap-4 md:grid-cols-3">
+              <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm">
+                <p className="font-semibold text-slate-900">Why Selected</p>
+                <p className="mt-2 text-slate-700">
+                  {rowDetail.why_selected || "N/A"}
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm">
+                <p className="font-semibold text-slate-900">Caption Evidence</p>
+                <p className="mt-2 text-slate-700">
+                  {rowDetail.sample_caption || "N/A"}
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm">
+                <p className="font-semibold text-slate-900">Comment Evidence</p>
+                <p className="mt-2 text-slate-700">
+                  {rowDetail.sample_comment_1 || "N/A"}
+                </p>
+                <p className="mt-2 text-slate-700">
+                  {rowDetail.sample_comment_2 || "N/A"}
+                </p>
+              </div>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm">
-              <p className="font-semibold text-slate-900">Comment Evidence</p>
-              <p className="mt-2 text-slate-700">{rowDetail.sample_comment_1 || "N/A"}</p>
-              <p className="mt-2 text-slate-700">{rowDetail.sample_comment_2 || "N/A"}</p>
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
       ) : null}
     </main>
   );

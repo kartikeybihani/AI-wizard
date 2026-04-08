@@ -9,7 +9,7 @@ const THEME_STORAGE_KEY = "ui-theme";
 type Theme = "light" | "dark";
 
 const NAV_LINKS = [
-  { href: "/", label: "Run" },
+  { href: "/", label: "Discovery Run" },
   { href: "/results", label: "Results" },
   { href: "/monitor", label: "Monitor" },
   { href: "/engage", label: "Engage" },

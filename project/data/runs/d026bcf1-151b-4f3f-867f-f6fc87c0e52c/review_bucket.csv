@@ -1,0 +1,10 @@
+username,followers,following,tier,relevance_text_score,relevance_score,audience_intent_score,content_depth_score,engagement_quality_score,topic_signal_score,final_score,weight_relevance,weight_audience_intent,weight_engagement_quality,weight_content_depth,text_confidence,comment_confidence,post_confidence,confidence_score,confidence_grade,needs_review,review_reason,relevance_reason,audience_intent_reason,content_depth_reason,why_selected,sample_caption,sample_comment_1,sample_comment_2,post_count,comment_count,median_engagement_rate,tier_order,tier_rank,overall_rank
+kellyu,215311,911,mid,0.8,0.6729,0.7,0.6,0.6705,0.2917,0.6696,0.35,0.3,0.2,0.15,0.65,0.35,0.05,0.425,low,True,"Low data confidence, but behavioral signals are strong; manual review recommended.",Account focuses on mental health topics but also promotes products and services.,"Comments show emotional sharing and trust, but not all are help-seeking.",Captions are somewhat insightful but can be more specific and original.,"Relevance 0.67, audience intent 0.70, content depth 0.60, engagement quality 0.67. Median engagement rate 3.18% across 1 posts. Confidence low (0.42).","people love having an “emotionally mature friend.”
+
+but they rarely ask how that friend became that way.
+
+episode 6 of my series, breaking the rules i grew up with.
+
+you can start therapy with BetterHelp at the link in my bio, if and when you’re ready ❤️
+
+#ad #BetterHelpPartner",i relate to this sm 🥹💗,so proud of you and all you learn and share with others 🥹,1,7,0.031754,1,1,1

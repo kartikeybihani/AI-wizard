@@ -328,6 +328,40 @@ export default function EngagePage() {
     });
   };
 
+  const handleClearQueue = async () => {
+    const confirmed =
+      typeof window === "undefined"
+        ? true
+        : window.confirm(
+            "Clear all Engage queue items and generated suggestions? This keeps tracked accounts and monitor runs."
+          );
+    if (!confirmed) {
+      return;
+    }
+
+    await runAction("clear-queue", async () => {
+      const payload = await postJson<{
+        result: {
+          queueCleared: number;
+          processingCleared: number;
+          suggestionsCleared: number;
+          seenPostsCleared: number;
+        };
+      }>("/api/engage/reset", {
+        clearSeenPosts: false,
+      });
+      setLastJob(null);
+      const result = payload.result || {
+        queueCleared: 0,
+        processingCleared: 0,
+        suggestionsCleared: 0,
+      };
+      setSuccessMessage(
+        `Cleared queue=${result.queueCleared}, processing=${result.processingCleared}, suggestions=${result.suggestionsCleared}.`
+      );
+    });
+  };
+
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-6 py-8">
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -354,6 +388,14 @@ export default function EngagePage() {
               className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"
             >
               Refresh
+            </button>
+            <button
+              type="button"
+              disabled={busyAction !== ""}
+              onClick={() => void handleClearQueue()}
+              className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm font-medium text-rose-700 hover:bg-rose-100 disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              {busyAction === "clear-queue" ? "Clearing..." : "Clear Queue"}
             </button>
           </div>
         </div>

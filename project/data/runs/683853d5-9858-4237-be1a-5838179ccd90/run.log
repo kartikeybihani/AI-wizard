@@ -1,0 +1,9 @@
+[2026-04-08T12:31:15.956Z] [seed] [stdout] [seed] wrote 113 deduplicated handles -> data/raw_handles.csv
+[2026-04-08T12:35:37.065Z] [enrich] [stdout] [enrich] loaded 113 handles from data/raw_handles.csv
+[2026-04-08T12:35:37.070Z] [enrich] [stdout] [enrich] post scrape skipped (missing APIFY_POST_ACTOR_ID or no eligible accounts)
+[2026-04-08T12:35:37.070Z] [enrich] [stdout] [enrich] comment scrape skipped (missing APIFY_COMMENT_ACTOR_ID or no comment candidates)
+[2026-04-08T12:35:37.070Z] [enrich] [stdout] [enrich] wrote 113 enriched accounts -> data/enriched.json
+[2026-04-08T12:35:38.291Z] [score] [stdout] [score] loaded 113 accounts from data/enriched.json
+[2026-04-08T12:35:38.292Z] [score] [stdout] [score] wrote 113 scored accounts -> data/scored.csv
+[2026-04-08T12:35:38.675Z] [rank] [stdout] [rank] wrote 0 ranked accounts -> data/final_ranked.csv
+[2026-04-08T12:35:38.677Z] [rank] [stdout] [rank] wrote 0 review accounts -> data/review_bucket.csv
