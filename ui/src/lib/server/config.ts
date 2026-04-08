@@ -34,6 +34,8 @@ export const PIPELINE_CWD =
   process.env.PIPELINE_CWD?.trim() || path.resolve(UI_ROOT, "../project");
 export const PIPELINE_DATA_DIR = path.join(PIPELINE_CWD, "data");
 export const PIPELINE_RUNS_DIR = path.join(PIPELINE_DATA_DIR, "runs");
+export const PIPELINE_MONITOR_DIR = path.join(PIPELINE_DATA_DIR, "monitor");
+export const PIPELINE_MONITOR_DB = path.join(PIPELINE_MONITOR_DIR, "monitor.db");
 
 export const UI_DATA_DIR = path.join(UI_ROOT, "data");
 export const DB_PATH = path.join(UI_DATA_DIR, "runs.db");
@@ -43,4 +45,5 @@ export const RETENTION_LIMIT = 30;
 export function ensureServerDirectories(): void {
   fs.mkdirSync(UI_DATA_DIR, { recursive: true });
   fs.mkdirSync(PIPELINE_RUNS_DIR, { recursive: true });
+  fs.mkdirSync(PIPELINE_MONITOR_DIR, { recursive: true });
 }

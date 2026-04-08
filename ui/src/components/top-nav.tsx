@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 const NAV_LINKS = [
   { href: "/", label: "Run" },
   { href: "/results", label: "Results" },
+  { href: "/monitor", label: "Monitor" },
 ];
 
 export function TopNav() {

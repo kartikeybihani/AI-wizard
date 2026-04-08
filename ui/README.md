@@ -9,6 +9,7 @@ Next.js operator console for the existing Python influencer pipeline.
 - Live progress + logs through SSE
 - Run history persisted in SQLite (`/ui/data/runs.db`)
 - Artifacts copied per run into `/project/data/runs/<run_id>/`
+- Part 2 monitor operator page for ongoing post detection (`/monitor`)
 
 ## Requirements
 
@@ -48,6 +49,9 @@ Notes:
 
 - If you use one multi-purpose Apify actor, set the same actor ID for profile/post/comment IDs.
 - Keep keys in `/project/.env` if you want both CLI scripts and UI to use the same credentials.
+- For schedule creation from UI (`/monitor`), set one of:
+  - `APIFY_MONITOR_ACTOR_TASK_ID` (preferred), or
+  - `APIFY_MONITOR_ACTOR_ID`
 
 ## Install + Run
 
@@ -70,6 +74,19 @@ Open [http://localhost:3000](http://localhost:3000).
 4. Click **Start Run**
 5. Watch live step timeline + logs
 6. Go to `/results` to review ranked table, review bucket, and download artifacts
+7. Go to `/monitor` to bootstrap tracked accounts, run monitor polling, and ensure the Apify 4-hour schedule
+
+## Monitor Flow (`/monitor`)
+
+1. Bootstrap tracked accounts from `final_ranked.csv`
+2. Run monitor job (`live` or `mock`) to detect unseen posts
+3. Review recent queue rows with exact post URLs
+4. Ensure/update recurring schedule through Apify Schedule API
+
+Monitor state source:
+
+- SQLite DB: `/Users/kartikeybihani/Finek/TOMS/project/data/monitor/monitor.db`
+- Queue table: `new_posts_queue` (`pending_comment_generation` entries)
 
 ## What Each Run Executes
 
@@ -110,6 +127,11 @@ Retention:
 
 ## API Endpoints
 
+- `GET /api/monitor` monitor overview (counts, queue rows, monitor runs, tracked accounts, recent monitor jobs)
+- `POST /api/monitor/bootstrap` run `monitor_bootstrap.py`
+- `POST /api/monitor/run` run `monitor_run.py`
+- `POST /api/monitor/schedule` run `monitor_schedule.py` (Apify schedule create/update)
+- `GET /api/monitor/jobs/:id` fetch monitor job detail/logs
 - `POST /api/runs` start run (`preset` + optional `overrides`)
 - `GET /api/runs` list runs + queue/active state
 - `GET /api/runs/:id` run detail + log tail

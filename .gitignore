@@ -23,3 +23,8 @@ build/
 .idea/
 .vscode/
 *.swp
+
+# Monitor runtime artifacts
+project/data/monitor/monitor.db
+project/data/monitor/new_posts_*.csv
+project/data/monitor/run_report_*.json
