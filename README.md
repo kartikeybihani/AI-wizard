@@ -1,4 +1,4 @@
-# Mental Health Influencer Engagement Agent (TOMS Technical Assessment)
+# Mental Health Influencer Engagement Agent
 
 This is a working prototype for Blake Mycoskie's assessment brief.
 

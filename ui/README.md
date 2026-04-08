@@ -1,32 +1,46 @@
-# TOMS Operator UI (`ui/`)
+# Operator UI (`ui/`)
 
-Next.js operator app for running and reviewing the full workflow.
+Next.js control surface for the full workflow:
 
-Pages:
+- run discovery
+- inspect ranked influencers
+- monitor recent posts
+- review/approve/reject Blake-style comment suggestions
 
-- `/` - Run (Part 1 discovery)
-- `/results` - Ranked output + artifacts
-- `/monitor` - Part 2 post monitoring
-- `/engage` - Part 4 human review for generated comments
+The UI orchestrates Python scripts in `/Users/kartikeybihani/Finek/TOMS/project`.
 
-This UI orchestrates Python scripts from `../project`.
+## Routes
+
+- `/` - Discovery Run
+- `/results` - Discovered influencer results and score evidence
+- `/monitor` - Watchlist bootstrap + monitor job controls
+- `/engage` - Human-in-the-loop review queue
+
+## Product Workflow (Daily Operator View)
+
+1. Run discovery on a cost-aware preset.
+2. Inspect ranked influencers and remove weak fits.
+3. Bootstrap monitor watchlist from a selected run.
+4. Run monitor for a small live subset.
+5. Generate suggestions in chunks.
+6. Approve/edit/reject and submit with one-click copy.
 
 ## Requirements
 
 - Node.js 20+
 - npm
-- Python environment available for `../project`
-- `yt-dlp` + `ffmpeg` installed (needed by engagement generation)
+- Python backend set up in `/Users/kartikeybihani/Finek/TOMS/project`
+- `yt-dlp` and `ffmpeg` installed for reel transcription
 
-## Environment Loading
+## Environment Resolution
 
-Server resolves env in this order:
+Server reads env in this order:
 
 1. `ui/.env.local`
 2. `ui/.env`
 3. `project/.env`
 
-Minimum keys (usually placed in `project/.env`):
+Minimum keys (usually in `project/.env`):
 
 ```bash
 OPENROUTER_API_KEY=...
@@ -56,53 +70,103 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## User Flow
+## Page-by-Page Behavior
 
-### 1) Run
+### Discovery Run (`/`)
 
-- Start a discovery run (`short`, `standard`, `deep`)
-- Watch live logs and progress
+- Start preset: `short`, `standard`, or `deep`
+- Use advanced overrides for cost/time control
+- Streams live logs for `seed -> enrich -> score -> rank`
+- Stores run artifacts for later review and monitor bootstrap
 
-### 2) Results
+Recommended assessment setting:
 
-- Review ranked accounts
-- Inspect score components
-- Download artifacts
+- `standard` preset
+- `seed.overwrite=true`
+- `seed.skipApify=true` for stable low-cost demo
+- `enrich.maxPostAccounts=60`
+- `enrich.maxCommentAccounts=20`
+- `rank.maxAccounts=60`
 
-### 3) Monitor
+### Results (`/results`)
 
-- Bootstrap tracked accounts from latest run
-- Run monitor on a small subset (live or mock)
-- Queue new posts (reels/videos only for generation)
+- Shows discovered influencer ranked table
+- Columns include `Final`, `Rel`, `Intent`, `Eng`, `Depth`, `Conf`
+- Click username to open details modal
+- Detail modal includes evidence snippets and Instagram profile link
+- Remove button lets operator drop low-fit accounts from that run output
 
-### 4) Engage
+### Monitor (`/monitor`)
 
-- Select queue status filter (`Ready`, `Pending`, `Failed`, etc.)
-- Use `Generate Next N` for one chunk, `Generate Remaining` for chunked drain, or `Retry Selected` for one post
-- Review reel preview + comment candidates
-- Approve/edit/reject
+- Step 1: bootstrap watchlist from latest run or explicit run id
+- Step 2: run monitor job in live/mock mode
+- Only reel/video-eligible posts are queued for generation
+- Supports auto-generation right after monitor run
+
+Monitor generation controls:
+
+- `Auto Generate Comments After Run`
+- `Generate Chunk Size`
+- `Auto Drain Pending Queue (chunked)`
+- `Max Drain Batches`
+
+Run report cards surface:
+
+- checked accounts
+- new posts
+- failures
+- queued video count
+- skipped non-video count
+
+### Engage (`/engage`)
+
+Primary actions:
+
+- `Generate Next N`
+- `Generate Remaining`
+- `Regenerate Selected`
+- `Clear Queue`
+
+Reviewer actions:
+
+- `Approve`
+- `Reject`
 - `Submit & Copy`
 
-Notes:
+UX behavior:
 
-- Transcript text is intentionally not shown in the operator UI.
-- Queue header shows `Showing X of Y` and supports `Show All`.
-- After generation actions, visible cards auto-expand to reduce operator friction.
+- reel preview on left and suggestion panel on right
+- status filters (`Ready`, `Pending`, `Failed`, `Approved`, `Submitted`, etc.)
+- `Showing X of Y` with `Show All`
+- approved action includes visual pulse and auto-advances to reduce review friction
+- transcript text is intentionally hidden in UI for a cleaner operator experience
 
-## Key API Routes
+## API Surface
 
-- `POST /api/runs` start run
+- `POST /api/runs` start discovery run
 - `GET /api/runs` list runs
-- `GET /api/runs/:id/stream` SSE logs
-- `GET /api/runs/:id/results` parsed results
+- `GET /api/runs/:id/stream` live step logs (SSE)
+- `GET /api/runs/:id/results` parsed run results
+- `POST /api/runs/:id/rows/remove` remove username from a run result
 - `POST /api/monitor/bootstrap` bootstrap tracked accounts
-- `POST /api/monitor/run` run monitor job
-- `POST /api/monitor/schedule` ensure Apify schedule
+- `POST /api/monitor/run` start monitor job
+- `POST /api/monitor/schedule` configure schedule metadata
 - `GET /api/engage/posts` fetch review cards
-- `POST /api/engage/generate` generate/regenerate comments
+- `POST /api/engage/generate` generate/regenerate suggestions
 - `POST /api/engage/suggestions/:id/approve` approve suggestion
 - `POST /api/engage/suggestions/:id/reject` reject suggestion
-- `POST /api/engage/posts/:id/submit` mark submitted + return final text
+- `POST /api/engage/posts/:id/submit` mark submitted and return final text
+- `POST /api/engage/reset` clear queued review data
+
+## Demo Script (Fast, Reliable)
+
+1. Start a `standard` discovery run.
+2. Open `Results`, verify 30+ credible mental-health accounts, remove weak outliers.
+3. Open `Monitor`, bootstrap from latest run with limit 10-20.
+4. Run monitor with small subset and auto-generate on.
+5. Open `Engage`, click `Generate Next N` (or `Generate Remaining`), then approve/edit/reject/submit.
+
+This demonstrates all four assessment parts with a practical live subset and clear operator UX.
 
 ## Validation
 
@@ -112,3 +176,10 @@ npm run lint
 npm run test
 npm run build
 ```
+
+## Troubleshooting
+
+- If monitor shows many failures with status `succeeded`, inspect the run report errors (often API quota/rate limits).
+- If engage generation fails with Whisper missing, run UI against the same Python env where `openai-whisper` is installed.
+- If no cards appear in Engage, check `Monitor` run metrics for `queued_video` and use `All` filter first.
+- After changing API tokens in `.env`, restart `npm run dev` so server-side env is refreshed.
