@@ -49,17 +49,15 @@ The result is a pipeline that favors practical, emotionally resonant mental-heal
 
 ## Part 1 Discovery: How It Actually Works
 
-Discovery is a 4-step pipeline: `seed -> enrich -> score -> rank`.
+### Seed collection
 
-### `seed.py` (candidate handle collection)
+Seed combines three sources and then deduplicates:
 
-By default, seed combines three sources:
+1. curated manual handles
+2. aggregator-style starter handles
+3. Apify hashtag discovery
 
-1. curated manual handles (`manual_seed`)
-2. aggregator-style starter handles (`aggregator_seed`)
-3. Apify hashtag discovery (`apify_hashtag:<tag>`)
-
-Default hashtags:
+Default hashtag discovery inputs:
 - `#mentalhealth`
 - `#anxietyhelp`
 - `#therapy`
@@ -67,44 +65,30 @@ Default hashtags:
 - `#mentalhealthawareness`
 - `#enoughmovement`
 
-Important: the hashtag pass recursively scans actor payloads and extracts plausible usernames from nested objects, then deduplicates.
+`overwrite=true` rebuilds the seed set from current run inputs; otherwise it merges with prior seeds before deduping.
 
-`--overwrite` behavior:
-- with `--overwrite`: rebuilds `data/raw_handles.csv` from current run inputs only
-- without `--overwrite`: merges new rows with existing `data/raw_handles.csv` before deduping
+### Scoring and ranking heuristic
 
-### `enrich.py` (evidence gathering)
-
-For each handle, enrich collects:
-- profile signals: bio, followers/following, avg likes/comments
-- recent posts (caption + likes/comments + timestamps)
-- recent comments (or embedded comments from post actor)
-
-It prioritizes accounts above a follower threshold for post scraping, then picks strongest candidates for comment scraping.
-
-### `score.py` (mental-health relevance scoring)
-
-Each account gets four core scores:
+For each candidate, the pipeline evaluates four core dimensions:
 - `relevance_score`: is this primarily a mental-health account?
 - `audience_intent_score`: do comments show trust/help-seeking/emotional resonance?
 - `content_depth_score`: are captions specific/insightful vs generic?
 - `engagement_quality_score`: quality-normalized engagement (median ER + consistency + ratio penalties)
 
-Final ranking score is a weighted blend with confidence-aware dynamic weighting:
+To avoid shallow pages, we apply topical signal checks:
+- positive mental-health terms (anxiety, therapy, trauma, depression, coping, healing, nervous system)
+- negative off-topic terms (hustle, discount, shop-now, broad motivational spam patterns)
+
+Base blend for final score:
 - base blend: relevance `0.35`, audience intent `0.30`, engagement quality `0.20`, content depth `0.15`
+
+Dynamic weighting adjusts this blend by evidence quality:
 - if text evidence is sparse, weight shifts toward behavioral signals (intent + engagement)
 - if comments are sparse, audience-intent dependence is reduced and text/engagement get more weight
 
-To avoid generic meme/motivation pages, scoring also applies topical signals:
-- positive mental-health terms (anxiety, therapy, trauma, etc.)
-- negative off-topic terms (hustle/discount/shop-now style language)
-
-### `rank.py` (final selection)
-
-Accounts are tiered (`micro`, `mid`, `macro`, `major`) and filtered/ranked by `final_score`, with configurable minimum followers and max accounts.
-An additional quality guard filters low audience-intent accounts (`audience_intent_score >= 0.4` by default).
-
-Low-confidence but high-potential accounts are sent to `review_bucket.csv` for manual review.
+Final ranked output is filtered by tier/follower thresholds and an intent guard:
+- `audience_intent_score >= 0.4` (default) to remove low-intent accounts from final selection
+- low-confidence/high-potential accounts are sent to `review_bucket.csv` for manual review
 
 ## Run Presets (`short`, `standard`, `deep`)
 
@@ -123,16 +107,6 @@ Preset snapshot (current defaults):
 - `short`: seed `all/all/5`; enrich `15 post accounts`, `8 posts/account`, `8 comment accounts`, `20 comments/account`
 - `standard`: seed `all/all/20`; enrich `80 post accounts`, `20 posts/account`, `30 comment accounts`, `40 comments/account`
 - `deep`: seed `all/all/60`; enrich `150 post accounts`, `40 posts/account`, `80 comment accounts`, `120 comments/account`
-
-## If You Want Pure Discovery (No Curated Seed Handles)
-
-In UI Advanced overrides for `seed`:
-- set `manualCount = 0`
-- set `aggregatorCount = 0`
-- keep `skipApify = false`
-- keep `overwrite = true`
-
-That run will rely only on hashtag-based discovery.
 
 ## My Approach to Capturing Blake's Voice
 
@@ -207,9 +181,9 @@ For this project, that mattered in two places:
 - Building Blake's character bible from mixed source buckets
 - Generating comments that stay on-voice while still reacting to what the reel is actually about
 
-## Results Table: Column Meaning
+## Results Table (Discovered Influencer Results): Column Meaning
 
-In `Results` table:
+In the UI `Results` page, this table is the discovered influencer ranking output from the discovery pipeline:
 
 - `Final` = weighted final ranking score
 - `Rel` = `relevance_score` (mental-health topical fit)
@@ -245,9 +219,9 @@ Fill `project/.env`:
 ```bash
 APIFY_TOKEN=...
 APIFY_HASHTAG_ACTOR_ID=apify~instagram-hashtag-scraper
-APIFY_PROFILE_ACTOR_ID=apify~instagram-scraper
-APIFY_POST_ACTOR_ID=apify~instagram-scraper
-APIFY_COMMENT_ACTOR_ID=apify~instagram-scraper
+APIFY_PROFILE_ACTOR_ID=apify~instagram-profile-scraper
+APIFY_POST_ACTOR_ID=apify~instagram-reel-scraper
+APIFY_COMMENT_ACTOR_ID=apify~instagram-reel-scraper
 
 OPENROUTER_API_KEY=...
 OPENROUTER_MODEL=mistralai/mixtral-8x7b-instruct
