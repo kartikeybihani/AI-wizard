@@ -1,0 +1,10 @@
+blake/prompts/voice_builder/06_comment_generation.md
+blake/prompts/voice_builder/04_written_values_extraction.md
+blake/prompts/voice_builder/README.md
+blake/prompts/voice_builder/03_podcast_depth_arcs.md
+blake/prompts/voice_builder/02_youtube_voice_primitives_compact.md
+blake/prompts/voice_builder/02_youtube_voice_primitives.md
+blake/prompts/voice_builder/05_external_calibration_compact.md
+blake/instagram/captions.txt
+project/requirements.txt
+project/README.md

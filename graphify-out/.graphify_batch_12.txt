@@ -1,0 +1,5 @@
+ui/public/file.svg
+ui/public/vercel.svg
+ui/public/next.svg
+ui/public/globe.svg
+ui/public/window.svg

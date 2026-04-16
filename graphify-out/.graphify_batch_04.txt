@@ -1,0 +1,10 @@
+blake/podcasts/youtube/2023-10-09_vhNarj7nqgs_blake-mycoskie-interview-on-toms-shoes-story-business-model.txt
+blake/podcasts/youtube/youtube_bucketed_worldclass_life_summary.md
+blake/podcasts/youtube/2018-11-20_s6msveTjZXQ_toms-founder-blake-mycoskie-announces-5-million-donation-to.txt
+blake/podcasts/youtube/youtube_top15_lines_per_video.md
+blake/podcasts/youtube/2019-01-18_NLHaru4iPt0_toms-blake-mycoskie-how-to-make-big-marketing-moves-to-grow.txt
+blake/self/personal_site_raw_20260407T192901/2026-04-08_news-in-waves-war.txt
+blake/self/personal_site_raw_20260407T192901/2026-04-08_terms-of-use.txt
+blake/self/personal_site_raw_20260407T192901/2026-04-08_connect.txt
+blake/self/personal_site_raw_20260407T192901/2026-04-08_about.txt
+blake/self/personal_site_raw_20260407T192901/2026-04-08_book-blake-2.txt

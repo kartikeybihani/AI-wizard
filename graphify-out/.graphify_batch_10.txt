@@ -1,0 +1,10 @@
+blake/self/personal_site/2026-04-08_book-blake-speaking-events.txt
+blake/self/personal_site/2026-04-08_news-rich-roll-podcast.txt
+blake/self/personal_site/2026-04-08_news-category-uncategorized.txt
+blake/self/personal_site/2026-04-08_no-magic-pill-pod.txt
+blake/self/personal_site/2026-04-08_news-author-infoblakemycoskie-com.txt
+blake/book/book_report.txt
+blake/prompts/voice_builder/05_character_bible_assembly.md
+blake/prompts/voice_builder/07_comment_critic.md
+blake/prompts/voice_builder/04_antipattern_generation.md
+blake/prompts/voice_builder/01_instagram_pattern_mining.md
