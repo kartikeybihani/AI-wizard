@@ -455,10 +455,6 @@ export default function HomePage() {
             source: "ui-blake",
           },
           overrides: {
-            client: {
-              source: "ui_blake",
-              version: "v1",
-            },
             ...(signed.voiceId
               ? {
                   tts: {
