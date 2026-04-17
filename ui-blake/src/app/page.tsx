@@ -295,7 +295,7 @@ export default function HomePage() {
   const [textInput, setTextInput] = useState<string>("");
   const [inputLevel, setInputLevel] = useState<number>(0);
   const [outputLevel, setOutputLevel] = useState<number>(0);
-  const [debugOpen, setDebugOpen] = useState(true); // toggle debug area
+  const [debugOpen, setDebugOpen] = useState(false); // toggle debug area
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [orbHovered, setOrbHovered] = useState(false);
@@ -834,7 +834,7 @@ export default function HomePage() {
   }, [callApi]);
 
   const openExportPreview = useCallback(async () => {
-    // debugOpen always true, no need to set
+    setDebugOpen(true);
     if (!sessionIdRef.current) {
       setError("Start and end a session before previewing export.");
       return;
@@ -1172,147 +1172,149 @@ export default function HomePage() {
         </NarrativeSection>
       </div>
 
-      {/* Zone 3: Debug drawer */}
-      <NarrativeSection
-        className="debug-zone"
-        delay={0.16}
-        reducedMotion={prefersReducedMotion}
-        title="Diagnostics"
-        subtitle="Operational telemetry and export artifacts for confident iteration."
-        learnMore={{
-          summaryLabel: "Learn more",
-          content: (
-            <p>
-              Diagnostics bundles IDs, levels, and export previews to validate
-              quality and preserve interview evidence without leaving the flow.
-            </p>
-          ),
-        }}
-      >
-        <button
-          className="debug-trigger"
-          onClick={() => setDebugOpen(!debugOpen)}
-          aria-expanded={debugOpen}
+      {/* Zone 3: Debug drawer (only in split layout) */}
+      {shouldUseSplitLayout && (
+        <NarrativeSection
+          className="debug-zone"
+          delay={0.16}
+          reducedMotion={prefersReducedMotion}
+          title="Diagnostics"
+          subtitle="Operational telemetry and export artifacts for confident iteration."
+          learnMore={{
+            summaryLabel: "Learn more",
+            content: (
+              <p>
+                Diagnostics bundles IDs, levels, and export previews to validate
+                quality and preserve interview evidence without leaving the flow.
+              </p>
+            ),
+          }}
         >
-          <span
-            className={`debug-planet ${debugOpen ? "is-open" : ""}`}
-            aria-hidden="true"
-          />
-          <span className="debug-trigger-label">Diagnostics Panel</span>
-          <ChevronIcon expanded={debugOpen} />
-        </button>
+          <button
+            className="debug-trigger"
+            onClick={() => setDebugOpen(!debugOpen)}
+            aria-expanded={debugOpen}
+          >
+            <span
+              className={`debug-planet ${debugOpen ? "is-open" : ""}`}
+              aria-hidden="true"
+            />
+            <span className="debug-trigger-label">Diagnostics Panel</span>
+            <ChevronIcon expanded={debugOpen} />
+          </button>
 
-        {debugOpen && (
-          <div className="debug-drawer">
-            <div className="debug-grid">
-              <div className="debug-section">
-                <h3>Session</h3>
-                <div className="debug-field">
-                  <div className="debug-field-label">
-                    <span>Session ID</span>
-                    {sessionId && (
-                      <button
-                        className="btn-copy"
-                        onClick={() => copyToClipboard(sessionId, "session")}
-                        title="Copy session ID"
-                      >
-                        <CopyIcon />
-                        {copiedField === "session" ? "Copied" : ""}
-                      </button>
-                    )}
-                  </div>
-                  <code className="mono-field">{sessionId || "—"}</code>
-                </div>
-                <div className="debug-field">
-                  <div className="debug-field-label">
-                    <span>Conversation ID</span>
-                    {conversationId && (
-                      <button
-                        className="btn-copy"
-                        onClick={() =>
-                          copyToClipboard(conversationId, "conversation")
-                        }
-                        title="Copy conversation ID"
-                      >
-                        <CopyIcon />
-                        {copiedField === "conversation" ? "Copied" : ""}
-                      </button>
-                    )}
-                  </div>
-                  <code className="mono-field">{conversationId || "—"}</code>
-                </div>
-                <div className="debug-field">
-                  <div className="debug-field-label">
-                    <span>Mode</span>
-                  </div>
-                  <code className="mono-field">{mode}</code>
-                </div>
-                <div className="debug-field">
-                  <div className="debug-field-label">
-                    <span>Status</span>
-                  </div>
-                  <code className="mono-field">{status}</code>
-                </div>
-              </div>
-
-              <div className="debug-section">
-                <h3>Audio Levels</h3>
-                <div className="vu-meters">
-                  <div className="vu-item">
-                    <span className="vu-label">Input</span>
-                    <div className="vu-bar-track">
-                      <div
-                        className="vu-bar vu-bar-input"
-                        style={{ "--vu-width": `${Math.round(inputLevel * 100)}%` } as React.CSSProperties}
-                      />
+          {debugOpen && (
+            <div className="debug-drawer">
+              <div className="debug-grid">
+                <div className="debug-section">
+                  <h3>Session</h3>
+                  <div className="debug-field">
+                    <div className="debug-field-label">
+                      <span>Session ID</span>
+                      {sessionId && (
+                        <button
+                          className="btn-copy"
+                          onClick={() => copyToClipboard(sessionId, "session")}
+                          title="Copy session ID"
+                        >
+                          <CopyIcon />
+                          {copiedField === "session" ? "Copied" : ""}
+                        </button>
+                      )}
                     </div>
-                    <span className="vu-value">
-                      {Math.round(inputLevel * 100)}%
-                    </span>
+                    <code className="mono-field">{sessionId || "—"}</code>
                   </div>
-                  <div className="vu-item">
-                    <span className="vu-label">Output</span>
-                    <div className="vu-bar-track">
-                      <div
-                        className="vu-bar vu-bar-output"
-                        style={{ "--vu-width": `${Math.round(outputLevel * 100)}%` } as React.CSSProperties}
-                      />
+                  <div className="debug-field">
+                    <div className="debug-field-label">
+                      <span>Conversation ID</span>
+                      {conversationId && (
+                        <button
+                          className="btn-copy"
+                          onClick={() =>
+                            copyToClipboard(conversationId, "conversation")
+                          }
+                          title="Copy conversation ID"
+                        >
+                          <CopyIcon />
+                          {copiedField === "conversation" ? "Copied" : ""}
+                        </button>
+                      )}
                     </div>
-                    <span className="vu-value">
-                      {Math.round(outputLevel * 100)}%
-                    </span>
+                    <code className="mono-field">{conversationId || "—"}</code>
+                  </div>
+                  <div className="debug-field">
+                    <div className="debug-field-label">
+                      <span>Mode</span>
+                    </div>
+                    <code className="mono-field">{mode}</code>
+                  </div>
+                  <div className="debug-field">
+                    <div className="debug-field-label">
+                      <span>Status</span>
+                    </div>
+                    <code className="mono-field">{status}</code>
                   </div>
                 </div>
-              </div>
 
-              <div className="debug-section">
-                <h3>Export</h3>
-                <div className="export-actions">
-                  <button
-                    className="btn btn-ghost"
-                    onClick={() => void loadExport()}
-                    disabled={!sessionId}
-                  >
-                    <EyeIcon />
-                    Preview
-                  </button>
-                  <button
-                    className="btn btn-ghost"
-                    onClick={() => void downloadExport()}
-                    disabled={!sessionId}
-                  >
-                    <DownloadIcon />
-                    Download
-                  </button>
+                <div className="debug-section">
+                  <h3>Audio Levels</h3>
+                  <div className="vu-meters">
+                    <div className="vu-item">
+                      <span className="vu-label">Input</span>
+                      <div className="vu-bar-track">
+                        <div
+                          className="vu-bar vu-bar-input"
+                          style={{ "--vu-width": `${Math.round(inputLevel * 100)}%` } as React.CSSProperties}
+                        />
+                      </div>
+                      <span className="vu-value">
+                        {Math.round(inputLevel * 100)}%
+                      </span>
+                    </div>
+                    <div className="vu-item">
+                      <span className="vu-label">Output</span>
+                      <div className="vu-bar-track">
+                        <div
+                          className="vu-bar vu-bar-output"
+                          style={{ "--vu-width": `${Math.round(outputLevel * 100)}%` } as React.CSSProperties}
+                        />
+                      </div>
+                      <span className="vu-value">
+                        {Math.round(outputLevel * 100)}%
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                {exportPreview && (
-                  <pre className="export-box">{exportPreview}</pre>
-                )}
+
+                <div className="debug-section">
+                  <h3>Export</h3>
+                  <div className="export-actions">
+                    <button
+                      className="btn btn-ghost"
+                      onClick={() => void loadExport()}
+                      disabled={!sessionId}
+                    >
+                      <EyeIcon />
+                      Preview
+                    </button>
+                    <button
+                      className="btn btn-ghost"
+                      onClick={() => void downloadExport()}
+                      disabled={!sessionId}
+                    >
+                      <DownloadIcon />
+                      Download
+                    </button>
+                  </div>
+                  {exportPreview && (
+                    <pre className="export-box">{exportPreview}</pre>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        )}
-      </NarrativeSection>
+          )}
+        </NarrativeSection>
+      )}
     </main>
   );
 }

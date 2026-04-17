@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, List, Optional, Sequence, Set
 
 import numpy as np
 import requests
@@ -19,6 +20,15 @@ class RetrievedItem:
     text: str
     sources: List[str]
     payload: Dict[str, Any]
+
+
+@dataclass
+class RetrievedPassage:
+    passage_id: str
+    score: float
+    source: str
+    text: str
+    story_ids: List[str]
 
 
 def _normalize(vec: np.ndarray) -> np.ndarray:
@@ -61,6 +71,41 @@ def hashed_embedding(text: str, dim: int = 256) -> np.ndarray:
     return _normalize(vec)
 
 
+def _sentence_split(text: str) -> List[str]:
+    # Handles transcripts and markdown-like blocks.
+    raw = re.split(r"(?<=[.!?])\s+|\n+", text or "")
+    return [part.strip() for part in raw if part and part.strip()]
+
+
+def _clean_passage(text: str) -> str:
+    value = (text or "").strip()
+    if not value:
+        return ""
+    value = re.sub(r"\[[^\]]{0,24}\]", " ", value)
+    value = re.sub(r"\s+", " ", value).strip()
+    return value
+
+
+def _is_passage_candidate(text: str) -> bool:
+    words = _tokenize(text)
+    count = len(words)
+    if count < 10 or count > 90:
+        return False
+    lowered = text.lower()
+    if not re.search(r"[.!?]$", text):
+        return False
+    if lowered.startswith("- "):
+        return False
+    if "http://" in lowered or "https://" in lowered:
+        return False
+    alpha = re.sub(r"[^A-Za-z]", "", text)
+    if not alpha:
+        return False
+    if alpha.isupper() and len(alpha) > 12:
+        return False
+    return True
+
+
 class LocalInterviewRetriever:
     def __init__(
         self,
@@ -81,6 +126,18 @@ class LocalInterviewRetriever:
         self._matrix: Optional[np.ndarray] = None
         self._metadata: List[Dict[str, Any]] = []
         self._dim: int = 256
+        self._repo_root = self._infer_repo_root(self.knowledge_dir)
+        self._source_passages: Dict[str, List[Dict[str, Any]]] = {}
+
+    def _infer_repo_root(self, path: Path) -> Path:
+        current = path.resolve()
+        for candidate in [current, *current.parents]:
+            if (candidate / ".git").exists():
+                return candidate
+        # Fallback for common layout: <repo>/blake/persona_interview/v1
+        if len(current.parents) >= 3:
+            return current.parents[2]
+        return current
 
     @property
     def ready(self) -> bool:
@@ -112,6 +169,62 @@ class LocalInterviewRetriever:
                 f"metadata count mismatch: matrix={matrix.shape[0]} metadata={len(rows)}"
             )
         self._metadata = rows
+        self._build_source_passage_cache()
+
+    def _resolve_source_path(self, source: str) -> Optional[Path]:
+        raw = str(source or "").strip()
+        if not raw:
+            return None
+        candidate = Path(raw)
+        if candidate.is_absolute():
+            return candidate if candidate.exists() else None
+        resolved = (self._repo_root / raw).resolve()
+        return resolved if resolved.exists() else None
+
+    def _build_source_passage_cache(self) -> None:
+        source_paths: Dict[str, Path] = {}
+        for row in self._metadata:
+            for src in list(row.get("sources") or []):
+                rel = str(src or "").strip()
+                if not rel or rel in source_paths:
+                    continue
+                resolved = self._resolve_source_path(rel)
+                if resolved is None:
+                    continue
+                # Keep passage extraction targeted to human-readable sources.
+                if resolved.suffix.lower() not in {".txt"}:
+                    continue
+                source_paths[rel] = resolved
+
+        cache: Dict[str, List[Dict[str, Any]]] = {}
+        for source, filepath in source_paths.items():
+            try:
+                content = filepath.read_text(encoding="utf-8", errors="replace")
+            except Exception:
+                continue
+            passages: List[Dict[str, Any]] = []
+            seen: Set[str] = set()
+            for idx, sentence in enumerate(_sentence_split(content), start=1):
+                cleaned = _clean_passage(sentence)
+                if not cleaned or not _is_passage_candidate(cleaned):
+                    continue
+                key = cleaned.lower()
+                if key in seen:
+                    continue
+                seen.add(key)
+                passages.append(
+                    {
+                        "passage_id": f"{source}#{idx}",
+                        "text": cleaned,
+                        "token_set": set(_tokenize(cleaned)),
+                        "embedding": hashed_embedding(cleaned, dim=self._dim),
+                    }
+                )
+                if len(passages) >= 240:
+                    break
+            if passages:
+                cache[source] = passages
+        self._source_passages = cache
 
     def _embed_query(self, text: str) -> np.ndarray:
         text = (text or "").strip()
@@ -199,19 +312,136 @@ class LocalInterviewRetriever:
 
         return results
 
-    def retrieve_mixed(self, query: str) -> Dict[str, List[RetrievedItem]]:
-        """Default retrieval shape for v1 interview generation.
+    def _story_payload(self, item: RetrievedItem) -> Dict[str, Any]:
+        payload = item.payload.get("payload") if isinstance(item.payload, dict) else {}
+        if isinstance(payload, dict):
+            return payload
+        return {}
+
+    def _filter_story_candidates(self, rows: List[RetrievedItem], max_stories: int = 2) -> List[RetrievedItem]:
+        stories: List[RetrievedItem] = []
+        for row in rows:
+            payload = self._story_payload(row)
+            allowed_use = str(payload.get("allowed_use", "")).strip().lower()
+            if allowed_use == "boundary_only":
+                continue
+            stories.append(row)
+            if len(stories) >= max(1, int(max_stories)):
+                break
+        return stories
+
+    def _story_context_text(self, row: RetrievedItem) -> str:
+        payload = self._story_payload(row)
+        arc = payload.get("narrative_arc") if isinstance(payload.get("narrative_arc"), dict) else {}
+        trigger_topics = payload.get("trigger_topics") if isinstance(payload.get("trigger_topics"), list) else []
+        factual_anchors = payload.get("factual_anchors") if isinstance(payload.get("factual_anchors"), list) else []
+        fields = [
+            row.title,
+            row.text,
+            " ".join(str(item) for item in trigger_topics if str(item).strip()),
+            " ".join(str(item) for item in factual_anchors if str(item).strip()),
+            str(arc.get("setup", "")).strip() if isinstance(arc, dict) else "",
+            str(arc.get("turn", "")).strip() if isinstance(arc, dict) else "",
+            str(arc.get("landing", "")).strip() if isinstance(arc, dict) else "",
+        ]
+        return " ".join(part for part in fields if part)
+
+    def _story_sources(self, row: RetrievedItem) -> List[str]:
+        payload = self._story_payload(row)
+        sources = payload.get("sources") if isinstance(payload.get("sources"), list) else []
+        merged = [str(item).strip() for item in list(row.sources) + list(sources) if str(item).strip()]
+        # Preserve order while deduping.
+        seen: Set[str] = set()
+        out: List[str] = []
+        for src in merged:
+            if src in seen:
+                continue
+            seen.add(src)
+            out.append(src)
+        return out
+
+    def retrieve_story_passages(
+        self,
+        query: str,
+        stories: List[RetrievedItem],
+        top_k: int = 3,
+    ) -> List[RetrievedPassage]:
+        if not stories or not self._source_passages:
+            return []
+
+        query_tokens = set(_tokenize(query or ""))
+        q_vec = hashed_embedding(query or "", dim=self._dim)
+        story_vectors = [hashed_embedding(self._story_context_text(row), dim=self._dim) for row in stories]
+        story_tokens: Set[str] = set()
+        for row in stories:
+            for token in _tokenize(self._story_context_text(row)):
+                if len(token) >= 3:
+                    story_tokens.add(token)
+        focus_tokens = {token for token in query_tokens.union(story_tokens) if len(token) >= 3}
+        story_ids = [row.item_id for row in stories]
+        story_sources: Set[str] = set()
+        for row in stories:
+            for src in self._story_sources(row):
+                if src in self._source_passages:
+                    story_sources.add(src)
+
+        scored: List[RetrievedPassage] = []
+        for src in story_sources:
+            for entry in self._source_passages.get(src, []):
+                emb = entry.get("embedding")
+                if not isinstance(emb, np.ndarray):
+                    continue
+                sim_query = float(np.dot(emb, q_vec))
+                sim_story = max(float(np.dot(emb, svec)) for svec in story_vectors) if story_vectors else 0.0
+                token_set = entry.get("token_set")
+                overlap = 0
+                if isinstance(token_set, set):
+                    overlap = len(focus_tokens.intersection(token_set))
+                if overlap <= 0:
+                    continue
+                lexical_boost = min(0.08, 0.012 * overlap)
+                final_score = (0.62 * sim_query) + (0.32 * sim_story) + lexical_boost
+                if final_score < 0.09:
+                    continue
+                scored.append(
+                    RetrievedPassage(
+                        passage_id=str(entry.get("passage_id", "")),
+                        score=float(final_score),
+                        source=src,
+                        text=str(entry.get("text", "")),
+                        story_ids=story_ids,
+                    )
+                )
+
+        scored.sort(key=lambda row: row.score, reverse=True)
+
+        deduped: List[RetrievedPassage] = []
+        seen_texts: Set[str] = set()
+        for row in scored:
+            key = row.text.lower().strip()
+            if not key or key in seen_texts:
+                continue
+            seen_texts.add(key)
+            deduped.append(row)
+            if len(deduped) >= max(1, int(top_k)):
+                break
+        return deduped
+
+    def retrieve_mixed(self, query: str) -> Dict[str, Any]:
+        """Default retrieval shape for v2 interview generation.
 
         - 1 timeline card
-        - up to 4 story cards
-        - optional policy card
+        - up to 2 story cards (higher-quality cues)
+        - up to 3 source passages linked to those stories
         """
         timeline = self.retrieve(query, top_k=1, include_kinds=["truth_timeline"])  # strict 1
-        stories = self.retrieve(query, top_k=4, include_kinds=["story_card"])  # strict <=4
-        policies = self.retrieve(query, top_k=1, include_kinds=["policy"], min_score=0.0)
+        story_pool = self.retrieve(query, top_k=12, include_kinds=["story_card"])
+        stories = self._filter_story_candidates(story_pool, max_stories=2)
+        passages = self.retrieve_story_passages(query=query, stories=stories, top_k=3)
 
         return {
             "timeline": timeline,
             "stories": stories,
-            "policies": policies,
+            "policies": [],
+            "passages": passages,
         }

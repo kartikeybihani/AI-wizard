@@ -89,29 +89,8 @@ class InterviewPolicy:
         return WORD_BUDGETS.get(question_type, (70, 120))
 
     def boundary_decision(self, question: str) -> BoundaryDecision:
-        text = (question or "").lower().strip()
-        private_cfg = (self.payload.get("private_topics") or {}) if isinstance(self.payload, dict) else {}
-        private_keywords = [str(item).lower() for item in (private_cfg.get("keywords") or [])]
-        template = str(private_cfg.get("response_template") or "I prefer to stay with what I've shared publicly.")
-
-        for token in private_keywords:
-            if token and token in text:
-                return BoundaryDecision(
-                    blocked=True,
-                    reason="private_topic",
-                    response_template=template,
-                )
-
-        family_markers = ["wife", "marriage", "kids", "children", "custody", "private relationship", "family"]
-        perspective_markers = ["your ", "my ", "his ", "her "]
-        if any(marker in text for marker in family_markers) and any(p in text for p in perspective_markers):
-            return BoundaryDecision(
-                blocked=True,
-                reason="private_topic_family",
-                response_template=template,
-            )
-
-        # Public-only default: allow response.
+        # Private/family topic boundary checks are intentionally disabled.
+        # Keep this method for API compatibility and future toggles.
         return BoundaryDecision(
             blocked=False,
             reason="allowed",

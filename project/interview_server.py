@@ -14,7 +14,8 @@ from typing import Any, Dict, List, Optional
 import requests
 
 from utils.interview_policy import InterviewPolicy, compact_source_line
-from utils.interview_retrieval import LocalInterviewRetriever, RetrievedItem
+from utils.interview_phrase_memory import LocalPhraseMemory, PhraseMemoryHit
+from utils.interview_retrieval import LocalInterviewRetriever, RetrievedItem, RetrievedPassage
 
 
 def now_epoch() -> int:
@@ -97,6 +98,10 @@ def compact_history(messages: List[Dict[str, Any]], max_items: int = 8) -> List[
             continue
         compacted.append({"role": role, "text": text})
     return compacted
+
+
+def count_words(text: str) -> int:
+    return len(re.findall(r"\b[\w'-]+\b", text or ""))
 
 
 @dataclass
@@ -224,6 +229,9 @@ class InterviewRuntime:
         )
         self.retriever.load()
 
+        self.phrase_memory = LocalPhraseMemory(repo_root=repo_root())
+        self.phrase_memory.load()
+
         self.character_bible = load_json(cfg.char_bible_path, default={})
 
     def _provider_headers(self, provider: str, include_content_type: bool = True) -> Dict[str, str]:
@@ -297,6 +305,96 @@ class InterviewRuntime:
                 lines.append(f"   sources: {src_line}")
         return "\n".join(lines)
 
+    def _story_payload(self, row: RetrievedItem) -> Dict[str, Any]:
+        payload = row.payload.get("payload") if isinstance(row.payload, dict) else {}
+        if isinstance(payload, dict):
+            return payload
+        return {}
+
+    def _format_story_cues(self, rows: List[RetrievedItem], label: str) -> str:
+        if not rows:
+            return f"{label}: (none)"
+        lines = [f"{label}:"]
+        for idx, row in enumerate(rows, start=1):
+            payload = self._story_payload(row)
+            arc = payload.get("narrative_arc") if isinstance(payload.get("narrative_arc"), dict) else {}
+            setup = str(arc.get("setup", "")).strip() if isinstance(arc, dict) else ""
+            turn = str(arc.get("turn", "")).strip() if isinstance(arc, dict) else ""
+            landing = str(arc.get("landing", "")).strip() if isinstance(arc, dict) else ""
+            trigger_topics = payload.get("trigger_topics") if isinstance(payload.get("trigger_topics"), list) else []
+            factual_anchors = payload.get("factual_anchors") if isinstance(payload.get("factual_anchors"), list) else []
+            emotional_register = str(payload.get("emotional_register", "")).strip()
+            uncertainty = str(payload.get("uncertainty_note", "")).strip()
+
+            lines.append(f"{idx}. {row.title or row.item_id}")
+            if setup:
+                lines.append(f"   setup: {setup}")
+            if turn:
+                lines.append(f"   turn: {turn}")
+            if landing:
+                lines.append(f"   landing: {landing}")
+            if emotional_register:
+                lines.append(f"   emotional_register: {emotional_register}")
+            if trigger_topics:
+                lines.append(f"   trigger_topics: {', '.join(str(item) for item in trigger_topics[:6])}")
+            if factual_anchors:
+                lines.append(f"   factual_anchors: {', '.join(str(item) for item in factual_anchors[:4])}")
+            if uncertainty:
+                lines.append(f"   uncertainty_note: {uncertainty}")
+            src_line = compact_source_line(list(row.sources) + list(payload.get('sources') or []), max_items=3)
+            if src_line:
+                lines.append(f"   sources: {src_line}")
+        return "\n".join(lines)
+
+    def _format_passage_evidence(self, rows: List[RetrievedPassage], label: str) -> str:
+        if not rows:
+            return f"{label}: (none)"
+        lines = [f"{label}:"]
+        for idx, row in enumerate(rows, start=1):
+            lines.append(f"{idx}. {row.text}")
+            if row.source:
+                lines.append(f"   source: {row.source}")
+        return "\n".join(lines)
+
+    def _format_phrase_memory(self, rows: List[PhraseMemoryHit], label: str) -> str:
+        if not rows:
+            return f"{label}: (none)"
+        lines = [f"{label}:"]
+        for idx, row in enumerate(rows, start=1):
+            lines.append(f"{idx}. {row.text}")
+            if row.source:
+                lines.append(f"   source: {row.source}")
+        return "\n".join(lines)
+
+    def _retrieval_debug_rows(self, rows: List[RetrievedItem], preview_chars: int = 220) -> List[Dict[str, Any]]:
+        out: List[Dict[str, Any]] = []
+        for row in rows:
+            out.append(
+                {
+                    "item_id": row.item_id,
+                    "kind": row.kind,
+                    "score": round(float(row.score), 4),
+                    "title": row.title,
+                    "sources": list(row.sources),
+                    "text_preview": self._sanitize_retrieved_text(row.text)[: max(40, int(preview_chars))],
+                }
+            )
+        return out
+
+    def _retrieval_debug_passages(self, rows: List[RetrievedPassage], preview_chars: int = 220) -> List[Dict[str, Any]]:
+        out: List[Dict[str, Any]] = []
+        for row in rows:
+            out.append(
+                {
+                    "passage_id": row.passage_id,
+                    "score": round(float(row.score), 4),
+                    "source": row.source,
+                    "story_ids": list(row.story_ids),
+                    "text_preview": row.text[: max(40, int(preview_chars))],
+                }
+            )
+        return out
+
     def _build_system_prompt(
         self,
         question_type: str,
@@ -304,7 +402,8 @@ class InterviewRuntime:
         max_words: int,
         retrieved_timeline: List[RetrievedItem],
         retrieved_stories: List[RetrievedItem],
-        retrieved_policies: List[RetrievedItem],
+        retrieved_passages: List[RetrievedPassage],
+        phrase_memory_rows: List[PhraseMemoryHit],
     ) -> str:
         identity = self.character_bible.get("identity_core") or {}
         voice_rules = self.character_bible.get("voice_rules") or {}
@@ -319,9 +418,10 @@ class InterviewRuntime:
 
         retrieved_block = "\n\n".join(
             [
-                self._format_retrieved(retrieved_timeline, "Retrieved timeline"),
-                self._format_retrieved(retrieved_stories, "Retrieved stories"),
-                self._format_retrieved(retrieved_policies, "Retrieved policy"),
+                self._format_retrieved(retrieved_timeline, "FACT ANCHORS (timeline)"),
+                self._format_story_cues(retrieved_stories, "NARRATIVE CUES (story cards)"),
+                self._format_passage_evidence(retrieved_passages, "SUPPORTING PASSAGES (source excerpts)"),
+                self._format_phrase_memory(phrase_memory_rows, "PHRASE CUES (style only)"),
             ]
         )
 
@@ -330,12 +430,15 @@ class InterviewRuntime:
             "Stay in first person and sound conversational, not scripted.\n"
             "\n"
             "Hard constraints:\n"
-            "- Strict public-only policy. Do not disclose private family details.\n"
             "- Never invent precise dates, names, or events absent from retrieved evidence.\n"
             "- If uncertain, use human uncertainty language such as: 'I don't remember the exact year, but...'.\n"
             "- No diagnosis or treatment advice.\n"
             "- Keep one core idea per answer and avoid corporate PR language.\n"
             "- Never output internal scaffolding tokens like 'anchors', 'retrieved', 'score', or metadata labels.\n"
+            "- Use occasional natural spoken fillers (for example: 'you know', 'I mean', very light 'um') but keep it sparse and natural.\n"
+            "- Filler frequency: short answers (<= 80 words) use at most one filler phrase; longer answers can use up to two.\n"
+            "- Phrase memory is for style bias only: reuse at most one short phrase naturally; avoid copying long spans verbatim.\n"
+            "- Facts must be supported by FACT ANCHORS or SUPPORTING PASSAGES. If not supported, mark uncertainty.\n"
             "\n"
             f"Question type: {question_type}\n"
             f"Soft word budget: {min_words}-{max_words} words (not hard truncate).\n"
@@ -353,9 +456,59 @@ class InterviewRuntime:
             f"- Syntax rules: {syntax_rules or 'first-person, reflective, non-prescriptive'}\n"
             f"- Anti-patterns: {anti_line}\n"
             "\n"
-            "Use retrieved evidence below for facts/story anchors:\n"
+            "Use retrieved evidence below:\n"
             f"{retrieved_block}\n"
         )
+
+    def _apply_spoken_rhythm(self, text: str, question_type: str) -> tuple[str, int]:
+        value = (text or "").strip()
+        if not value:
+            return value, 0
+
+        words = count_words(value)
+        if words < 28:
+            # Leave very short answers untouched.
+            return value, 0
+
+        max_fillers = 0
+        if words >= 45:
+            max_fillers = 1
+        if words >= 150 and question_type in {"personal_emotional", "philosophical_advice"}:
+            max_fillers = 2
+        if max_fillers <= 0:
+            return value, 0
+        existing = len(re.findall(r"\b(?:you know|i mean|um|uh)\b", value, flags=re.IGNORECASE))
+        if existing >= max_fillers:
+            return value, 0
+
+        if question_type in {"personal_emotional", "philosophical_advice"}:
+            preferred_fillers = ["you know,", "I mean,"]
+        elif question_type == "pushback_clarification":
+            preferred_fillers = ["I mean,", "you know,"]
+        else:
+            preferred_fillers = ["you know,", "I mean,"]
+
+        sentences = [part.strip() for part in re.split(r"(?<=[.!?])\s+", value) if part.strip()]
+        if len(sentences) <= 1:
+            return value, 0
+
+        slots = [1, 2, 3]  # Bias filler insertion after first sentence.
+        filler_idx = 0
+        added = 0
+        for slot in slots:
+            if existing + added >= max_fillers:
+                break
+            if slot >= len(sentences):
+                continue
+            sent = sentences[slot]
+            if re.match(r"^(?:you know|i mean|um|uh)\b", sent, flags=re.IGNORECASE):
+                continue
+            filler = preferred_fillers[min(filler_idx, len(preferred_fillers) - 1)]
+            sentences[slot] = f"{filler} {sent}"
+            filler_idx += 1
+            added += 1
+
+        return " ".join(sentences), added
 
     def _fallback_answer(
         self,
@@ -485,6 +638,16 @@ class InterviewRuntime:
         timeline_rows = retrieved.get("timeline") or []
         story_rows = retrieved.get("stories") or []
         policy_rows = retrieved.get("policies") or []
+        passage_rows = retrieved.get("passages") or []
+        phrase_rows = self.phrase_memory.retrieve(question, top_k=4, min_score=0.08)
+
+        retrieval_debug = {
+            "timeline": self._retrieval_debug_rows(timeline_rows),
+            "stories": self._retrieval_debug_rows(story_rows),
+            "policies": self._retrieval_debug_rows(policy_rows),
+            "passages": self._retrieval_debug_passages(passage_rows),
+            "phrase_memory": self.phrase_memory.to_debug(phrase_rows),
+        }
 
         self._append_session_event(
             session_id=session_id,
@@ -496,7 +659,10 @@ class InterviewRuntime:
                     "timeline": [item.item_id for item in timeline_rows],
                     "stories": [item.item_id for item in story_rows],
                     "policies": [item.item_id for item in policy_rows],
+                    "passages": [item.passage_id for item in passage_rows],
+                    "phrase_memory": [item.item_id for item in phrase_rows],
                 },
+                "retrieval_debug": retrieval_debug,
             },
         )
 
@@ -512,7 +678,8 @@ class InterviewRuntime:
                 max_words=max_words,
                 retrieved_timeline=timeline_rows,
                 retrieved_stories=story_rows,
-                retrieved_policies=policy_rows,
+                retrieved_passages=passage_rows,
+                phrase_memory_rows=phrase_rows,
             )
 
             history_lines = "\n".join([f"{item['role']}: {item['text']}" for item in history])
@@ -553,6 +720,11 @@ class InterviewRuntime:
                     },
                 )
 
+        assistant_text, fillers_added = self._apply_spoken_rhythm(
+            text=assistant_text,
+            question_type=question_type,
+        )
+
         self._append_session_event(
             session_id=session_id,
             event={
@@ -560,6 +732,8 @@ class InterviewRuntime:
                 "used_fallback": used_fallback,
                 "response_chars": len(assistant_text or ""),
                 "question_type": question_type,
+                "spoken_rhythm_applied": fillers_added > 0,
+                "spoken_fillers_added": fillers_added,
             },
         )
 
@@ -591,11 +765,16 @@ class InterviewRuntime:
                 "boundary_blocked": boundary.blocked,
                 "used_fallback": used_fallback,
                 "llm_error": llm_error,
+                "spoken_rhythm_applied": fillers_added > 0,
+                "spoken_fillers_added": fillers_added,
                 "retrieval_hits": {
                     "timeline": [item.item_id for item in timeline_rows],
                     "stories": [item.item_id for item in story_rows],
                     "policies": [item.item_id for item in policy_rows],
+                    "passages": [item.passage_id for item in passage_rows],
+                    "phrase_memory": [item.item_id for item in phrase_rows],
                 },
+                "retrieval_debug": retrieval_debug,
             },
         }
         return output

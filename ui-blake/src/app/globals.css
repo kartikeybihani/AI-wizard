@@ -1658,6 +1658,7 @@ img, svg {
   border-top: none;
   padding-top: 0;
   margin-top: 56px;
+  margin-left: -12px;
   max-width: 520px;
   opacity: 0.94;
 }
@@ -2210,6 +2211,8 @@ img, svg {
   }
 
   .debug-zone {
+    display: none;
+    margin-left: 0;
     margin-top: 42px;
   }
 

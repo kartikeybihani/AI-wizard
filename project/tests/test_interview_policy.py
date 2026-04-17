@@ -45,17 +45,17 @@ class InterviewPolicyTests(unittest.TestCase):
         self.assertEqual("factual_bio", policy.classify_question_type("What year did you launch TOMS?"))
         self.assertEqual("factual_bio", policy.classify_question_type("Where did this start?"))
 
-    def test_boundary_blocks_private_topics(self) -> None:
+    def test_boundary_allows_private_topics(self) -> None:
         policy = self._policy()
         decision = policy.boundary_decision("Can you tell me about my kids?")
-        self.assertTrue(decision.blocked)
-        self.assertEqual("private_topic", decision.reason)
+        self.assertFalse(decision.blocked)
+        self.assertEqual("allowed", decision.reason)
 
-    def test_boundary_blocks_family_questions_with_you_perspective(self) -> None:
+    def test_boundary_allows_family_questions_with_you_perspective(self) -> None:
         policy = self._policy()
         decision = policy.boundary_decision("Can you talk about your kids?")
-        self.assertTrue(decision.blocked)
-        self.assertIn("private_topic", decision.reason)
+        self.assertFalse(decision.blocked)
+        self.assertEqual("allowed", decision.reason)
 
 
 if __name__ == "__main__":
