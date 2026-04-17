@@ -34,8 +34,8 @@ type ConversationHandle = {
   setMicMuted: (muted: boolean) => void;
   getId: () => string;
   sendUserMessage?: (text: string) => void;
-  getInputVolume?: () => Promise<number>;
-  getOutputVolume?: () => Promise<number>;
+  getInputVolume?: () => number | Promise<number>;
+  getOutputVolume?: () => number | Promise<number>;
   input?: {
     inputStream?: MediaStream;
   };
@@ -168,33 +168,76 @@ function isPlaceholderUserUtterance(text: string): boolean {
 
 function PhoneIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M6.62 10.79a15.5 15.5 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.11.37 2.31.56 3.58.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.27.19 2.47.56 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"
-        fill="currentColor"
-      />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.572 2.81.7A2 2 0 0 1 22 16.92z" />
     </svg>
   );
 }
 
 function MicIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a1 1 0 1 1 2 0 7 7 0 0 1-6 6.92V21h3a1 1 0 1 1 0 2H8a1 1 0 0 1 0-2h3v-2.08A7 7 0 0 1 5 12a1 1 0 1 1 2 0 5 5 0 0 0 10 0z"
-        fill="currentColor"
-      />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+      <line x1="12" y1="19" x2="12" y2="23" />
+      <line x1="8" y1="23" x2="16" y2="23" />
     </svg>
   );
 }
 
 function MicOffIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M18.89 16.48A6.97 6.97 0 0 0 19 12a1 1 0 1 0-2 0 5 5 0 0 1-.38 1.91L15 12.29V6a3 3 0 0 0-5.27-1.96 1 1 0 0 0 1.54 1.28A1 1 0 0 1 13 6v4.29L4.71 2.01a1 1 0 1 0-1.42 1.41l14 14a1 1 0 0 0 1.42-1.41zM5 12a1 1 0 1 1 2 0 5 5 0 0 0 6.53 4.76l1.62 1.62A6.93 6.93 0 0 1 13 18.92V21h3a1 1 0 1 1 0 2H8a1 1 0 0 1 0-2h3v-2.08A7 7 0 0 1 5 12z"
-        fill="currentColor"
-      />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="1" y1="1" x2="23" y2="23" />
+      <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6" />
+      <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2c0 .76-.13 1.49-.35 2.18" />
+      <line x1="12" y1="19" x2="12" y2="23" />
+      <line x1="8" y1="23" x2="16" y2="23" />
+    </svg>
+  );
+}
+
+function ChevronIcon({ expanded }: { expanded: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`chevron ${expanded ? "expanded" : ""}`}
+      aria-hidden="true"
+    >
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  );
+}
+
+function DownloadIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+  );
+}
+
+function EyeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
+function CopyIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="copy-icon-svg">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
     </svg>
   );
 }
@@ -213,6 +256,8 @@ export default function HomePage() {
   const [textInput, setTextInput] = useState<string>("");
   const [inputLevel, setInputLevel] = useState<number>(0);
   const [outputLevel, setOutputLevel] = useState<number>(0);
+  const [debugOpen, setDebugOpen] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
 
   const conversationRef = useRef<ConversationHandle | null>(null);
   const sessionIdRef = useRef<string>("");
@@ -225,6 +270,8 @@ export default function HomePage() {
   const assistantChunksRef = useRef<Blob[]>([]);
   const assistantTapDestinationRef =
     useRef<MediaStreamAudioDestinationNode | null>(null);
+
+  const transcriptRef = useRef<HTMLDivElement>(null);
 
   const callApi = useCallback(
     async <T,>(url: string, init?: RequestInit): Promise<T> => {
@@ -754,196 +801,206 @@ export default function HomePage() {
         return;
       }
       if (typeof convo.getInputVolume === "function") {
-        void convo
-          .getInputVolume()
-          .then((v) => setInputLevel(Number.isFinite(v) ? v : 0))
-          .catch(() => {
-            // no-op
-          });
+        try {
+          void Promise.resolve(convo.getInputVolume())
+            .then((v) => setInputLevel(Number.isFinite(v) ? v : 0))
+            .catch(() => {
+              // no-op
+            });
+        } catch {
+          // no-op
+        }
       }
       if (typeof convo.getOutputVolume === "function") {
-        void convo
-          .getOutputVolume()
-          .then((v) => setOutputLevel(Number.isFinite(v) ? v : 0))
-          .catch(() => {
-            // no-op
-          });
+        try {
+          void Promise.resolve(convo.getOutputVolume())
+            .then((v) => setOutputLevel(Number.isFinite(v) ? v : 0))
+            .catch(() => {
+              // no-op
+            });
+        } catch {
+          // no-op
+        }
       }
     }, 320);
     return () => clearInterval(interval);
   }, [hasActiveConversation]);
 
+  // Auto-scroll transcript when new turns arrive
+  useEffect(() => {
+    if (transcriptRef.current && transcript.length > 0) {
+      transcriptRef.current.scrollTo({
+        top: transcriptRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [transcript.length]);
+
+  const copyToClipboard = async (value: string, field: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopiedField(field);
+      setTimeout(() => setCopiedField(null), 1500);
+    } catch {
+      // Clipboard not available
+    }
+  };
+
+  const hasTranscript = transcript.length > 0;
+
   return (
     <main className="call-page">
-      <section className="studio-grid">
-        <article className="panel live-panel">
-          <header className="hero-top">
-            <div>
-              <p className="eyebrow">Realtime Interview</p>
-              <h1>AI Blake Studio</h1>
-            </div>
-            <span className={`status-pill ${status}`}>{status}</span>
-          </header>
+      {/* Grain overlay */}
+      <div className="grain-overlay" aria-hidden="true" />
 
-          <div
-            className={`voice-stage ${status} ${mode} ${micMuted ? "mic-muted" : ""}`}
+      {/* Zone 1: The Presence — orb + title + controls */}
+      <section className="presence-zone">
+        <header className="presence-header">
+          <div className="title-group">
+            <h1 className="title-reveal-stagger">
+              {"AI Blake Studio".split("").map((char, i) => (
+                <span key={i} style={{ animationDelay: `${0.9 + i * 0.04}s` }}>
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              ))}
+            </h1>
+            <p className="subtitle-reveal">Realtime voice interview</p>
+          </div>
+        </header>
+
+        <div className={`voice-stage-orb ${status} ${mode} ${micMuted ? "mic-muted" : ""}`}>
+          <svg
+            className="voice-orbit-svg"
+            viewBox="0 0 320 236"
+            aria-hidden="true"
           >
-            <svg
-              className="voice-orbit-svg"
-              viewBox="0 0 320 236"
-              aria-hidden="true"
-            >
-              <defs>
-                <linearGradient
-                  id="coreGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#ffffff" />
-                  <stop offset="100%" stopColor="#e7edf8" />
-                </linearGradient>
-                <linearGradient
-                  id="waveGradient"
-                  x1="20%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#78d8c2" />
-                  <stop offset="100%" stopColor="#2b78c8" />
-                </linearGradient>
-              </defs>
+            <defs>
+              <linearGradient
+                id="coreGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="100%" stopColor="#e7edf8" />
+              </linearGradient>
+              <linearGradient
+                id="waveGradient"
+                x1="20%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor="#78d8c2" />
+                <stop offset="100%" stopColor="#2b78c8" />
+              </linearGradient>
+            </defs>
 
-              <circle
-                className="orbit-ring ring-outer"
-                cx="160"
-                cy="118"
-                r="92"
-              />
-              <circle
-                className="orbit-ring ring-inner"
-                cx="160"
-                cy="118"
-                r="68"
-              />
+            <circle
+              className="orbit-ring ring-outer"
+              cx="160"
+              cy="118"
+              r="92"
+            />
+            <circle
+              className="orbit-ring ring-inner"
+              cx="160"
+              cy="118"
+              r="68"
+            />
 
-              <g className="orbit-node orbit-node-a">
-                <g transform="translate(160 26)">
-                  <circle className="node-shell" r="12.5" />
-                  <path
-                    className="node-icon"
-                    d="M-4.5 -2.2h2.7l3.2-3.1v10.6L-1.8 2H-4.5zM3.1-1.4a3.6 3.6 0 0 1 0 4.8M4.9-3.1a6.1 6.1 0 0 1 0 8.2"
-                  />
-                </g>
+            <g className="orbit-node orbit-node-a">
+              <g transform="translate(160 26)">
+                <circle className="node-shell" r="12.5" />
+                <path
+                  className="node-icon"
+                  d="M-4.5 -2.2h2.7l3.2-3.1v10.6L-1.8 2H-4.5zM3.1-1.4a3.6 3.6 0 0 1 0 4.8M4.9-3.1a6.1 6.1 0 0 1 0 8.2"
+                />
               </g>
-              <g className="orbit-node orbit-node-b">
-                <g transform="translate(160 44)">
-                  <circle className="node-shell" r="10" />
-                  <path
-                    className="node-icon"
-                    d="M0-4.6v4M-2.5-1.4a2.5 2.5 0 1 0 5 0v-2a2.5 2.5 0 1 0-5 0zM-4.5 2.3a4.5 4.5 0 1 0 9 0"
-                  />
-                </g>
+            </g>
+            <g className="orbit-node orbit-node-b">
+              <g transform="translate(160 44)">
+                <circle className="node-shell" r="10" />
+                <path
+                  className="node-icon"
+                  d="M0-4.6v4M-2.5-1.4a2.5 2.5 0 1 0 5 0v-2a2.5 2.5 0 1 0-5 0zM-4.5 2.3a4.5 4.5 0 1 0 9 0"
+                />
               </g>
+            </g>
 
-              <circle className="core-glow" cx="160" cy="118" r="52" />
-              <circle
-                className="core-disc"
-                cx="160"
-                cy="118"
-                r="42"
-                fill="url(#coreGradient)"
-              />
-              <path
-                className="wave wave-a"
-                d="M132 118h8l6-12 6 24 6-18 6 12h24"
-              />
-              <path className="wave wave-b" d="M138 130h10l6-9 6 15 6-11h16" />
-            </svg>
+            <circle className="core-glow" cx="160" cy="118" r="52" />
+            <circle
+              className="core-disc"
+              cx="160"
+              cy="118"
+              r="42"
+              fill="url(#coreGradient)"
+            />
+            <path
+              className="wave wave-a"
+              d="M132 118h8l6-12 6 24 6-18 6 12h24"
+            />
+            <path className="wave wave-b" d="M138 130h10l6-9 6 15 6-11h16" />
+          </svg>
 
-            <div className="voice-core">
-              <span>
-                {mode === "idle"
-                  ? "Ready"
-                  : mode === "speaking"
-                    ? "AI Speaking"
-                    : "Listening"}
-              </span>
-            </div>
-            <div className="voice-bars" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-            </div>
+          <div className="voice-core">
+            <span>
+              {mode === "idle"
+                ? "Ready"
+                : mode === "speaking"
+                  ? "AI Speaking"
+                  : "Listening"}
+            </span>
           </div>
-
-          <div className="call-controls">
-            <button
-              className="btn btn-connect"
-              onClick={() => void startSession()}
-              disabled={!canStart}
-            >
-              <PhoneIcon />
-              <span>
-                {status === "connecting" ? "Connecting..." : "Connect"}
-              </span>
-            </button>
-
-            <button
-              className="btn btn-mic"
-              onClick={toggleMic}
-              disabled={!hasActiveConversation}
-            >
-              {micMuted ? <MicOffIcon /> : <MicIcon />}
-              <span>{micMuted ? "Unmute" : "Mute"}</span>
-            </button>
-
-            <button
-              className="btn btn-end"
-              onClick={() => void stopSession()}
-              disabled={!canStop}
-            >
-              <PhoneIcon />
-              <span>{isStopping ? "Ending..." : "End"}</span>
-            </button>
+          <div className="voice-bars" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+            <i />
+            <i />
+            <i />
           </div>
+        </div>
 
-          <div className="meta-row">
-            <div className="meta-item">
-              <span>Session</span>
-              <strong>{sessionId || "-"}</strong>
-            </div>
-            <div className="meta-item">
-              <span>Conversation</span>
-              <strong>{conversationId || "-"}</strong>
-            </div>
-            <div className="meta-item">
-              <span>Mode</span>
-              <strong>{mode}</strong>
-            </div>
-          </div>
+        <div className="call-controls">
+          <button
+            className="btn btn-connect"
+            onClick={() => void startSession()}
+            disabled={!canStart}
+          >
+            <PhoneIcon />
+            <span>
+              {status === "connecting" ? "Connecting..." : "Connect"}
+            </span>
+          </button>
 
-          <div className="debug-strip">
-            <div className="debug-item">
-              <span>Input</span>
-              <strong>{Math.round(inputLevel * 100)}%</strong>
-            </div>
-            <div className="debug-item">
-              <span>Output</span>
-              <strong>{Math.round(outputLevel * 100)}%</strong>
-            </div>
-          </div>
+          <button
+            className="btn btn-mic"
+            onClick={toggleMic}
+            disabled={!hasActiveConversation}
+          >
+            {micMuted ? <MicOffIcon /> : <MicIcon />}
+            <span>{micMuted ? "Unmute" : "Mute"}</span>
+          </button>
 
+          <button
+            className="btn btn-end"
+            onClick={() => void stopSession()}
+            disabled={!canStop}
+          >
+            <PhoneIcon />
+            <span>{isStopping ? "Ending..." : "End"}</span>
+          </button>
+        </div>
+
+        {/* Text input — only visible during active conversation */}
+        {hasActiveConversation && (
           <div className="text-send-row">
             <input
               value={textInput}
               onChange={(e) => setTextInput(e.target.value)}
-              placeholder="Debug: send typed message to AI Blake"
+              placeholder="Type a message..."
               disabled={!hasActiveConversation}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -953,65 +1010,165 @@ export default function HomePage() {
               }}
             />
             <button
-              className="btn btn-subtle"
+              className="btn btn-ghost"
               onClick={sendTextMessage}
               disabled={!hasActiveConversation || !textInput.trim()}
             >
-              Send Text
+              Send
             </button>
           </div>
+        )}
 
-          <section className="mini-export">
-            <div className="panel-head mini-head">
-              <h2>Session Export</h2>
-              <span>Compact</span>
+        {error ? <p className="error-banner">{error}</p> : null}
+      </section>
+
+      {/* Zone 2: The Conversation — transcript */}
+      <section className="conversation-zone">
+        <div className="conversation-header">
+          <h2>Conversation</h2>
+          {hasTranscript && <span className="turn-count">{transcript.length} turns</span>}
+        </div>
+
+        <div ref={transcriptRef} className="transcript-list">
+          {!hasTranscript ? (
+            <p className="transcript-empty">Conversation will appear here.</p>
+          ) : null}
+          {transcript.map((turn) => (
+            <article key={turn.id} className={`turn-card ${turn.speaker}`}>
+              <header className="turn-header">
+                <span className="turn-speaker">
+                  {turn.speaker === "assistant" ? "AI Blake" : "Blake"}
+                </span>
+                <div className="turn-accent" />
+                <time className="turn-time">
+                  {new Date(turn.ts).toLocaleTimeString()}
+                </time>
+              </header>
+              <p className="turn-text">{turn.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Zone 3: Debug drawer */}
+      <section className="debug-zone">
+        <button
+          className="debug-trigger"
+          onClick={() => setDebugOpen(!debugOpen)}
+          aria-expanded={debugOpen}
+        >
+          <span>Debug</span>
+          <ChevronIcon expanded={debugOpen} />
+        </button>
+
+        {debugOpen && (
+          <div className="debug-drawer">
+            <div className="debug-grid">
+              <div className="debug-section">
+                <h3>Session</h3>
+                <div className="debug-field">
+                  <div className="debug-field-label">
+                    <span>Session ID</span>
+                    {sessionId && (
+                      <button
+                        className="btn-copy"
+                        onClick={() => copyToClipboard(sessionId, "session")}
+                        title="Copy session ID"
+                      >
+                        <CopyIcon />
+                        {copiedField === "session" ? "Copied" : ""}
+                      </button>
+                    )}
+                  </div>
+                  <code className="mono-field">
+                    {sessionId || "—"}
+                  </code>
+                </div>
+                <div className="debug-field">
+                  <div className="debug-field-label">
+                    <span>Conversation ID</span>
+                    {conversationId && (
+                      <button
+                        className="btn-copy"
+                        onClick={() => copyToClipboard(conversationId, "conversation")}
+                        title="Copy conversation ID"
+                      >
+                        <CopyIcon />
+                        {copiedField === "conversation" ? "Copied" : ""}
+                      </button>
+                    )}
+                  </div>
+                  <code className="mono-field">
+                    {conversationId || "—"}
+                  </code>
+                </div>
+                <div className="debug-field">
+                  <div className="debug-field-label">
+                    <span>Mode</span>
+                  </div>
+                  <code className="mono-field">{mode}</code>
+                </div>
+                <div className="debug-field">
+                  <div className="debug-field-label">
+                    <span>Status</span>
+                  </div>
+                  <code className="mono-field">{status}</code>
+                </div>
+              </div>
+
+              <div className="debug-section">
+                <h3>Audio Levels</h3>
+                <div className="vu-meters">
+                  <div className="vu-item">
+                    <span className="vu-label">Input</span>
+                    <div className="vu-bar-track">
+                      <div
+                        className="vu-bar vu-bar-input"
+                        style={{ width: `${Math.round(inputLevel * 100)}%` }}
+                      />
+                    </div>
+                    <span className="vu-value">{Math.round(inputLevel * 100)}%</span>
+                  </div>
+                  <div className="vu-item">
+                    <span className="vu-label">Output</span>
+                    <div className="vu-bar-track">
+                      <div
+                        className="vu-bar vu-bar-output"
+                        style={{ width: `${Math.round(outputLevel * 100)}%` }}
+                      />
+                    </div>
+                    <span className="vu-value">{Math.round(outputLevel * 100)}%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="debug-section">
+                <h3>Export</h3>
+                <div className="export-actions">
+                  <button
+                    className="btn btn-ghost"
+                    onClick={() => void loadExport()}
+                    disabled={!sessionId}
+                  >
+                    <EyeIcon />
+                    Preview
+                  </button>
+                  <button
+                    className="btn btn-ghost"
+                    onClick={() => void downloadExport()}
+                    disabled={!sessionId}
+                  >
+                    <DownloadIcon />
+                    Download
+                  </button>
+                </div>
+                {exportPreview && (
+                  <pre className="export-box">{exportPreview}</pre>
+                )}
+              </div>
             </div>
-            <div className="export-actions">
-              <button
-                className="btn btn-subtle"
-                onClick={() => void loadExport()}
-                disabled={!sessionId}
-              >
-                Preview JSON
-              </button>
-              <button
-                className="btn btn-subtle"
-                onClick={() => void downloadExport()}
-                disabled={!sessionId}
-              >
-                Download
-              </button>
-            </div>
-            <pre className="export-box">
-              {exportPreview || "No export loaded."}
-            </pre>
-          </section>
-
-          {error ? <p className="error-banner">{error}</p> : null}
-        </article>
-
-        <article className="panel transcript-panel">
-          <div className="panel-head transcript-head">
-            <h2>Live Transcript</h2>
-            <span>{transcript.length} turns</span>
           </div>
-          <div className="transcript-list">
-            {transcript.length === 0 ? (
-              <p className="empty">No transcript yet.</p>
-            ) : null}
-            {transcript.map((turn) => (
-              <article key={turn.id} className={`turn-card ${turn.speaker}`}>
-                <header>
-                  <strong>
-                    {turn.speaker === "assistant" ? "AI Blake" : "Blake"}
-                  </strong>
-                  <time>{new Date(turn.ts).toLocaleTimeString()}</time>
-                </header>
-                <p>{turn.text}</p>
-              </article>
-            ))}
-          </div>
-        </article>
+        )}
       </section>
     </main>
   );

@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${uiFont.variable} ${monoFont.variable}`}>{children}</body>
+      <body className={`${uiFont.variable} ${monoFont.variable} antialiased`}>{children}</body>
     </html>
   );
 }
