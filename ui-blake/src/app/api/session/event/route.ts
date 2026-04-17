@@ -22,7 +22,8 @@ export async function POST(request: Request): Promise<Response> {
 
   const sessionId = (body.sessionId || "").trim();
   if (!sessionId) {
-    return NextResponse.json({ ok: false, error: "Missing sessionId" }, { status: 400 });
+    // Telemetry events are best-effort; do not surface as hard errors.
+    return NextResponse.json({ ok: true, dropped: true, reason: "missing_session_id" });
   }
 
   const eventType = (body.eventType || "event").trim();
@@ -45,12 +46,9 @@ export async function POST(request: Request): Promise<Response> {
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: error instanceof Error ? error.message : "Failed to append event",
-      },
-      { status: 400 }
-    );
+    const message = error instanceof Error ? error.message : "Failed to append event";
+    // Vercel serverless instances may not share local filesystem state.
+    // Keep event ingestion non-blocking and avoid noisy 4xx logs.
+    return NextResponse.json({ ok: true, dropped: true, reason: message });
   }
 }

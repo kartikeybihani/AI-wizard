@@ -42,6 +42,9 @@ type ConversationHandle = {
   };
 };
 
+type UiStatus = "connecting" | "connected" | "disconnecting" | "disconnected";
+type UiMode = "speaking" | "listening" | "idle";
+
 const RECORDER_CANDIDATES = ["audio/webm;codecs=opus", "audio/webm"];
 
 function stringifyUnknown(value: unknown): string {
@@ -67,25 +70,15 @@ function formatSdkError(value: unknown): string {
   }
   if (value && typeof value === "object") {
     const rec = value as Record<string, unknown>;
-    const errEvent = rec as {
-      message?: unknown;
-      type?: unknown;
-      isTrusted?: unknown;
-      error?: unknown;
-      reason?: unknown;
-      code?: unknown;
-    };
-    const fromMessage = typeof errEvent.message === "string" && errEvent.message.trim() ? errEvent.message.trim() : "";
-    if (fromMessage) {
-      return fromMessage;
+    const msg = typeof rec.message === "string" ? rec.message.trim() : "";
+    const reason = typeof rec.reason === "string" ? rec.reason.trim() : "";
+    if (msg) {
+      return msg;
     }
-    const fromReason = typeof errEvent.reason === "string" && errEvent.reason.trim() ? errEvent.reason.trim() : "";
-    if (fromReason) {
-      return fromReason;
+    if (reason) {
+      return reason;
     }
-    const type = typeof errEvent.type === "string" ? errEvent.type : "unknown";
-    const code = typeof errEvent.code === "number" ? ` code=${String(errEvent.code)}` : "";
-    return `SDK event error (${type})${code}`;
+    return `SDK event error (${String(rec.type || "unknown")})`;
   }
   return stringifyUnknown(value);
 }
@@ -155,9 +148,47 @@ function stopRecorder(recorder: MediaRecorder | null, chunks: Blob[]): Promise<B
   });
 }
 
+function isPlaceholderUserUtterance(text: string): boolean {
+  const value = text.trim();
+  return value === "..." || value === "…" || value === ".";
+}
+
+function PhoneIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M6.62 10.79a15.5 15.5 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.11.37 2.31.56 3.58.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.27.19 2.47.56 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+function MicIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a1 1 0 1 1 2 0 7 7 0 0 1-6 6.92V21h3a1 1 0 1 1 0 2H8a1 1 0 0 1 0-2h3v-2.08A7 7 0 0 1 5 12a1 1 0 1 1 2 0 5 5 0 0 0 10 0z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+function MicOffIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M18.89 16.48A6.97 6.97 0 0 0 19 12a1 1 0 1 0-2 0 5 5 0 0 1-.38 1.91L15 12.29V6a3 3 0 0 0-5.27-1.96 1 1 0 0 0 1.54 1.28A1 1 0 0 1 13 6v4.29L4.71 2.01a1 1 0 1 0-1.42 1.41l14 14a1 1 0 0 0 1.42-1.41zM5 12a1 1 0 1 1 2 0 5 5 0 0 0 6.53 4.76l1.62 1.62A6.93 6.93 0 0 1 13 18.92V21h3a1 1 0 1 1 0 2H8a1 1 0 0 1 0-2h3v-2.08A7 7 0 0 1 5 12z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 export default function HomePage() {
-  const [status, setStatus] = useState<"connecting" | "connected" | "disconnecting" | "disconnected">("disconnected");
-  const [mode, setMode] = useState<"speaking" | "listening" | "idle">("idle");
+  const [status, setStatus] = useState<UiStatus>("disconnected");
+  const [mode, setMode] = useState<UiMode>("idle");
   const [sessionId, setSessionId] = useState<string>("");
   const [conversationId, setConversationId] = useState<string>("");
   const [micMuted, setMicMuted] = useState<boolean>(false);
@@ -169,7 +200,8 @@ export default function HomePage() {
 
   const conversationRef = useRef<ConversationHandle | null>(null);
   const sessionIdRef = useRef<string>("");
-  const modeRef = useRef<"speaking" | "listening" | "idle">("idle");
+  const modeRef = useRef<UiMode>("idle");
+  const micMutedRef = useRef<boolean>(false);
 
   const micRecorderRef = useRef<MediaRecorder | null>(null);
   const assistantRecorderRef = useRef<MediaRecorder | null>(null);
@@ -191,11 +223,11 @@ export default function HomePage() {
     if (!response.ok) {
       const apiError = typeof payload.error === "string" ? payload.error : "";
       const apiMessage = typeof payload.message === "string" ? payload.message : "";
-      const detail = payload.details ? ` | details=${stringifyUnknown(payload.details)}` : "";
+      const details = payload.details ? ` | details=${stringifyUnknown(payload.details)}` : "";
       const reason = apiError || apiMessage || `Request failed (${response.status}) for ${url}`;
-      throw new Error(`${reason}${detail}`);
+      throw new Error(`${reason}${details}`);
     }
-    if (payload && payload.ok === false) {
+    if (payload.ok === false) {
       const apiError = typeof payload.error === "string" ? payload.error : "";
       throw new Error(apiError || `API returned ok=false for ${url}`);
     }
@@ -252,10 +284,54 @@ export default function HomePage() {
     }
   }, []);
 
+  const applyMicMute = useCallback(
+    (nextMuted: boolean, options?: { emitEvent?: boolean }) => {
+      const convo = conversationRef.current;
+      micMutedRef.current = nextMuted;
+      setMicMuted(nextMuted);
+
+      if (convo) {
+        try {
+          convo.setMicMuted(nextMuted);
+        } catch {
+          // no-op
+        }
+        const stream = convo.input?.inputStream;
+        if (stream) {
+          for (const track of stream.getAudioTracks()) {
+            track.enabled = !nextMuted;
+          }
+        }
+      }
+
+      const recorder = micRecorderRef.current;
+      if (recorder) {
+        try {
+          if (nextMuted && recorder.state === "recording") {
+            recorder.pause();
+          } else if (!nextMuted && recorder.state === "paused") {
+            recorder.resume();
+          }
+        } catch {
+          // no-op
+        }
+      }
+
+      if (options?.emitEvent !== false) {
+        void pushEvent("mic_toggle", { muted: nextMuted });
+      }
+    },
+    [pushEvent]
+  );
+
   const appendTurn = useCallback(
     (speaker: "user" | "assistant", text: string) => {
       const trimmed = text.trim();
       if (!trimmed) {
+        return;
+      }
+
+      if (speaker === "user" && micMutedRef.current && isPlaceholderUserUtterance(trimmed)) {
         return;
       }
 
@@ -299,9 +375,10 @@ export default function HomePage() {
 
     setError("");
     setIsBusy(true);
+    setStatus("connecting");
+    setMode("idle");
     setTranscript([]);
     setExportPreview("");
-    setMicMuted(false);
 
     micChunksRef.current = [];
     assistantChunksRef.current = [];
@@ -328,19 +405,37 @@ export default function HomePage() {
       const conversation = (await sdk.Conversation.startSession({
         signedUrl: signed.signedUrl,
         connectionType: "websocket",
-        // Keep websocket bootstrap minimal for reliability on hosted environments.
-        // We can add dynamic variables/overrides back after stable connection is confirmed.
+        dynamicVariables: {
+          local_session_id: session.sessionId,
+        },
+        customLlmExtraBody: {
+          local_session_id: session.sessionId,
+          source: "ui-blake",
+        },
+        overrides: {
+          client: {
+            source: "ui_blake",
+            version: "v1",
+          },
+          ...(signed.voiceId
+            ? {
+                tts: {
+                  voiceId: signed.voiceId,
+                },
+              }
+            : {}),
+        },
         onConnect: ({ conversationId: cid }: { conversationId: string }) => {
           setConversationId(cid);
           void pushEvent("eleven_connected", {
             conversationId: cid,
           });
         },
-        onStatusChange: ({ status: nextStatus }: { status: "connecting" | "connected" | "disconnecting" | "disconnected" }) => {
+        onStatusChange: ({ status: nextStatus }: { status: UiStatus }) => {
           setStatus(nextStatus);
           void pushEvent("status", { status: nextStatus });
         },
-        onModeChange: ({ mode: nextMode }: { mode: "speaking" | "listening" }) => {
+        onModeChange: ({ mode: nextMode }: { mode: Exclude<UiMode, "idle"> }) => {
           modeRef.current = nextMode;
           setMode(nextMode);
           void pushEvent("mode", { mode: nextMode });
@@ -385,6 +480,8 @@ export default function HomePage() {
         });
       }
 
+      applyMicMute(false, { emitEvent: false });
+
       await pushEvent("recording_started", {
         micRecorder: Boolean(micRecorderRef.current),
         assistantRecorder: Boolean(assistantRecorderRef.current),
@@ -401,10 +498,10 @@ export default function HomePage() {
     } finally {
       setIsBusy(false);
     }
-  }, [appendTurn, callApi, isBusy, pushEvent, startRecorder]);
+  }, [appendTurn, applyMicMute, callApi, isBusy, pushEvent, startRecorder]);
 
   const stopSession = useCallback(async () => {
-    if (!sessionIdRef.current || isStopping) {
+    if (!conversationRef.current || isStopping) {
       return;
     }
     setIsStopping(true);
@@ -414,9 +511,8 @@ export default function HomePage() {
 
     try {
       setStatus("disconnecting");
-      if (convo) {
-        await convo.endSession();
-      }
+      applyMicMute(true, { emitEvent: false });
+      await convo.endSession();
 
       const [micBlob, assistantBlob] = await Promise.all([
         stopRecorder(micRecorderRef.current, micChunksRef.current),
@@ -428,8 +524,7 @@ export default function HomePage() {
 
       const tap = assistantTapDestinationRef.current;
       if (tap) {
-        const tracks = tap.stream.getTracks();
-        for (const track of tracks) {
+        for (const track of tap.stream.getTracks()) {
           track.stop();
         }
       }
@@ -453,25 +548,21 @@ export default function HomePage() {
         savedAssistantAudio: Boolean(assistantBase64),
       });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to stop session");
+      setError(stringifyUnknown(err) || "Failed to stop session");
     } finally {
       setStatus("disconnected");
       modeRef.current = "idle";
       setMode("idle");
       setIsStopping(false);
     }
-  }, [callApi, isStopping, pushEvent]);
+  }, [applyMicMute, callApi, isStopping, pushEvent]);
 
   const toggleMic = useCallback(() => {
-    const convo = conversationRef.current;
-    if (!convo) {
+    if (!conversationRef.current) {
       return;
     }
-    const nextMuted = !micMuted;
-    convo.setMicMuted(nextMuted);
-    setMicMuted(nextMuted);
-    void pushEvent("mic_toggle", { muted: nextMuted });
-  }, [micMuted, pushEvent]);
+    applyMicMute(!micMutedRef.current);
+  }, [applyMicMute]);
 
   const loadExport = useCallback(async () => {
     if (!sessionIdRef.current) {
@@ -481,7 +572,7 @@ export default function HomePage() {
       const payload = await callApi<ExportPayload>(`/api/session/export?id=${encodeURIComponent(sessionIdRef.current)}`);
       setExportPreview(JSON.stringify(payload, null, 2));
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Export failed");
+      setError(stringifyUnknown(err) || "Export failed");
     }
   }, [callApi]);
 
@@ -499,7 +590,7 @@ export default function HomePage() {
       anchor.click();
       URL.revokeObjectURL(url);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Export download failed");
+      setError(stringifyUnknown(err) || "Export download failed");
     }
   }, [callApi]);
 
@@ -512,82 +603,107 @@ export default function HomePage() {
     };
   }, []);
 
-  const canStart = useMemo(() => !conversationRef.current && !isBusy && status !== "connecting", [isBusy, status]);
-  const canStop = useMemo(() => Boolean(sessionIdRef.current) && !isStopping, [isStopping]);
+  const hasActiveConversation = Boolean(conversationRef.current);
+  const canStart = useMemo(() => !hasActiveConversation && !isBusy && status === "disconnected", [hasActiveConversation, isBusy, status]);
+  const canStop = useMemo(() => hasActiveConversation && !isStopping, [hasActiveConversation, isStopping]);
 
   return (
-    <main className="page">
-      <section className="panel">
-        <h1>Blake AI Interview v1</h1>
-        <p className="sub">Minimal realtime voice interview test app.</p>
+    <main className="call-page">
+      <section className="hero-card">
+        <header className="hero-top">
+          <div>
+            <p className="eyebrow">Realtime Interview</p>
+            <h1>AI Blake</h1>
+          </div>
+          <span className={`status-pill ${status}`}>{status}</span>
+        </header>
 
-        <div className="controls">
-          <button onClick={() => void startSession()} disabled={!canStart}>
-            {status === "connected" || status === "connecting" ? "Connected" : "Connect"}
+        <div className={`voice-stage ${status} ${mode} ${micMuted ? "mic-muted" : ""}`}>
+          <div className="voice-ring outer" />
+          <div className="voice-ring inner" />
+          <div className="voice-core">
+            <span>{mode === "idle" ? "Ready" : mode === "speaking" ? "AI Speaking" : "Listening"}</span>
+          </div>
+          <div className="voice-bars" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+            <i />
+            <i />
+          </div>
+        </div>
+
+        <div className="call-controls">
+          <button className="btn btn-connect" onClick={() => void startSession()} disabled={!canStart}>
+            <PhoneIcon />
+            <span>{status === "connecting" ? "Connecting..." : "Connect"}</span>
           </button>
-          <button onClick={() => void stopSession()} disabled={!canStop}>
-            Disconnect
+
+          <button className="btn btn-mic" onClick={toggleMic} disabled={!hasActiveConversation}>
+            {micMuted ? <MicOffIcon /> : <MicIcon />}
+            <span>{micMuted ? "Unmute" : "Mute"}</span>
           </button>
-          <button onClick={toggleMic} disabled={!conversationRef.current}>
-            {micMuted ? "Unmute Mic" : "Mute Mic"}
+
+          <button className="btn btn-end" onClick={() => void stopSession()} disabled={!canStop}>
+            <PhoneIcon />
+            <span>{isStopping ? "Ending..." : "End"}</span>
           </button>
         </div>
 
-        <div className="meta-grid">
-          <div>
-            <span>Status</span>
-            <strong>{status}</strong>
-          </div>
-          <div>
-            <span>Mode</span>
-            <strong>{mode}</strong>
-          </div>
-          <div>
+        <div className="meta-row">
+          <div className="meta-item">
             <span>Session</span>
             <strong>{sessionId || "-"}</strong>
           </div>
-          <div>
+          <div className="meta-item">
             <span>Conversation</span>
             <strong>{conversationId || "-"}</strong>
           </div>
+          <div className="meta-item">
+            <span>Mode</span>
+            <strong>{mode}</strong>
+          </div>
         </div>
 
-        {error ? <p className="error">{error}</p> : null}
+        {error ? <p className="error-banner">{error}</p> : null}
       </section>
 
-      <section className="panel">
-        <div className="section-head">
-          <h2>Live Transcript</h2>
-          <span>{transcript.length} turns</span>
-        </div>
+      <section className="content-grid">
+        <article className="panel transcript-panel">
+          <div className="panel-head">
+            <h2>Live Transcript</h2>
+            <span>{transcript.length} turns</span>
+          </div>
+          <div className="transcript-list">
+            {transcript.length === 0 ? <p className="empty">No transcript yet.</p> : null}
+            {transcript.map((turn) => (
+              <article key={turn.id} className={`turn-card ${turn.speaker}`}>
+                <header>
+                  <strong>{turn.speaker === "assistant" ? "AI Blake" : "Blake"}</strong>
+                  <time>{new Date(turn.ts).toLocaleTimeString()}</time>
+                </header>
+                <p>{turn.text}</p>
+              </article>
+            ))}
+          </div>
+        </article>
 
-        <div className="transcript">
-          {transcript.length === 0 ? <p className="empty">No transcript yet.</p> : null}
-          {transcript.map((turn) => (
-            <article key={turn.id} className={`turn ${turn.speaker}`}>
-              <header>
-                <strong>{turn.speaker === "assistant" ? "AI Blake" : "Blake"}</strong>
-                <time>{new Date(turn.ts).toLocaleTimeString()}</time>
-              </header>
-              <p>{turn.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+        <article className="panel export-panel">
+          <div className="panel-head">
+            <h2>Session Export</h2>
+          </div>
 
-      <section className="panel">
-        <div className="section-head">
-          <h2>Export</h2>
-        </div>
-        <div className="controls">
-          <button onClick={() => void loadExport()} disabled={!sessionId}>
-            Load Export JSON
-          </button>
-          <button onClick={() => void downloadExport()} disabled={!sessionId}>
-            Download Export JSON
-          </button>
-        </div>
-        <pre className="export">{exportPreview || "No export loaded."}</pre>
+          <div className="export-actions">
+            <button className="btn btn-subtle" onClick={() => void loadExport()} disabled={!sessionId}>
+              Preview JSON
+            </button>
+            <button className="btn btn-subtle" onClick={() => void downloadExport()} disabled={!sessionId}>
+              Download JSON
+            </button>
+          </div>
+
+          <pre className="export-box">{exportPreview || "No export loaded."}</pre>
+        </article>
       </section>
     </main>
   );
