@@ -608,6 +608,14 @@ RUNTIME = InterviewRuntime(CFG)
 class InterviewHandler(BaseHTTPRequestHandler):
     server_version = "InterviewServer/1.0"
 
+    def log_message(self, format: str, *args: Any) -> None:  # noqa: A003
+        message = "%s - - [%s] %s" % (
+            self.address_string(),
+            self.log_date_time_string(),
+            format % args,
+        )
+        print(message, flush=True)
+
     def _set_json_headers(self, status: int = 200) -> None:
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
