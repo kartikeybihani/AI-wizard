@@ -58,6 +58,38 @@ function stringifyUnknown(value: unknown): string {
   }
 }
 
+function formatSdkError(value: unknown): string {
+  if (value instanceof Error) {
+    return value.message || "SDK error";
+  }
+  if (typeof value === "string") {
+    return value;
+  }
+  if (value && typeof value === "object") {
+    const rec = value as Record<string, unknown>;
+    const errEvent = rec as {
+      message?: unknown;
+      type?: unknown;
+      isTrusted?: unknown;
+      error?: unknown;
+      reason?: unknown;
+      code?: unknown;
+    };
+    const fromMessage = typeof errEvent.message === "string" && errEvent.message.trim() ? errEvent.message.trim() : "";
+    if (fromMessage) {
+      return fromMessage;
+    }
+    const fromReason = typeof errEvent.reason === "string" && errEvent.reason.trim() ? errEvent.reason.trim() : "";
+    if (fromReason) {
+      return fromReason;
+    }
+    const type = typeof errEvent.type === "string" ? errEvent.type : "unknown";
+    const code = typeof errEvent.code === "number" ? ` code=${String(errEvent.code)}` : "";
+    return `SDK event error (${type})${code}`;
+  }
+  return stringifyUnknown(value);
+}
+
 function nowIso(): string {
   return new Date().toISOString();
 }
@@ -334,9 +366,11 @@ export default function HomePage() {
         onMessage: ({ source, message }: { source: "user" | "ai"; message: string }) => {
           appendTurn(source === "ai" ? "assistant" : "user", message);
         },
-        onError: (message: string) => {
+        onError: (raw: unknown) => {
+          const message = formatSdkError(raw);
           setError(message);
-          void pushEvent("sdk_error", { message });
+          console.error("[ui-blake] eleven sdk error", raw);
+          void pushEvent("sdk_error", { message, raw: stringifyUnknown(raw) });
         },
         onDisconnect: (details: unknown) => {
           setStatus("disconnected");
