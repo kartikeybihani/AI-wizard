@@ -47,7 +47,7 @@ class InterviewPolicyTests(unittest.TestCase):
             policy.classify_question_type("Why don't you tell me more about you and what you're doing now with Enough?"),
         )
         self.assertEqual(
-            (110, 170),
+            (140, 220),
             policy.word_budget("self_update_current_work"),
         )
 
@@ -58,7 +58,7 @@ class InterviewPolicyTests(unittest.TestCase):
             policy.classify_question_type("How did scaling TOMS change your leadership and operating strategy?"),
         )
         self.assertEqual(
-            (85, 130),
+            (115, 180),
             policy.word_budget("founder_operator"),
         )
 

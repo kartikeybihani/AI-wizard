@@ -17,11 +17,11 @@ QUESTION_TYPES = (
 
 WORD_BUDGETS: Dict[str, Tuple[int, int]] = {
     "factual_bio": (40, 70),
-    "personal_emotional": (90, 140),
-    "philosophical_advice": (90, 140),
-    "pushback_clarification": (60, 110),
-    "self_update_current_work": (110, 170),
-    "founder_operator": (85, 130),
+    "personal_emotional": (120, 190),
+    "philosophical_advice": (120, 190),
+    "pushback_clarification": (90, 150),
+    "self_update_current_work": (140, 220),
+    "founder_operator": (115, 180),
 }
 
 
