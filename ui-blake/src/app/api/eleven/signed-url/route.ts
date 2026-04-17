@@ -68,6 +68,10 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   if (!upstream.ok) {
+    console.error("[ui-blake] eleven signed-url upstream error", {
+      status: upstream.status,
+      payload,
+    });
     return NextResponse.json(
       {
         error: "Failed to fetch Eleven signed URL.",
@@ -78,9 +82,21 @@ export async function POST(request: Request): Promise<Response> {
     );
   }
 
+  const signedUrl = String(payload.signed_url || "");
+  if (!signedUrl) {
+    console.error("[ui-blake] eleven signed-url missing field", { payload });
+    return NextResponse.json(
+      {
+        error: "Eleven signed URL response missing signed_url.",
+        details: payload,
+      },
+      { status: 502 }
+    );
+  }
+
   return NextResponse.json(
     {
-      signedUrl: String(payload.signed_url || ""),
+      signedUrl,
       conversationId: payload.conversation_id ? String(payload.conversation_id) : null,
       agentId,
       voiceId: ELEVENLABS_VOICE_ID || null,

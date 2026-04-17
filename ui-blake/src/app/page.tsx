@@ -44,6 +44,20 @@ type ConversationHandle = {
 
 const RECORDER_CANDIDATES = ["audio/webm;codecs=opus", "audio/webm"];
 
+function stringifyUnknown(value: unknown): string {
+  if (value instanceof Error) {
+    return value.message;
+  }
+  if (typeof value === "string") {
+    return value;
+  }
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return String(value);
+  }
+}
+
 function nowIso(): string {
   return new Date().toISOString();
 }
@@ -134,11 +148,26 @@ export default function HomePage() {
   const callApi = useCallback(async <T,>(url: string, init?: RequestInit): Promise<T> => {
     const response = await fetch(url, init);
     const text = await response.text();
-    const payload = text ? (JSON.parse(text) as T) : ({} as T);
-    if (!response.ok) {
-      throw new Error(`Request failed (${response.status}) for ${url}`);
+    let payload: Record<string, unknown> = {};
+    if (text) {
+      try {
+        payload = JSON.parse(text) as Record<string, unknown>;
+      } catch {
+        payload = { raw: text };
+      }
     }
-    return payload;
+    if (!response.ok) {
+      const apiError = typeof payload.error === "string" ? payload.error : "";
+      const apiMessage = typeof payload.message === "string" ? payload.message : "";
+      const detail = payload.details ? ` | details=${stringifyUnknown(payload.details)}` : "";
+      const reason = apiError || apiMessage || `Request failed (${response.status}) for ${url}`;
+      throw new Error(`${reason}${detail}`);
+    }
+    if (payload && payload.ok === false) {
+      const apiError = typeof payload.error === "string" ? payload.error : "";
+      throw new Error(apiError || `API returned ok=false for ${url}`);
+    }
+    return payload as T;
   }, []);
 
   const pushEvent = useCallback(
@@ -345,7 +374,11 @@ export default function HomePage() {
         assistantRecorder: Boolean(assistantRecorderRef.current),
       });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to start session");
+      const message = stringifyUnknown(err) || "Failed to start session";
+      setError(message);
+      void pushEvent("session_start_error", {
+        message,
+      });
       setStatus("disconnected");
       modeRef.current = "idle";
       setMode("idle");
