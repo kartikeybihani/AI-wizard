@@ -40,6 +40,28 @@ class InterviewPolicyTests(unittest.TestCase):
         self.assertEqual("philosophical_advice", policy.classify_question_type("How are you doing?"))
         self.assertEqual("philosophical_advice", policy.classify_question_type("Can you elaborate"))
 
+    def test_self_update_prompts_route_to_current_work(self) -> None:
+        policy = self._policy()
+        self.assertEqual(
+            "self_update_current_work",
+            policy.classify_question_type("Why don't you tell me more about you and what you're doing now with Enough?"),
+        )
+        self.assertEqual(
+            (110, 170),
+            policy.word_budget("self_update_current_work"),
+        )
+
+    def test_founder_operator_prompts_route_correctly(self) -> None:
+        policy = self._policy()
+        self.assertEqual(
+            "founder_operator",
+            policy.classify_question_type("How did scaling TOMS change your leadership and operating strategy?"),
+        )
+        self.assertEqual(
+            (85, 130),
+            policy.word_budget("founder_operator"),
+        )
+
     def test_factual_prompts_still_route_to_factual(self) -> None:
         policy = self._policy()
         self.assertEqual("factual_bio", policy.classify_question_type("What year did you launch TOMS?"))

@@ -10,6 +10,7 @@ import { design } from "@/styles/design";
 export type NarrativeSectionProps = {
   title: string;
   subtitle?: string;
+  headerAction?: ReactNode;
   children: ReactNode;
   delay?: number;
   once?: boolean;
@@ -25,6 +26,7 @@ export type NarrativeSectionProps = {
 export function NarrativeSection({
   title,
   subtitle,
+  headerAction,
   children,
   delay = 0,
   once = true,
@@ -45,7 +47,12 @@ export function NarrativeSection({
     >
       <div className="narrative-shell">
         <header className="narrative-header">
-          <h2 className="narrative-title">{title}</h2>
+          <div className="narrative-header-top">
+            <h2 className="narrative-title">{title}</h2>
+            {headerAction ? (
+              <div className="narrative-header-actions">{headerAction}</div>
+            ) : null}
+          </div>
           {subtitle ? <p className="narrative-subtitle">{subtitle}</p> : null}
         </header>
 

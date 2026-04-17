@@ -104,6 +104,21 @@ def count_words(text: str) -> int:
     return len(re.findall(r"\b[\w'-]+\b", text or ""))
 
 
+USER_DIRECTED_QUESTION_MARKERS = (
+    "how about you",
+    "what about you",
+    "and you",
+    "what's been going on in your",
+    "what has been going on in your",
+    "what's inspiring you",
+    "what has been inspiring you",
+    "what inspires you",
+    "tell me about your world",
+    "what's been going on in your world",
+    "what has been going on in your world",
+)
+
+
 @dataclass
 class AppConfig:
     llm_provider: str
@@ -439,6 +454,9 @@ class InterviewRuntime:
             "- Filler frequency: short answers (<= 80 words) use at most one filler phrase; longer answers can use up to two.\n"
             "- Phrase memory is for style bias only: reuse at most one short phrase naturally; avoid copying long spans verbatim.\n"
             "- Facts must be supported by FACT ANCHORS or SUPPORTING PASSAGES. If not supported, mark uncertainty.\n"
+            "- Podcast guest stance: do not interview the host.\n"
+            "- Avoid asking the user follow-up questions; default to statements.\n"
+            "- Only ask a question if explicitly requested by the user.\n"
             "\n"
             f"Question type: {question_type}\n"
             f"Soft word budget: {min_words}-{max_words} words (not hard truncate).\n"
@@ -448,6 +466,8 @@ class InterviewRuntime:
             "- personal_emotional: acknowledge feeling, reflect honestly, close with grounded insight.\n"
             "- philosophical_advice: share principle from lived experience, not directives.\n"
             "- pushback_clarification: stay calm, clarify, and move conversation forward.\n"
+            "- self_update_current_work: use 2 short paragraphs; include (1) why now, (2) what Enough is doing concretely, (3) one personal lesson or tradeoff.\n"
+            "- founder_operator: answer like an experienced founder-operator; include one concrete operating choice, one tradeoff, and one practical leadership lesson.\n"
             "\n"
             "Voice priors:\n"
             f"- Identity: {identity_line}\n"
@@ -509,6 +529,30 @@ class InterviewRuntime:
             added += 1
 
         return " ".join(sentences), added
+
+    def _remove_host_directed_questions(self, text: str) -> tuple[str, int]:
+        value = (text or "").strip()
+        if not value:
+            return value, 0
+
+        sentences = [part.strip() for part in re.split(r"(?<=[.!?])\s+", value) if part.strip()]
+        if not sentences:
+            return value, 0
+
+        kept: List[str] = []
+        removed = 0
+        for sentence in sentences:
+            lowered = sentence.lower()
+            is_question = lowered.endswith("?")
+            user_directed = any(marker in lowered for marker in USER_DIRECTED_QUESTION_MARKERS)
+            if is_question and user_directed:
+                removed += 1
+                continue
+            kept.append(sentence)
+
+        if not kept:
+            return value, 0
+        return " ".join(kept), removed
 
     def _fallback_answer(
         self,
@@ -720,6 +764,8 @@ class InterviewRuntime:
                     },
                 )
 
+        assistant_text, questions_removed = self._remove_host_directed_questions(assistant_text)
+
         assistant_text, fillers_added = self._apply_spoken_rhythm(
             text=assistant_text,
             question_type=question_type,
@@ -734,6 +780,7 @@ class InterviewRuntime:
                 "question_type": question_type,
                 "spoken_rhythm_applied": fillers_added > 0,
                 "spoken_fillers_added": fillers_added,
+                "host_questions_removed": questions_removed,
             },
         )
 
@@ -767,6 +814,7 @@ class InterviewRuntime:
                 "llm_error": llm_error,
                 "spoken_rhythm_applied": fillers_added > 0,
                 "spoken_fillers_added": fillers_added,
+                "host_questions_removed": questions_removed,
                 "retrieval_hits": {
                     "timeline": [item.item_id for item in timeline_rows],
                     "stories": [item.item_id for item in story_rows],

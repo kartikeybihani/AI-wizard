@@ -11,6 +11,8 @@ QUESTION_TYPES = (
     "personal_emotional",
     "philosophical_advice",
     "pushback_clarification",
+    "self_update_current_work",
+    "founder_operator",
 )
 
 WORD_BUDGETS: Dict[str, Tuple[int, int]] = {
@@ -18,6 +20,8 @@ WORD_BUDGETS: Dict[str, Tuple[int, int]] = {
     "personal_emotional": (90, 140),
     "philosophical_advice": (90, 140),
     "pushback_clarification": (60, 110),
+    "self_update_current_work": (110, 170),
+    "founder_operator": (85, 130),
 }
 
 
@@ -62,9 +66,53 @@ class InterviewPolicy:
             "what's coming up for you",
             "what does that mean for you",
         ]
+        self_update_tokens = [
+            "what are you doing now",
+            "what you're doing now",
+            "what are you working on",
+            "what you're working on",
+            "tell me more about you",
+            "tell me about you",
+            "tell me about yourself",
+            "what are you building now",
+            "what is enough",
+            "what are you doing with enough",
+            "doing now with enough",
+            "more about enough",
+        ]
+        founder_operator_tokens = [
+            "business",
+            "leadership",
+            "operator",
+            "operating",
+            "scale",
+            "scaling",
+            "hiring",
+            "team",
+            "culture",
+            "strategy",
+            "decision",
+            "tradeoff",
+            "margin",
+            "profit",
+            "growth",
+            "brand",
+            "execution",
+            "management",
+            "founder",
+            "run a company",
+            "running a company",
+            "build a company",
+            "building a company",
+            "one for one",
+        ]
 
         if any(token in text for token in pushback_tokens):
             return "pushback_clarification"
+        if any(token in text for token in self_update_tokens):
+            return "self_update_current_work"
+        if any(token in text for token in founder_operator_tokens):
+            return "founder_operator"
         if any(token in text for token in emotional_tokens):
             return "personal_emotional"
         if any(token in text for token in philosophy_tokens):

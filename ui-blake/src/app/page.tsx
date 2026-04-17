@@ -299,6 +299,7 @@ export default function HomePage() {
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [orbHovered, setOrbHovered] = useState(false);
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
 
   const conversationRef = useRef<ConversationHandle | null>(null);
   const sessionIdRef = useRef<string>("");
@@ -1000,6 +1001,43 @@ export default function HomePage() {
       <div className="landing-page-title" aria-label="Site title">
         No Magic Pill
       </div>
+      <button
+        type="button"
+        className="page-demo-link"
+        onClick={() => setIsDemoOpen(true)}
+      >
+        Demo
+      </button>
+      {isDemoOpen ? (
+        <div
+          className="demo-modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Demo video"
+          onClick={() => setIsDemoOpen(false)}
+        >
+          <div
+            className="demo-modal-content"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="demo-modal-close"
+              aria-label="Close demo video"
+              onClick={() => setIsDemoOpen(false)}
+            >
+              ×
+            </button>
+            <video
+              className="demo-modal-video"
+              src="/Blake_v1.mp4"
+              controls
+              autoPlay
+              preload="metadata"
+            />
+          </div>
+        </div>
+      ) : null}
       <div className="landing-grid">
         {/* Zone 1: The Presence — orb + title + controls */}
         <NarrativeSection
