@@ -328,26 +328,8 @@ export default function HomePage() {
       const conversation = (await sdk.Conversation.startSession({
         signedUrl: signed.signedUrl,
         connectionType: "websocket",
-        dynamicVariables: {
-          local_session_id: session.sessionId,
-        },
-        customLlmExtraBody: {
-          local_session_id: session.sessionId,
-          source: "ui-blake",
-        },
-        overrides: {
-          client: {
-            source: "ui_blake",
-            version: "v1",
-          },
-          ...(signed.voiceId
-            ? {
-                tts: {
-                  voiceId: signed.voiceId,
-                },
-              }
-            : {}),
-        },
+        // Keep websocket bootstrap minimal for reliability on hosted environments.
+        // We can add dynamic variables/overrides back after stable connection is confirmed.
         onConnect: ({ conversationId: cid }: { conversationId: string }) => {
           setConversationId(cid);
           void pushEvent("eleven_connected", {

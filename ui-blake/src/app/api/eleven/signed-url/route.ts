@@ -46,6 +46,13 @@ export async function POST(request: Request): Promise<Response> {
     params.set("branch_id", branchId);
   }
 
+  console.log("[ui-blake] eleven signed-url request", {
+    agentId,
+    includeConversationId,
+    branchId: branchId || null,
+    hasVoiceOverride: Boolean(ELEVENLABS_VOICE_ID),
+  });
+
   const url = `${ELEVENLABS_BASE_URL.replace(/\/$/, "")}/v1/convai/conversation/get-signed-url?${params.toString()}`;
 
   const upstream = await fetch(url, {

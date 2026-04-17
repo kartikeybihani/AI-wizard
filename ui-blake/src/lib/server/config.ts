@@ -32,8 +32,21 @@ export function loadServerEnv(): void {
 
 loadServerEnv();
 
+function cleanEnvValue(raw: string | undefined): string {
+  const value = (raw || "").trim();
+  if (!value) {
+    return "";
+  }
+  // Ignore common placeholder values copied from docs/messages.
+  const lowered = value.toLowerCase();
+  if (value === "..." || lowered === "<fill_me>" || lowered === "your_value_here") {
+    return "";
+  }
+  return value;
+}
+
 function resolveDataDir(): string {
-  const configured = process.env.UI_BLAKE_DATA_DIR?.trim() || "";
+  const configured = cleanEnvValue(process.env.UI_BLAKE_DATA_DIR);
   if (configured) {
     return configured;
   }
@@ -48,11 +61,11 @@ export const UI_DATA_DIR = resolveDataDir();
 export const SESSION_DIR = path.join(UI_DATA_DIR, "sessions");
 
 export const ELEVENLABS_BASE_URL =
-  process.env.ELEVENLABS_BASE_URL?.trim() || "https://api.elevenlabs.io";
-export const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY?.trim() || "";
-export const ELEVENLABS_AGENT_ID = process.env.ELEVENLABS_AGENT_ID?.trim() || "";
-export const ELEVENLABS_VOICE_ID = process.env.ELEVENLABS_VOICE_ID?.trim() || "";
-export const ELEVENLABS_BRANCH_ID = process.env.ELEVENLABS_BRANCH_ID?.trim() || "";
+  cleanEnvValue(process.env.ELEVENLABS_BASE_URL) || "https://api.elevenlabs.io";
+export const ELEVENLABS_API_KEY = cleanEnvValue(process.env.ELEVENLABS_API_KEY);
+export const ELEVENLABS_AGENT_ID = cleanEnvValue(process.env.ELEVENLABS_AGENT_ID);
+export const ELEVENLABS_VOICE_ID = cleanEnvValue(process.env.ELEVENLABS_VOICE_ID);
+export const ELEVENLABS_BRANCH_ID = cleanEnvValue(process.env.ELEVENLABS_BRANCH_ID);
 
 export function ensureServerDirectories(): void {
   fs.mkdirSync(UI_DATA_DIR, { recursive: true });
