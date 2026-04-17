@@ -45,7 +45,6 @@ export function NarrativeSection({
     >
       <div className="narrative-shell">
         <header className="narrative-header">
-          <p className="narrative-kicker">Celestial Architecture</p>
           <h2 className="narrative-title">{title}</h2>
           {subtitle ? <p className="narrative-subtitle">{subtitle}</p> : null}
         </header>

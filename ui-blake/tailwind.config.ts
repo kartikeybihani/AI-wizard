@@ -4,9 +4,6 @@ import { design } from "./src/styles/design";
 
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
-  corePlugins: {
-    preflight: false,
-  },
   theme: {
     extend: {
       colors: {

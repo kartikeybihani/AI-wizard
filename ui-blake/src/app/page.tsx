@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { ConstellationSVG } from "@/components/hero/Constellation";
-import { HeroCtaRow } from "@/components/hero/HeroCtaRow";
 import { HeroOrb } from "@/components/hero/HeroOrb";
 import { NarrativeSection } from "@/components/shared/NarrativeSection";
 import { Starfield } from "@/components/layout/Starfield";
@@ -195,7 +194,7 @@ function PhoneIcon() {
   );
 }
 
-function MicIcon() {
+function PauseIcon() {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -206,30 +205,8 @@ function MicIcon() {
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-      <line x1="12" y1="19" x2="12" y2="23" />
-      <line x1="8" y1="23" x2="16" y2="23" />
-    </svg>
-  );
-}
-
-function MicOffIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <line x1="1" y1="1" x2="23" y2="23" />
-      <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6" />
-      <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2c0 .76-.13 1.49-.35 2.18" />
-      <line x1="12" y1="19" x2="12" y2="23" />
-      <line x1="8" y1="23" x2="16" y2="23" />
+      <rect x="7" y="5" width="3.2" height="14" rx="1.2" />
+      <rect x="13.8" y="5" width="3.2" height="14" rx="1.2" />
     </svg>
   );
 }
@@ -962,8 +939,10 @@ export default function HomePage() {
   };
 
   const hasTranscript = transcript.length > 0;
+  const shouldUseSplitLayout =
+    hasActiveConversation || Boolean(sessionId) || hasTranscript;
   const heroState = useMemo<HeroOrbState>(() => {
-    if (!hasActiveConversation && status === "disconnected" && !sessionId) {
+    if (!hasActiveConversation && status === "disconnected") {
       return "idle";
     }
     if (micMuted && hasActiveConversation) {
@@ -985,21 +964,50 @@ export default function HomePage() {
       return "disconnecting";
     }
     return "disconnected";
-  }, [hasActiveConversation, micMuted, mode, sessionId, status]);
+  }, [hasActiveConversation, micMuted, mode, status]);
+  const heroCaption = useMemo(() => {
+    if (heroState === "idle") {
+      return "Ready for live interview";
+    }
+    if (heroState === "connecting") {
+      return "Connecting to Blake...";
+    }
+    if (heroState === "connected") {
+      return "Session active";
+    }
+    if (heroState === "listening") {
+      return "Listening";
+    }
+    if (heroState === "speaking") {
+      return "AI speaking";
+    }
+    if (heroState === "muted") {
+      return "Mic paused";
+    }
+    if (heroState === "disconnecting") {
+      return "Ending session...";
+    }
+    return "Session ended";
+  }, [heroState]);
 
   return (
-    <main className={`call-page ${orbHovered ? "is-orb-hovered" : ""}`}>
+    <main
+      className={`call-page ${orbHovered ? "is-orb-hovered" : ""} ${shouldUseSplitLayout ? "has-convo" : "no-convo"}`}
+    >
       <Starfield reducedMotion={prefersReducedMotion} />
       {/* Grain overlay */}
       <div className="grain-overlay" aria-hidden="true" />
+      <div className="landing-page-title" aria-label="Site title">
+        No Magic Pill
+      </div>
       <div className="landing-grid">
         {/* Zone 1: The Presence — orb + title + controls */}
         <NarrativeSection
           className="presence-zone"
           delay={0}
           reducedMotion={prefersReducedMotion}
-          title="Presence"
-          subtitle="An orbiting command center for live interviews with AI Blake."
+          title="AI Blake Studio"
+          subtitle="Realtime voice workspace for interviews."
           learnMore={{
             summaryLabel: "Learn more",
             content: (
@@ -1014,84 +1022,85 @@ export default function HomePage() {
             ),
           }}
         >
-          <header className="presence-header">
-            <div className="title-group">
-              <h1 className="title-reveal-stagger font-heading text-brand-text">
-                {"AI Blake Studio".split("").map((char, i) => (
-                  <span
-                    key={i}
-                    style={{ animationDelay: `${0.9 + i * 0.04}s` }}
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </span>
-                ))}
-              </h1>
-              <p className="subtitle-reveal text-brand-subtle">
-                Realtime voice interview
-              </p>
-            </div>
-          </header>
-
           <div className="hero-orb-stage">
             <HeroOrb
               state={heroState}
               intensity={outputLevel}
+              inputIntensity={inputLevel}
               reducedMotion={prefersReducedMotion}
               onHover={setOrbHovered}
             />
-            <p className="hero-orb-caption">
-              {mode === "idle"
-                ? "Ready for live interview"
-                : mode === "speaking"
-                  ? "AI speaking"
-                  : "Listening"}
-            </p>
+            <p className="hero-orb-caption mb-4">{heroCaption}</p>
           </div>
-          <HeroCtaRow
-            primaryLabel={
-              canStop
-                ? isStopping
-                  ? "Ending..."
-                  : "End call"
-                : status === "connecting"
-                  ? "Connecting..."
-                  : "Start live session"
-            }
-            secondaryLabel="Open export preview"
-            onPrimaryClick={() => {
-              if (canStop) {
-                void stopSession();
-                return;
-              }
-              void startSession();
-            }}
-            onSecondaryClick={() => void openExportPreview()}
-            primaryDisabled={canStop ? isStopping : !canStart}
-            primaryLoading={
-              canStop ? isStopping : status === "connecting" || isBusy
-            }
-            secondaryDisabled={false}
-          />
 
-          <div className="call-controls">
-            <button
-              className="btn btn-mic"
-              onClick={toggleMic}
-              disabled={!hasActiveConversation}
-            >
-              {micMuted ? <MicOffIcon /> : <MicIcon />}
-              <span>{micMuted ? "Unmute" : "Mute"}</span>
-            </button>
+          {!shouldUseSplitLayout ? (
+            <div className="call-controls control-row-main">
+              <button
+                className="btn btn-call"
+                onClick={() => void startSession()}
+                disabled={!canStart}
+                aria-label="Call Blake"
+              >
+                <PhoneIcon />
+                <span>
+                  {status === "connecting"
+                    ? "Connecting..."
+                    : hasActiveConversation
+                      ? "Session active"
+                      : "Call Blake"}
+                </span>
+              </button>
+            </div>
+          ) : (
+            <div className="control-stack">
+              <div className="call-controls control-row-main control-row-top">
+                <button
+                  className="btn btn-call"
+                  onClick={() => void startSession()}
+                  disabled={!canStart}
+                  aria-label="Call Blake"
+                >
+                  <PhoneIcon />
+                  <span>
+                    {status === "connecting"
+                      ? "Connecting..."
+                      : hasActiveConversation
+                        ? "Session active"
+                        : "Call Blake"}
+                  </span>
+                </button>
+              </div>
+              <div className="call-controls control-row-main control-row-mid">
+                <button
+                  className="btn btn-mic"
+                  onClick={toggleMic}
+                  disabled={!hasActiveConversation}
+                >
+                  <PauseIcon />
+                  <span>{micMuted ? "Hold" : "Pause"}</span>
+                </button>
 
-            <button
-              className="btn btn-end"
-              onClick={() => void stopSession()}
-              disabled={!canStop}
-            >
-              <PhoneIcon />
-              <span>{isStopping ? "Ending..." : "End"}</span>
-            </button>
-          </div>
+                <button
+                  className="btn btn-end"
+                  onClick={() => void stopSession()}
+                  disabled={!canStop}
+                >
+                  <PhoneIcon />
+                  <span>{isStopping ? "Ending..." : "End"}</span>
+                </button>
+              </div>
+              <div className="call-controls control-row-main control-row-bottom">
+                <button
+                  className="btn btn-ghost btn-export-mini"
+                  onClick={() => void openExportPreview()}
+                  disabled={!sessionId}
+                >
+                  <EyeIcon />
+                  <span>Export preview</span>
+                </button>
+              </div>
+            </div>
+          )}
 
           {/* Text input — only visible during active conversation */}
           {hasActiveConversation && (
@@ -1123,11 +1132,10 @@ export default function HomePage() {
 
         {/* Zone 2: The Conversation — transcript */}
         <NarrativeSection
-          className="conversation-zone"
+          className="conversation-zone transcript-box"
           delay={0.08}
           reducedMotion={prefersReducedMotion}
           title="Conversation"
-          subtitle="Trace every exchange as a living narrative arc."
           learnMore={{
             summaryLabel: "Learn more",
             content: (
@@ -1138,13 +1146,7 @@ export default function HomePage() {
             ),
           }}
         >
-          <div className="conversation-header">
-            <h2>Conversation</h2>
-            {hasTranscript && (
-              <span className="turn-count">{transcript.length} turns</span>
-            )}
-          </div>
-
+          
           <div ref={transcriptRef} className="transcript-list">
             {!hasTranscript ? (
               <p className="transcript-empty">Conversation will appear here.</p>
@@ -1153,11 +1155,14 @@ export default function HomePage() {
               <article key={turn.id} className={`turn-card ${turn.speaker}`}>
                 <header className="turn-header">
                   <span className="turn-speaker">
-                    {turn.speaker === "assistant" ? "AI Blake" : "Blake"}
+                    {turn.speaker === "assistant" ? "AI Blake" : "Me"}
                   </span>
                   <div className="turn-accent" />
                   <time className="turn-time">
-                    {new Date(turn.ts).toLocaleTimeString()}
+                    {new Date(turn.ts).toLocaleTimeString([], {
+                      hour: "numeric",
+                      minute: "2-digit",
+                    })}
                   </time>
                 </header>
                 <p className="turn-text">{turn.text}</p>
@@ -1188,25 +1193,12 @@ export default function HomePage() {
           className="debug-trigger"
           onClick={() => setDebugOpen(!debugOpen)}
           aria-expanded={debugOpen}
-          style={{
-            visibility: "visible",
-            backgroundColor: "#f0f0f0",
-            color: "#000",
-            padding: "0.5rem 1rem",
-            borderRadius: "0.5rem",
-            border: "1px solid #ccc",
-            zIndex: 10,
-            position: "relative",
-          }}
         >
           <span
             className={`debug-planet ${debugOpen ? "is-open" : ""}`}
             aria-hidden="true"
-            style={{ color: "#000", fontSize: "1.2rem" }}
-          >
-            🪐
-          </span>
-          <span>Debug</span>
+          />
+          <span className="debug-trigger-label">Diagnostics Panel</span>
           <ChevronIcon expanded={debugOpen} />
         </button>
 
@@ -1271,7 +1263,7 @@ export default function HomePage() {
                     <div className="vu-bar-track">
                       <div
                         className="vu-bar vu-bar-input"
-                        style={{ width: `${Math.round(inputLevel * 100)}%` }}
+                        style={{ "--vu-width": `${Math.round(inputLevel * 100)}%` } as React.CSSProperties}
                       />
                     </div>
                     <span className="vu-value">
@@ -1283,7 +1275,7 @@ export default function HomePage() {
                     <div className="vu-bar-track">
                       <div
                         className="vu-bar vu-bar-output"
-                        style={{ width: `${Math.round(outputLevel * 100)}%` }}
+                        style={{ "--vu-width": `${Math.round(outputLevel * 100)}%` } as React.CSSProperties}
                       />
                     </div>
                     <span className="vu-value">
