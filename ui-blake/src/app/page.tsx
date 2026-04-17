@@ -609,68 +609,117 @@ export default function HomePage() {
 
   return (
     <main className="call-page">
-      <section className="hero-card">
-        <header className="hero-top">
-          <div>
-            <p className="eyebrow">Realtime Interview</p>
-            <h1>AI Blake</h1>
+      <section className="studio-grid">
+        <article className="panel live-panel">
+          <header className="hero-top">
+            <div>
+              <p className="eyebrow">Realtime Interview</p>
+              <h1>AI Blake Studio</h1>
+            </div>
+            <span className={`status-pill ${status}`}>{status}</span>
+          </header>
+
+          <div className={`voice-stage ${status} ${mode} ${micMuted ? "mic-muted" : ""}`}>
+            <svg className="voice-orbit-svg" viewBox="0 0 320 236" aria-hidden="true">
+              <defs>
+                <linearGradient id="coreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#ffffff" />
+                  <stop offset="100%" stopColor="#e7edf8" />
+                </linearGradient>
+                <linearGradient id="waveGradient" x1="20%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#78d8c2" />
+                  <stop offset="100%" stopColor="#2b78c8" />
+                </linearGradient>
+              </defs>
+
+              <circle className="orbit-ring ring-outer" cx="160" cy="118" r="92" />
+              <circle className="orbit-ring ring-inner" cx="160" cy="118" r="68" />
+
+              <g className="orbit-node orbit-node-a">
+                <g transform="translate(160 26)">
+                  <circle className="node-shell" r="12.5" />
+                  <path className="node-icon" d="M-4.5 -2.2h2.7l3.2-3.1v10.6L-1.8 2H-4.5zM3.1-1.4a3.6 3.6 0 0 1 0 4.8M4.9-3.1a6.1 6.1 0 0 1 0 8.2" />
+                </g>
+              </g>
+              <g className="orbit-node orbit-node-b">
+                <g transform="translate(160 44)">
+                  <circle className="node-shell" r="10" />
+                  <path className="node-icon" d="M0-4.6v4M-2.5-1.4a2.5 2.5 0 1 0 5 0v-2a2.5 2.5 0 1 0-5 0zM-4.5 2.3a4.5 4.5 0 1 0 9 0" />
+                </g>
+              </g>
+
+              <circle className="core-glow" cx="160" cy="118" r="52" />
+              <circle className="core-disc" cx="160" cy="118" r="42" fill="url(#coreGradient)" />
+              <path className="wave wave-a" d="M132 118h8l6-12 6 24 6-18 6 12h24" />
+              <path className="wave wave-b" d="M138 130h10l6-9 6 15 6-11h16" />
+            </svg>
+
+            <div className="voice-core">
+              <span>{mode === "idle" ? "Ready" : mode === "speaking" ? "AI Speaking" : "Listening"}</span>
+            </div>
+            <div className="voice-bars" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+            </div>
           </div>
-          <span className={`status-pill ${status}`}>{status}</span>
-        </header>
 
-        <div className={`voice-stage ${status} ${mode} ${micMuted ? "mic-muted" : ""}`}>
-          <div className="voice-ring outer" />
-          <div className="voice-ring inner" />
-          <div className="voice-core">
-            <span>{mode === "idle" ? "Ready" : mode === "speaking" ? "AI Speaking" : "Listening"}</span>
+          <div className="call-controls">
+            <button className="btn btn-connect" onClick={() => void startSession()} disabled={!canStart}>
+              <PhoneIcon />
+              <span>{status === "connecting" ? "Connecting..." : "Connect"}</span>
+            </button>
+
+            <button className="btn btn-mic" onClick={toggleMic} disabled={!hasActiveConversation}>
+              {micMuted ? <MicOffIcon /> : <MicIcon />}
+              <span>{micMuted ? "Unmute" : "Mute"}</span>
+            </button>
+
+            <button className="btn btn-end" onClick={() => void stopSession()} disabled={!canStop}>
+              <PhoneIcon />
+              <span>{isStopping ? "Ending..." : "End"}</span>
+            </button>
           </div>
-          <div className="voice-bars" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-            <i />
-            <i />
+
+          <div className="meta-row">
+            <div className="meta-item">
+              <span>Session</span>
+              <strong>{sessionId || "-"}</strong>
+            </div>
+            <div className="meta-item">
+              <span>Conversation</span>
+              <strong>{conversationId || "-"}</strong>
+            </div>
+            <div className="meta-item">
+              <span>Mode</span>
+              <strong>{mode}</strong>
+            </div>
           </div>
-        </div>
 
-        <div className="call-controls">
-          <button className="btn btn-connect" onClick={() => void startSession()} disabled={!canStart}>
-            <PhoneIcon />
-            <span>{status === "connecting" ? "Connecting..." : "Connect"}</span>
-          </button>
+          <section className="mini-export">
+            <div className="panel-head mini-head">
+              <h2>Session Export</h2>
+              <span>Compact</span>
+            </div>
+            <div className="export-actions">
+              <button className="btn btn-subtle" onClick={() => void loadExport()} disabled={!sessionId}>
+                Preview JSON
+              </button>
+              <button className="btn btn-subtle" onClick={() => void downloadExport()} disabled={!sessionId}>
+                Download
+              </button>
+            </div>
+            <pre className="export-box">{exportPreview || "No export loaded."}</pre>
+          </section>
 
-          <button className="btn btn-mic" onClick={toggleMic} disabled={!hasActiveConversation}>
-            {micMuted ? <MicOffIcon /> : <MicIcon />}
-            <span>{micMuted ? "Unmute" : "Mute"}</span>
-          </button>
+          {error ? <p className="error-banner">{error}</p> : null}
+        </article>
 
-          <button className="btn btn-end" onClick={() => void stopSession()} disabled={!canStop}>
-            <PhoneIcon />
-            <span>{isStopping ? "Ending..." : "End"}</span>
-          </button>
-        </div>
-
-        <div className="meta-row">
-          <div className="meta-item">
-            <span>Session</span>
-            <strong>{sessionId || "-"}</strong>
-          </div>
-          <div className="meta-item">
-            <span>Conversation</span>
-            <strong>{conversationId || "-"}</strong>
-          </div>
-          <div className="meta-item">
-            <span>Mode</span>
-            <strong>{mode}</strong>
-          </div>
-        </div>
-
-        {error ? <p className="error-banner">{error}</p> : null}
-      </section>
-
-      <section className="content-grid">
         <article className="panel transcript-panel">
-          <div className="panel-head">
+          <div className="panel-head transcript-head">
             <h2>Live Transcript</h2>
             <span>{transcript.length} turns</span>
           </div>
@@ -686,23 +735,6 @@ export default function HomePage() {
               </article>
             ))}
           </div>
-        </article>
-
-        <article className="panel export-panel">
-          <div className="panel-head">
-            <h2>Session Export</h2>
-          </div>
-
-          <div className="export-actions">
-            <button className="btn btn-subtle" onClick={() => void loadExport()} disabled={!sessionId}>
-              Preview JSON
-            </button>
-            <button className="btn btn-subtle" onClick={() => void downloadExport()} disabled={!sessionId}>
-              Download JSON
-            </button>
-          </div>
-
-          <pre className="export-box">{exportPreview || "No export loaded."}</pre>
         </article>
       </section>
     </main>
