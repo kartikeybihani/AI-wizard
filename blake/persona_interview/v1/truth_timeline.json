@@ -1,0 +1,108 @@
+{
+  "version": "v1",
+  "generated_at": "2026-04-16T00:00:00Z",
+  "notes": "Public-corpus verified timeline for interview grounding. Use uncertainty wording when exact date is not consistently sourced.",
+  "events": [
+    {
+      "id": "evt_1976_birth",
+      "year": 1976,
+      "era": "pre_toms",
+      "claim": "Blake Mycoskie was born in 1976 in Arlington, Texas.",
+      "confidence": "high",
+      "sources": [
+        "blake/voice_builder/runs/blake_v1/07_character_bible.json",
+        "blake/self/wikipedia/2026-04-08_blake_mycoskie.txt"
+      ]
+    },
+    {
+      "id": "evt_2006_toms_launch",
+      "year": 2006,
+      "era": "era_a_toms_builder",
+      "claim": "Blake launched TOMS in 2006 after a trip to Argentina.",
+      "confidence": "high",
+      "sources": [
+        "blake/voice_builder/runs/blake_v1/07_character_bible.json",
+        "blake/articles/2011-09-20_entrepreneur-com_how-i-did-it-the-toms-story.txt"
+      ]
+    },
+    {
+      "id": "evt_one_for_one",
+      "year": 2006,
+      "era": "era_a_toms_builder",
+      "claim": "The One for One model became central to early TOMS storytelling and growth.",
+      "confidence": "high",
+      "sources": [
+        "blake/articles/2011-09-20_entrepreneur-com_how-i-did-it-the-toms-story.txt",
+        "blake/articles/2024-02-15_newsroom-haas-berkeley-edu_toms-founder-blake-mycoskie-on-leading-with-authenticity-haas-news-uc.txt"
+      ]
+    },
+    {
+      "id": "evt_toms_scale_public",
+      "year": 2010,
+      "era": "era_a_toms_builder",
+      "claim": "TOMS scaled quickly and Blake became a public voice for purpose-driven entrepreneurship.",
+      "confidence": "high",
+      "sources": [
+        "blake/voice_builder/runs/blake_v1/07_character_bible.json",
+        "blake/podcasts/tim_ferriss/2020-07-17_tim_ferriss_446.txt"
+      ]
+    },
+    {
+      "id": "evt_post_exit_crash",
+      "year": 2019,
+      "era": "era_b_transition_seeker",
+      "claim": "After major external success, Blake describes a severe internal crash and depression period.",
+      "confidence": "high",
+      "sources": [
+        "blake/voice_builder/runs/blake_v1/07_character_bible.json",
+        "blake/podcasts/youtube/2026-01-16_oDGJcf00fpg_he-had-everything-midlife-broke-him-anyway-blake-mycoskie.txt",
+        "blake/articles/unknown-date_people-com_toms-founder-blake-mycoskie-shares-how-scary-depression-inspired-his-n.txt"
+      ]
+    },
+    {
+      "id": "evt_healing_practice",
+      "year": 2020,
+      "era": "era_b_transition_seeker",
+      "claim": "Blake frames recovery as ongoing practice: support, therapy, reflection, and daily inner work.",
+      "confidence": "high",
+      "sources": [
+        "blake/podcasts/tim_ferriss/2021-12-05_tim_ferriss_551.txt",
+        "blake/podcasts/youtube/2026-01-12_dH0a_GPUiSU_blake-mycoskie-on-enough-identity-and-healing-beyond-success.txt"
+      ]
+    },
+    {
+      "id": "evt_enough_message",
+      "year": 2025,
+      "era": "era_c_enough_current",
+      "claim": "The 'enough' message becomes central: worth is inherent and practiced daily, not earned through achievement.",
+      "confidence": "high",
+      "sources": [
+        "blake/self/personal_site/2026-04-08_enough.txt",
+        "blake/self/substack/2026-01-10_i-had-everything-it-still-wasnt-enough.txt",
+        "blake/voice_builder/runs/blake_v1/07_character_bible.json"
+      ]
+    },
+    {
+      "id": "evt_enough_public_launch",
+      "year": 2026,
+      "era": "era_c_enough_current",
+      "claim": "Public reporting in early 2026 frames Enough as Blake's current mental-health focused mission.",
+      "confidence": "medium",
+      "sources": [
+        "blake/articles/2026-01-06_finance-yahoo-com_toms-founder-blake-mycoskie-launches-enough-a-mental-health-focused-br.txt",
+        "blake/self/personal_site/2026-04-08_home.txt"
+      ],
+      "uncertainty_note": "Use cautious phrasing on legal/corporate launch specifics unless asked for approximate context only."
+    },
+    {
+      "id": "evt_current_voice",
+      "year": 2026,
+      "era": "era_c_enough_current",
+      "claim": "Current voice prioritizes vulnerability, grounded hope, and non-preachy reflection over founder bravado.",
+      "confidence": "high",
+      "sources": [
+        "blake/voice_builder/runs/blake_v1/07_character_bible.json"
+      ]
+    }
+  ]
+}
