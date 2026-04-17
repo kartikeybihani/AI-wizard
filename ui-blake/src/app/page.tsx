@@ -88,7 +88,10 @@ function nowIso(): string {
 }
 
 function createTurnId(): string {
-  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+  if (
+    typeof crypto !== "undefined" &&
+    typeof crypto.randomUUID === "function"
+  ) {
     return crypto.randomUUID();
   }
   return `turn_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
@@ -123,13 +126,20 @@ function blobToBase64(blob: Blob): Promise<string> {
   });
 }
 
-function stopRecorder(recorder: MediaRecorder | null, chunks: Blob[]): Promise<Blob | null> {
+function stopRecorder(
+  recorder: MediaRecorder | null,
+  chunks: Blob[],
+): Promise<Blob | null> {
   if (!recorder) {
     return Promise.resolve(null);
   }
 
   if (recorder.state === "inactive") {
-    return Promise.resolve(chunks.length ? new Blob(chunks, { type: recorder.mimeType || "audio/webm" }) : null);
+    return Promise.resolve(
+      chunks.length
+        ? new Blob(chunks, { type: recorder.mimeType || "audio/webm" })
+        : null,
+    );
   }
 
   return new Promise((resolve) => {
@@ -142,7 +152,7 @@ function stopRecorder(recorder: MediaRecorder | null, chunks: Blob[]): Promise<B
         }
         resolve(new Blob(chunks, { type: recorder.mimeType || "audio/webm" }));
       },
-      { once: true }
+      { once: true },
     );
     recorder.stop();
   });
@@ -207,35 +217,49 @@ export default function HomePage() {
   const assistantRecorderRef = useRef<MediaRecorder | null>(null);
   const micChunksRef = useRef<Blob[]>([]);
   const assistantChunksRef = useRef<Blob[]>([]);
-  const assistantTapDestinationRef = useRef<MediaStreamAudioDestinationNode | null>(null);
+  const assistantTapDestinationRef =
+    useRef<MediaStreamAudioDestinationNode | null>(null);
 
-  const callApi = useCallback(async <T,>(url: string, init?: RequestInit): Promise<T> => {
-    const response = await fetch(url, init);
-    const text = await response.text();
-    let payload: Record<string, unknown> = {};
-    if (text) {
-      try {
-        payload = JSON.parse(text) as Record<string, unknown>;
-      } catch {
-        payload = { raw: text };
+  const callApi = useCallback(
+    async <T,>(url: string, init?: RequestInit): Promise<T> => {
+      const response = await fetch(url, init);
+      const text = await response.text();
+      let payload: Record<string, unknown> = {};
+      if (text) {
+        try {
+          payload = JSON.parse(text) as Record<string, unknown>;
+        } catch {
+          payload = { raw: text };
+        }
       }
-    }
-    if (!response.ok) {
-      const apiError = typeof payload.error === "string" ? payload.error : "";
-      const apiMessage = typeof payload.message === "string" ? payload.message : "";
-      const details = payload.details ? ` | details=${stringifyUnknown(payload.details)}` : "";
-      const reason = apiError || apiMessage || `Request failed (${response.status}) for ${url}`;
-      throw new Error(`${reason}${details}`);
-    }
-    if (payload.ok === false) {
-      const apiError = typeof payload.error === "string" ? payload.error : "";
-      throw new Error(apiError || `API returned ok=false for ${url}`);
-    }
-    return payload as T;
-  }, []);
+      if (!response.ok) {
+        const apiError = typeof payload.error === "string" ? payload.error : "";
+        const apiMessage =
+          typeof payload.message === "string" ? payload.message : "";
+        const details = payload.details
+          ? ` | details=${stringifyUnknown(payload.details)}`
+          : "";
+        const reason =
+          apiError ||
+          apiMessage ||
+          `Request failed (${response.status}) for ${url}`;
+        throw new Error(`${reason}${details}`);
+      }
+      if (payload.ok === false) {
+        const apiError = typeof payload.error === "string" ? payload.error : "";
+        throw new Error(apiError || `API returned ok=false for ${url}`);
+      }
+      return payload as T;
+    },
+    [],
+  );
 
   const pushEvent = useCallback(
-    async (eventType: string, data?: Record<string, unknown>, turn?: Omit<TranscriptTurn, "id">) => {
+    async (
+      eventType: string,
+      data?: Record<string, unknown>,
+      turn?: Omit<TranscriptTurn, "id">,
+    ) => {
       const sid = sessionIdRef.current;
       if (!sid) {
         return;
@@ -262,27 +286,35 @@ export default function HomePage() {
         // Keep realtime flow resilient; dropped telemetry should not break session.
       }
     },
-    []
+    [],
   );
 
-  const startRecorder = useCallback((stream: MediaStream, onChunk: (chunk: Blob) => void): MediaRecorder | null => {
-    if (typeof MediaRecorder === "undefined") {
-      return null;
-    }
-    try {
-      const mimeType = supportedRecorderMimeType();
-      const recorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
-      recorder.addEventListener("dataavailable", (event) => {
-        if (event.data && event.data.size > 0) {
-          onChunk(event.data);
-        }
-      });
-      recorder.start(1000);
-      return recorder;
-    } catch {
-      return null;
-    }
-  }, []);
+  const startRecorder = useCallback(
+    (
+      stream: MediaStream,
+      onChunk: (chunk: Blob) => void,
+    ): MediaRecorder | null => {
+      if (typeof MediaRecorder === "undefined") {
+        return null;
+      }
+      try {
+        const mimeType = supportedRecorderMimeType();
+        const recorder = mimeType
+          ? new MediaRecorder(stream, { mimeType })
+          : new MediaRecorder(stream);
+        recorder.addEventListener("dataavailable", (event) => {
+          if (event.data && event.data.size > 0) {
+            onChunk(event.data);
+          }
+        });
+        recorder.start(1000);
+        return recorder;
+      } catch {
+        return null;
+      }
+    },
+    [],
+  );
 
   const applyMicMute = useCallback(
     (nextMuted: boolean, options?: { emitEvent?: boolean }) => {
@@ -321,7 +353,7 @@ export default function HomePage() {
         void pushEvent("mic_toggle", { muted: nextMuted });
       }
     },
-    [pushEvent]
+    [pushEvent],
   );
 
   const appendTurn = useCallback(
@@ -331,7 +363,11 @@ export default function HomePage() {
         return;
       }
 
-      if (speaker === "user" && micMutedRef.current && isPlaceholderUserUtterance(trimmed)) {
+      if (
+        speaker === "user" &&
+        micMutedRef.current &&
+        isPlaceholderUserUtterance(trimmed)
+      ) {
         return;
       }
 
@@ -354,7 +390,7 @@ export default function HomePage() {
             speaker,
             text: trimmed,
             ts,
-          }
+          },
         );
         return [...current, nextTurn];
       });
@@ -365,7 +401,7 @@ export default function HomePage() {
         });
       }
     },
-    [pushEvent]
+    [pushEvent],
   );
 
   const startSession = useCallback(async () => {
@@ -384,9 +420,12 @@ export default function HomePage() {
     assistantChunksRef.current = [];
 
     try {
-      const session = await callApi<SessionStartResponse>("/api/session/start", {
-        method: "POST",
-      });
+      const session = await callApi<SessionStartResponse>(
+        "/api/session/start",
+        {
+          method: "POST",
+        },
+      );
       sessionIdRef.current = session.sessionId;
       setSessionId(session.sessionId);
 
@@ -394,78 +433,127 @@ export default function HomePage() {
         ui: "ui-blake",
       });
 
-      const signed = await callApi<SignedUrlResponse>("/api/eleven/signed-url", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ includeConversationId: true }),
-      });
-
       const sdk = await import("@elevenlabs/client");
-
-      const conversation = (await sdk.Conversation.startSession({
-        signedUrl: signed.signedUrl,
-        connectionType: "websocket",
-        dynamicVariables: {
-          local_session_id: session.sessionId,
-        },
-        customLlmExtraBody: {
-          local_session_id: session.sessionId,
-          source: "ui-blake",
-        },
-        overrides: {
-          client: {
-            source: "ui_blake",
-            version: "v1",
+      const startWithAttempt = async (attempt: "primary" | "retry") => {
+        const signed = await callApi<SignedUrlResponse>(
+          "/api/eleven/signed-url",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ includeConversationId: true }),
           },
-          ...(signed.voiceId
-            ? {
-                tts: {
-                  voiceId: signed.voiceId,
-                },
-              }
-            : {}),
-        },
-        onConnect: ({ conversationId: cid }: { conversationId: string }) => {
-          setConversationId(cid);
-          void pushEvent("eleven_connected", {
-            conversationId: cid,
-          });
-        },
-        onStatusChange: ({ status: nextStatus }: { status: UiStatus }) => {
-          setStatus(nextStatus);
-          void pushEvent("status", { status: nextStatus });
-        },
-        onModeChange: ({ mode: nextMode }: { mode: Exclude<UiMode, "idle"> }) => {
-          modeRef.current = nextMode;
-          setMode(nextMode);
-          void pushEvent("mode", { mode: nextMode });
-        },
-        onMessage: ({ source, message }: { source: "user" | "ai"; message: string }) => {
-          appendTurn(source === "ai" ? "assistant" : "user", message);
-        },
-        onError: (raw: unknown) => {
-          const message = formatSdkError(raw);
-          setError(message);
-          console.error("[ui-blake] eleven sdk error", raw);
-          void pushEvent("sdk_error", { message, raw: stringifyUnknown(raw) });
-        },
-        onDisconnect: (details: unknown) => {
-          setStatus("disconnected");
-          modeRef.current = "idle";
-          setMode("idle");
-          void pushEvent("eleven_disconnected", {
-            details: typeof details === "object" && details ? details : { reason: "unknown" },
-          });
-        },
-      })) as unknown as ConversationHandle;
+        );
+        await pushEvent("connection_attempt", { attempt });
+        const conversation = (await sdk.Conversation.startSession({
+          signedUrl: signed.signedUrl,
+          connectionType: "websocket",
+          dynamicVariables: {
+            local_session_id: session.sessionId,
+          },
+          customLlmExtraBody: {
+            local_session_id: session.sessionId,
+            source: "ui-blake",
+          },
+          overrides: {
+            client: {
+              source: "ui_blake",
+              version: "v1",
+            },
+            ...(signed.voiceId
+              ? {
+                  tts: {
+                    voiceId: signed.voiceId,
+                  },
+                }
+              : {}),
+          },
+          onConnect: ({ conversationId: cid }: { conversationId: string }) => {
+            setConversationId(cid);
+            void pushEvent("eleven_connected", {
+              conversationId: cid,
+            });
+          },
+          onStatusChange: ({ status: nextStatus }: { status: UiStatus }) => {
+            setStatus(nextStatus);
+            void pushEvent("status", { status: nextStatus });
+          },
+          onModeChange: ({
+            mode: nextMode,
+          }: {
+            mode: Exclude<UiMode, "idle">;
+          }) => {
+            modeRef.current = nextMode;
+            setMode(nextMode);
+            void pushEvent("mode", { mode: nextMode });
+          },
+          onMessage: ({
+            source,
+            message,
+          }: {
+            source: "user" | "ai";
+            message: string;
+          }) => {
+            appendTurn(source === "ai" ? "assistant" : "user", message);
+          },
+          onError: (raw: unknown) => {
+            const message = formatSdkError(raw);
+            setError(message);
+            console.error("[ui-blake] eleven sdk error", raw);
+            void pushEvent("sdk_error", {
+              message,
+              raw: stringifyUnknown(raw),
+              attempt,
+            });
+          },
+          onDisconnect: (details: unknown) => {
+            setStatus("disconnected");
+            modeRef.current = "idle";
+            setMode("idle");
+            void pushEvent("eleven_disconnected", {
+              details:
+                typeof details === "object" && details
+                  ? details
+                  : { reason: "unknown" },
+              attempt,
+            });
+          },
+        })) as unknown as ConversationHandle;
+        return { conversation, signed };
+      };
+
+      let conversation: ConversationHandle | null = null;
+      let signedConversationId: string | null = null;
+      try {
+        const first = await startWithAttempt("primary");
+        conversation = first.conversation;
+        signedConversationId = first.signed.conversationId;
+      } catch (firstErr) {
+        const firstMessage =
+          stringifyUnknown(firstErr) || "websocket_connect_failed";
+        await pushEvent("connection_attempt_failed", {
+          attempt: "primary",
+          message: firstMessage,
+        });
+        const second = await startWithAttempt("retry");
+        conversation = second.conversation;
+        signedConversationId = second.signed.conversationId;
+        setError("Initial connection failed; retry succeeded.");
+      }
+
+      if (!conversation) {
+        throw new Error("Failed to initialize conversation");
+      }
 
       conversationRef.current = conversation;
-      setConversationId(conversation.getId?.() || signed.conversationId || "");
+      setConversationId(conversation.getId?.() || signedConversationId || "");
 
       if (conversation.input?.inputStream) {
-        micRecorderRef.current = startRecorder(conversation.input.inputStream, (chunk) => {
-          micChunksRef.current.push(chunk);
-        });
+        micRecorderRef.current = startRecorder(
+          conversation.input.inputStream,
+          (chunk) => {
+            micChunksRef.current.push(chunk);
+          },
+        );
       }
 
       const outputGain = conversation.output?.gain;
@@ -475,9 +563,12 @@ export default function HomePage() {
         outputGain.connect(tapDestination);
         assistantTapDestinationRef.current = tapDestination;
 
-        assistantRecorderRef.current = startRecorder(tapDestination.stream, (chunk) => {
-          assistantChunksRef.current.push(chunk);
-        });
+        assistantRecorderRef.current = startRecorder(
+          tapDestination.stream,
+          (chunk) => {
+            assistantChunksRef.current.push(chunk);
+          },
+        );
       }
 
       applyMicMute(false, { emitEvent: false });
@@ -531,7 +622,9 @@ export default function HomePage() {
       assistantTapDestinationRef.current = null;
 
       const micBase64 = micBlob ? await blobToBase64(micBlob) : undefined;
-      const assistantBase64 = assistantBlob ? await blobToBase64(assistantBlob) : undefined;
+      const assistantBase64 = assistantBlob
+        ? await blobToBase64(assistantBlob)
+        : undefined;
 
       await callApi<{ ok: boolean }>("/api/session/end", {
         method: "POST",
@@ -569,7 +662,9 @@ export default function HomePage() {
       return;
     }
     try {
-      const payload = await callApi<ExportPayload>(`/api/session/export?id=${encodeURIComponent(sessionIdRef.current)}`);
+      const payload = await callApi<ExportPayload>(
+        `/api/session/export?id=${encodeURIComponent(sessionIdRef.current)}`,
+      );
       setExportPreview(JSON.stringify(payload, null, 2));
     } catch (err) {
       setError(stringifyUnknown(err) || "Export failed");
@@ -581,8 +676,12 @@ export default function HomePage() {
       return;
     }
     try {
-      const payload = await callApi<ExportPayload>(`/api/session/export?id=${encodeURIComponent(sessionIdRef.current)}`);
-      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const payload = await callApi<ExportPayload>(
+        `/api/session/export?id=${encodeURIComponent(sessionIdRef.current)}`,
+      );
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {
+        type: "application/json",
+      });
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = url;
@@ -604,8 +703,14 @@ export default function HomePage() {
   }, []);
 
   const hasActiveConversation = Boolean(conversationRef.current);
-  const canStart = useMemo(() => !hasActiveConversation && !isBusy && status === "disconnected", [hasActiveConversation, isBusy, status]);
-  const canStop = useMemo(() => hasActiveConversation && !isStopping, [hasActiveConversation, isStopping]);
+  const canStart = useMemo(
+    () => !hasActiveConversation && !isBusy && status === "disconnected",
+    [hasActiveConversation, isBusy, status],
+  );
+  const canStop = useMemo(
+    () => hasActiveConversation && !isStopping,
+    [hasActiveConversation, isStopping],
+  );
 
   return (
     <main className="call-page">
@@ -619,43 +724,92 @@ export default function HomePage() {
             <span className={`status-pill ${status}`}>{status}</span>
           </header>
 
-          <div className={`voice-stage ${status} ${mode} ${micMuted ? "mic-muted" : ""}`}>
-            <svg className="voice-orbit-svg" viewBox="0 0 320 236" aria-hidden="true">
+          <div
+            className={`voice-stage ${status} ${mode} ${micMuted ? "mic-muted" : ""}`}
+          >
+            <svg
+              className="voice-orbit-svg"
+              viewBox="0 0 320 236"
+              aria-hidden="true"
+            >
               <defs>
-                <linearGradient id="coreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient
+                  id="coreGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
                   <stop offset="0%" stopColor="#ffffff" />
                   <stop offset="100%" stopColor="#e7edf8" />
                 </linearGradient>
-                <linearGradient id="waveGradient" x1="20%" y1="0%" x2="100%" y2="100%">
+                <linearGradient
+                  id="waveGradient"
+                  x1="20%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
                   <stop offset="0%" stopColor="#78d8c2" />
                   <stop offset="100%" stopColor="#2b78c8" />
                 </linearGradient>
               </defs>
 
-              <circle className="orbit-ring ring-outer" cx="160" cy="118" r="92" />
-              <circle className="orbit-ring ring-inner" cx="160" cy="118" r="68" />
+              <circle
+                className="orbit-ring ring-outer"
+                cx="160"
+                cy="118"
+                r="92"
+              />
+              <circle
+                className="orbit-ring ring-inner"
+                cx="160"
+                cy="118"
+                r="68"
+              />
 
               <g className="orbit-node orbit-node-a">
                 <g transform="translate(160 26)">
                   <circle className="node-shell" r="12.5" />
-                  <path className="node-icon" d="M-4.5 -2.2h2.7l3.2-3.1v10.6L-1.8 2H-4.5zM3.1-1.4a3.6 3.6 0 0 1 0 4.8M4.9-3.1a6.1 6.1 0 0 1 0 8.2" />
+                  <path
+                    className="node-icon"
+                    d="M-4.5 -2.2h2.7l3.2-3.1v10.6L-1.8 2H-4.5zM3.1-1.4a3.6 3.6 0 0 1 0 4.8M4.9-3.1a6.1 6.1 0 0 1 0 8.2"
+                  />
                 </g>
               </g>
               <g className="orbit-node orbit-node-b">
                 <g transform="translate(160 44)">
                   <circle className="node-shell" r="10" />
-                  <path className="node-icon" d="M0-4.6v4M-2.5-1.4a2.5 2.5 0 1 0 5 0v-2a2.5 2.5 0 1 0-5 0zM-4.5 2.3a4.5 4.5 0 1 0 9 0" />
+                  <path
+                    className="node-icon"
+                    d="M0-4.6v4M-2.5-1.4a2.5 2.5 0 1 0 5 0v-2a2.5 2.5 0 1 0-5 0zM-4.5 2.3a4.5 4.5 0 1 0 9 0"
+                  />
                 </g>
               </g>
 
               <circle className="core-glow" cx="160" cy="118" r="52" />
-              <circle className="core-disc" cx="160" cy="118" r="42" fill="url(#coreGradient)" />
-              <path className="wave wave-a" d="M132 118h8l6-12 6 24 6-18 6 12h24" />
+              <circle
+                className="core-disc"
+                cx="160"
+                cy="118"
+                r="42"
+                fill="url(#coreGradient)"
+              />
+              <path
+                className="wave wave-a"
+                d="M132 118h8l6-12 6 24 6-18 6 12h24"
+              />
               <path className="wave wave-b" d="M138 130h10l6-9 6 15 6-11h16" />
             </svg>
 
             <div className="voice-core">
-              <span>{mode === "idle" ? "Ready" : mode === "speaking" ? "AI Speaking" : "Listening"}</span>
+              <span>
+                {mode === "idle"
+                  ? "Ready"
+                  : mode === "speaking"
+                    ? "AI Speaking"
+                    : "Listening"}
+              </span>
             </div>
             <div className="voice-bars" aria-hidden="true">
               <i />
@@ -668,17 +822,31 @@ export default function HomePage() {
           </div>
 
           <div className="call-controls">
-            <button className="btn btn-connect" onClick={() => void startSession()} disabled={!canStart}>
+            <button
+              className="btn btn-connect"
+              onClick={() => void startSession()}
+              disabled={!canStart}
+            >
               <PhoneIcon />
-              <span>{status === "connecting" ? "Connecting..." : "Connect"}</span>
+              <span>
+                {status === "connecting" ? "Connecting..." : "Connect"}
+              </span>
             </button>
 
-            <button className="btn btn-mic" onClick={toggleMic} disabled={!hasActiveConversation}>
+            <button
+              className="btn btn-mic"
+              onClick={toggleMic}
+              disabled={!hasActiveConversation}
+            >
               {micMuted ? <MicOffIcon /> : <MicIcon />}
               <span>{micMuted ? "Unmute" : "Mute"}</span>
             </button>
 
-            <button className="btn btn-end" onClick={() => void stopSession()} disabled={!canStop}>
+            <button
+              className="btn btn-end"
+              onClick={() => void stopSession()}
+              disabled={!canStop}
+            >
               <PhoneIcon />
               <span>{isStopping ? "Ending..." : "End"}</span>
             </button>
@@ -705,14 +873,24 @@ export default function HomePage() {
               <span>Compact</span>
             </div>
             <div className="export-actions">
-              <button className="btn btn-subtle" onClick={() => void loadExport()} disabled={!sessionId}>
+              <button
+                className="btn btn-subtle"
+                onClick={() => void loadExport()}
+                disabled={!sessionId}
+              >
                 Preview JSON
               </button>
-              <button className="btn btn-subtle" onClick={() => void downloadExport()} disabled={!sessionId}>
+              <button
+                className="btn btn-subtle"
+                onClick={() => void downloadExport()}
+                disabled={!sessionId}
+              >
                 Download
               </button>
             </div>
-            <pre className="export-box">{exportPreview || "No export loaded."}</pre>
+            <pre className="export-box">
+              {exportPreview || "No export loaded."}
+            </pre>
           </section>
 
           {error ? <p className="error-banner">{error}</p> : null}
@@ -724,11 +902,15 @@ export default function HomePage() {
             <span>{transcript.length} turns</span>
           </div>
           <div className="transcript-list">
-            {transcript.length === 0 ? <p className="empty">No transcript yet.</p> : null}
+            {transcript.length === 0 ? (
+              <p className="empty">No transcript yet.</p>
+            ) : null}
             {transcript.map((turn) => (
               <article key={turn.id} className={`turn-card ${turn.speaker}`}>
                 <header>
-                  <strong>{turn.speaker === "assistant" ? "AI Blake" : "Blake"}</strong>
+                  <strong>
+                    {turn.speaker === "assistant" ? "AI Blake" : "Blake"}
+                  </strong>
                   <time>{new Date(turn.ts).toLocaleTimeString()}</time>
                 </header>
                 <p>{turn.text}</p>
