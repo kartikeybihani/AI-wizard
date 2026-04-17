@@ -32,7 +32,19 @@ export function loadServerEnv(): void {
 
 loadServerEnv();
 
-export const UI_DATA_DIR = path.join(UI_ROOT, "data");
+function resolveDataDir(): string {
+  const configured = process.env.UI_BLAKE_DATA_DIR?.trim() || "";
+  if (configured) {
+    return configured;
+  }
+  // Vercel serverless runtime does not guarantee write access under project files.
+  if (process.env.VERCEL) {
+    return "/tmp/ui-blake-data";
+  }
+  return path.join(UI_ROOT, "data");
+}
+
+export const UI_DATA_DIR = resolveDataDir();
 export const SESSION_DIR = path.join(UI_DATA_DIR, "sessions");
 
 export const ELEVENLABS_BASE_URL =

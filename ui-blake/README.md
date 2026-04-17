@@ -15,8 +15,10 @@ Set environment in `ui-blake/.env.local` (or `project/.env`):
 - `ELEVENLABS_API_KEY`
 - `ELEVENLABS_AGENT_ID`
 - `ELEVENLABS_VOICE_ID` (optional if agent default voice is already set)
+- `UI_BLAKE_DATA_DIR` (optional; defaults to `/tmp/ui-blake-data` on Vercel)
 
 This app stores sessions under `ui-blake/data/sessions/<session_id>/`.
+On Vercel, session files are written to `/tmp/ui-blake-data/sessions/<session_id>/` by default.
 
 ## API Routes
 
