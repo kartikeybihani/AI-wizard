@@ -15,7 +15,8 @@ export async function POST(request: Request): Promise<Response> {
 
   const sessionId = (body.sessionId || "").trim();
   if (!sessionId) {
-    return NextResponse.json({ ok: false, error: "Missing sessionId" }, { status: 400 });
+    // Keep session finalization best-effort in serverless environments.
+    return NextResponse.json({ ok: true, dropped: true, reason: "missing_session_id" });
   }
 
   try {
@@ -32,12 +33,9 @@ export async function POST(request: Request): Promise<Response> {
 
     return NextResponse.json({ ok: true, meta });
   } catch (error) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: error instanceof Error ? error.message : "Failed to end session",
-      },
-      { status: 400 }
-    );
+    const message = error instanceof Error ? error.message : "Failed to end session";
+    // Vercel serverless instances do not share local filesystem state.
+    // Avoid surfacing this as a hard UI failure when call teardown succeeded.
+    return NextResponse.json({ ok: true, dropped: true, reason: message });
   }
 }

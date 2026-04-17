@@ -2,6 +2,19 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { ConstellationSVG } from "@/components/hero/Constellation";
+import { HeroCtaRow } from "@/components/hero/HeroCtaRow";
+import { HeroOrb } from "@/components/hero/HeroOrb";
+import { NarrativeSection } from "@/components/shared/NarrativeSection";
+import { Starfield } from "@/components/layout/Starfield";
+import type { HeroOrbState } from "@/styles/design";
+
+declare global {
+  interface Window {
+    __UI_BLAKE_MOCK_SESSION__?: boolean;
+  }
+}
+
 type TranscriptTurn = {
   id: string;
   speaker: "user" | "assistant";
@@ -168,7 +181,15 @@ function isPlaceholderUserUtterance(text: string): boolean {
 
 function PhoneIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.572 2.81.7A2 2 0 0 1 22 16.92z" />
     </svg>
   );
@@ -176,7 +197,15 @@ function PhoneIcon() {
 
 function MicIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
       <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
       <line x1="12" y1="19" x2="12" y2="23" />
@@ -187,7 +216,15 @@ function MicIcon() {
 
 function MicOffIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <line x1="1" y1="1" x2="23" y2="23" />
       <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6" />
       <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2c0 .76-.13 1.49-.35 2.18" />
@@ -216,7 +253,15 @@ function ChevronIcon({ expanded }: { expanded: boolean }) {
 
 function DownloadIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
       <polyline points="7 10 12 15 17 10" />
       <line x1="12" y1="15" x2="12" y2="3" />
@@ -226,7 +271,15 @@ function DownloadIcon() {
 
 function EyeIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
       <circle cx="12" cy="12" r="3" />
     </svg>
@@ -235,7 +288,16 @@ function EyeIcon() {
 
 function CopyIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="copy-icon-svg">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="copy-icon-svg"
+    >
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
     </svg>
@@ -256,8 +318,10 @@ export default function HomePage() {
   const [textInput, setTextInput] = useState<string>("");
   const [inputLevel, setInputLevel] = useState<number>(0);
   const [outputLevel, setOutputLevel] = useState<number>(0);
-  const [debugOpen, setDebugOpen] = useState(false);
+  const [debugOpen, setDebugOpen] = useState(true); // toggle debug area
   const [copiedField, setCopiedField] = useState<string | null>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [orbHovered, setOrbHovered] = useState(false);
 
   const conversationRef = useRef<ConversationHandle | null>(null);
   const sessionIdRef = useRef<string>("");
@@ -485,6 +549,32 @@ export default function HomePage() {
       await pushEvent("session_started", {
         ui: "ui-blake",
       });
+
+      if (typeof window !== "undefined" && window.__UI_BLAKE_MOCK_SESSION__) {
+        const mockConversation: ConversationHandle = {
+          endSession: async () => {
+            setStatus("disconnected");
+          },
+          setMicMuted: () => {
+            // no-op in e2e mock mode
+          },
+          getId: () => `mock-${session.sessionId.slice(0, 8)}`,
+          sendUserMessage: (text: string) => {
+            appendTurn("user", text);
+          },
+          getInputVolume: () => 0.18,
+          getOutputVolume: () => 0.58,
+        };
+
+        conversationRef.current = mockConversation;
+        setConversationId(mockConversation.getId());
+        setStatus("connected");
+        modeRef.current = "listening";
+        setMode("listening");
+        applyMicMute(false, { emitEvent: false });
+        await pushEvent("mock_connected", { enabled: true });
+        return;
+      }
 
       const sdk = await import("@elevenlabs/client");
       const startWithAttempt = async (attempt: "primary" | "retry") => {
@@ -766,6 +856,15 @@ export default function HomePage() {
     }
   }, [callApi]);
 
+  const openExportPreview = useCallback(async () => {
+    // debugOpen always true, no need to set
+    if (!sessionIdRef.current) {
+      setError("Start and end a session before previewing export.");
+      return;
+    }
+    await loadExport();
+  }, [loadExport]);
+
   useEffect(() => {
     return () => {
       const convo = conversationRef.current;
@@ -822,6 +921,26 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, [hasActiveConversation]);
 
+  useEffect(() => {
+    if (
+      typeof window === "undefined" ||
+      typeof window.matchMedia !== "function"
+    ) {
+      return;
+    }
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      setPrefersReducedMotion(mediaQuery.matches);
+    };
+    update();
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", update);
+      return () => mediaQuery.removeEventListener("change", update);
+    }
+    mediaQuery.addListener(update);
+    return () => mediaQuery.removeListener(update);
+  }, []);
+
   // Auto-scroll transcript when new turns arrive
   useEffect(() => {
     if (transcriptRef.current && transcript.length > 0) {
@@ -843,216 +962,250 @@ export default function HomePage() {
   };
 
   const hasTranscript = transcript.length > 0;
+  const heroState = useMemo<HeroOrbState>(() => {
+    if (!hasActiveConversation && status === "disconnected" && !sessionId) {
+      return "idle";
+    }
+    if (micMuted && hasActiveConversation) {
+      return "muted";
+    }
+    if (mode === "speaking") {
+      return "speaking";
+    }
+    if (mode === "listening") {
+      return "listening";
+    }
+    if (status === "connecting") {
+      return "connecting";
+    }
+    if (status === "connected") {
+      return "connected";
+    }
+    if (status === "disconnecting") {
+      return "disconnecting";
+    }
+    return "disconnected";
+  }, [hasActiveConversation, micMuted, mode, sessionId, status]);
 
   return (
-    <main className="call-page">
+    <main className={`call-page ${orbHovered ? "is-orb-hovered" : ""}`}>
+      <Starfield reducedMotion={prefersReducedMotion} />
       {/* Grain overlay */}
       <div className="grain-overlay" aria-hidden="true" />
+      <div className="landing-grid">
+        {/* Zone 1: The Presence — orb + title + controls */}
+        <NarrativeSection
+          className="presence-zone"
+          delay={0}
+          reducedMotion={prefersReducedMotion}
+          title="Presence"
+          subtitle="An orbiting command center for live interviews with AI Blake."
+          learnMore={{
+            summaryLabel: "Learn more",
+            content: (
+              <>
+                <p>
+                  Presence fuses realtime audio state, celestial motion, and
+                  actionable controls into one pilot view. Every pulse and glow
+                  maps to an interview signal.
+                </p>
+                <ConstellationSVG reducedMotion={prefersReducedMotion} />
+              </>
+            ),
+          }}
+        >
+          <header className="presence-header">
+            <div className="title-group">
+              <h1 className="title-reveal-stagger font-heading text-brand-text">
+                {"AI Blake Studio".split("").map((char, i) => (
+                  <span
+                    key={i}
+                    style={{ animationDelay: `${0.9 + i * 0.04}s` }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                ))}
+              </h1>
+              <p className="subtitle-reveal text-brand-subtle">
+                Realtime voice interview
+              </p>
+            </div>
+          </header>
 
-      {/* Zone 1: The Presence — orb + title + controls */}
-      <section className="presence-zone">
-        <header className="presence-header">
-          <div className="title-group">
-            <h1 className="title-reveal-stagger">
-              {"AI Blake Studio".split("").map((char, i) => (
-                <span key={i} style={{ animationDelay: `${0.9 + i * 0.04}s` }}>
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))}
-            </h1>
-            <p className="subtitle-reveal">Realtime voice interview</p>
-          </div>
-        </header>
-
-        <div className={`voice-stage-orb ${status} ${mode} ${micMuted ? "mic-muted" : ""}`}>
-          <svg
-            className="voice-orbit-svg"
-            viewBox="0 0 320 236"
-            aria-hidden="true"
-          >
-            <defs>
-              <linearGradient
-                id="coreGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="100%" stopColor="#e7edf8" />
-              </linearGradient>
-              <linearGradient
-                id="waveGradient"
-                x1="20%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#78d8c2" />
-                <stop offset="100%" stopColor="#2b78c8" />
-              </linearGradient>
-            </defs>
-
-            <circle
-              className="orbit-ring ring-outer"
-              cx="160"
-              cy="118"
-              r="92"
+          <div className="hero-orb-stage">
+            <HeroOrb
+              state={heroState}
+              intensity={outputLevel}
+              reducedMotion={prefersReducedMotion}
+              onHover={setOrbHovered}
             />
-            <circle
-              className="orbit-ring ring-inner"
-              cx="160"
-              cy="118"
-              r="68"
-            />
-
-            <g className="orbit-node orbit-node-a">
-              <g transform="translate(160 26)">
-                <circle className="node-shell" r="12.5" />
-                <path
-                  className="node-icon"
-                  d="M-4.5 -2.2h2.7l3.2-3.1v10.6L-1.8 2H-4.5zM3.1-1.4a3.6 3.6 0 0 1 0 4.8M4.9-3.1a6.1 6.1 0 0 1 0 8.2"
-                />
-              </g>
-            </g>
-            <g className="orbit-node orbit-node-b">
-              <g transform="translate(160 44)">
-                <circle className="node-shell" r="10" />
-                <path
-                  className="node-icon"
-                  d="M0-4.6v4M-2.5-1.4a2.5 2.5 0 1 0 5 0v-2a2.5 2.5 0 1 0-5 0zM-4.5 2.3a4.5 4.5 0 1 0 9 0"
-                />
-              </g>
-            </g>
-
-            <circle className="core-glow" cx="160" cy="118" r="52" />
-            <circle
-              className="core-disc"
-              cx="160"
-              cy="118"
-              r="42"
-              fill="url(#coreGradient)"
-            />
-            <path
-              className="wave wave-a"
-              d="M132 118h8l6-12 6 24 6-18 6 12h24"
-            />
-            <path className="wave wave-b" d="M138 130h10l6-9 6 15 6-11h16" />
-          </svg>
-
-          <div className="voice-core">
-            <span>
+            <p className="hero-orb-caption">
               {mode === "idle"
-                ? "Ready"
+                ? "Ready for live interview"
                 : mode === "speaking"
-                  ? "AI Speaking"
+                  ? "AI speaking"
                   : "Listening"}
-            </span>
+            </p>
           </div>
-          <div className="voice-bars" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-            <i />
-            <i />
-            <i />
-          </div>
-        </div>
+          <HeroCtaRow
+            primaryLabel={
+              canStop
+                ? isStopping
+                  ? "Ending..."
+                  : "End call"
+                : status === "connecting"
+                  ? "Connecting..."
+                  : "Start live session"
+            }
+            secondaryLabel="Open export preview"
+            onPrimaryClick={() => {
+              if (canStop) {
+                void stopSession();
+                return;
+              }
+              void startSession();
+            }}
+            onSecondaryClick={() => void openExportPreview()}
+            primaryDisabled={canStop ? isStopping : !canStart}
+            primaryLoading={
+              canStop ? isStopping : status === "connecting" || isBusy
+            }
+            secondaryDisabled={false}
+          />
 
-        <div className="call-controls">
-          <button
-            className="btn btn-connect"
-            onClick={() => void startSession()}
-            disabled={!canStart}
-          >
-            <PhoneIcon />
-            <span>
-              {status === "connecting" ? "Connecting..." : "Connect"}
-            </span>
-          </button>
-
-          <button
-            className="btn btn-mic"
-            onClick={toggleMic}
-            disabled={!hasActiveConversation}
-          >
-            {micMuted ? <MicOffIcon /> : <MicIcon />}
-            <span>{micMuted ? "Unmute" : "Mute"}</span>
-          </button>
-
-          <button
-            className="btn btn-end"
-            onClick={() => void stopSession()}
-            disabled={!canStop}
-          >
-            <PhoneIcon />
-            <span>{isStopping ? "Ending..." : "End"}</span>
-          </button>
-        </div>
-
-        {/* Text input — only visible during active conversation */}
-        {hasActiveConversation && (
-          <div className="text-send-row">
-            <input
-              value={textInput}
-              onChange={(e) => setTextInput(e.target.value)}
-              placeholder="Type a message..."
-              disabled={!hasActiveConversation}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  sendTextMessage();
-                }
-              }}
-            />
+          <div className="call-controls">
             <button
-              className="btn btn-ghost"
-              onClick={sendTextMessage}
-              disabled={!hasActiveConversation || !textInput.trim()}
+              className="btn btn-mic"
+              onClick={toggleMic}
+              disabled={!hasActiveConversation}
             >
-              Send
+              {micMuted ? <MicOffIcon /> : <MicIcon />}
+              <span>{micMuted ? "Unmute" : "Mute"}</span>
+            </button>
+
+            <button
+              className="btn btn-end"
+              onClick={() => void stopSession()}
+              disabled={!canStop}
+            >
+              <PhoneIcon />
+              <span>{isStopping ? "Ending..." : "End"}</span>
             </button>
           </div>
-        )}
 
-        {error ? <p className="error-banner">{error}</p> : null}
-      </section>
+          {/* Text input — only visible during active conversation */}
+          {hasActiveConversation && (
+            <div className="text-send-row">
+              <input
+                value={textInput}
+                onChange={(e) => setTextInput(e.target.value)}
+                placeholder="Type a message..."
+                disabled={!hasActiveConversation}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    sendTextMessage();
+                  }
+                }}
+              />
+              <button
+                className="btn btn-ghost"
+                onClick={sendTextMessage}
+                disabled={!hasActiveConversation || !textInput.trim()}
+              >
+                Send
+              </button>
+            </div>
+          )}
 
-      {/* Zone 2: The Conversation — transcript */}
-      <section className="conversation-zone">
-        <div className="conversation-header">
-          <h2>Conversation</h2>
-          {hasTranscript && <span className="turn-count">{transcript.length} turns</span>}
-        </div>
+          {error ? <p className="error-banner">{error}</p> : null}
+        </NarrativeSection>
 
-        <div ref={transcriptRef} className="transcript-list">
-          {!hasTranscript ? (
-            <p className="transcript-empty">Conversation will appear here.</p>
-          ) : null}
-          {transcript.map((turn) => (
-            <article key={turn.id} className={`turn-card ${turn.speaker}`}>
-              <header className="turn-header">
-                <span className="turn-speaker">
-                  {turn.speaker === "assistant" ? "AI Blake" : "Blake"}
-                </span>
-                <div className="turn-accent" />
-                <time className="turn-time">
-                  {new Date(turn.ts).toLocaleTimeString()}
-                </time>
-              </header>
-              <p className="turn-text">{turn.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+        {/* Zone 2: The Conversation — transcript */}
+        <NarrativeSection
+          className="conversation-zone"
+          delay={0.08}
+          reducedMotion={prefersReducedMotion}
+          title="Conversation"
+          subtitle="Trace every exchange as a living narrative arc."
+          learnMore={{
+            summaryLabel: "Learn more",
+            content: (
+              <p>
+                Conversation cards surface timing, speaker turn order, and key
+                response cadence so you can evaluate flow quality in seconds.
+              </p>
+            ),
+          }}
+        >
+          <div className="conversation-header">
+            <h2>Conversation</h2>
+            {hasTranscript && (
+              <span className="turn-count">{transcript.length} turns</span>
+            )}
+          </div>
+
+          <div ref={transcriptRef} className="transcript-list">
+            {!hasTranscript ? (
+              <p className="transcript-empty">Conversation will appear here.</p>
+            ) : null}
+            {transcript.map((turn) => (
+              <article key={turn.id} className={`turn-card ${turn.speaker}`}>
+                <header className="turn-header">
+                  <span className="turn-speaker">
+                    {turn.speaker === "assistant" ? "AI Blake" : "Blake"}
+                  </span>
+                  <div className="turn-accent" />
+                  <time className="turn-time">
+                    {new Date(turn.ts).toLocaleTimeString()}
+                  </time>
+                </header>
+                <p className="turn-text">{turn.text}</p>
+              </article>
+            ))}
+          </div>
+        </NarrativeSection>
+      </div>
 
       {/* Zone 3: Debug drawer */}
-      <section className="debug-zone">
+      <NarrativeSection
+        className="debug-zone"
+        delay={0.16}
+        reducedMotion={prefersReducedMotion}
+        title="Diagnostics"
+        subtitle="Operational telemetry and export artifacts for confident iteration."
+        learnMore={{
+          summaryLabel: "Learn more",
+          content: (
+            <p>
+              Diagnostics bundles IDs, levels, and export previews to validate
+              quality and preserve interview evidence without leaving the flow.
+            </p>
+          ),
+        }}
+      >
         <button
           className="debug-trigger"
           onClick={() => setDebugOpen(!debugOpen)}
           aria-expanded={debugOpen}
+          style={{
+            visibility: "visible",
+            backgroundColor: "#f0f0f0",
+            color: "#000",
+            padding: "0.5rem 1rem",
+            borderRadius: "0.5rem",
+            border: "1px solid #ccc",
+            zIndex: 10,
+            position: "relative",
+          }}
         >
+          <span
+            className={`debug-planet ${debugOpen ? "is-open" : ""}`}
+            aria-hidden="true"
+            style={{ color: "#000", fontSize: "1.2rem" }}
+          >
+            🪐
+          </span>
           <span>Debug</span>
           <ChevronIcon expanded={debugOpen} />
         </button>
@@ -1076,9 +1229,7 @@ export default function HomePage() {
                       </button>
                     )}
                   </div>
-                  <code className="mono-field">
-                    {sessionId || "—"}
-                  </code>
+                  <code className="mono-field">{sessionId || "—"}</code>
                 </div>
                 <div className="debug-field">
                   <div className="debug-field-label">
@@ -1086,7 +1237,9 @@ export default function HomePage() {
                     {conversationId && (
                       <button
                         className="btn-copy"
-                        onClick={() => copyToClipboard(conversationId, "conversation")}
+                        onClick={() =>
+                          copyToClipboard(conversationId, "conversation")
+                        }
                         title="Copy conversation ID"
                       >
                         <CopyIcon />
@@ -1094,9 +1247,7 @@ export default function HomePage() {
                       </button>
                     )}
                   </div>
-                  <code className="mono-field">
-                    {conversationId || "—"}
-                  </code>
+                  <code className="mono-field">{conversationId || "—"}</code>
                 </div>
                 <div className="debug-field">
                   <div className="debug-field-label">
@@ -1123,7 +1274,9 @@ export default function HomePage() {
                         style={{ width: `${Math.round(inputLevel * 100)}%` }}
                       />
                     </div>
-                    <span className="vu-value">{Math.round(inputLevel * 100)}%</span>
+                    <span className="vu-value">
+                      {Math.round(inputLevel * 100)}%
+                    </span>
                   </div>
                   <div className="vu-item">
                     <span className="vu-label">Output</span>
@@ -1133,7 +1286,9 @@ export default function HomePage() {
                         style={{ width: `${Math.round(outputLevel * 100)}%` }}
                       />
                     </div>
-                    <span className="vu-value">{Math.round(outputLevel * 100)}%</span>
+                    <span className="vu-value">
+                      {Math.round(outputLevel * 100)}%
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1165,7 +1320,7 @@ export default function HomePage() {
             </div>
           </div>
         )}
-      </section>
+      </NarrativeSection>
     </main>
   );
 }
