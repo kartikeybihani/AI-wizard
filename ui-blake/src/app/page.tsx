@@ -503,10 +503,6 @@ export default function HomePage() {
           dynamicVariables: {
             local_session_id: session.sessionId,
           },
-          customLlmExtraBody: {
-            local_session_id: session.sessionId,
-            source: "ui-blake",
-          },
           overrides: {
             ...(signed.voiceId
               ? {
