@@ -1,0 +1,14 @@
+# Local env / caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Large local artifacts not needed by interview_server runtime
+data/
+
