@@ -33,6 +33,9 @@ type ConversationHandle = {
   endSession: () => Promise<void>;
   setMicMuted: (muted: boolean) => void;
   getId: () => string;
+  sendUserMessage?: (text: string) => void;
+  getInputVolume?: () => Promise<number>;
+  getOutputVolume?: () => Promise<number>;
   input?: {
     inputStream?: MediaStream;
   };
@@ -207,6 +210,9 @@ export default function HomePage() {
   const [isBusy, setIsBusy] = useState<boolean>(false);
   const [isStopping, setIsStopping] = useState<boolean>(false);
   const [exportPreview, setExportPreview] = useState<string>("");
+  const [textInput, setTextInput] = useState<string>("");
+  const [inputLevel, setInputLevel] = useState<number>(0);
+  const [outputLevel, setOutputLevel] = useState<number>(0);
 
   const conversationRef = useRef<ConversationHandle | null>(null);
   const sessionIdRef = useRef<string>("");
@@ -653,6 +659,34 @@ export default function HomePage() {
     applyMicMute(!micMutedRef.current);
   }, [applyMicMute]);
 
+  const sendTextMessage = useCallback(() => {
+    const convo = conversationRef.current;
+    const value = textInput.trim();
+    if (!convo || !value) {
+      return;
+    }
+    if (typeof convo.sendUserMessage !== "function") {
+      setError("sendUserMessage is unavailable in current SDK session.");
+      return;
+    }
+    try {
+      convo.sendUserMessage(value);
+      setTextInput("");
+      const ts = nowIso();
+      void pushEvent(
+        "manual_text_input",
+        { text: value },
+        {
+          speaker: "user",
+          text: value,
+          ts,
+        },
+      );
+    } catch (err) {
+      setError(stringifyUnknown(err) || "Failed to send text message");
+    }
+  }, [pushEvent, textInput]);
+
   const loadExport = useCallback(async () => {
     if (!sessionIdRef.current) {
       return;
@@ -707,6 +741,37 @@ export default function HomePage() {
     () => hasActiveConversation && !isStopping,
     [hasActiveConversation, isStopping],
   );
+
+  useEffect(() => {
+    if (!hasActiveConversation) {
+      setInputLevel(0);
+      setOutputLevel(0);
+      return;
+    }
+    const interval = setInterval(() => {
+      const convo = conversationRef.current;
+      if (!convo) {
+        return;
+      }
+      if (typeof convo.getInputVolume === "function") {
+        void convo
+          .getInputVolume()
+          .then((v) => setInputLevel(Number.isFinite(v) ? v : 0))
+          .catch(() => {
+            // no-op
+          });
+      }
+      if (typeof convo.getOutputVolume === "function") {
+        void convo
+          .getOutputVolume()
+          .then((v) => setOutputLevel(Number.isFinite(v) ? v : 0))
+          .catch(() => {
+            // no-op
+          });
+      }
+    }, 320);
+    return () => clearInterval(interval);
+  }, [hasActiveConversation]);
 
   return (
     <main className="call-page">
@@ -861,6 +926,39 @@ export default function HomePage() {
               <span>Mode</span>
               <strong>{mode}</strong>
             </div>
+          </div>
+
+          <div className="debug-strip">
+            <div className="debug-item">
+              <span>Input</span>
+              <strong>{Math.round(inputLevel * 100)}%</strong>
+            </div>
+            <div className="debug-item">
+              <span>Output</span>
+              <strong>{Math.round(outputLevel * 100)}%</strong>
+            </div>
+          </div>
+
+          <div className="text-send-row">
+            <input
+              value={textInput}
+              onChange={(e) => setTextInput(e.target.value)}
+              placeholder="Debug: send typed message to AI Blake"
+              disabled={!hasActiveConversation}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  sendTextMessage();
+                }
+              }}
+            />
+            <button
+              className="btn btn-subtle"
+              onClick={sendTextMessage}
+              disabled={!hasActiveConversation || !textInput.trim()}
+            >
+              Send Text
+            </button>
           </div>
 
           <section className="mini-export">

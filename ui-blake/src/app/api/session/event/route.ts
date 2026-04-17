@@ -27,6 +27,11 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   const eventType = (body.eventType || "event").trim();
+  console.log("[ui-blake] session_event", {
+    sessionId: sessionId.slice(0, 8),
+    eventType,
+    hasTurn: Boolean(body.transcriptTurn),
+  });
 
   try {
     appendEvent(sessionId, {
