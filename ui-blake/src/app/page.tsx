@@ -1001,6 +1001,9 @@ export default function HomePage() {
       <div className="landing-page-title" aria-label="Site title">
         No Magic Pill
       </div>
+      <p className="landing-page-subtitle">
+        Ask anything. Talk directly with Blake Mycoskie AI in real time.
+      </p>
       <button
         type="button"
         className="page-demo-link"
@@ -1045,7 +1048,7 @@ export default function HomePage() {
           delay={0}
           reducedMotion={prefersReducedMotion}
           title="AI Blake Studio"
-          subtitle="Realtime voice workspace for interviews."
+          subtitle="Ask anything. Talk directly with Blake Mycoskie AI in real time."
           learnMore={{
             summaryLabel: "Learn more",
             content: (
@@ -1174,6 +1177,7 @@ export default function HomePage() {
           delay={0.08}
           reducedMotion={prefersReducedMotion}
           title="Conversation"
+          subtitle="Review each exchange with Blake AI while the studio stays live."
           learnMore={{
             summaryLabel: "Learn more",
             content: (
